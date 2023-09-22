@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,100;1,400;1,500;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  /* background: linear-gradient(#ffffff03, #00020fcd), url(assets/images/darkbg.png); */
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.navbar-links li a:hover {
+  border-radius: 25px;
+  transition: all 0.5s;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 40px;
+  border-radius: 25px;
+  border-top-left-radius: 0px;
+  transition: 0.5s;
+  font-size: medium;
+}
+.btn:hover {
+  border-top-left-radius: 25px;
+}
+
+.content {
+  margin-top: 30%;
+  justify-content: space-between;
+}
+
+.chef-img {
+  width: 21%;
+  bottom: 0;
+  right: 18%;
+  position: absolute;
+  animation: move 2.5s linear infinite;
+}
+.chefdark-img {
+  width: 28%;
+  bottom: 0;
+  right: 13%;
+  position: absolute;
+  animation: move 2.5s linear infinite;
+}
+
+.healthy-img {
+  animation: move 2.5s linear infinite;
+}
+@keyframes move {
+  0% {
+    transform: translate(-20px, 0px);
+  }
+  50% {
+    transform: translate(0px, -20px);
+  }
+  100% {
+    transform: translate(-20px, 0px);
+  }
+}
+
+.blob1 {
+  @apply w-80 h-80 bg-color-blob absolute top-0 -left-5 -z-10 blur-2xl opacity-30 overflow-hidden rounded-full;
+}
+.blob2 {
+  @apply w-80 h-80 bg-color-secondary absolute bottom-10 right-0 -z-10 blur-2xl opacity-30 overflow-hidden rounded-full;
+}
