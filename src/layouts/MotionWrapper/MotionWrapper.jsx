@@ -8,8 +8,8 @@ export default function MotionWrapper({ children, variants }) {
       initial='offscreen'
       animate='visible'
       whileInView='onscreen'
-      viewport={{ once: true, amount: 0.8 }}
-      transition={{ duration: 0.5, delay: 0.25 }}
+      viewport={{ once: true, amount: 0.5 }}
+      transition={{ duration: 0.25, delay: 0.25 }}
     >
       {children}
     </motion.div>
