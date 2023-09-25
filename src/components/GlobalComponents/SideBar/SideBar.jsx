@@ -12,7 +12,7 @@ import { TbReportAnalytics } from 'react-icons/tb'
 import { RiBuilding3Line } from 'react-icons/ri'
 import { useMediaQuery } from 'react-responsive'
 import { MdMenu } from 'react-icons/md'
-import { NavLink, useLocation, useRoutes } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Submenu from './SubMenu'
 
 export default function SideBar() {
