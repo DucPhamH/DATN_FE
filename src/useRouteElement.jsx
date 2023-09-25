@@ -26,8 +26,7 @@ export default function useRouteElement() {
       element: <Home />
     },
     {
-      path: 'login',
-
+      path: '/login',
       element: (
         <AuthLayout>
           <Suspense>
@@ -37,7 +36,7 @@ export default function useRouteElement() {
       )
     },
     {
-      path: 'register',
+      path: '/register',
       element: (
         <AuthLayout>
           <Suspense>
