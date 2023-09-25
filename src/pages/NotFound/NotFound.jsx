@@ -1,4 +1,3 @@
-import React from 'react'
 import ButtonLanding from '../../components/LandingComponents/ButtonLanding'
 
 export default function NotFound() {
@@ -13,7 +12,7 @@ export default function NotFound() {
           </p>
           <div>
             <ButtonLanding
-              link={'/'}
+              link={'/home'}
               className='bg-gradient-to-r text-gray-100 from-[#ef571a] to-[#b11804]'
               text='Back to Homepage'
             />

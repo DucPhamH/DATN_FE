@@ -9,7 +9,6 @@ body {
 }
 
 .container {
-  /* background: linear-gradient(#ffffff03, #00020fcd), url(assets/images/darkbg.png); */
   background-size: cover;
   background-position: center;
   position: relative;
@@ -72,4 +71,12 @@ body {
 }
 .blob2 {
   @apply w-80 h-80 bg-color-secondary absolute bottom-10 right-0 -z-10 blur-2xl opacity-30 overflow-hidden rounded-full;
+}
+
+.link {
+  @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300 font-medium;
+}
+
+.active {
+  @apply bg-blue-100 text-blue-600;
 }

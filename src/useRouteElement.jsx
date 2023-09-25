@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import { Suspense, lazy } from 'react'
 import AuthLayout from './layouts/AuthLayout'
 import NotFound from './pages/NotFound'
+import MainLayout from './layouts/MainLayout'
 
 const HomeLanding = lazy(() => import('./pages/HomeLanding'))
 const Login = lazy(() => import('./pages/Login'))
@@ -23,7 +24,11 @@ export default function useRouteElement() {
     },
     {
       path: '/home',
-      element: <Home />
+      element: (
+        <MainLayout>
+          <Home />
+        </MainLayout>
+      )
     },
     {
       path: '/login',
