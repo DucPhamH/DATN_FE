@@ -3,6 +3,7 @@ import { navBars } from '../../../services/objectUi'
 import ButtonLanding from '../ButtonLanding'
 import { BsFillSunFill, BsFillMoonStarsFill } from 'react-icons/bs'
 import { AppContext } from '../../../contexts/app.context'
+import UserAvatarLanding from '../UserAvatarLanding'
 
 export default function HeaderLanding() {
   const [navBar, setNavBar] = useState(false)
@@ -117,6 +118,7 @@ export default function HeaderLanding() {
           text='Đăng kí'
         />
       </div>
+      {/* <UserAvatarLanding navBar={navBar} /> */}
     </nav>
   )
 }
