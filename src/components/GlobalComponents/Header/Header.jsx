@@ -3,7 +3,7 @@ import React from 'react'
 export default function Header() {
   return (
     <div
-      className='flex justify-between px-8 pt-8 py-5 w-full transition-all duration-500 fixed z-30
+      className='flex justify-between px-8 pt-8 py-5 w-full transition-all duration-500 z-30
        bg-white dark:bg-color-primary backdrop-filter shadow-md dark:shadow-yellow-800'
     >
       <h4 className='dark:text-white text-gray-900 flex items-center font-black cursor-pointer text-3xl'>
