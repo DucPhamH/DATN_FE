@@ -83,7 +83,7 @@ export default function SideBar() {
   ]
 
   return (
-    <div>
+    <div className=''>
       <div
         onClick={() => setOpen(false)}
         className={`md:hidden fixed inset-0 max-h-screen z-[998] bg-black/50 ${open ? 'block' : 'hidden'} `}
@@ -93,7 +93,7 @@ export default function SideBar() {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={open ? 'open' : 'closed'}
-        className=' bg-white dark:bg-color-primary dark:text-gray-300 text-gray shadow-xl dark:shadow-yellow-800 z-[999] max-w-[16rem] w-[16rem] overflow-hidden md:relative fixed h-screen '
+        className=' bg-white dark:bg-color-primary  dark:text-gray-300 text-gray shadow-lg dark:shadow-yellow-800  max-w-[16rem] w-[16rem] overflow-hidden md:relative fixed z-[999] h-screen '
       >
         <div className='flex items-center gap-2.5 font-medium border-b py-3.5 border-slate-300 mx-3'>
           <img src={logo} width={50} alt='icon-app' />

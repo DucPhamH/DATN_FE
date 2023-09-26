@@ -27,20 +27,6 @@ export default function HeaderLanding() {
         <DarkMode />
       </h4>
 
-      {/* <div className='flex'>
-        {options?.map((opt) => (
-          <div
-            onClick={() => setTheme(opt.text)}
-            className={`flex justify-center px-2 hover:text-blue-400 items-center ${
-              theme === opt.text && 'text-blue-400'
-            }`}
-            key={opt.text}
-          >
-            {opt.icon}
-          </div>
-        ))}
-      </div> */}
-
       <ul className='navbar-links flex justify-end items-center ml-64'>
         <li className='inline-block list-none'>
           {navBars.map((nav) => {
