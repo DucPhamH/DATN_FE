@@ -8,7 +8,7 @@ export default function MainLayout({ children }) {
       <SideBar />
       <div className='w-full'>
         <Header />
-        <div className='mt-32 overflow-auto'>{children}</div>
+        <div className='h-[calc(100vh-88px)] pt-12 pl-10 overflow-auto'>{children}</div>
       </div>
     </div>
   )
