@@ -95,7 +95,7 @@ export default function SideBar() {
         animate={open ? 'open' : 'closed'}
         className=' bg-white dark:bg-color-primary dark:text-gray-300 text-gray shadow-lg dark:shadow-yellow-800  max-w-[16rem] w-[16rem] overflow-hidden z-[999] h-screen relative'
       >
-        <div className='flex items-center gap-2.5 font-medium border-b py-3.5 border-slate-300 mx-3'>
+        <div className='flex items-center gap-2.5 font-medium py-3.5  mx-3'>
           <img src={logo} width={50} alt='icon-app' />
           <span className='text-2xl flex font-bold whitespace-pre'>
             <span className='text-red-500'>Cook</span>Healthy
