@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
+import logo from '../../../assets/images/logo.png'
 
 // * React icons
 import { IoIosArrowBack } from 'react-icons/io'
@@ -14,6 +15,7 @@ import { useMediaQuery } from 'react-responsive'
 import { MdMenu } from 'react-icons/md'
 import { NavLink, useLocation } from 'react-router-dom'
 import Submenu from './SubMenu'
+import DarkMode from '../DarkMode'
 
 export default function SideBar() {
   let isTabletMid = useMediaQuery({ query: '(max-width: 768px)' })
@@ -31,6 +33,7 @@ export default function SideBar() {
 
   useEffect(() => {
     isTabletMid && setOpen(false)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   const Nav_animation = isTabletMid
@@ -90,32 +93,33 @@ export default function SideBar() {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={open ? 'open' : 'closed'}
-        className=' bg-white text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem]
-              overflow-hidden md:relative fixed
-           h-screen '
+        className=' bg-white dark:bg-color-primary dark:text-gray-300 text-gray shadow-xl dark:shadow-yellow-800 z-[999] max-w-[16rem] w-[16rem] overflow-hidden md:relative fixed h-screen '
       >
-        <div className='flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3'>
-          <img src='https://img.icons8.com/color/512/firebase.png' width={45} alt='' />
-          <span className='text-xl whitespace-pre'>Fireball</span>
+        <div className='flex items-center gap-2.5 font-medium border-b py-3.5 border-slate-300 mx-3'>
+          <img src={logo} width={50} alt='icon-app' />
+          <span className='text-2xl flex font-bold whitespace-pre'>
+            <span className='text-red-500'>Cook</span>Healthy
+            <DarkMode />
+          </span>
         </div>
 
         <div className='flex flex-col  h-full'>
           <ul className='whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1  font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100   md:h-[68%] h-[70%]'>
             <li>
-              <NavLink to={'/'} className='link'>
-                <AiOutlineAppstore size={23} className='min-w-max' />
-                All Apps
+              <NavLink to={'/home'} className='link'>
+                <AiOutlineAppstore size={25} className='min-w-max' />
+                Cộng đồng
               </NavLink>
             </li>
             <li>
               <NavLink to={'/authentication'} className='link'>
-                <BsPerson size={23} className='min-w-max' />
+                <BsPerson size={25} className='min-w-max' />
                 Authentication
               </NavLink>
             </li>
             <li>
               <NavLink to={'/stroage'} className='link'>
-                <HiOutlineDatabase size={23} className='min-w-max' />
+                <HiOutlineDatabase size={25} className='min-w-max' />
                 Stroage
               </NavLink>
             </li>
@@ -132,7 +136,7 @@ export default function SideBar() {
             )}
             <li>
               <NavLink to={'/settings'} className='link'>
-                <SlSettings size={23} className='min-w-max' />
+                <SlSettings size={25} className='min-w-max' />
                 Settings
               </NavLink>
             </li>
@@ -167,7 +171,7 @@ export default function SideBar() {
                 }
           }
           transition={{ duration: 0 }}
-          className='absolute w-fit h-fit md:block z-50 hidden right-2 bottom-3 cursor-pointer'
+          className='absolute w-fit h-fit md:block border border-black rounded-full dark:border-gray-200 hover:bg-red-600 transition-all z-50 hidden right-2 bottom-3 cursor-pointer'
         >
           <IoIosArrowBack size={25} />
         </motion.div>

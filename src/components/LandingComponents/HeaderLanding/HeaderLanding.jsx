@@ -1,42 +1,13 @@
 import { useContext, useEffect, useState } from 'react'
 import { navBars } from '../../../services/objectUi'
 import ButtonLanding from '../ButtonLanding'
-import { BsFillSunFill, BsFillMoonStarsFill } from 'react-icons/bs'
-import { AppContext } from '../../../contexts/app.context'
 import UserAvatarLanding from '../UserAvatarLanding'
+import DarkMode from '../../GlobalComponents/DarkMode'
 
 export default function HeaderLanding() {
   const [navBar, setNavBar] = useState(false)
   // const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light')
   // console.log(theme)
-  const { theme, setTheme } = useContext(AppContext)
-  // const options = [
-  //   {
-  //     icon: <BsFillSunFill />,
-  //     text: 'light'
-  //   },
-  //   {
-  //     icon: <BsFillMoonStarsFill />,
-  //     text: 'dark'
-  //   }
-  // ]
-  // useEffect(() => {
-  //   if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  //     setTheme('dark')
-  //   } else {
-  //     setTheme('light')
-  //   }
-  // }, [])
-
-  useEffect(() => {
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark')
-      localStorage.setItem('theme', 'dark')
-    } else {
-      document.documentElement.classList.remove('dark')
-      localStorage.setItem('theme', 'light')
-    }
-  }, [theme])
 
   const changeBackground = () => {
     if (window.scrollY > 100) {
@@ -53,27 +24,7 @@ export default function HeaderLanding() {
     >
       <h4 className='dark:text-white text-gray-900 flex items-center font-black cursor-pointer text-3xl'>
         <span className='text-red-500'>Cook</span>Healthy
-        <div className='flex justify-center items-center'>
-          {theme === 'dark' ? (
-            <div
-              onClick={() => {
-                setTheme(theme === 'dark' ? 'light' : 'dark')
-              }}
-              className={'flex justify-center px-2 hover:text-blue-300 cursor-pointer items-center text-white'}
-            >
-              <BsFillMoonStarsFill />
-            </div>
-          ) : (
-            <div
-              onClick={() => {
-                setTheme(theme === 'dark' ? 'light' : 'dark')
-              }}
-              className={'flex justify-center px-2 hover:text-red-400 cursor-pointer items-center text-red-500'}
-            >
-              <BsFillSunFill />
-            </div>
-          )}
-        </div>
+        <DarkMode />
       </h4>
 
       {/* <div className='flex'>

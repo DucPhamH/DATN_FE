@@ -105,7 +105,7 @@ export default function HomeLanding() {
                   ta có thể kiểm soát cân nặng, sức khoẻ của mình một cách dễ dàng
                 </p>
                 <ButtonLanding
-                  link={'/'}
+                  link={'/home'}
                   className='bg-gradient-to-r text-white from-[#ef571a] to-[#b11804]'
                   text='Bắt đầu ngay !'
                 />
