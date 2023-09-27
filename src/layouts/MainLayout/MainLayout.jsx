@@ -4,11 +4,18 @@ import Header from '../../components/GlobalComponents/Header'
 
 export default function MainLayout({ children }) {
   return (
-    <div className='flex justify-between dark:text-gray-300 dark:bg-color-primary-dark overflow-auto'>
+    // <div className='flex justify-between dark:text-gray-300 dark:bg-color-primary-dark overflow-auto'>
+    //   <SideBar />
+    //   <div className='w-full'>
+    //     <Header />
+    //     <div className='h-[calc(100vh-88px)] mt-[88px] overflow-auto pt-5'>{children}</div>
+    //   </div>
+    // </div>
+    <div className='flex justify-between  dark:text-gray-300 dark:bg-color-primary-dark'>
       <SideBar />
-      <div className='w-full'>
+      <div className='md:ml-64 w-full'>
         <Header />
-        <div className='h-[calc(100vh-88px)] mt-[88px] overflow-auto pt-5 pl-5'>{children}</div>
+        <div className='mt-32'>{children}</div>
       </div>
     </div>
   )

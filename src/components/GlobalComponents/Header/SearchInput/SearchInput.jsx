@@ -1,0 +1,44 @@
+import React, { useState } from 'react'
+import { AiOutlineSearch } from 'react-icons/ai'
+
+const words = ['adb', 'app', 'asdf']
+export default function SearchInput() {
+  const [activeSearch, setActiveSearch] = useState([])
+
+  const handleSearch = (e) => {
+    if (e.target.value == '') {
+      setActiveSearch([])
+      return false
+    }
+    setActiveSearch(words.filter((w) => w.includes(e.target.value)).slice(0, 8))
+  }
+
+  return (
+    <form className='w-[10rem] mr-3 md:w-[20rem] relative'>
+      <div className='relative'>
+        <input
+          type='search'
+          placeholder='Type Here'
+          className='w-full py-2 px-3 rounded-full border border-red-600 dark:border-none dark:bg-slate-800'
+          onChange={(e) => handleSearch(e)}
+        />
+        <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-full'>
+          <AiOutlineSearch />
+        </button>
+      </div>
+
+      {activeSearch.length > 0 && (
+        <div className='absolute top-12 py-4 bg-white border dark:border-none dark:bg-slate-800 dark:text-white w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2'>
+          {activeSearch.map((s, index) => (
+            <span
+              className='hover:bg-slate-300 transition-all duration-200 dark:hover:bg-slate-700 px-3 py-2'
+              key={index}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      )}
+    </form>
+  )
+}

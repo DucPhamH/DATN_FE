@@ -1,28 +1,27 @@
 import React from 'react'
+import SearchInput from './SearchInput'
+import { BsFacebook } from 'react-icons/bs'
+import { AiFillMessage } from 'react-icons/ai'
+import { IoMdNotifications } from 'react-icons/io'
 
 export default function Header() {
   return (
-    <div className='flex justify-between px-8 pt-8 py-5 w-full transition-all duration-500 z-30 bg-white dark:bg-color-primary backdrop-filter shadow-md dark:shadow-yellow-800 fixed'>
-      <h4 className='dark:text-white text-gray-900 flex items-center font-black cursor-pointer text-3xl'>
+    <div className='flex px-8 pt-8 py-5 w-screen justify-between transition-all duration-500 z-30 bg-white dark:bg-color-primary  shadow-md dark:shadow-yellow-800 fixed'>
+      {/* <h4 className='dark:text-white mx-10 text-gray-900 flex items-center font-black cursor-pointer text-3xl'>
         <span className='text-red-500'>Cook</span>Healthy
-      </h4>
-
-      <ul className='navbar-links flex justify-end items-center ml-64'>
-        <li className='inline-block list-none'>
-          {/* {navBars.map((nav) => {
-        return (
-          <a
-            key={nav.id}
-            className='text-gray-900 dark:text-white font-medium text-lg mr-16 my-2 no-underline tracking-wide cursor-pointer dark:hover:bg-gradient-to-r dark:from-[#ef571a] dark:to-[#b11804] hover:bg-gradient-to-r from-[#a5c233] to-[#2f8c07] hover:text-white hover:px-5 hover:py-3 hover:text-xl'
-            href={nav.path}
-          >
-            {nav.name}
-          </a>
-        )
-      })} */}
-        </li>
-      </ul>
-      <div></div>
+      </h4> */}
+      <div className='ml-10'>
+        <SearchInput />
+      </div>
+      <div className='mr-64 flex justify-center items-center'>
+        <div className='dark:bg-slate-600 dark:hover:bg-slate-500 dark:border-none text-2xl hover:bg-yellow-200 transition-all duration-300 cursor-pointer border text-red-600 dark:text-white shadow-lg font-normal h-8 w-8 md:h-10 md:w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-3'>
+          <AiFillMessage />
+        </div>
+        <div className='dark:bg-slate-600 dark:hover:bg-slate-500 dark:border-none text-2xl hover:bg-yellow-200 transition-all duration-300 cursor-pointer border text-red-600 dark:text-white shadow-lg font-normal h-8 w-8 md:h-10 md:w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-3'>
+          <IoMdNotifications />
+        </div>
+        <img className='md:w-12 border dark:border-none md:h-12 w-10 h-10 mr-3 rounded-full' src='' alt='user photo' />
+      </div>
     </div>
   )
 }
