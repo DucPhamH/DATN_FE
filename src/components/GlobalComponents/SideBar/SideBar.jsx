@@ -93,7 +93,7 @@ export default function SideBar() {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={open ? 'open' : 'closed'}
-        className=' bg-white dark:bg-color-primary  dark:text-gray-300 text-gray shadow-lg dark:shadow-yellow-800  max-w-[16rem] w-[16rem] overflow-hidden relative z-[999] h-screen'
+        className=' bg-white dark:bg-color-primary  dark:text-gray-300 text-gray shadow-lg dark:shadow-yellow-800  max-w-[16rem] w-[16rem] overflow-hidden fixed z-[999] h-screen relative'
       >
         <div className='flex items-center gap-2.5 font-medium py-3.5  mx-3'>
           <img src={logo} width={50} alt='icon-app' />
@@ -176,7 +176,7 @@ export default function SideBar() {
           <IoIosArrowBack size={25} />
         </motion.div>
       </motion.div>
-      <div className='m-3 md:hidden absolute top-0 ' onClick={() => setOpen(true)}>
+      <div className='m-3 md:hidden absolute top-0 z-50' onClick={() => setOpen(true)}>
         <MdMenu size={25} />
       </div>
     </div>
