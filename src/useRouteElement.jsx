@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { Navigate, Outlet, useRoutes } from 'react-router-dom'
-import Home from './pages/Home'
+import { useRoutes } from 'react-router-dom'
+// import Home from './pages/Home'
 // import HomeLanding from './pages/HomeLanding'
 import { Suspense, lazy } from 'react'
 import AuthLayout from './layouts/AuthLayout'
@@ -10,6 +10,8 @@ import MainLayout from './layouts/MainLayout'
 const HomeLanding = lazy(() => import('./pages/HomeLanding'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
+const Home = lazy(() => import('./pages/Home'))
+const MyProfile = lazy(() => import('./pages/MyProfile'))
 
 export default function useRouteElement() {
   const routeElement = useRoutes([
@@ -26,7 +28,19 @@ export default function useRouteElement() {
       path: '/home',
       element: (
         <MainLayout>
-          <Home />
+          <Suspense>
+            <Home />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: '/me',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <MyProfile />
+          </Suspense>
         </MainLayout>
       )
     },

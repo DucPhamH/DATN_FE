@@ -1,15 +1,10 @@
-import React from 'react'
 import SearchInput from './SearchInput'
-import { BsFacebook } from 'react-icons/bs'
 import { AiFillMessage } from 'react-icons/ai'
 import { IoMdNotifications } from 'react-icons/io'
 
 export default function Header() {
   return (
-    <div className='flex px-8 pt-8 py-5 w-screen justify-between transition-all duration-500 z-30 bg-white dark:bg-color-primary  shadow-md dark:shadow-yellow-800 fixed'>
-      {/* <h4 className='dark:text-white mx-10 text-gray-900 flex items-center font-black cursor-pointer text-3xl'>
-        <span className='text-red-500'>Cook</span>Healthy
-      </h4> */}
+    <div className='flex px-8 py-3 w-screen justify-between items-center transition-all duration-500 z-30 bg-white dark:bg-color-primary  shadow-md dark:shadow-yellow-800 fixed'>
       <div className='ml-10'>
         <SearchInput />
       </div>

@@ -1,7 +1,7 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-
+import { HiOutlineLogout } from 'react-icons/hi'
 export default function UserAvatar({ navBar }) {
   const [isMenu, setIsMenu] = useState(false)
   const ref = useRef()
@@ -48,12 +48,12 @@ export default function UserAvatar({ navBar }) {
             className='z-50 absolute top-20 right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
           >
             <div className='z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'>
-              <div className='px-4 py-3 text-sm text-gray-900 dark:text-white'>
+              <div className='px-4 py-3 text-gray-900 dark:text-white'>
                 <div className='font-medium '>User name</div>
                 <div className='truncate'>name@gmail.com</div>
               </div>
               <ul
-                className='py-2 text-sm text-gray-700 dark:text-gray-200'
+                className='py-2 text-gray-700 dark:text-gray-200'
                 aria-labelledby='dropdownInformdropdownAvatarNameButtonationButton'
               >
                 <li>
@@ -73,12 +73,15 @@ export default function UserAvatar({ navBar }) {
                   </Link>
                 </li>
               </ul>
-              <div className='py-2'>
+              <div className='py-2 '>
                 <a
                   href='#'
-                  className='block px-4 py-2 text-sm transition-all duration-400 text-gray-700  hover:text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white'
+                  className='flex justify-between items-center px-4 py-2 text-sm transition-all duration-400 text-gray-700 dark:hover:text-white hover:text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200'
                 >
                   Đăng xuất
+                  <div className='text-base'>
+                    <HiOutlineLogout />
+                  </div>
                 </a>
               </div>
             </div>

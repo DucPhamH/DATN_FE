@@ -112,7 +112,7 @@ export default function SideBar() {
         animate={open ? 'open' : 'closed'}
         className=' bg-white dark:bg-color-primary  dark:text-gray-300 text-gray shadow-lg dark:shadow-yellow-800  max-w-[16rem] w-[16rem] overflow-hidden z-[999] h-screen relative'
       >
-        <div className='flex items-center gap-2.5 font-medium pb-3.5 pt-7 mx-3'>
+        <div className='flex items-center gap-2.5 font-medium pb-3.5 pt-3 mx-3'>
           <img src={logo} width={50} alt='icon-app' />
           <span className='text-2xl flex font-bold whitespace-pre'>
             <span className='text-red-500'>Cook</span>Healthy
@@ -129,7 +129,7 @@ export default function SideBar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/authentication'} className='link'>
+              <NavLink to={'/me'} className='link'>
                 <BsPerson size={25} className='min-w-max' />
                 Authentication
               </NavLink>
@@ -193,7 +193,7 @@ export default function SideBar() {
           <IoIosArrowBack size={25} />
         </motion.div> */}
       </motion.div>
-      <div className='m-3 md:hidden absolute top-6 z-50' onClick={() => setOpen(true)}>
+      <div className='m-3 md:hidden absolute top-2 z-50' onClick={() => setOpen(true)}>
         <MdMenu size={25} />
       </div>
     </div>

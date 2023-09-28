@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { BsArrowUpRight } from 'react-icons/bs'
 
 const words = ['adb', 'app', 'asdf']
 export default function SearchInput() {
@@ -30,12 +31,15 @@ export default function SearchInput() {
       {activeSearch.length > 0 && (
         <div className='absolute top-12 py-4 bg-white border dark:border-none dark:bg-slate-800 dark:text-white w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2'>
           {activeSearch.map((s, index) => (
-            <span
-              className='hover:bg-slate-300 transition-all duration-200 dark:hover:bg-slate-700 px-3 py-2'
+            <div
+              className='flex justify-between items-center hover:bg-slate-300 transition-all duration-200 dark:hover:bg-slate-700 px-3 py-2'
               key={index}
             >
-              {s}
-            </span>
+              <div className=''>{s}</div>
+              <div>
+                <BsArrowUpRight />
+              </div>
+            </div>
           ))}
         </div>
       )}
