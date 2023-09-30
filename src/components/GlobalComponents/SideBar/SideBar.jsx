@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import logo from '../../../assets/images/logo.png'
 
 // * React icons
-import { IoIosArrowBack } from 'react-icons/io'
 import { SlSettings } from 'react-icons/sl'
 import { AiOutlineAppstore } from 'react-icons/ai'
 import { BsPerson } from 'react-icons/bs'

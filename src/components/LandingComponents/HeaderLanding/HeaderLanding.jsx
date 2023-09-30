@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useState } from 'react'
 import { navBars } from '../../../services/objectUi'
 import ButtonLanding from '../ButtonLanding'
 import UserAvatarLanding from '../UserAvatarLanding'
@@ -42,7 +42,7 @@ export default function HeaderLanding() {
           })}
         </li>
       </ul>
-      {/* <div>
+      <div>
         <ButtonLanding
           link={'/login'}
           className='bg-gradient-to-r text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
@@ -54,8 +54,8 @@ export default function HeaderLanding() {
           ${navBar ? '' : 'bg-white/60 dark:bg-transparent'}`}
           text='Đăng kí'
         />
-      </div> */}
-      <UserAvatarLanding navBar={navBar} />
+      </div>
+      {/* <UserAvatarLanding navBar={navBar} /> */}
     </nav>
   )
 }

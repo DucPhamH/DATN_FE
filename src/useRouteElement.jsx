@@ -35,16 +35,6 @@ export default function useRouteElement() {
       )
     },
     {
-      path: '/me',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <MyProfile />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
       path: '/login',
       element: (
         <AuthLayout>
@@ -62,6 +52,16 @@ export default function useRouteElement() {
             <Register />
           </Suspense>
         </AuthLayout>
+      )
+    },
+    {
+      path: '/me',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <MyProfile />
+          </Suspense>
+        </MainLayout>
       )
     },
     {
