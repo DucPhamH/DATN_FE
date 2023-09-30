@@ -43,7 +43,7 @@ export default function MyProfile() {
                 </div>
                 <button
                   type='button'
-                  className='rounded-lg flex items-center justify-center hover:bg-red-600 bg-red-700 text-sm text-white py-2 px-3 font-medium  transition-all duration-300 ease-in-out '
+                  className='rounded-lg flex mx-2 items-center justify-center hover:bg-red-600 bg-red-700 text-sm text-white py-2 px-3 font-medium  transition-all duration-300 ease-in-out '
                 >
                   <BiSolidPencil className='mr-2' />
                   Chỉnh sửa thông tin cá nhân
