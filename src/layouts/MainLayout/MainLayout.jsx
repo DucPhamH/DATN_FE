@@ -11,11 +11,11 @@ export default function MainLayout({ children }) {
     //     <div className='h-[calc(100vh-88px)] mt-[88px] overflow-auto pt-5'>{children}</div>
     //   </div>
     // </div>
-    <div className='flex justify-between  dark:text-gray-300 dark:bg-color-primary-dark'>
+    <div className='flex justify-between   dark:text-gray-300 dark:bg-color-primary-dark'>
       <SideBar />
       <div className='md:ml-64 w-full'>
         <Header />
-        <div className='mt-32'>{children}</div>
+        <div className='mt-20'>{children}</div>
       </div>
     </div>
   )
