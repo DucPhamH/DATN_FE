@@ -1,6 +1,7 @@
 import SearchInput from './SearchInput'
 import { AiFillMessage } from 'react-icons/ai'
 import { IoMdNotifications } from 'react-icons/io'
+import UserAvatar from './UserAvatar'
 
 export default function Header() {
   return (
@@ -15,7 +16,7 @@ export default function Header() {
         <div className='dark:bg-slate-600 dark:hover:bg-slate-500 dark:border-none text-2xl hover:bg-yellow-200 transition-all duration-300 cursor-pointer border text-red-600 dark:text-white shadow-lg font-normal h-8 w-8 md:h-10 md:w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-3'>
           <IoMdNotifications />
         </div>
-        <img className='md:w-12 border dark:border-none md:h-12 w-10 h-10 mr-3 rounded-full' src='' alt='user photo' />
+        <UserAvatar />
       </div>
     </div>
   )

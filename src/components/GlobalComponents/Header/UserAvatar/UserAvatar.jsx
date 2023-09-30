@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HiOutlineLogout } from 'react-icons/hi'
-export default function UserAvatarLanding({ navBar }) {
+export default function UserAvatar() {
   const [isMenu, setIsMenu] = useState(false)
   const ref = useRef()
   const handleClickOutside = (event) => {
@@ -20,32 +20,21 @@ export default function UserAvatarLanding({ navBar }) {
   return (
     <div ref={ref}>
       <button
-        className={`flex relative items-center transition-all duration-700 text-lg py-1 px-2 font-medium text-gray-900 rounded-full  ${
-          navBar ? '' : 'bg-white/60 dark:bg-transparent'
-        } hover:text-red-600 dark:hover:text-red-600 md:mr-0  dark:text-white`}
+        className='flex relative items-center transition-all duration-700 text-lg py-1 px-2 font-medium text-gray-900 rounded-full
+         hover:text-red-600 dark:hover:text-red-600 md:mr-0  dark:text-white'
         type='button'
         onClick={() => setIsMenu(!isMenu)}
       >
-        <img className='w-8 h-8 mr-2 rounded-full' src='' alt='user photo' />
-        User name
-        <svg
-          className='w-3 h-3 ml-2'
-          aria-hidden='true'
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          viewBox='0 0 10 6'
-        >
-          <path stroke='currentColor' strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='m1 1 4 4 4-4' />
-        </svg>
+        <img className='w-10 h-10 mr-2 rounded-full' src='' alt='user photo' />
       </button>
       <AnimatePresence>
         {isMenu && (
           <motion.div
             initial={{ opacity: 0, y: '-10%' }}
             animate={{ opacity: 1, y: '0%' }}
-            exit={{ opacity: 0, y: '-10%', transition: { duration: '0.2' } }}
-            transition={{ type: 'spring', stiffness: '200', duration: '0.5' }}
-            className='z-50 absolute top-20 right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
+            exit={{ opacity: 0, y: '-10%', transition: { duration: '0.1' } }}
+            transition={{ type: 'spring', stiffness: '200', duration: '0.1' }}
+            className='z-50 absolute top-20 right-0 md:right-[18rem] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
           >
             <div className='z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'>
               <div className='px-4 py-3 text-gray-900 dark:text-white'>
