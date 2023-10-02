@@ -62,7 +62,21 @@ export default function useRouteElement() {
             <MyProfile />
           </Suspense>
         </MainLayout>
-      )
+      ),
+      children: [
+        {
+          path: '',
+          element: <div>Post</div>
+        },
+        {
+          path: 'info',
+          element: <div>Info</div>
+        },
+        {
+          path: 'blog',
+          element: <div>blog</div>
+        }
+      ]
     },
     {
       path: '*',

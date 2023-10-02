@@ -1,9 +1,11 @@
-import React from 'react'
 import { BiSolidPencil } from 'react-icons/bi'
+import ThreeDots from '../../components/ProfileComponents/ThreeDots'
+import NavBarProfile from '../../components/ProfileComponents/NavBarProfile'
+import { Outlet } from 'react-router-dom'
 
 export default function MyProfile() {
   return (
-    <div className='flex h-screen dark:bg-slate-900 bg-gray-50 text-gray-900 dark:text-white justify-center mx-3'>
+    <div className='h-screen dark:bg-slate-900 bg-gray-50 text-gray-900 dark:text-white justify-center mx-3'>
       <div className='w-full'>
         <div className='w-full h-[18rem]'>
           <div className='relative'>
@@ -41,17 +43,28 @@ export default function MyProfile() {
                     </span>
                   </div>
                 </div>
-                <button
-                  type='button'
-                  className='rounded-lg flex mx-2 items-center justify-center hover:bg-red-600 bg-red-700 text-sm text-white py-2 px-3 font-medium  transition-all duration-300 ease-in-out '
-                >
-                  <BiSolidPencil className='mr-2' />
-                  Chỉnh sửa thông tin cá nhân
-                </button>
+                <div className='flex justify-between items-center'>
+                  <button
+                    type='button'
+                    className='rounded-lg flex mx-2 items-center justify-center hover:bg-red-600 bg-red-700 text-sm text-white py-2 px-3 font-medium  transition-all duration-300 ease-in-out '
+                  >
+                    <BiSolidPencil className='mr-2' />
+                    Chỉnh sửa thông tin cá nhân
+                  </button>
+                  <div className='px-3 text-2xl hover:text-red-600 cursor-pointer transition-all duration-300'>
+                    <ThreeDots />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div className='mt-[20rem] md:mt-64 lg:mt-52 shadow-md dark:shadow-gray-950 py-3 px-4'>
+        <NavBarProfile />
+      </div>
+      <div>
+        <Outlet />
       </div>
     </div>
   )
