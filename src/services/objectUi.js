@@ -4,3 +4,30 @@ export const navBars = [
   { id: 2, name: 'Bắt đầu', path: '#started' },
   { id: 3, name: 'Liên hệ', path: '#contact' }
 ]
+
+export const navBarsProfile = [
+  {
+    id: 0,
+    title: 'Bài viết',
+    route: '/me'
+  },
+  {
+    id: 1,
+    title: 'Thông tin',
+    route: '/me/info'
+  },
+  {
+    id: 2,
+    title: 'Blog',
+    route: '/me/blog'
+  }
+]
+
+export const contextClass = {
+  success: 'bg-gradient-to-r from-yellow-200 to-yellow-50',
+  error: 'bg-gradient-to-r from-yellow-200 to-yellow-50',
+  info: 'bg-gradient-to-r from-yellow-200 to-yellow-50',
+  warning: 'bg-gradient-to-r from-yellow-200 to-yellow-50',
+  default: 'bg-gradient-to-r from-yellow-200 to-yellow-50',
+  dark: 'bg-gradient-to-r from-yellow-200 to-yellow-50'
+}

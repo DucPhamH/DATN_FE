@@ -3,21 +3,15 @@ import useRouteElement from './useRouteElement'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { injectStyle } from 'react-toastify/dist/inject-style'
+import { contextClass } from './services/objectUi'
 
 if (typeof window !== 'undefined') {
   injectStyle()
 }
-const contextClass = {
-  success: 'bg-gradient-to-r from-yellow-200 to-yellow-50',
-  error: 'bg-red-600',
-  info: 'bg-gray-600',
-  warning: 'bg-orange-400',
-  default: 'bg-indigo-600/80',
-  dark: 'bg-white-600 font-gray-300'
-}
+
 function App() {
   const routeElement = useRouteElement()
-  // toast.success('Hey 👋, see how easy!')
+  // toast.warning('Hey 👋, see how easy!')
   return (
     <div>
       {routeElement}

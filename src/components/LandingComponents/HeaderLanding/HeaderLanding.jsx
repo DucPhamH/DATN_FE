@@ -43,7 +43,7 @@ export default function HeaderLanding() {
         </li>
       </ul>
       <div>
-        <ButtonLanding
+        {/* <ButtonLanding
           link={'/login'}
           className='bg-gradient-to-r text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
           text='Đăng nhập'
@@ -53,9 +53,9 @@ export default function HeaderLanding() {
           className={`border text-gray-900 dark:text-gray-300 dark:hover:text-white hover:text-red-700 border-orange-400
           ${navBar ? '' : 'bg-white/60 dark:bg-transparent'}`}
           text='Đăng kí'
-        />
+        /> */}
       </div>
-      {/* <UserAvatarLanding navBar={navBar} /> */}
+      <UserAvatarLanding navBar={navBar} />
     </nav>
   )
 }

@@ -8,7 +8,7 @@ import avatarbg from '../../assets/images/avatarbg.jpg'
 
 export default function MyProfile() {
   return (
-    <div className='h-screen dark:bg-slate-900 bg-gray-50 text-gray-900 dark:text-white justify-center mx-3'>
+    <div className='h-full dark:bg-slate-900 bg-gray-50 text-gray-900 dark:text-white justify-center mx-3'>
       <div className='w-full'>
         <div className='w-full h-[18rem]'>
           <div className='relative'>

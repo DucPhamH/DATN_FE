@@ -70,7 +70,13 @@ export default function useRouteElement() {
         },
         {
           path: 'info',
-          element: <div>Info</div>
+          element: (
+            <div>
+              Info
+              <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>{' '}
+              <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>
+            </div>
+          )
         },
         {
           path: 'blog',

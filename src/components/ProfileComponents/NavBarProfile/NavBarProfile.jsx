@@ -1,28 +1,29 @@
 import { Link, NavLink, useLocation } from 'react-router-dom'
+import { navBarsProfile } from '../../../services/objectUi'
 export default function NavBarProfile() {
   const path = useLocation()
   console.log(path.pathname)
-  const listItems = [
-    {
-      id: 0,
-      title: 'Bài viết',
-      route: '/me'
-    },
-    {
-      id: 1,
-      title: 'Thông tin',
-      route: '/me/info'
-    },
-    {
-      id: 2,
-      title: 'Blog',
-      route: '/me/blog'
-    }
-  ]
+  // const listItems = [
+  //   {
+  //     id: 0,
+  //     title: 'Bài viết',
+  //     route: '/me'
+  //   },
+  //   {
+  //     id: 1,
+  //     title: 'Thông tin',
+  //     route: '/me/info'
+  //   },
+  //   {
+  //     id: 2,
+  //     title: 'Blog',
+  //     route: '/me/blog'
+  //   }
+  // ]
   return (
     <div className={`flex justify-center md:justify-start items-center my-2 `}>
       <ul className='flex items-center space-x-14 bg-transparent'>
-        {listItems.map((item) => {
+        {navBarsProfile.map((item) => {
           return (
             <li key={item.id} className='text-lg group font-medium'>
               <Link to={item.route} className={path.pathname === item.route ? 'text-yellow-700' : ''}>
