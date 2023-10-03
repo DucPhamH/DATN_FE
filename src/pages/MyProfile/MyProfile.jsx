@@ -1,7 +1,8 @@
 import { BiSolidPencil } from 'react-icons/bi'
 import ThreeDots from '../../components/ProfileComponents/ThreeDots'
 import NavBarProfile from '../../components/ProfileComponents/NavBarProfile'
-import { Outlet } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
+import { BsFillCameraFill } from 'react-icons/bs'
 
 export default function MyProfile() {
   return (
@@ -11,14 +12,20 @@ export default function MyProfile() {
           <div className='relative'>
             <img
               src='https://i.pinimg.com/736x/6f/a9/c3/6fa9c33211ce7c08f2cc4fcef6144b7d.jpg'
-              className='w-full shadow-md rounded-lg h-[18rem] object-cover'
+              className='w-full shadow-md rounded-lg h-[18rem] relative object-cover'
             />
+            <div className='absolute top-2 left-2 text-3xl cursor-pointer text-gray-600 hover:text-gray-700 dark:text-red-900 dark:hover:text-red-950'>
+              <BsFillCameraFill />
+            </div>
             <div className='w-full md:flex md:flex-row gap-2 top-60  border-b-2 border-red-500 pb-5 absolute'>
               <img
                 className='h-40 w-40 ml-2 rounded-full relative'
                 src='https://avatars3.githubusercontent.com/u/11801238?v=4'
                 alt=''
               />
+              <div className='absolute top-28 left-32 p-2 bg-gray-300 rounded-full text-2xl cursor-pointer text-gray-600 hover:text-gray-700 dark:text-red-900 dark:hover:text-red-950'>
+                <BsFillCameraFill />
+              </div>
               <div className='w-full lg:flex mr-10 mb-8 items-end justify-between '>
                 <div className='md:mt-16 flex-col flex justify-end'>
                   <div className='px-2'>

@@ -1,5 +1,7 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 export default function NavBarProfile() {
+  const path = useLocation()
+  console.log(path.pathname)
   const listItems = [
     {
       id: 0,
