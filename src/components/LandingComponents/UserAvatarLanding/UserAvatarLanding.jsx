@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HiOutlineLogout } from 'react-icons/hi'
+import useravatar from '../../../assets/images/useravatar.jpg'
 export default function UserAvatarLanding({ navBar }) {
   const [isMenu, setIsMenu] = useState(false)
   const ref = useRef()
@@ -26,7 +27,7 @@ export default function UserAvatarLanding({ navBar }) {
         type='button'
         onClick={() => setIsMenu(!isMenu)}
       >
-        <img className='w-8 h-8 mr-2 rounded-full' src='' alt='user photo' />
+        <img className='w-8 h-8 mr-2 rounded-full' src={useravatar} alt='user photo' />
         User name
         <svg
           className='w-3 h-3 ml-2'
@@ -52,10 +53,7 @@ export default function UserAvatarLanding({ navBar }) {
                 <div className='font-medium '>User name</div>
                 <div className='truncate'>name@gmail.com</div>
               </div>
-              <ul
-                className='py-2 text-gray-700 dark:text-gray-200'
-                aria-labelledby='dropdownInformdropdownAvatarNameButtonationButton'
-              >
+              <ul className='py-2 text-gray-700 dark:text-gray-200'>
                 <li>
                   <Link
                     to='/home'
