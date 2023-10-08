@@ -36,7 +36,7 @@ export default function HeaderLanding() {
   window.addEventListener('scroll', changeBackground)
   return (
     <nav
-      className={`flex justify-between px-3 items-center py-4 md:px-8 md:pt-8 md:py-5 w-full transition-all duration-500 fixed z-30
+      className={`flex justify-between px-3 items-center py-4 md:px-8 md:pt-8 w-full transition-all duration-300 fixed z-30
           ${navBar ? 'bg-white/90 dark:bg-[#1c1821]/90 backdrop-filter shadow-lg' : ''}`}
     >
       <div
@@ -46,7 +46,7 @@ export default function HeaderLanding() {
         <AiOutlineMenu className='text-2xl' />
       </div>
       {activeMenu && (
-        <div className='w-full absolute h-screen top-0 right-0 z-[999] dark:bg-black/90 bg-white/90'>
+        <div className='w-full absolute h-screen top-0 right-0 z-[999] dark:bg-black/95 bg-white/95'>
           <div className='w-full relative'>
             <ul className='navbar-links pt-24 flex flex-col justify-center items-center '>
               {navBars.map((nav) => {
@@ -64,7 +64,7 @@ export default function HeaderLanding() {
             </ul>
             <div
               onClick={handleCloseMenu}
-              className='absolute right-3 rounded-full transition-all duration-300 bg-gray-200 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500 flex justify-center items-center  top-5 h-8 w-8 dark:text-2xl dark:text-yellow-400 font-extrabold dark:bg-gray-700'
+              className='absolute right-3 rounded-full transition-all duration-300 bg-gray-200 cursor-pointer hover:bg-gray-300 dark:hover:bg-gray-500 flex justify-center items-center  top-5 h-8 w-8  dark:text-yellow-400 font-extrabold dark:bg-gray-700'
             >
               <AiOutlineClose />
             </div>
@@ -92,10 +92,10 @@ export default function HeaderLanding() {
           })}
         </li>
       </ul>
-      {/* <div>
+      <div>
         <ButtonLanding
           link={'/login'}
-          className='bg-gradient-to-r md:text-base text-sm inline-block text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
+          className='bg-gradient-to-r md:text-base text-xs inline-block text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
           text='Đăng nhập'
         />
         <ButtonLanding
@@ -104,8 +104,8 @@ export default function HeaderLanding() {
           ${navBar ? '' : 'bg-white/60 dark:bg-transparent'}`}
           text='Đăng kí'
         />
-      </div> */}
-      <UserAvatarLanding navBar={navBar} />
+      </div>
+      {/* <UserAvatarLanding navBar={navBar} /> */}
     </nav>
   )
 }

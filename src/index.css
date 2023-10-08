@@ -16,7 +16,7 @@ body {
 
 .navbar-links a:hover {
   border-radius: 25px;
-  transition: all 0.5s;
+  transition: all 0.2s;
 }
 
 .btn {
@@ -78,4 +78,32 @@ body {
 
 .active {
   @apply bg-blue-100 text-red-600 dark:bg-slate-700 dark:text-gray-400;
+}
+
+.modal,
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 201;
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  position: absolute;
+  z-index: 202;
+  top: 40%;
+  left: 50%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  padding: 20px 16px;
+  border-radius: 10px;
+  min-width: 350px;
 }
