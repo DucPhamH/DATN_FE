@@ -3,6 +3,7 @@ import { navBars } from '../../../services/objectUi'
 import ButtonLanding from '../ButtonLanding'
 import UserAvatarLanding from '../UserAvatarLanding'
 import DarkMode from '../../GlobalComponents/DarkMode'
+import { AiOutlineMenu } from 'react-icons/ai'
 
 export default function HeaderLanding() {
   const [navBar, setNavBar] = useState(false)
@@ -19,16 +20,23 @@ export default function HeaderLanding() {
   window.addEventListener('scroll', changeBackground)
   return (
     <nav
-      className={`flex justify-between px-8 pt-8 py-5 w-full transition-all duration-700 fixed z-30
+      className={`flex justify-between px-3 items-center py-4 md:px-8 md:pt-8 md:py-5 w-full transition-all duration-500 fixed z-30
           ${navBar ? 'bg-white/90 dark:bg-[#1c1821]/90 backdrop-filter shadow-lg' : ''}`}
     >
-      <h4 className='dark:text-white text-gray-900 flex items-center font-black cursor-pointer text-3xl'>
+      <div
+        // onClick={handleActiveMenu}
+        className='lg:hidden relative p-2 flex justify-center items-center z-30 focus:outline-none transform active:scale-75 transition-transform'
+      >
+        <AiOutlineMenu className='text-2xl' />
+      </div>
+
+      <h4 className='dark:text-white text-gray-900 flex justify-center items-center font-black cursor-pointer text-2xl md:text-3xl'>
         <span className='text-red-500'>Cook</span>Healthy
         <DarkMode />
       </h4>
 
-      <ul className='navbar-links flex justify-end items-center ml-64'>
-        <li className='inline-block list-none'>
+      <ul className='navbar-links hidden lg:flex lg:justify-center lg:items-center lg:ml-64'>
+        <li className='list-none '>
           {navBars.map((nav) => {
             return (
               <a
@@ -42,8 +50,8 @@ export default function HeaderLanding() {
           })}
         </li>
       </ul>
-      <div>
-        {/* <ButtonLanding
+      {/* <div>
+        <ButtonLanding
           link={'/login'}
           className='bg-gradient-to-r text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
           text='Đăng nhập'
@@ -53,8 +61,8 @@ export default function HeaderLanding() {
           className={`border text-gray-900 dark:text-gray-300 dark:hover:text-white hover:text-red-700 border-orange-400
           ${navBar ? '' : 'bg-white/60 dark:bg-transparent'}`}
           text='Đăng kí'
-        /> */}
-      </div>
+        />
+      </div> */}
       <UserAvatarLanding navBar={navBar} />
     </nav>
   )

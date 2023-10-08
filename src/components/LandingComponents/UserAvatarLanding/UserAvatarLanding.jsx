@@ -27,10 +27,11 @@ export default function UserAvatarLanding({ navBar }) {
         type='button'
         onClick={() => setIsMenu(!isMenu)}
       >
-        <img className='w-8 h-8 mr-2 rounded-full' src={useravatar} alt='user photo' />
-        User name
+        <img className='w-8 h-8 md:mr-2 rounded-full' src={useravatar} alt='user photo' />
+        <span className='hidden md:block'>User name</span>
+
         <svg
-          className='w-3 h-3 ml-2'
+          className='hidden md:block w-3 h-3 ml-2'
           aria-hidden='true'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

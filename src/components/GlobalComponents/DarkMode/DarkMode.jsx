@@ -21,7 +21,7 @@ export default function DarkMode() {
           onClick={() => {
             setTheme(theme === 'dark' ? 'light' : 'dark')
           }}
-          className={'flex justify-center px-2 hover:text-blue-300 cursor-pointer items-center text-white'}
+          className={'flex text-xl justify-center px-2 hover:text-blue-300 cursor-pointer items-center text-white'}
         >
           <BsFillMoonStarsFill />
         </div>
@@ -30,7 +30,7 @@ export default function DarkMode() {
           onClick={() => {
             setTheme(theme === 'dark' ? 'light' : 'dark')
           }}
-          className={'flex justify-center px-2 hover:text-red-400 cursor-pointer items-center text-red-500'}
+          className={'flex text-xl justify-center px-2 hover:text-red-400 cursor-pointer items-center text-red-500'}
         >
           <BsFillSunFill />
         </div>
