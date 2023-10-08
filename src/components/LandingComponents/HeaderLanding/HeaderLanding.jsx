@@ -92,7 +92,7 @@ export default function HeaderLanding() {
           })}
         </li>
       </ul>
-      <div>
+      {/* <div>
         <ButtonLanding
           link={'/login'}
           className='bg-gradient-to-r md:text-base text-sm inline-block text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
@@ -104,8 +104,8 @@ export default function HeaderLanding() {
           ${navBar ? '' : 'bg-white/60 dark:bg-transparent'}`}
           text='Đăng kí'
         />
-      </div>
-      {/* <UserAvatarLanding navBar={navBar} /> */}
+      </div> */}
+      <UserAvatarLanding navBar={navBar} />
     </nav>
   )
 }

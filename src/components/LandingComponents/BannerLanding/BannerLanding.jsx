@@ -21,11 +21,11 @@ export default function BannerLanding() {
           variants={{
             offscreen: {
               opacity: 0,
-              x: 50
+              y: 20
             },
             onscreen: {
               opacity: 1,
-              x: 0
+              y: 0
             }
           }}
         >
