@@ -5,7 +5,7 @@ export default function ModalUploadAvatar({ closeModalAvatar }) {
   return (
     <div className='modal '>
       <div className='overlay' onClick={() => closeModalAvatar()}></div>
-      <div className='modal-content dark:bg-gray-900 bg-[#C6FFC8]'>
+      <div className='modal-content dark:bg-gray-900 bg-[#f7f1db]'>
         <div className='relative w-full max-w-md max-h-full'>
           <div
             onClick={() => closeModalAvatar()}
