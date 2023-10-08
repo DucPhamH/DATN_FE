@@ -78,33 +78,34 @@ export default function HeaderLanding() {
       </h4>
 
       <ul className='navbar-links hidden lg:flex lg:justify-center lg:items-center lg:ml-64'>
-        {navBars.map((nav) => {
-          return (
-            <li key={nav.id} className='mx-10 list-none my-2'>
+        <li className='list-none'>
+          {navBars.map((nav) => {
+            return (
               <a
-                className='text-gray-900 dark:text-white font-medium text-xl  no-underline tracking-wide cursor-pointer dark:hover:bg-gradient-to-r dark:from-[#ef571a] dark:to-[#b11804] hover:bg-gradient-to-r from-[#a5c233] to-[#2f8c07] hover:text-white hover:px-4 hover:py-3 hover:text-xl'
+                key={nav.id}
+                className='text-gray-900 dark:text-white mr-14 ml-2 list-none my-2 font-medium text-xl  no-underline tracking-wide cursor-pointer dark:hover:bg-gradient-to-r dark:from-[#ef571a] dark:to-[#b11804] hover:bg-gradient-to-r from-[#a5c233] to-[#2f8c07] hover:text-white hover:px-4 hover:py-3 hover:text-xl'
                 href={nav.path}
               >
                 {nav.name}
               </a>
-            </li>
-          )
-        })}
+            )
+          })}
+        </li>
       </ul>
-      {/* <div>
+      <div>
         <ButtonLanding
           link={'/login'}
-          className='bg-gradient-to-r text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
+          className='bg-gradient-to-r md:text-base text-sm inline-block text-gray-300 hover:text-white from-[#ef571a] to-[#b11804]'
           text='Đăng nhập'
         />
         <ButtonLanding
           link={'/register'}
-          className={`border text-gray-900 dark:text-gray-300 dark:hover:text-white hover:text-red-700 border-orange-400
+          className={`border hidden md:inline-block text-gray-900 dark:text-gray-300 dark:hover:text-white hover:text-red-700 border-orange-400
           ${navBar ? '' : 'bg-white/60 dark:bg-transparent'}`}
           text='Đăng kí'
         />
-      </div> */}
-      <UserAvatarLanding navBar={navBar} />
+      </div>
+      {/* <UserAvatarLanding navBar={navBar} /> */}
     </nav>
   )
 }

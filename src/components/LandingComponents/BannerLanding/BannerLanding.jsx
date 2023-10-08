@@ -44,7 +44,7 @@ export default function BannerLanding() {
             <div className='flex justify-center items-center md:justify-start'>
               <ButtonLanding
                 link={'/login'}
-                className='bg-gradient-to-r text-gray-100 from-[#ef571a] to-[#b11804]'
+                className='bg-gradient-to-r inline-block text-gray-100 from-[#ef571a] to-[#b11804]'
                 text='Đăng nhập ngay !'
               />
             </div>

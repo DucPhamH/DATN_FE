@@ -106,7 +106,7 @@ export default function HomeLanding() {
                 </p>
                 <ButtonLanding
                   link={'/home'}
-                  className='bg-gradient-to-r text-white from-[#ef571a] to-[#b11804]'
+                  className='bg-gradient-to-r inline-block text-white from-[#ef571a] to-[#b11804]'
                   text='Bắt đầu ngay !'
                 />
               </MotionWrapper>
@@ -154,7 +154,7 @@ export default function HomeLanding() {
                 />
                 <ButtonLanding
                   link={'/login'}
-                  className='bg-gradient-to-r mt-10 text-gray-100 from-[#ef571a] to-[#b11804]'
+                  className='bg-gradient-to-r mt-10 inline-block text-gray-100 from-[#ef571a] to-[#b11804]'
                   text='gửi tin nhắn'
                 />
               </div>
