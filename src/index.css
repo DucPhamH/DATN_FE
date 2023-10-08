@@ -14,7 +14,7 @@ body {
   position: relative;
 }
 
-.navbar-links li a:hover {
+.navbar-links a:hover {
   border-radius: 25px;
   transition: all 0.5s;
 }

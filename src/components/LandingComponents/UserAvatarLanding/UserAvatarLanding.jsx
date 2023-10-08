@@ -47,7 +47,7 @@ export default function UserAvatarLanding({ navBar }) {
             animate={{ opacity: 1, y: '0%' }}
             exit={{ opacity: 0, y: '-10%', transition: { duration: '0.2' } }}
             transition={{ type: 'spring', stiffness: '200', duration: '0.5' }}
-            className='z-50 absolute top-20 right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
+            className='z-50 absolute top-16 right-6 md:top-20 md:right-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
           >
             <div className='z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'>
               <div className='px-4 py-3 text-gray-900 dark:text-white'>
