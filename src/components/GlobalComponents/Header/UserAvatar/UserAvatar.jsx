@@ -48,6 +48,7 @@ export default function UserAvatar() {
                 <li>
                   <Link
                     to='/home'
+                    onClick={() => setIsMenu(false)}
                     className='block px-4 py-2 transition-all duration-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
                   >
                     Trang chủ
@@ -55,7 +56,8 @@ export default function UserAvatar() {
                 </li>
                 <li>
                   <Link
-                    to='/profile'
+                    to='/my-profile'
+                    onClick={() => setIsMenu(false)}
                     className='block px-4 py-2 transition-all duration-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
                   >
                     Thông tin

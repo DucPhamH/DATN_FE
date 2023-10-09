@@ -9,17 +9,17 @@ export const navBarsProfile = [
   {
     id: 0,
     title: 'Bài viết',
-    route: '/me'
+    route: '/my-profile'
   },
   {
     id: 1,
     title: 'Thông tin',
-    route: '/me/info'
+    route: '/my-profile/info'
   },
   {
     id: 2,
     title: 'Blog',
-    route: '/me/blog'
+    route: '/my-profile/blog'
   }
 ]
 

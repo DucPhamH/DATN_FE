@@ -25,16 +25,6 @@ export default function useRouteElement() {
       )
     },
     {
-      path: '/home',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <Home />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
       path: '/login',
       element: (
         <AuthLayout>
@@ -55,7 +45,17 @@ export default function useRouteElement() {
       )
     },
     {
-      path: '/me',
+      path: '/home',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <Home />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: '/my-profile',
       element: (
         <MainLayout>
           <Suspense>
@@ -84,6 +84,17 @@ export default function useRouteElement() {
         }
       ]
     },
+    {
+      path: '/new-feed',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <div>hello</div>
+          </Suspense>
+        </MainLayout>
+      )
+    },
+
     {
       path: '*',
       element: <NotFound />

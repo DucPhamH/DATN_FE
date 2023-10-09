@@ -19,7 +19,7 @@ export default function MyProfile() {
     setModalAvatar(false)
   }
   return (
-    <>
+    <div>
       <div className='h-full dark:bg-slate-900 bg-gray-50 text-gray-900 dark:text-white justify-center mx-3'>
         <div className='w-full'>
           <div className='w-full h-[18rem]'>
@@ -89,6 +89,6 @@ export default function MyProfile() {
         </div>
       </div>
       {modalAvatar && <ModalUploadAvatar closeModalAvatar={closeModalAvatar} />}
-    </>
+    </div>
   )
 }

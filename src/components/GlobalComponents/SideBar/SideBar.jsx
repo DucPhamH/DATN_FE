@@ -128,7 +128,7 @@ export default function SideBar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/me'} className='link'>
+              <NavLink to={'/new-feed'} className='link'>
                 <BsPerson size={25} className='min-w-max' />
                 Authentication
               </NavLink>

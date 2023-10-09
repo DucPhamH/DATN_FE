@@ -9,5 +9,10 @@ export default defineConfig({
   },
   css: {
     devSourcemap: true
+  },
+  resolve: {
+    alias: {
+      path: 'path-browserify'
+    }
   }
 })
