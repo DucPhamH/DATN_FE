@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer'
 import React, { useRef, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import { toast } from 'react-toastify'
@@ -47,7 +46,7 @@ export default function ModalUploadAvatar({ closeModalAvatar }) {
                         alt='avatar'
                       />
                     ) : (
-                      <div className='max-w-sm p-6 mb-4  bg-gray-100 border-dashed border-2 border-gray-400 rounded-full items-center mx-auto text-center cursor-pointer'>
+                      <div className='max-w-sm px-4 py-10 mb-4  bg-gray-100 border-dashed border-2 border-gray-400 rounded-full items-center mx-auto text-center cursor-pointer'>
                         <label className='cursor-pointer'>
                           <svg
                             xmlns='http://www.w3.org/2000/svg'

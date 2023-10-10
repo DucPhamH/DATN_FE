@@ -40,10 +40,6 @@ export default function UserAvatar() {
             className='z-50 absolute top-20 right-1 md:right-[18rem] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
           >
             <div className='z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'>
-              <div className='px-4 py-3 text-gray-900 dark:text-white'>
-                <div className='font-medium '>User name</div>
-                <div className='truncate'>name@gmail.com</div>
-              </div>
               <ul className='py-2 text-gray-700 dark:text-gray-200'>
                 <li>
                   <Link
