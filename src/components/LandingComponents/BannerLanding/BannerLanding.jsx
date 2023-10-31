@@ -33,7 +33,7 @@ export default function BannerLanding() {
             <h3 className=' mt-10 md:mt-0 mb-10 text-[#ef571a] text-xs text-center md:text-left uppercase tracking-[0.5rem] md:tracking-[1rem]'>
               Healthy and Strong
             </h3>
-            <h1 className='mb-10 font-black text-5xl text-center md:text-left md:text-7xl md:leading-9'>
+            <h1 className='mb-10 font-Montserrat font-black text-5xl text-center md:text-left md:text-7xl md:leading-9'>
               Chào mừng tới <br />
               <br className='md:block hidden' /> thế giới <span className='text-red-500'>Cook</span>Healthy
             </h1>

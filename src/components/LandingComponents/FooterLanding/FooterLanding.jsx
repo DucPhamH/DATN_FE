@@ -1,6 +1,4 @@
-import React from 'react'
-import { BiLogoInstagramAlt } from 'react-icons/bi'
-import { BsFacebook, BsLinkedin, BsTelegram } from 'react-icons/bs'
+import { BsFacebook, BsLinkedin, BsTelegram, BsYoutube } from 'react-icons/bs'
 
 export default function FooterLanding() {
   return (
@@ -17,7 +15,7 @@ export default function FooterLanding() {
                 <BsFacebook />
               </div>
               <div className='dark:bg-white text-xl bg-red-700 dark:text-black text-white shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-4'>
-                <BiLogoInstagramAlt />
+                <BsYoutube />
               </div>
               <div className='dark:bg-white text-xl bg-red-700 dark:text-black text-white shadow-lg font-normal h-10 w-10 flex items-center justify-center align-center rounded-full outline-none focus:outline-none mr-4'>
                 <BsLinkedin />
