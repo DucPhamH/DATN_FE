@@ -19,7 +19,7 @@ export default function HomeLanding() {
       </div>
       <section id='info'>
         <div className='py-20'>
-          <div className='text-center m-auto mb-20 md:w-1/2'>
+          <div className='text-center m-auto mb-10 md:w-1/2'>
             <h1 className='font-bold text-3xl mb-4'>
               Với <span className='text-red-500'>Cook</span>Healthy
             </h1>
@@ -77,7 +77,7 @@ export default function HomeLanding() {
         </div>
       </section>
       <section id='started'>
-        <div className=' py-20 dark:bg-dark_bg bg-white_bg bg-cover mb-20 relative'>
+        <div className=' py-20 dark:bg-dark_bg bg-white_bg bg-cover mb-10 relative'>
           <div className='flex flex-col items-center justify-between md:flex-row'>
             <div className='mb-12 w-1/2 ml-20 healthy-img md:w-1/3'>
               <img src={healthy} alt='healthy' />
@@ -97,7 +97,7 @@ export default function HomeLanding() {
                 }}
               >
                 <h4 className='font-bold text-color-secondary text-4xl mb-4'>Có thể bạn chưa biết :</h4>
-                <h1 className='font-semibold text-2xl  mb-4'>
+                <h1 className='font-semibold text-2xl mb-4'>
                   Việc hấp thụ calo một cách khoa học sẽ khiến bạn khoẻ mạnh hơn !
                 </h1>
                 <p className='leading-relaxed font-medium text-xl line-clamp-2 italic mb-10'>
@@ -112,6 +112,119 @@ export default function HomeLanding() {
               </MotionWrapper>
             </div>
           </div>
+        </div>
+      </section>
+      <section id='blog'>
+        <div className='py-20'>
+          <div className='text-center m-auto mb-20 md:w-1/2'>
+            <h4 className='font-bold text-3xl text-red-500 mb-4'>Góc chia sẻ</h4>
+            <h1 className='text-3xl font-extrabold'>Những mẹo nấu ăn trong cuộc sống</h1>
+          </div>
+          <MotionWrapper
+            variants={{
+              offscreen: {
+                opacity: 0,
+                y: 30
+              },
+              onscreen: {
+                opacity: 1,
+                y: 0
+              }
+            }}
+          >
+            <div className='grid gap-10 mx-10 md:grid-cols-2 lg:grid-cols-3'>
+              <div className='mb-8 border border-gray-300 dark:border-gray-800 rounded-xl lg:mb-0'>
+                <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
+                  <img
+                    src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
+                    alt
+                    className='lg:h-full w-full hover:scale-125 transition duration-300 ease-in-out'
+                  />
+                </div>
+                <div className='mx-3 mb-8'>
+                  <div className='flex items-center gap-5 py-5'>
+                    <p>20 August 2022</p>
+                  </div>
+                  <a
+                    href='#blog'
+                    className='text-2xl font-bold underline hover:text-color-secondary hover:no-underline'
+                  >
+                    Four ways to cheer yourself up on Blue Monday!
+                  </a>
+                  <p className='leading-relaxed my-5'>
+                    On the second edition of Serious Business, Inc. editor Jim Ledbetter and Fusion senior editor Salmon
+                    debate...
+                  </p>
+                  <a
+                    href='#blog'
+                    className='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                  >
+                    <span className='tracking-wider capitalize underline hover:no-underline'>Read more</span>
+                  </a>
+                </div>
+              </div>
+              <div className='mb-8 border border-gray-300 dark:border-gray-800 rounded-xl lg:mb-0'>
+                <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
+                  <img
+                    src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
+                    alt
+                    className='lg:h-full w-full hover:scale-125 transition duration-300 ease-in-out'
+                  />
+                </div>
+                <div className='mx-3 mb-8'>
+                  <div className='flex items-center gap-5 py-5'>
+                    <p>20 August 2022</p>
+                  </div>
+                  <a
+                    href='#blog'
+                    className='text-2xl font-bold underline hover:text-color-secondary hover:no-underline'
+                  >
+                    How to Organize Your budget for Maximum Productivity?
+                  </a>
+                  <p className='leading-relaxed my-5'>
+                    Global provider connected products for consumers, and enterprises worldwide, supply chain control is
+                    everything...
+                  </p>
+                  <a
+                    href='#blog'
+                    className='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                  >
+                    <span className='tracking-wider capitalize underline hover:no-underline'>Read more</span>
+                  </a>
+                </div>
+              </div>
+              <div className='mb-8 border border-gray-300 dark:border-gray-800 rounded-xl lg:mb-0'>
+                <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
+                  <img
+                    src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
+                    alt
+                    className='lg:h-full w-full hover:scale-125 transition duration-300 ease-in-out'
+                  />
+                </div>
+                <div className='mx-3 mb-8'>
+                  <div className='flex items-center gap-5 py-5'>
+                    <p>20 August 2022</p>
+                  </div>
+                  <a
+                    href='#blog'
+                    className='text-2xl font-bold underline hover:text-color-secondary hover:no-underline'
+                  >
+                    Should Small Businesses Be Entitled to system?
+                  </a>
+                  <p className='leading-relaxed my-5'>
+                    Our team provides skilled &amp; experienced managers who know the intricacies of this vertical and
+                    focus...
+                  </p>
+                  <a
+                    href='#blog'
+                    className='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                  >
+                    <span className='tracking-wider capitalize underline hover:no-underline'>Read more</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </MotionWrapper>
         </div>
       </section>
       <section id='contact'>
@@ -155,7 +268,7 @@ export default function HomeLanding() {
                 <ButtonLanding
                   link={'/login'}
                   className='bg-gradient-to-r mt-10 inline-block text-gray-100 from-[#ef571a] to-[#b11804]'
-                  text='gửi tin nhắn'
+                  text='Gửi tin nhắn'
                 />
               </div>
             </form>
