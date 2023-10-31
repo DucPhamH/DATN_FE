@@ -27,7 +27,7 @@ export default function FooterLanding() {
           </div>
           <div className='w-full lg:w-6/12 px-4'>
             <div className='flex flex-wrap items-top mb-6'>
-              <div className='w-full lg:w-6/12 px-4 ml-auto'>
+              <div className='w-full lg:w-6/12 lg:px-2'>
                 <span className='block uppercase mt-5 mb-2  text-red-800 font-semibold text-xl lg:mt-0 lg:mb-6'>
                   Địa chỉ
                 </span>
@@ -91,7 +91,7 @@ export default function FooterLanding() {
                   </li>
                 </ul>
               </div> */}
-              <div className='w-full lg:w-6/12 px-4'>
+              <div className='w-full lg:w-6/12 lg:px-2 '>
                 <span className='block uppercase  mt-5 mb-2 text-red-800 text-xl font-semibold lg:mt-0 lg:mb-6'>
                   Hướng dẫn khách hàng
                 </span>

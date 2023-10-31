@@ -132,7 +132,7 @@ export default function HomeLanding() {
               }
             }}
           >
-            <div className='grid gap-10 mx-10 md:grid-cols-2 lg:grid-cols-3'>
+            <div className='grid gap-10 mx-5 md:mx-10 md:grid-cols-2 lg:grid-cols-3'>
               <div className='border border-gray-300 dark:border-gray-800 rounded-xl'>
                 <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
                   <img
