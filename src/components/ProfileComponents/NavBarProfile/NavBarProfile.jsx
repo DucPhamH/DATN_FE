@@ -3,23 +3,7 @@ import { navBarsProfile } from '../../../services/objectUi'
 export default function NavBarProfile() {
   const path = useLocation()
   console.log(path.pathname)
-  // const listItems = [
-  //   {
-  //     id: 0,
-  //     title: 'Bài viết',
-  //     route: '/me'
-  //   },
-  //   {
-  //     id: 1,
-  //     title: 'Thông tin',
-  //     route: '/me/info'
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Blog',
-  //     route: '/me/blog'
-  //   }
-  // ]
+
   return (
     <div className={`flex justify-center md:justify-start items-center my-2 `}>
       <ul className='flex items-center space-x-14 bg-transparent'>

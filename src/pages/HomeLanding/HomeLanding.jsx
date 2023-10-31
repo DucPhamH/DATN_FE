@@ -133,7 +133,7 @@ export default function HomeLanding() {
             }}
           >
             <div className='grid gap-10 mx-10 md:grid-cols-2 lg:grid-cols-3'>
-              <div className='mb-8 border border-gray-300 dark:border-gray-800 rounded-xl lg:mb-0'>
+              <div className='border border-gray-300 dark:border-gray-800 rounded-xl'>
                 <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
                   <img
                     src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
@@ -143,17 +143,15 @@ export default function HomeLanding() {
                 </div>
                 <div className='mx-3 mb-8'>
                   <div className='flex items-center gap-5 py-5'>
-                    <p>20 August 2022</p>
+                    <p>31/10/2023</p>
                   </div>
-                  <a
-                    href='#blog'
-                    className='text-2xl font-bold underline hover:text-color-secondary hover:no-underline'
-                  >
-                    Four ways to cheer yourself up on Blue Monday!
+                  <a href='#blog' className='text-2xl font-bold  hover:text-color-secondary'>
+                    21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng
                   </a>
-                  <p className='leading-relaxed my-5'>
-                    On the second edition of Serious Business, Inc. editor Jim Ledbetter and Fusion senior editor Salmon
-                    debate...
+                  <p className='leading-relaxed line-clamp-2 my-5'>
+                    Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có
+                    các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên
+                    nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.
                   </p>
                   <a
                     href='#blog'
@@ -163,7 +161,7 @@ export default function HomeLanding() {
                   </a>
                 </div>
               </div>
-              <div className='mb-8 border border-gray-300 dark:border-gray-800 rounded-xl lg:mb-0'>
+              <div className='border border-gray-300 dark:border-gray-800 rounded-xl'>
                 <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
                   <img
                     src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
@@ -173,17 +171,15 @@ export default function HomeLanding() {
                 </div>
                 <div className='mx-3 mb-8'>
                   <div className='flex items-center gap-5 py-5'>
-                    <p>20 August 2022</p>
+                    <p>31/10/2023</p>
                   </div>
-                  <a
-                    href='#blog'
-                    className='text-2xl font-bold underline hover:text-color-secondary hover:no-underline'
-                  >
-                    How to Organize Your budget for Maximum Productivity?
+                  <a href='#blog' className='text-2xl font-bold  hover:text-color-secondary'>
+                    21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng
                   </a>
-                  <p className='leading-relaxed my-5'>
-                    Global provider connected products for consumers, and enterprises worldwide, supply chain control is
-                    everything...
+                  <p className='leading-relaxed line-clamp-2 my-5'>
+                    Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có
+                    các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên
+                    nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.
                   </p>
                   <a
                     href='#blog'
@@ -193,7 +189,7 @@ export default function HomeLanding() {
                   </a>
                 </div>
               </div>
-              <div className='mb-8 border border-gray-300 dark:border-gray-800 rounded-xl lg:mb-0'>
+              <div className='border border-gray-300 dark:border-gray-800 rounded-xl'>
                 <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
                   <img
                     src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
@@ -203,17 +199,15 @@ export default function HomeLanding() {
                 </div>
                 <div className='mx-3 mb-8'>
                   <div className='flex items-center gap-5 py-5'>
-                    <p>20 August 2022</p>
+                    <p>31/10/2023</p>
                   </div>
-                  <a
-                    href='#blog'
-                    className='text-2xl font-bold underline hover:text-color-secondary hover:no-underline'
-                  >
-                    Should Small Businesses Be Entitled to system?
+                  <a href='#blog' className='text-2xl font-bold  hover:text-color-secondary'>
+                    21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng
                   </a>
-                  <p className='leading-relaxed my-5'>
-                    Our team provides skilled &amp; experienced managers who know the intricacies of this vertical and
-                    focus...
+                  <p className='leading-relaxed line-clamp-2 my-5'>
+                    Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có
+                    các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên
+                    nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.
                   </p>
                   <a
                     href='#blog'
