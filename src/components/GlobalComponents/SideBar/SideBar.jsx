@@ -118,7 +118,7 @@ export default function SideBar() {
         </div>
 
         <div className='flex flex-col h-full'>
-          <ul className='whitespace-pre px-2.5 pt-5 pb-3 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100 md:h-[70%] h-[70%]'>
+          <ul className='whitespace-pre px-2.5 pt-4 pb-3 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100 md:h-[69%] h-[70%]'>
             <li>
               <NavLink to={'/new-feed'} className='link'>
                 <FaCookieBite size={25} className='min-w-max' />
@@ -162,7 +162,7 @@ export default function SideBar() {
             </li>
           </ul>
           {open && (
-            <div className='flex-1 text-sm z-50 max-h-40 my-auto whitespace-pre w-full  font-medium  '>
+            <div className='flex-1 text-sm z-50 max-h-48 my-auto whitespace-pre w-full  font-medium  '>
               <div className='flex border-y border-slate-300 p-4 items-center justify-between'>
                 <div>
                   <p className='text-red-500 pb-1'>Bạn có phải đầu bếp ?</p>
