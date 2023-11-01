@@ -12,24 +12,13 @@ export default function Home() {
   }
 
   return (
-    <div className='mx-32'>
+    <div className=''>
       <h1>Hello CodeSandbox</h1>
       <h2>Start editing to see some magic happen!</h2>
       <button onClick={countUntilDoom}>Click on me for money</button>
       <h2>{counter}</h2>
       <h2>Start editing to see some magic happen!</h2>
 
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
-      <h2>Start editing to see some magic happen!</h2>
       <h2>Start editing to see some magic happen!</h2>
       <h2>Start editing to see some magic happen!</h2>
       <h2>Start editing to see some magic happen!</h2>
