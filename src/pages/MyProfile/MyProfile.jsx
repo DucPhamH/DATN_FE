@@ -32,8 +32,12 @@ export default function MyProfile() {
               <div className='absolute top-2 left-2 text-3xl cursor-pointer text-gray-600 hover:text-gray-700 dark:text-red-900 dark:hover:text-red-950'>
                 <BsFillCameraFill />
               </div>
-              <div className='w-full md:flex md:flex-row gap-2 top-60  border-b-2 border-red-500 pb-5 absolute'>
-                <img className='h-40 w-40 ml-2 rounded-full  object-cover relative' src={useravatar} alt='avatar' />
+              <div className='w-full md:flex md:flex-row gap-2 top-60 border-b-2 border-red-500 pb-5 absolute'>
+                <img
+                  className='h-40 w-40 ml-2 border border-red-200 rounded-full  object-cover relative'
+                  src={useravatar}
+                  alt='avatar'
+                />
                 <div
                   onClick={openModalAvatar}
                   className='absolute top-28 left-32 p-2 bg-gray-300 rounded-full text-2xl cursor-pointer text-gray-600 hover:text-gray-700 dark:text-red-900 dark:hover:text-red-950'

@@ -4,17 +4,15 @@ import { motion } from 'framer-motion'
 import logo from '../../../assets/images/logo.png'
 
 // * React icons
-import { SlSettings } from 'react-icons/sl'
-import { AiOutlineAppstore } from 'react-icons/ai'
-import { BsPerson } from 'react-icons/bs'
-import { HiOutlineDatabase } from 'react-icons/hi'
-import { TbReportAnalytics } from 'react-icons/tb'
-import { RiBuilding3Line } from 'react-icons/ri'
+import { FaCookieBite, FaShareAlt } from 'react-icons/fa'
+import { BsFillCalendarHeartFill, BsFillHeartFill, BsPeopleFill } from 'react-icons/bs'
+import { GiChefToque } from 'react-icons/gi'
 import { useMediaQuery } from 'react-responsive'
 import { MdMenu } from 'react-icons/md'
 import { NavLink, useLocation } from 'react-router-dom'
 import Submenu from './SubMenu'
 import DarkMode from '../DarkMode'
+import { AiFillSetting } from 'react-icons/ai'
 
 export default function SideBar() {
   let isTabletMid = useMediaQuery({ query: '(max-width: 767px)' })
@@ -87,14 +85,14 @@ export default function SideBar() {
 
   const subMenusList = [
     {
-      name: 'build',
-      icon: RiBuilding3Line,
-      menus: ['auth', 'app settings', 'stroage', 'hosting']
+      name: 'Sức khoẻ',
+      icon: BsFillHeartFill,
+      menus: ['Công cụ tính toán', 'Lịch sử tính toán']
     },
     {
-      name: 'analytics',
-      icon: TbReportAnalytics,
-      menus: ['dashboard', 'realtime', 'events']
+      name: 'Lịch trình',
+      icon: BsFillCalendarHeartFill,
+      menus: ['Lịch ăn uống', 'Lịch tập luyện']
     }
   ]
 
@@ -120,29 +118,35 @@ export default function SideBar() {
         </div>
 
         <div className='flex flex-col h-full'>
-          <ul className='whitespace-pre px-2.5 py-5 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100 md:h-[68%] h-[70%]'>
+          <ul className='whitespace-pre px-2.5 pt-5 pb-3 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100 md:h-[70%] h-[70%]'>
+            <li>
+              <NavLink to={'/new-feed'} className='link'>
+                <FaCookieBite size={25} className='min-w-max' />
+                Nấu ăn
+              </NavLink>
+            </li>
             <li>
               <NavLink to={'/home'} className='link'>
-                <AiOutlineAppstore size={25} className='min-w-max' />
+                <BsPeopleFill size={25} className='min-w-max' />
                 Cộng đồng
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/new-feed'} className='link'>
-                <BsPerson size={25} className='min-w-max' />
-                Authentication
+              <NavLink to={'/stroage'} className='link'>
+                <FaShareAlt size={25} className='min-w-max' />
+                Góc chia sẻ
               </NavLink>
             </li>
             <li>
               <NavLink to={'/stroage'} className='link'>
-                <HiOutlineDatabase size={25} className='min-w-max' />
-                Stroage
+                <GiChefToque size={25} className='min-w-max' />
+                Thuê đầu bếp
               </NavLink>
             </li>
 
             {(open || isTabletMid) && (
               <div className='border-y py-5 border-slate-300 '>
-                <small className='pl-3 text-slate-500 inline-block mb-2'>Product categories</small>
+                <small className='pl-3 text-slate-500 inline-block mb-2'>Người dùng</small>
                 {subMenusList?.map((menu) => (
                   <div key={menu.name} className='flex flex-col gap-1'>
                     <Submenu data={menu} />
@@ -152,19 +156,21 @@ export default function SideBar() {
             )}
             <li>
               <NavLink to={'/settings'} className='link'>
-                <SlSettings size={25} className='min-w-max' />
-                Settings
+                <AiFillSetting size={25} className='min-w-max' />
+                Cài đặt
               </NavLink>
             </li>
           </ul>
           {open && (
-            <div className='flex-1 text-sm z-50 max-h-48 my-auto whitespace-pre w-full  font-medium  '>
+            <div className='flex-1 text-sm z-50 max-h-40 my-auto whitespace-pre w-full  font-medium  '>
               <div className='flex border-y border-slate-300 p-4 items-center justify-between'>
                 <div>
-                  <p>Spark</p>
-                  <small>No-cost $0/month</small>
+                  <p className='text-red-500 pb-1'>Bạn có phải đầu bếp ?</p>
+                  <small>Hãy liên hệ với chúng tôi !</small>
                 </div>
-                <p className='text-teal-500 py-1.5 px-3 text-xs bg-teal-50 rounded-xl'>Upgrade</p>
+                <p className='text-red-800 cursor-pointer hover:text-red-400 py-1.5 px-3 text-xs bg-teal-50 rounded-xl'>
+                  Liên hệ
+                </p>
               </div>
             </div>
           )}

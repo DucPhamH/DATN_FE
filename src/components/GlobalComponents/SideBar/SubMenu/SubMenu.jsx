@@ -14,7 +14,7 @@ export default function Submenu({ data }) {
         onClick={() => setSubMenuOpen(!subMenuOpen)}
       >
         <data.icon size={23} className='min-w-max' />
-        <p className='flex-1 capitalize'>{data.name}</p>
+        <p className='flex-1'>{data.name}</p>
         <IoIosArrowDown className={` ${subMenuOpen && 'rotate-180'} duration-200 `} />
       </li>
       <motion.ul
@@ -32,7 +32,7 @@ export default function Submenu({ data }) {
         {data.menus?.map((menu) => (
           <li key={menu}>
             {/* className="hover:text-blue-600 hover:font-medium" */}
-            <NavLink to={`/${data.name}/${menu}`} className='link bg-transparent capitalize'>
+            <NavLink to={`/${data.name}/${menu}`} className='link bg-transparent'>
               {menu}
             </NavLink>
           </li>

@@ -27,7 +27,11 @@ export default function UserAvatar() {
         onClick={() => setIsMenu(!isMenu)}
       >
         <div className='w-8 h-8 md:w-10 object-cover md:h-10 rounded-full'>
-          <img className='w-8 h-8 md:w-10 object-cover md:h-10 rounded-full' src={useravatar} alt='user photo' />
+          <img
+            className='w-8 h-8 md:w-10 object-cover border border-red-200 md:h-10 rounded-full'
+            src={useravatar}
+            alt='user photo'
+          />
         </div>
       </button>
       <AnimatePresence>

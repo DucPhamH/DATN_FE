@@ -27,7 +27,7 @@ export default function UserAvatarLanding({ navBar }) {
         type='button'
         onClick={() => setIsMenu(!isMenu)}
       >
-        <img className='w-8 h-8 md:mr-2 rounded-full' src={useravatar} alt='user photo' />
+        <img className='w-8 h-8 md:mr-2 border border-red-200 rounded-full' src={useravatar} alt='user photo' />
         <span className='hidden md:block'>User name</span>
 
         <svg
