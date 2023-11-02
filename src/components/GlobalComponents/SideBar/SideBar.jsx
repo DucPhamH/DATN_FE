@@ -87,12 +87,20 @@ export default function SideBar() {
     {
       name: 'Sức khoẻ',
       icon: BsFillHeartFill,
-      menus: ['Công cụ tính toán', 'Lịch sử tính toán']
+      menus: [
+        { subName: 'Công cụ tính toán', subPath: 'fitness-caculator' },
+        { subName: 'Lịch sử tính toán', subPath: 'fitness-history' }
+      ],
+      path: 'fitness'
     },
     {
       name: 'Lịch trình',
       icon: BsFillCalendarHeartFill,
-      menus: ['Lịch ăn uống', 'Lịch tập luyện']
+      menus: [
+        { subName: 'Lịch trình ăn uống', subPath: 'eat-schedule' },
+        { subName: 'Lịch trình tập luyện', subPath: 'ex-schedule' }
+      ],
+      path: 'schedule'
     }
   ]
 

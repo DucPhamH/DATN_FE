@@ -137,7 +137,7 @@ export default function HomeLanding() {
                 <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
                   <img
                     src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
-                    alt
+                    alt='blog'
                     className='lg:h-full w-full hover:scale-125 transition duration-300 ease-in-out'
                   />
                 </div>
@@ -165,7 +165,7 @@ export default function HomeLanding() {
                 <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
                   <img
                     src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
-                    alt
+                    alt='blog'
                     className='lg:h-full w-full hover:scale-125 transition duration-300 ease-in-out'
                   />
                 </div>
@@ -193,7 +193,7 @@ export default function HomeLanding() {
                 <div className='lg:h-[40vh] rounded-xl scale-100 overflow-hidden'>
                   <img
                     src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
-                    alt
+                    alt='blog'
                     className='lg:h-full w-full hover:scale-125 transition duration-300 ease-in-out'
                   />
                 </div>

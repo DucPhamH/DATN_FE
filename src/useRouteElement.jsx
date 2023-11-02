@@ -12,6 +12,7 @@ const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
 const MyProfile = lazy(() => import('./pages/MyProfile'))
+const FitnessCaculator = lazy(() => import('./pages/FitnessCaculator'))
 
 export default function useRouteElement() {
   const routeElement = useRoutes([
@@ -90,6 +91,36 @@ export default function useRouteElement() {
         <MainLayout>
           <Suspense>
             <div>hello</div>
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <FitnessCaculator />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-history',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <div>Hello</div>
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'schedule/ex-schedule',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <div>Hello</div>
           </Suspense>
         </MainLayout>
       )

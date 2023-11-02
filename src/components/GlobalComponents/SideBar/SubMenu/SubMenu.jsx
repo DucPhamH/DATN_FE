@@ -5,12 +5,14 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 export default function Submenu({ data }) {
   const { pathname } = useLocation()
-  // console.log(pathname)
+  console.log(pathname)
   const [subMenuOpen, setSubMenuOpen] = useState(false)
+  console.log(data)
+  console.log(data.menus)
   return (
     <>
       <li
-        className={`link ${pathname.includes(data.name) && 'text-blue-600'}`}
+        className={`link ${pathname.includes(data.path) && 'text-red-600 dark:text-yellow-500'}`}
         onClick={() => setSubMenuOpen(!subMenuOpen)}
       >
         <data.icon size={23} className='min-w-max' />
@@ -30,10 +32,9 @@ export default function Submenu({ data }) {
         className='flex h-0 flex-col pl-14 text-[0.8rem] font-normal overflow-hidden'
       >
         {data.menus?.map((menu) => (
-          <li key={menu}>
-            {/* className="hover:text-blue-600 hover:font-medium" */}
-            <NavLink to={`/${data.name}/${menu}`} className='link bg-transparent'>
-              {menu}
+          <li key={menu.subName}>
+            <NavLink to={`/${data.path}/${menu.subPath}`} className='link bg-transparent'>
+              {menu.subName}
             </NavLink>
           </li>
         ))}
