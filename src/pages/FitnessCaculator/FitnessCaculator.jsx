@@ -1,12 +1,29 @@
-import React from 'react'
+import { FaLightbulb } from 'react-icons/fa'
 
 export default function FitnessCaculator() {
   return (
     <div>
-      <div className='h-full text-gray-900 dark:text-white py-8 mx-3'>
-        <h2 className='text-2xl font-semibold mx-3 text-red-700 dark:text-gray-200'>Công cụ tính toán</h2>
-
-        <div className='grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-10 mx-2'>
+      <div className='h-full text-gray-900 dark:text-white py-6 mx-3'>
+        <h2 className='text-2xl font-semibold mx-3 text-red-700 dark:text-gray-300'>Công cụ tính toán</h2>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+          <div className='m-1 flex justify-center gap-2'>
+            <div className='mt-1'>
+              <FaLightbulb />
+            </div>
+            Công cụ tính chỉ số cơ thể là một công cụ trực tuyến cung cấp cho bạn khả năng đo lường và phân tích các chỉ
+            số liên quan đến cơ thể con người, nhằm giúp bạn có thể đánh giá và theo dõi sức khỏe, tình trạng cơ thể, và
+            cải thiện chất lượng cuộc sống .
+          </div>
+          <div className='m-1 flex justify-center gap-2'>
+            <div className='mt-1'>
+              <FaLightbulb />
+            </div>
+            Công cụ tính chỉ số cơ thể đóng vai trò quan trọng trong việc đưa ra các khuyến nghị về chế độ ăn uống và
+            luyện tập thích hợp. Nhờ tích hợp các thông số này, bạn có thể tạo ra kế hoạch cải thiện sức khỏe và tạo ra
+            một phong cách sống cân đối.
+          </div>
+        </div>
+        <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-10 mx-2'>
           <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
             <div className='p-3 mr-4 text-orange-500 bg-orange-100 rounded-full dark:text-orange-100 dark:bg-orange-500'>
               <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20'>
@@ -42,6 +59,21 @@ export default function FitnessCaculator() {
             <div>
               <p className='mb-2 text-sm font-medium text-gray-600 dark:text-gray-400'>New sales</p>
               <p className='text-lg font-semibold text-gray-700 dark:text-gray-200'>376</p>
+            </div>
+          </div>
+          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
+            <div className='p-3 mr-4 text-teal-500 bg-teal-100 rounded-full dark:text-teal-100 dark:bg-teal-500'>
+              <svg className='w-5 h-5' fill='currentColor' viewBox='0 0 20 20'>
+                <path
+                  fillRule='evenodd'
+                  d='M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z'
+                  clipRule='evenodd'
+                />
+              </svg>
+            </div>
+            <div>
+              <p className='mb-2 text-sm font-medium text-gray-600 dark:text-gray-400'>Pending contacts</p>
+              <p className='text-lg font-semibold text-gray-700 dark:text-gray-200'>35</p>
             </div>
           </div>
           <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
