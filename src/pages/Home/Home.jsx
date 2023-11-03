@@ -6,7 +6,7 @@ export default function Home() {
   if (counter === 3) {
     throw new Error('Oops, You triggered Doomsday!')
   }
-
+  
   const countUntilDoom = () => {
     setCounter(counter + 1)
   }

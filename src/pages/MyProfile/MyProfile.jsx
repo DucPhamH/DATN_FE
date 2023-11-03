@@ -20,7 +20,7 @@ export default function MyProfile() {
   }
   return (
     <div>
-      <div className='h-full dark:bg-slate-900 bg-white text-gray-900 dark:text-white mx-3'>
+      <div className='h-full dark:bg-slate-900 rounded-lg bg-white text-gray-900 dark:text-white mx-3'>
         <div className='w-full'>
           <div className='w-full h-[18rem]'>
             <div className='relative'>
