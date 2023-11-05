@@ -9,7 +9,7 @@ export default function Cooking() {
       <div>
         <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-10 mx-2'>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -38,7 +38,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -67,7 +67,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -96,7 +96,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -125,7 +125,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -154,7 +154,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -183,7 +183,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -212,7 +212,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -241,7 +241,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
@@ -270,7 +270,7 @@ export default function Cooking() {
             </div>
           </div>
           <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
-            <div className='lg:h-[30vh] rounded-xl scale-100 overflow-hidden'>
+            <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
                 alt='blog'
