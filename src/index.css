@@ -106,3 +106,14 @@ body {
   padding: 15px 16px;
   border-radius: 10px;
 }
+
+/* .badge {
+  background-color: wheat;
+  border-radius: 9999px;
+  margin-top: 0.5rem;
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  position: absolute;
+  top: 0px;
+  text-transform: uppercase;
+} */

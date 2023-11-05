@@ -128,7 +128,7 @@ export default function SideBar() {
         <div className='flex flex-col h-full'>
           <ul className='whitespace-pre px-2.5 pt-4 pb-3 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100 md:h-[69%] h-[70%]'>
             <li>
-              <NavLink to={'/new-feed'} className='link'>
+              <NavLink to={'/cooking'} className='link'>
                 <FaCookieBite size={25} className='min-w-max' />
                 Nấu ăn
               </NavLink>
@@ -140,13 +140,13 @@ export default function SideBar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/stroage'} className='link'>
+              <NavLink to={'/blog'} className='link'>
                 <FaShareAlt size={25} className='min-w-max' />
                 Góc chia sẻ
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/stroage'} className='link'>
+              <NavLink to={'/chef'} className='link'>
                 <GiChefToque size={25} className='min-w-max' />
                 Thuê đầu bếp
               </NavLink>

@@ -7,31 +7,112 @@ import IBW from '../../assets/images/IBW.png'
 import LBM from '../../assets/images/LBM.png'
 import caloBurned from '../../assets/images/caloBurned.png'
 import waterNeed from '../../assets/images/waterNeed.png'
+
+const finess = [
+  {
+    id: 1,
+    name: 'Tính chỉ số BMI',
+    image: BMI,
+    description: 'Body Mass Index Caculator',
+    link: '/fitness/bmi',
+    color: 'bg-orange-500'
+  },
+  {
+    id: 2,
+    name: 'Tính chỉ số Calo',
+    image: calo,
+    description: 'Calories Caculator',
+    link: '/fitness/calo',
+    color: 'bg-green-500'
+  },
+  {
+    id: 3,
+    name: 'Tính lượng chất béo',
+    image: bodyFat,
+    description: 'Body Fat Caculator',
+    link: '/fitness/bodyfat',
+    color: 'bg-blue-500'
+  },
+  {
+    id: 4,
+    name: 'Tính chỉ số BMR',
+    image: BMR,
+    description: 'Basal Metabolic Rate Caculator',
+    link: '/fitness/bmr',
+    color: 'bg-teal-500'
+  },
+  {
+    id: 5,
+    name: 'Tính chỉ số IBW',
+    image: IBW,
+    description: 'Idea Body Weight Caculator',
+    link: '/fitness/ibw',
+    color: 'bg-red-700'
+  },
+  {
+    id: 6,
+    name: 'Tính chỉ số LBM',
+    image: LBM,
+    description: 'Lean Body Mass Caculator',
+    link: '/fitness/lbm',
+    color: 'bg-blue-300'
+  },
+  {
+    id: 7,
+    name: 'Tính lượng Calo đốt cháy',
+    image: caloBurned,
+    description: 'Calories Burned Caculator',
+    link: '/fitness/caloburned',
+    color: 'bg-pink-500'
+  },
+  {
+    id: 8,
+    name: 'Tính lượng nước uống',
+    image: waterNeed,
+    description: 'Water Per Day Caculator',
+    link: '/fitness/waterneed',
+    color: 'bg-green-800'
+  }
+]
+
 export default function FitnessCaculator() {
   return (
-    <div>
-      <div className='h-full text-gray-900 dark:text-white py-6 mx-3'>
-        <h2 className='text-2xl font-semibold mx-3 text-red-700 dark:text-gray-300'>Công cụ tính toán</h2>
-        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
-          <div className='m-1 flex justify-center gap-2'>
-            <div className='mt-1'>
-              <FaLightbulb />
-            </div>
-            Công cụ tính chỉ số cơ thể là một công cụ trực tuyến cung cấp cho bạn khả năng đo lường và phân tích các chỉ
-            số liên quan đến cơ thể con người, nhằm giúp bạn có thể đánh giá và theo dõi sức khỏe, tình trạng cơ thể, và
-            cải thiện chất lượng cuộc sống .
+    <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
+      <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>Công cụ tính toán</h2>
+      <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+        <div className='m-1 flex justify-center gap-2'>
+          <div className='mt-1'>
+            <FaLightbulb />
           </div>
-          <div className='m-1 flex justify-center gap-2'>
-            <div className='mt-1'>
-              <FaLightbulb />
-            </div>
-            Công cụ tính chỉ số cơ thể đóng vai trò quan trọng trong việc đưa ra các khuyến nghị về chế độ ăn uống và
-            luyện tập thích hợp. Nhờ tích hợp các thông số này, bạn có thể tạo ra kế hoạch cải thiện sức khỏe và tạo ra
-            một phong cách sống cân đối.
-          </div>
+          Công cụ tính chỉ số cơ thể là một công cụ trực tuyến cung cấp cho bạn khả năng đo lường và phân tích các chỉ
+          số liên quan đến cơ thể con người, nhằm giúp bạn có thể đánh giá và theo dõi sức khỏe, tình trạng cơ thể, và
+          cải thiện chất lượng cuộc sống .
         </div>
-        <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-10 mx-2'>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
+        <div className='m-1 flex justify-center gap-2'>
+          <div className='mt-1'>
+            <FaLightbulb />
+          </div>
+          Công cụ tính chỉ số cơ thể đóng vai trò quan trọng trong việc đưa ra các khuyến nghị về chế độ ăn uống và
+          luyện tập thích hợp. Nhờ tích hợp các thông số này, bạn có thể tạo ra kế hoạch cải thiện sức khỏe và tạo ra
+          một phong cách sống cân đối.
+        </div>
+      </div>
+      <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-10 mx-2'>
+        {finess.map((item) => (
+          <div
+            key={item.id}
+            className='flex items-center shadow-md dark:shadow-orange-900 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'
+          >
+            <div className={`p-3 mr-4 text-white rounded-full dark:text-white ${item.color}`}>
+              <img className='h-8 w-8' src={item.image} alt='finess' />
+            </div>
+            <div>
+              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>{item.name}</p>
+              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>{item.description}</p>
+            </div>
+          </div>
+        ))}
+        {/* <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
             <div className='p-3 mr-4 text-orange-500  rounded-full dark:text-orange-100 bg-orange-500'>
               <img className='h-8 w-8' src={BMI} alt='BMI' />
             </div>
@@ -114,13 +195,12 @@ export default function FitnessCaculator() {
                 Water Per Day Caculator
               </p>
             </div>
-          </div>
-        </div>
-        <div className='flex justify-end mx-3 items-center'>
-          <button className='px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-500 hover:bg-red-600 border border-transparent rounded-lg '>
-            Xem thêm
-          </button>
-        </div>
+          </div> */}
+      </div>
+      <div className='flex justify-end mx-3 items-center'>
+        <button className='px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-500 hover:bg-red-600 border border-transparent rounded-lg '>
+          Xem thêm
+        </button>
       </div>
     </div>
   )

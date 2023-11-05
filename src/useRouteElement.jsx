@@ -13,6 +13,7 @@ const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
 const MyProfile = lazy(() => import('./pages/MyProfile'))
 const FitnessCaculator = lazy(() => import('./pages/FitnessCaculator'))
+const Cooking = lazy(() => import('./pages/Cooking'))
 
 export default function useRouteElement() {
   const routeElement = useRoutes([
@@ -86,11 +87,11 @@ export default function useRouteElement() {
       ]
     },
     {
-      path: '/new-feed',
+      path: '/cooking',
       element: (
         <MainLayout>
           <Suspense>
-            <div>hello</div>
+            <Cooking />
           </Suspense>
         </MainLayout>
       )
