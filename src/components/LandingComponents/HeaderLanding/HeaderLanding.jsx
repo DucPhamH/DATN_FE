@@ -41,7 +41,7 @@ export default function HeaderLanding() {
     >
       <div
         onClick={handleActiveMenu}
-        className='lg:hidden relative p-2 flex justify-center items-center z-30 focus:outline-none transform active:scale-75 transition-transform'
+        className='lg:hidden cursor-pointer hover:text-red-700 relative p-2 flex justify-center items-center z-30 focus:outline-none transform active:scale-75 transition-transform'
       >
         <AiOutlineMenu className='text-2xl' />
       </div>

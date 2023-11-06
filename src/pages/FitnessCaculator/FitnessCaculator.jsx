@@ -7,8 +7,9 @@ import IBW from '../../assets/images/IBW.png'
 import LBM from '../../assets/images/LBM.png'
 import caloBurned from '../../assets/images/caloBurned.png'
 import waterNeed from '../../assets/images/waterNeed.png'
+import FinessCard from '../../components/CardComponents/FinessCard'
 
-const finess = [
+const finessItems = [
   {
     id: 1,
     name: 'Tính chỉ số BMI',
@@ -98,104 +99,9 @@ export default function FitnessCaculator() {
         </div>
       </div>
       <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-10 mx-2'>
-        {finess.map((item) => (
-          <div
-            key={item.id}
-            className='flex items-center shadow-md dark:shadow-orange-900 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'
-          >
-            <div className={`p-3 mr-4 text-white rounded-full dark:text-white ${item.color}`}>
-              <img className='h-8 w-8' src={item.image} alt='finess' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>{item.name}</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>{item.description}</p>
-            </div>
-          </div>
+        {finessItems.map((finessItem) => (
+          <FinessCard key={finessItem.id} finessItem={finessItem} />
         ))}
-        {/* <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-orange-500  rounded-full dark:text-orange-100 bg-orange-500'>
-              <img className='h-8 w-8' src={BMI} alt='BMI' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính chỉ số BMI</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>
-                Body Mass Index Caculator
-              </p>
-            </div>
-          </div>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-green-500  rounded-full dark:text-green-100 bg-green-500'>
-              <img className='h-8 w-8' src={calo} alt='calo' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính chỉ số Calo</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>Calories Caculator</p>
-            </div>
-          </div>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-blue-500 rounded-full dark:text-blue-100 bg-blue-500'>
-              <img className='h-8 w-8' src={bodyFat} alt='bodyfat' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính lượng chất béo</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>Body Fat Caculator</p>
-            </div>
-          </div>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-teal-500 rounded-full dark:text-teal-100 bg-teal-500'>
-              <img className='h-8 w-8' src={BMR} alt='BMR' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính chỉ số BMR</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>
-                Basal Metabolic Rate Caculator
-              </p>
-            </div>
-          </div>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-teal-500 rounded-full dark:text-teal-100 bg-red-700'>
-              <img className='h-8 w-8' src={IBW} alt='IBW' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính chỉ số IBW</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>
-                Idea Wody Weight Caculator
-              </p>
-            </div>
-          </div>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-orange-500 rounded-full dark:text-orange-100 bg-blue-300'>
-              <img className='h-8 w-8' src={LBM} alt='LBM' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính chỉ số LBM</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>
-                Lean Body Mass Caculator
-              </p>
-            </div>
-          </div>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-orange-500 rounded-full dark:text-orange-100 bg-pink-500'>
-              <img className='h-8 w-8' src={caloBurned} alt='LBM' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính lượng Calo đốt cháy</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>
-                Calories Burned Caculator
-              </p>
-            </div>
-          </div>
-          <div className='flex items-center p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
-            <div className='p-3 mr-4 text-orange-500 rounded-full dark:text-orange-100 bg-green-800'>
-              <img className='h-8 w-8' src={waterNeed} alt='waterNeed' />
-            </div>
-            <div>
-              <p className='mb-2 text-sm font-medium text-gray-700 dark:text-gray-200'>Tính lượng nước uống</p>
-              <p className='text-xs font-semibold line-clamp-1 text-gray-600 dark:text-gray-400'>
-                Water Per Day Caculator
-              </p>
-            </div>
-          </div> */}
       </div>
       <div className='flex justify-end mx-3 items-center'>
         <button className='px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-500 hover:bg-red-600 border border-transparent rounded-lg '>
