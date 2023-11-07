@@ -1,6 +1,82 @@
 import React from 'react'
 import { AiFillHeart, AiOutlineClockCircle } from 'react-icons/ai'
 import { BsFillBookmarkFill } from 'react-icons/bs'
+import FoodCard from '../../components/CardComponents/FoodCard/FoodCard'
+
+const foodItems = [
+  {
+    id: 1,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  },
+  {
+    id: 2,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  },
+  {
+    id: 3,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  },
+  {
+    id: 4,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  },
+  {
+    id: 5,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  },
+  {
+    id: 6,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  },
+  {
+    id: 7,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  },
+  {
+    id: 8,
+    title: 'Phở bò bát đá',
+    time: '25 phút',
+    date: '23/10/2023',
+    like: '13k lượt thích',
+    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    author: 'Godon Ramsey'
+  }
+]
 
 export default function Cooking() {
   return (
@@ -8,7 +84,7 @@ export default function Cooking() {
       <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>Nấu ăn</h2>
       <div>
         <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-10 mx-2'>
-          <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
+          {/* <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
             <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
               <img
                 src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
@@ -297,7 +373,10 @@ export default function Cooking() {
             <div className='absolute top-[-6px] right-0 text-red-500'>
               <BsFillBookmarkFill className='' size={30} />
             </div>
-          </div>
+          </div> */}
+          {foodItems.map((foodItem) => {
+            return <FoodCard key={foodItem.id} foodItem={foodItem} />
+          })}
         </div>
       </div>
     </div>
