@@ -7,13 +7,13 @@ import { AppProvider } from './contexts/app.context.jsx'
 import ErrorBoundary from './components/GlobalComponents/ErrorBoundary/ErrorBoundary.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <AppProvider>
-        <ErrorBoundary>
-          <App />
-        </ErrorBoundary>
-      </AppProvider>
-    </BrowserRouter>
-  </React.StrictMode>
+  // <React.StrictMode>
+  <BrowserRouter>
+    <AppProvider>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </AppProvider>
+  </BrowserRouter>
+  // </React.StrictMode>
 )
