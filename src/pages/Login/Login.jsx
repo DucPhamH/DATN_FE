@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import InputPass from '../../components/InputComponents/InputPass'
 
 export default function Login() {
   return (
@@ -12,7 +13,7 @@ export default function Login() {
         <div className='w-auto h-3 sm:h-4 inline-flex text-4xl lg:text-red-700 font-bold'>Đăng nhập</div>
       </h1>
       <div className='pb-2 flex flex-col justify-start'>
-        <label className='text-red-900 text-left italic'> Your email</label>
+        <label className='text-gray-400 lg:text-red-900 text-left italic'> Your email</label>
         <input
           type='email'
           name='email'
@@ -23,21 +24,9 @@ export default function Login() {
         />
         <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
       </div>
-      <div className='pb-2 flex flex-col justify-start'>
-        <label className='text-red-900 text-left italic'> Your password</label>
-        <input
-          className='block w-full px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
-          type='password'
-          name='password'
-          id='password'
-          placeholder='Password'
-          autoComplete='on'
-          //   {...register('password')}
-        />
-        <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
-      </div>
+      <InputPass />
       <div className='text-right text-sm'>
-        <Link className='ml-1 text-blue-700 hover:underline hover:text-red-700' to='/forgot-password'>
+        <Link className='ml-1 text-blue-400 hover:underline hover:text-red-700' to='/forgot-password'>
           Quên mật khẩu ?
         </Link>
       </div>
@@ -46,7 +35,7 @@ export default function Login() {
         <button className='uppercase block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'>
           sign in
         </button>
-        <button className='px-4 py-3 mt-4 border flex justify-center items-center gap-2 border-slate-200 rounded-full w-full text-gray-600 font-semiboldhover:border-slate-400 hover:text-red-600 hover:shadow transition duration-150'>
+        <button className='px-4 py-3 mt-4 border flex justify-center items-center gap-2 border-slate-200 rounded-full w-full text-gray-400 font-semiboldhover:border-slate-400 hover:text-red-600 hover:shadow transition duration-150'>
           <img
             className='w-6 h-6'
             src='https://www.svgrepo.com/show/475656/google-color.svg'
