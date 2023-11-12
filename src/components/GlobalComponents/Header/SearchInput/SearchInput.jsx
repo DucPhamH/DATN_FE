@@ -32,7 +32,7 @@ export default function SearchInput() {
         <div className='absolute top-12 py-4 bg-white border dark:border-none dark:bg-slate-800 dark:text-white w-full rounded-xl left-1/2 -translate-x-1/2 flex flex-col gap-2'>
           {activeSearch.map((s, index) => (
             <div
-              className='flex justify-between items-center hover:bg-slate-300 transition-all duration-200 dark:hover:bg-slate-700 px-3 py-2'
+              className='flex justify-between items-center hover:bg-slate-100 transition-all duration-200 dark:hover:bg-slate-700 px-3 py-2'
               key={index}
             >
               <div className=''>{s}</div>
