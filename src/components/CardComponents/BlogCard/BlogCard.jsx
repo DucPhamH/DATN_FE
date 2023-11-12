@@ -3,7 +3,7 @@ import React from 'react'
 export default function BlogCard({ blogItem }) {
   return (
     <div className='border border-gray-300 dark:border-gray-800 rounded-xl'>
-      <div className='lg:h-[40vh] rounded-t-xl scale-100 overflow-hidden'>
+      <div className=' lg:h-[40vh] rounded-t-xl scale-100 overflow-hidden'>
         <img
           src={blogItem.image}
           alt='blog'
