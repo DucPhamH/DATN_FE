@@ -19,12 +19,12 @@ export default function Login() {
           name='email'
           id='email'
           placeholder='Email'
-          className='block w-full px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
+          className='block w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
           //   {...register('email')}
         />
         <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
       </div>
-      <InputPass />
+      <InputPass title='Your password' placeholder='Password' />
       <div className='text-right text-sm'>
         <Link className='ml-1 text-blue-400 hover:underline hover:text-red-700' to='/forgot-password'>
           Quên mật khẩu ?

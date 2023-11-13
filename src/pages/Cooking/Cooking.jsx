@@ -6,6 +6,7 @@ import { MdNightlight } from 'react-icons/md'
 import { PiClockAfternoonFill } from 'react-icons/pi'
 import { BsFillSunFill } from 'react-icons/bs'
 import { FaCloudSun } from 'react-icons/fa'
+import Pagination from '../../components/GlobalComponents/Pagination'
 
 const foodItems = [
   {
@@ -206,12 +207,14 @@ export default function Cooking() {
         </div>
       </div>
       <div>
-        <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5 mx-2'>
+        <div className='grid gap-5 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5 mx-2'>
           {foodItems.map((foodItem) => {
             return <FoodCard key={foodItem.id} foodItem={foodItem} />
           })}
         </div>
       </div>
+
+      <Pagination queryConfig={3} pageSize={3} url='/' />
     </div>
   )
 }
