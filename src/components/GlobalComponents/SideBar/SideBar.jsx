@@ -206,7 +206,7 @@ export default function SideBar() {
           <IoIosArrowBack size={25} />
         </motion.div> */}
       </motion.div>
-      <div className='m-3 md:hidden absolute top-2 z-50' onClick={() => setOpen(true)}>
+      <div className='my-3 ml-4 mr-3 md:hidden absolute top-2 z-50' onClick={() => setOpen(true)}>
         <MdMenu size={25} />
       </div>
     </div>
