@@ -22,7 +22,7 @@ export default function UserAvatar() {
     <div ref={ref}>
       <button
         className='flex  relative items-center transition-all duration-700 text-lg py-1 px-1 font-medium text-gray-900 rounded-full
-         hover:text-red-600 dark:hover:text-red-600 md:mr-0  dark:text-white'
+         hover:text-red-600 dark:hover:text-red-600 dark:text-white'
         type='button'
         onClick={() => setIsMenu(!isMenu)}
       >
