@@ -150,7 +150,7 @@ export default function Cooking() {
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
       <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>{checkTime()}</h2>
       <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-10 mb-4 mx-3'>
-        <div className='flex flex-wrap gap-4 items-center justify-center'>
+        <div className='flex flex-wrap gap-3 lg:gap-4 items-center justify-center'>
           {searchItems.map((searchItem) => {
             return <SearchCard key={searchItem.id} searchItem={searchItem} />
           })}
