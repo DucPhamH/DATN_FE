@@ -15,12 +15,12 @@ export default function SearchInput() {
   }
 
   return (
-    <form className='w-[10rem] mr-3 md:w-[16rem] lg:w-[20rem] relative'>
+    <form className='w-[9.5rem] mr-3 md:w-[16rem] lg:w-[20rem] relative'>
       <div className='relative'>
         <input
           type='search'
-          placeholder='Type Here'
-          className='w-full py-2 px-3 rounded-full border border-red-600 dark:border-none dark:bg-slate-800'
+          placeholder='Tìm kiếm'
+          className='w-full py-2 px-3 placeholder:text-sm rounded-full border border-red-600 dark:border-none dark:bg-slate-800'
           onChange={(e) => handleSearch(e)}
         />
         <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-full'>

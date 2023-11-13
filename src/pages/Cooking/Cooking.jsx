@@ -5,7 +5,7 @@ import { AiOutlineCamera } from 'react-icons/ai'
 import { MdNightlight } from 'react-icons/md'
 import { PiClockAfternoonFill } from 'react-icons/pi'
 import { BsFillSunFill } from 'react-icons/bs'
-import { FaCloudSun } from 'react-icons/fa'
+import { FaCloudSun, FaLightbulb } from 'react-icons/fa'
 import Pagination from '../../components/GlobalComponents/Pagination'
 
 const foodItems = [
@@ -116,31 +116,85 @@ const checkTime = () => {
   var hr = day.getHours()
   if (hr >= 0 && hr < 12) {
     return (
-      <div className='flex gap-3 items-center mb-1'>
-        Chào buổi sáng, Đức
-        <FaCloudSun />
-      </div>
+      <>
+        <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>
+          <div className='flex gap-3 items-center mb-1'>
+            Chào buổi sáng, Đức
+            <FaCloudSun />
+          </div>
+        </h2>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+          <div className='m-1 flex justify-center gap-2'>
+            <div className='mt-1'>
+              <FaLightbulb />
+            </div>
+            Bữa sáng khởi động quá trình trao đổi chất, giúp đốt cháy calo, nó cũng cung cấp năng lượng cần để hoàn
+            thành công việc. Đó là một trong những lý do tại sao bữa sáng được xem là bữa ăn quan trọng nhất trong ngày.
+          </div>
+        </div>
+      </>
     )
   } else if (hr == 12) {
     return (
-      <div className='flex gap-3 items-center mb-1'>
-        Chào buổi trưa, Đức
-        <BsFillSunFill />
-      </div>
+      <>
+        <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>
+          <div className='flex gap-3 items-center mb-1'>
+            Chào buổi trưa, Đức
+            <BsFillSunFill />
+          </div>
+        </h2>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+          <div className='m-1 flex justify-center gap-2'>
+            <div className='mt-1'>
+              <FaLightbulb />
+            </div>
+            Nghiên cứu cho thấy, bữa trưa tốt nhất là nên được ăn sau không quá 4 tiếng so với bữa sáng. Bữa trưa chiếm
+            đến 40% khẩu phần ăn trong ngày, cung cấp nhiều nguồn năng lượng nhất, nên dù bạn đã ăn bữa sáng thật no thì
+            cũng không thể bỏ qua một bữa trưa để nạp năng lượng cho ngày dài còn lại.
+          </div>
+        </div>
+      </>
     )
   } else if (hr >= 12 && hr <= 17) {
     return (
-      <div className='flex gap-3 items-center mb-1'>
-        Chào buổi chiều, Đức
-        <PiClockAfternoonFill />
-      </div>
+      <>
+        <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>
+          <div className='flex gap-3 items-center mb-1'>
+            Chào buổi chiều, Đức
+            <PiClockAfternoonFill />
+          </div>
+        </h2>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+          <div className='m-1 flex justify-center gap-2'>
+            <div className='mt-1'>
+              <FaLightbulb />
+            </div>
+            Vào thời gian này, năng lượng được cung cấp từ thực phẩm của bữa trưa đã tiêu hao gần hết. Bổ sung dinh
+            dưỡng bằng 1 bữa ăn nhẹ buổi chiều sẽ giúp bạn làm việc có hiệu quả hơn vào cuối giờ chiều.
+          </div>
+        </div>
+      </>
     )
   } else {
     return (
-      <div className='flex gap-3 items-center mb-1'>
-        Chào buổi tối, Đức
-        <MdNightlight />
-      </div>
+      <>
+        <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>
+          <div className='flex gap-3 items-center mb-1'>
+            Chào buổi tối, Đức
+            <MdNightlight />
+          </div>
+        </h2>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+          <div className='m-1 flex justify-center gap-2'>
+            <div className='mt-1'>
+              <FaLightbulb />
+            </div>
+            Khi ăn tối sớm, dạ dày của bạn sẽ có nhiều thời gian hơn để tiêu hóa thức ăn. Quá trình xử lý thức ăn kéo
+            dài sẽ giúp các dưỡng chất được hấp thu vào cơ thể tốt hơn. Các chuyên gia dinh dưỡng khuyên rằng thời gian
+            lý tưởng nhất cho bữa tối là trước 19h.
+          </div>
+        </div>
+      </>
     )
   }
 }
@@ -148,8 +202,8 @@ const checkTime = () => {
 export default function Cooking() {
   return (
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
-      <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>{checkTime()}</h2>
-      <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-10 mb-4 mx-3'>
+      {checkTime()}
+      <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-4 mb-4 mx-3'>
         <div className='flex flex-wrap gap-3 lg:gap-4 items-center justify-center'>
           {searchItems.map((searchItem) => {
             return <SearchCard key={searchItem.id} searchItem={searchItem} />
