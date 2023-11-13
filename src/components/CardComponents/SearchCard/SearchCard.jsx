@@ -20,7 +20,7 @@ export default function SearchCard({ searchItem }) {
       </div>
       {open && (
         <div
-          className='z-[999] fix_hover top-6 right-[-50%] lg:left-0 absolute
+          className='z-[999] border dark:border-gray-700 top-6 lg:top-7 right-[calc(-50%-8px)]  lg:left-0 absolute
           transition-all duration-300 ease-in-out bg-white dark:bg-gray-900 rounded-md shadow-md w-44'
         >
           <ul className='py-2 text-sm text-gray-700'>
