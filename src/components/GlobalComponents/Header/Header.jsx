@@ -6,7 +6,7 @@ import UserAvatar from './UserAvatar'
 export default function Header() {
   return (
     <div className='flex pl-8 pr-4 py-3 w-full justify-between items-center transition-all duration-500 z-50 bg-white dark:bg-color-primary  shadow-md dark:shadow-yellow-800 fixed'>
-      <div className='ml-10'>
+      <div className='ml-8'>
         <SearchInput />
       </div>
       <div className='mr-64 pr-4 flex justify-center items-center'>
