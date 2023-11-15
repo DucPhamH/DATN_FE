@@ -41,7 +41,7 @@ export default function ModalUploadAvatar({ closeModalAvatar }) {
                   <div className='flex justify-center items-center' onClick={handleImageClick}>
                     {image ? (
                       <img
-                        className='h-40 border border-red-600 mb-5 w-40 rounded-full  object-cover'
+                        className='h-40 border border-red-600 mb-5 w-40 rounded-full  object-contain'
                         src={URL.createObjectURL(image)}
                         alt='avatar'
                       />
