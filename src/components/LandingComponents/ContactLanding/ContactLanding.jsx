@@ -27,17 +27,22 @@ export default function ContactLanding() {
               <div className='text-color-primary-dark grid gap-6 mb-6 md:grid-cols-2'>
                 <input
                   type='text'
+                  id='name'
+                  autoComplete='on'
                   className='dark:bg-gray-100 bg-yellow-50 border border-gray-600 text-lg rounded-lg block w-full p-3 focus:outline-none focus:border-color-secondary'
                   placeholder='Name'
                 />
                 <input
+                  id='email'
                   type='email'
+                  autoComplete='on'
                   className='dark:bg-gray-100 bg-yellow-50 border border-gray-600 text-lg rounded-lg block w-full p-3 focus:outline-none focus:border-color-secondary'
                   placeholder='Email'
                 />
               </div>
               <textarea
                 rows={6}
+                id='message'
                 className='text-color-primary-dark dark:bg-gray-100 bg-yellow-50 border border-gray-600 text-lg rounded-lg block w-full p-3 focus:outline-none focus:border-color-secondary'
                 placeholder='Message'
                 defaultValue={''}

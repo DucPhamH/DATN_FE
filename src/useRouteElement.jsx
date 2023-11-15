@@ -97,6 +97,26 @@ export default function useRouteElement() {
       )
     },
     {
+      path: '/blog',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <div>Hello</div>
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: '/chef',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <div>Hello</div>
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
       path: 'fitness/fitness-caculator',
       element: (
         <MainLayout>

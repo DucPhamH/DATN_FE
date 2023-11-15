@@ -19,6 +19,7 @@ export default function SearchInput() {
       <div className='relative'>
         <input
           type='search'
+          id='search_input'
           placeholder='Tìm kiếm'
           className='w-full py-2 px-3 placeholder:text-sm rounded-full border border-red-600 dark:border-none dark:bg-slate-800'
           onChange={(e) => handleSearch(e)}

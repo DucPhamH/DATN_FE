@@ -128,15 +128,15 @@ export default function SideBar() {
         <div className='flex flex-col h-full'>
           <ul className='whitespace-pre px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100 md:h-[72%] h-[70%]'>
             <li>
-              <NavLink to={'/cooking'} className='link'>
-                <FaCookieBite size={25} className='min-w-max' />
-                Nấu ăn
-              </NavLink>
-            </li>
-            <li>
               <NavLink to={'/home'} className='link'>
                 <BsPeopleFill size={25} className='min-w-max' />
                 Cộng đồng
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to={'/cooking'} className='link'>
+                <FaCookieBite size={25} className='min-w-max' />
+                Nấu ăn
               </NavLink>
             </li>
             <li>
