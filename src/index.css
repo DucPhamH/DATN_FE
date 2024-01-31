@@ -19,14 +19,14 @@ body {
   transition: all 0.2s;
 }
 
-.btn {
+.btn-custom {
   padding: 12px 20px;
   border-radius: 25px;
   border-top-left-radius: 0px;
   transition: 0.5s;
 }
 
-.btn:hover {
+.btn-custom:hover {
   border-top-left-radius: 25px;
 }
 

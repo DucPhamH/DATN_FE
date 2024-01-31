@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function FinessCard({ finessItem }) {
   return (
-    <div className='flex items-center shadow-md dark:shadow-orange-900 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800'>
+    <div className='flex items-center shadow-md dark:shadow-orange-900 p-4 bg-white rounded-lg  dark:bg-gray-800'>
       <div className={`p-3 mr-4 text-white rounded-full dark:text-white ${finessItem.color}`}>
         <img className='h-8 w-8' src={finessItem.image} alt='finess' />
       </div>

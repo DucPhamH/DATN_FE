@@ -115,7 +115,7 @@ export default function SideBar() {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={open ? 'open' : 'closed'}
-        className=' bg-white dark:bg-color-primary  dark:text-gray-300 text-gray shadow-lg dark:shadow-yellow-800  max-w-[16rem] w-[16rem] overflow-hidden z-[999] h-screen relative'
+        className=' bg-white dark:bg-color-primary  dark:text-gray-300 text-gray shadow-md dark:shadow-yellow-800 max-w-[16rem] w-[16rem] overflow-hidden z-[999] h-screen relative'
       >
         <div className='flex items-center gap-2.5 font-medium pb-3.5 pt-3 mx-3'>
           <img src={logo} width={50} alt='icon-app' />

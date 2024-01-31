@@ -4,7 +4,7 @@ import { BsFillBookmarkFill } from 'react-icons/bs'
 
 export default function FoodCard({ foodItem }) {
   return (
-    <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
+    <div className='border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl relative'>
       <div className='lg:h-[28vh] rounded-t-xl scale-100 overflow-hidden'>
         <img
           src={foodItem.img}
@@ -29,7 +29,7 @@ export default function FoodCard({ foodItem }) {
         <AiOutlineClockCircle size={20} />
         <span className='ml-1'>{foodItem.time}</span>
       </div>
-      <div className='absolute top-[-6px] right-0 text-red-500'>
+      <div className='absolute top-[-6px] right-0 text-yellow-500'>
         <BsFillBookmarkFill className='' size={30} />
       </div>
     </div>
