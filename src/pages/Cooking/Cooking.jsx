@@ -11,7 +11,7 @@ import SearchFood from '../../components/SearchComponents/SearchFood/SearchFood'
 import SearchHoliday from '../../components/SearchComponents/SearchHoliday'
 import SearchRegions from '../../components/SearchComponents/SearchRegions'
 import SearchCook from '../../components/SearchComponents/SearchCook'
-import SearchHard from '../../components/SearchComponents/SearchHard/SearchHard'
+import SearchHard from '../../components/SearchComponents/SearchHard'
 import SearchTime from '../../components/SearchComponents/SearchTime'
 
 const foodItems = [

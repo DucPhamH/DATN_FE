@@ -79,7 +79,7 @@ export default function SearchCook() {
 
       {open && (
         <div
-          className='z-[999] border dark:border-gray-700 top-6 lg:top-10 right-[calc(-40%-10px)] max-h-64 overflow-y-auto scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100  lg:left-0 absolute
+          className='z-[999] border dark:border-gray-700 top-6 lg:top-10 right-[calc(-40%-8px)] max-h-64 overflow-y-auto scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100  lg:left-0 absolute
           transition-all duration-300 ease-in-out bg-white dark:bg-gray-900 rounded-md shadow-md lg:w-[20rem] w-36'
         >
           <div className='py-2 grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-2 text-sm  text-gray-700'>
