@@ -1,7 +1,6 @@
 import FoodCard from '../../components/CardComponents/FoodCard/FoodCard'
-import SearchCard from '../../components/CardComponents/SearchCard/SearchCard'
 import { BiFilter } from 'react-icons/bi'
-import { AiOutlineCamera } from 'react-icons/ai'
+import { AiOutlineCamera, AiOutlineSearch } from 'react-icons/ai'
 import { MdNightlight } from 'react-icons/md'
 import { PiClockAfternoonFill } from 'react-icons/pi'
 import { BsFillSunFill } from 'react-icons/bs'
@@ -13,6 +12,7 @@ import SearchRegions from '../../components/SearchComponents/SearchRegions'
 import SearchCook from '../../components/SearchComponents/SearchCook'
 import SearchHard from '../../components/SearchComponents/SearchHard'
 import SearchTime from '../../components/SearchComponents/SearchTime'
+import { FaMedal } from 'react-icons/fa'
 
 const foodItems = [
   {
@@ -68,200 +68,8 @@ const foodItems = [
     like: '13k lượt thích',
     img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
     author: 'Godon Ramsey'
-  },
-  {
-    id: 7,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
-  },
-  {
-    id: 8,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
   }
 ]
-
-// const searchItems = [
-//   {
-//     id: 1,
-//     title: 'Món ăn',
-//     color: 'text-orange-600',
-//     radio_search: [
-//       {
-//         id: 'Mon-man',
-//         title: 'Món mặn'
-//       },
-//       {
-//         id: 'Mon-chay',
-//         title: 'Món chay'
-//       },
-//       {
-//         id: 'Mon-trang-mieng',
-//         title: 'Món tráng miệng'
-//       },
-//       {
-//         id: 'Do-uong',
-//         title: 'Đồ uống'
-//       },
-//       {
-//         id: 'Do-an-vat',
-//         title: 'Đồ ăn vặt'
-//       }
-//     ]
-//   },
-//   {
-//     id: 2,
-//     title: 'Vùng miền',
-//     color: 'text-green-700',
-//     radio_search: [
-//       {
-//         id: 'mien-bac',
-//         title: 'Miền Bắc'
-//       },
-//       {
-//         id: 'mien-trung',
-//         title: 'Miền Trung'
-//       },
-//       {
-//         id: 'mien-nam',
-//         title: 'Miền Nam'
-//       },
-//       {
-//         id: 'mon_a',
-//         title: 'Món Á'
-//       },
-//       {
-//         id: 'mon_au',
-//         title: 'Món Âu'
-//       }
-//     ]
-//   },
-//   {
-//     id: 3,
-//     title: 'Cách nấu',
-//     color: 'text-blue-500',
-//     radio_search: [
-//       {
-//         id: 'lau',
-//         title: 'Lẩu'
-//       },
-//       {
-//         id: 'xao',
-//         title: 'Xào'
-//       },
-//       {
-//         id: 'nuong',
-//         title: 'Nướng'
-//       },
-//       {
-//         id: 'hap',
-//         title: 'Hấp'
-//       },
-//       {
-//         id: 'chien',
-//         title: 'Chiên'
-//       },
-//       {
-//         id: 'kho',
-//         title: 'Kho'
-//       },
-//       {
-//         id: 'ham',
-//         title: 'Hầm'
-//       },
-//       {
-//         id: 'goi',
-//         title: 'Gỏi/Trộn'
-//       },
-//       {
-//         id: 'canh_sup',
-//         title: 'Canh/Súp'
-//       },
-//       {
-//         id: 'quay',
-//         title: 'Quay'
-//       },
-//       {
-//         id: 'om_rim',
-//         title: 'Om/Rim'
-//       },
-//       {
-//         id: 'khac',
-//         title: 'Khác'
-//       }
-//     ]
-//   },
-//   {
-//     id: 4,
-//     title: 'Dịp lễ',
-//     color: 'text-teal-600',
-//     radio_search: [
-//       {
-//         id: 'buoi_sang',
-//         title: 'Buổi sáng'
-//       },
-//       {
-//         id: 'buoi_trua',
-//         title: 'Buổi trưa'
-//       },
-//       {
-//         id: 'buoi_toi',
-//         title: 'Buổi tối'
-//       },
-//       {
-//         id: 'le_hoi',
-//         title: 'Lễ hội'
-//       },
-//       {
-//         id: 'tet',
-//         title: 'Tết'
-//       },
-//       {
-//         id: 'sinh_nhat',
-//         title: 'Sinh nhật'
-//       },
-//       {
-//         id: 'giang_sinh',
-//         title: 'Giáng sinh'
-//       },
-//       {
-//         id: 'khac',
-//         title: 'Khác'
-//       }
-//     ]
-//   },
-//   {
-//     id: 5,
-//     title: 'Khác',
-//     color: 'text-pink-500',
-//     radio_search: [
-//       {
-//         id: 'thoi_gian_cao',
-//         title: 'Thời gian nấu ăn nhiều'
-//       },
-//       {
-//         id: 'thoi_gian_thap',
-//         title: 'Thời gian nấu ăn ít'
-//       },
-//       {
-//         id: 'nguoi_like_nhieu',
-//         title: 'Like nhiều nhất'
-//       },
-//       {
-//         id: 'moi_nhat',
-//         title: 'Mới nhất'
-//       }
-//     ]
-//   }
-// ]
 
 const checkTime = () => {
   var day = new Date()
@@ -355,11 +163,8 @@ export default function Cooking() {
   return (
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
       {checkTime()}
-      <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-4 mb-4 mx-3'>
+      <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-4 mb-6 mx-3'>
         <div className='flex flex-wrap gap-3 lg:gap-4 items-center justify-center'>
-          {/* {searchItems.map((searchItem) => {
-            return <SearchCard key={searchItem.id} searchItem={searchItem} />
-          })} */}
           <SearchFood />
           <SearchRegions />
           <SearchCook />
@@ -370,63 +175,200 @@ export default function Cooking() {
 
         <div className='flex gap-3 w-full justify-end lg:w-auto text-2xl'>
           <div className='hover:text-red-400 cursor-pointer'>
-            <AiOutlineCamera />
-          </div>
-          <div className='hover:text-red-400 cursor-pointer'>
             <BiFilter />
           </div>
         </div>
       </div>
-      <div className='flex mx-3 justify-end '>
-        <div className='flex gap-5 justify-center items-center'>
-          <div className=' font-medium text-gray-700 dark:text-gray-400'>Page 1/10</div>
-          <div className='flex'>
-            <button className='flex items-center bg-white shadow-sm border dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-md justify-center px-3 text-sm py-2'>
-              <svg
-                className='w-3.5 h-3.5'
-                aria-hidden='true'
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 14 10'
-              >
-                <path
-                  stroke='currentColor'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M13 5H1m0 0 4 4M1 5l4-4'
-                />
-              </svg>
-            </button>
-            <button className='flex items-center bg-white shadow-sm border dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-md justify-center px-3 text-sm py-2'>
-              <svg
-                className='w-3.5 h-3.5'
-                aria-hidden='true'
-                xmlns='http://www.w3.org/2000/svg'
-                fill='none'
-                viewBox='0 0 14 10'
-              >
-                <path
-                  stroke='currentColor'
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth={2}
-                  d='M1 5h12m0 0L9 1m4 4L9 9'
-                />
-              </svg>
-            </button>
+
+      <div className='grid mx-2 md:gap-10 grid-cols-1 lg:grid-cols-3'>
+        <div className='col-span-2 '>
+          <div className='grid xl:grid-cols-3 items-center'>
+            <div className='col-span-2 mb-2'>
+              <div className='text-xl font-medium mb-2'>
+                <span>Xem 9 trên </span>
+                <span className='text-red-600'>1000 </span>
+                <span>công thức nấu ăn</span>
+              </div>
+              <div className='border-b-[3px] w-[20%] border-red-300 '></div>
+            </div>
+            <div className='col-span-1 mb-2 flex items-center '>
+              <form className='w-[100%] relative'>
+                <div className='relative'>
+                  <input
+                    type='search'
+                    id='search_input'
+                    placeholder='Tìm kiếm món ăn'
+                    className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
+                  />
+                  <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-lg'>
+                    <AiOutlineSearch />
+                  </button>
+                </div>
+              </form>
+              <div className='hover:text-red-600 flex items-center justify-center ml-2 border bg-white p-1 rounded-lg dark:bg-slate-800 dark:border-none cursor-pointer'>
+                <AiOutlineCamera size={30} />
+              </div>
+            </div>
+          </div>
+
+          <div className='grid gap-3 md:gap-4 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-5'>
+            {foodItems.map((foodItem) => {
+              return <FoodCard key={foodItem.id} foodItem={foodItem} />
+            })}
+          </div>
+          <div>
+            <button className='btn w-full mb-6 text-xl bg-slate-700'>Xem thêm kết quả khác</button>
+          </div>
+        </div>
+        <div className='col-span-1'>
+          <div className=''>
+            <div className='text-xl flex items-center font-medium mb-2'>
+              <span className='mr-2'>Top BXH thành viên</span>
+              <FaMedal className='text-yellow-500' />
+            </div>
+            <div className='border-b-[3px] w-[20%] border-red-300 '></div>
+          </div>
+          <div className='mt-5 w-full border shadow-sm bg-white rounded-lg dark:bg-slate-800 dark:border-none'>
+            <div className='p-3'>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>100 bài viết | </span>
+                      <span className='text-sm opacity-50'>100 người follow</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='border h-8 w-8 rounded-lg shadow-md bg-yellow-200 dark:text-black font-bold flex justify-center items-center'>
+                  1
+                </div>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>100 bài viết | </span>
+                      <span className='text-sm opacity-50'>100 người follow</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='border h-8 w-8 rounded-lg shadow-md bg-red-500 dark:text-black font-bold flex justify-center items-center'>
+                  2
+                </div>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>100 bài viết | </span>
+                      <span className='text-sm opacity-50'>100 người follow</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='border h-8 w-8 rounded-lg shadow-md bg-blue-400 dark:text-black font-bold flex justify-center items-center'>
+                  3
+                </div>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>100 bài viết | </span>
+                      <span className='text-sm opacity-50'>100 người follow</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='border h-8 w-8 rounded-lg shadow-md bg-green-500 dark:text-black font-bold flex justify-center items-center'>
+                  4
+                </div>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>100 bài viết | </span>
+                      <span className='text-sm opacity-50'>100 người follow</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='border h-8 w-8 rounded-lg shadow-md bg-green-500 dark:text-black font-bold flex justify-center items-center'>
+                  5
+                </div>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>100 bài viết | </span>
+                      <span className='text-sm opacity-50'>100 người follow</span>
+                    </div>
+                  </div>
+                </div>
+                <div className='border h-8 w-8 rounded-lg shadow-md bg-green-500 dark:text-black font-bold flex justify-center items-center'>
+                  6
+                </div>
+              </div>
+            </div>
+            <div className='w-full text-center pb-4 font-bold hover:text-red-600 cursor-pointer transition-all duration-300'>
+              Top thành viên ...
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <div className='grid gap-5 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5 mx-2'>
-          {foodItems.map((foodItem) => {
-            return <FoodCard key={foodItem.id} foodItem={foodItem} />
-          })}
-        </div>
-      </div>
-
-      <Pagination queryConfig={3} pageSize={3} url='/' />
     </div>
   )
 }
