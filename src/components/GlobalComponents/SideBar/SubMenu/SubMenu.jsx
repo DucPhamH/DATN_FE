@@ -12,7 +12,7 @@ export default function Submenu({ data }) {
   return (
     <>
       <li
-        className={`link ${pathname.includes(data.path) && 'text-red-600 dark:text-yellow-500'}`}
+        className={`link-custom ${pathname.includes(data.path) && 'text-red-600 dark:text-yellow-500'}`}
         onClick={() => setSubMenuOpen(!subMenuOpen)}
       >
         <data.icon size={23} className='min-w-max' />
@@ -33,7 +33,7 @@ export default function Submenu({ data }) {
       >
         {data.menus?.map((menu) => (
           <li key={menu.subName}>
-            <NavLink to={`/${data.path}/${menu.subPath}`} className='link bg-transparent'>
+            <NavLink to={`/${data.path}/${menu.subPath}`} className='link-custom bg-transparent'>
               {menu.subName}
             </NavLink>
           </li>

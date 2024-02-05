@@ -19,7 +19,7 @@ export default function Register() {
           name='name'
           id='name'
           placeholder='Your name'
-          className='block w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
+          className='block bg-white w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
           //   {...register('email')}
         />
         <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
@@ -31,7 +31,7 @@ export default function Register() {
           name='email'
           id='email'
           placeholder='Email'
-          className='block w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
+          className='block bg-white w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
           //   {...register('email')}
         />
         <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>

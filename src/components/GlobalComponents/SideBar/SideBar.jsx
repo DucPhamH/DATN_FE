@@ -115,7 +115,7 @@ export default function SideBar() {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={open ? 'open' : 'closed'}
-        className=' bg-white dark:bg-color-primary  dark:text-gray-300 text-gray shadow-md dark:shadow-yellow-800 max-w-[16rem] w-[16rem] overflow-hidden z-[999] h-screen relative'
+        className=' bg-white dark:bg-color-primary dark:text-gray-300 text-gray shadow-md dark:shadow-yellow-800 max-w-[16rem] w-[16rem] overflow-hidden z-[999] h-screen relative'
       >
         <div className='flex items-center gap-2.5 font-medium pb-3.5 pt-3 mx-3'>
           <img src={logo} width={50} alt='icon-app' />
@@ -126,27 +126,27 @@ export default function SideBar() {
         </div>
 
         <div className='flex flex-col h-full'>
-          <ul className='whitespace-pre px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100 md:h-[72%] h-[70%]'>
+          <ul className='whitespace-pre px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 md:h-[72%] h-[70%]'>
             <li>
-              <NavLink to={'/home'} className='link'>
+              <NavLink to={'/home'} className='link-custom '>
                 <BsPeopleFill size={25} className='min-w-max' />
                 Cộng đồng
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/cooking'} className='link'>
+              <NavLink to={'/cooking'} className='link-custom '>
                 <FaCookieBite size={25} className='min-w-max' />
                 Nấu ăn
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/blog'} className='link'>
+              <NavLink to={'/blog'} className='link-custom '>
                 <FaShareAlt size={25} className='min-w-max' />
                 Góc chia sẻ
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/chef'} className='link'>
+              <NavLink to={'/chef'} className='link-custom '>
                 <GiChefToque size={25} className='min-w-max' />
                 Thuê đầu bếp
               </NavLink>
@@ -163,7 +163,7 @@ export default function SideBar() {
               </div>
             )}
             <li>
-              <NavLink to={'/settings'} className='link'>
+              <NavLink to={'/settings'} className='link-custom '>
                 <AiFillSetting size={25} className='min-w-max' />
                 Cài đặt
               </NavLink>
@@ -176,7 +176,7 @@ export default function SideBar() {
                   <p className='text-red-500 pb-1'>Bạn có phải đầu bếp ?</p>
                   <small>Hãy liên hệ với chúng tôi !</small>
                 </div>
-                <p className='text-red-800 cursor-pointer hover:text-red-400 py-1.5 px-3 text-xs bg-teal-50 rounded-xl'>
+                <p className='text-red-800 cursor-pointer hover:text-red-400 py-1.5 px-3 text-xs bg-teal-50 dark:bg-teal-100 rounded-xl'>
                   Liên hệ
                 </p>
               </div>

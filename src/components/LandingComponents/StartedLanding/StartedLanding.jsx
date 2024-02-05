@@ -28,8 +28,8 @@ export default function StartedLanding() {
               <h1 className='font-semibold text-2xl mb-4'>
                 Việc hấp thụ calo một cách khoa học sẽ khiến bạn khoẻ mạnh hơn !
               </h1>
-              <p className='leading-relaxed font-medium text-xl line-clamp-2 italic mb-10'>
-                Khi chúng ta sử hữu kiến thức về dinh dưỡng, biết cách điều chỉnh lượng dinh dưỡng đi vào cơ thể thì ta
+              <p className='leading-relaxed text-xl line-clamp-2 italic mb-10'>
+                Khi chúng ta sở hữu kiến thức về dinh dưỡng, biết cách điều chỉnh lượng dinh dưỡng đi vào cơ thể thì ta
                 có thể kiểm soát cân nặng, sức khoẻ của mình một cách dễ dàng
               </p>
               <ButtonLanding

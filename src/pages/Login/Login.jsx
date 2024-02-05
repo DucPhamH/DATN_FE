@@ -19,7 +19,7 @@ export default function Login() {
           name='email'
           id='email'
           placeholder='Email'
-          className='block w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
+          className='block bg-white dark:bg-white w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
           //   {...register('email')}
         />
         <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>

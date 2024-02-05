@@ -83,7 +83,7 @@ export default function HeaderLanding() {
             return (
               <a
                 key={nav.id}
-                className='text-gray-900 dark:text-white mr-14 ml-2 list-none my-2 font-medium text-xl  no-underline tracking-wide cursor-pointer dark:hover:bg-gradient-to-r dark:from-[#ef571a] dark:to-[#b11804] hover:bg-gradient-to-r from-[#a5c233] to-[#2f8c07] hover:text-white hover:px-4 hover:py-3 hover:text-xl'
+                className='text-gray-900 dark:text-white mr-12 ml-1 list-none my-2 font-medium text-xl  no-underline tracking-wide cursor-pointer dark:hover:bg-gradient-to-r dark:from-[#ef571a] dark:to-[#b11804] hover:bg-gradient-to-r from-[#a5c233] to-[#2f8c07] hover:text-white hover:px-3 hover:py-2 hover:text-xl'
                 href={nav.path}
               >
                 {nav.name}

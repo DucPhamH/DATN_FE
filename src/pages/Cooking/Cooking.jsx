@@ -7,6 +7,12 @@ import { PiClockAfternoonFill } from 'react-icons/pi'
 import { BsFillSunFill } from 'react-icons/bs'
 import { FaCloudSun, FaLightbulb } from 'react-icons/fa'
 import Pagination from '../../components/GlobalComponents/Pagination'
+import SearchFood from '../../components/SearchComponents/SearchFood/SearchFood'
+import SearchHoliday from '../../components/SearchComponents/SearchHoliday'
+import SearchRegions from '../../components/SearchComponents/SearchRegions'
+import SearchCook from '../../components/SearchComponents/SearchCook'
+import SearchHard from '../../components/SearchComponents/SearchHard/SearchHard'
+import SearchTime from '../../components/SearchComponents/SearchTime'
 
 const foodItems = [
   {
@@ -83,179 +89,179 @@ const foodItems = [
   }
 ]
 
-const searchItems = [
-  {
-    id: 1,
-    title: 'Món ăn',
-    color: 'text-orange-600',
-    radio_search: [
-      {
-        id: 'Mon-man',
-        title: 'Món mặn'
-      },
-      {
-        id: 'Mon-chay',
-        title: 'Món chay'
-      },
-      {
-        id: 'Mon-trang-mieng',
-        title: 'Món tráng miệng'
-      },
-      {
-        id: 'Do-uong',
-        title: 'Đồ uống'
-      },
-      {
-        id: 'Do-an-vat',
-        title: 'Đồ ăn vặt'
-      }
-    ]
-  },
-  {
-    id: 2,
-    title: 'Vùng miền',
-    color: 'text-green-700',
-    radio_search: [
-      {
-        id: 'mien-bac',
-        title: 'Miền Bắc'
-      },
-      {
-        id: 'mien-trung',
-        title: 'Miền Trung'
-      },
-      {
-        id: 'mien-nam',
-        title: 'Miền Nam'
-      },
-      {
-        id: 'mon_a',
-        title: 'Món Á'
-      },
-      {
-        id: 'mon_au',
-        title: 'Món Âu'
-      }
-    ]
-  },
-  {
-    id: 3,
-    title: 'Cách nấu',
-    color: 'text-blue-500',
-    radio_search: [
-      {
-        id: 'lau',
-        title: 'Lẩu'
-      },
-      {
-        id: 'xao',
-        title: 'Xào'
-      },
-      {
-        id: 'nuong',
-        title: 'Nướng'
-      },
-      {
-        id: 'hap',
-        title: 'Hấp'
-      },
-      {
-        id: 'chien',
-        title: 'Chiên'
-      },
-      {
-        id: 'kho',
-        title: 'Kho'
-      },
-      {
-        id: 'ham',
-        title: 'Hầm'
-      },
-      {
-        id: 'goi',
-        title: 'Gỏi/Trộn'
-      },
-      {
-        id: 'canh_sup',
-        title: 'Canh/Súp'
-      },
-      {
-        id: 'quay',
-        title: 'Quay'
-      },
-      {
-        id: 'om_rim',
-        title: 'Om/Rim'
-      },
-      {
-        id: 'khac',
-        title: 'Khác'
-      }
-    ]
-  },
-  {
-    id: 4,
-    title: 'Dịp lễ',
-    color: 'text-teal-600',
-    radio_search: [
-      {
-        id: 'buoi_sang',
-        title: 'Buổi sáng'
-      },
-      {
-        id: 'buoi_trua',
-        title: 'Buổi trưa'
-      },
-      {
-        id: 'buoi_toi',
-        title: 'Buổi tối'
-      },
-      {
-        id: 'le_hoi',
-        title: 'Lễ hội'
-      },
-      {
-        id: 'tet',
-        title: 'Tết'
-      },
-      {
-        id: 'sinh_nhat',
-        title: 'Sinh nhật'
-      },
-      {
-        id: 'giang_sinh',
-        title: 'Giáng sinh'
-      },
-      {
-        id: 'khac',
-        title: 'Khác'
-      }
-    ]
-  },
-  {
-    id: 5,
-    title: 'Khác',
-    color: 'text-pink-500',
-    radio_search: [
-      {
-        id: 'thoi_gian_cao',
-        title: 'Thời gian nấu ăn nhiều'
-      },
-      {
-        id: 'thoi_gian_thap',
-        title: 'Thời gian nấu ăn ít'
-      },
-      {
-        id: 'nguoi_like_nhieu',
-        title: 'Like nhiều nhất'
-      },
-      {
-        id: 'moi_nhat',
-        title: 'Mới nhất'
-      }
-    ]
-  }
-]
+// const searchItems = [
+//   {
+//     id: 1,
+//     title: 'Món ăn',
+//     color: 'text-orange-600',
+//     radio_search: [
+//       {
+//         id: 'Mon-man',
+//         title: 'Món mặn'
+//       },
+//       {
+//         id: 'Mon-chay',
+//         title: 'Món chay'
+//       },
+//       {
+//         id: 'Mon-trang-mieng',
+//         title: 'Món tráng miệng'
+//       },
+//       {
+//         id: 'Do-uong',
+//         title: 'Đồ uống'
+//       },
+//       {
+//         id: 'Do-an-vat',
+//         title: 'Đồ ăn vặt'
+//       }
+//     ]
+//   },
+//   {
+//     id: 2,
+//     title: 'Vùng miền',
+//     color: 'text-green-700',
+//     radio_search: [
+//       {
+//         id: 'mien-bac',
+//         title: 'Miền Bắc'
+//       },
+//       {
+//         id: 'mien-trung',
+//         title: 'Miền Trung'
+//       },
+//       {
+//         id: 'mien-nam',
+//         title: 'Miền Nam'
+//       },
+//       {
+//         id: 'mon_a',
+//         title: 'Món Á'
+//       },
+//       {
+//         id: 'mon_au',
+//         title: 'Món Âu'
+//       }
+//     ]
+//   },
+//   {
+//     id: 3,
+//     title: 'Cách nấu',
+//     color: 'text-blue-500',
+//     radio_search: [
+//       {
+//         id: 'lau',
+//         title: 'Lẩu'
+//       },
+//       {
+//         id: 'xao',
+//         title: 'Xào'
+//       },
+//       {
+//         id: 'nuong',
+//         title: 'Nướng'
+//       },
+//       {
+//         id: 'hap',
+//         title: 'Hấp'
+//       },
+//       {
+//         id: 'chien',
+//         title: 'Chiên'
+//       },
+//       {
+//         id: 'kho',
+//         title: 'Kho'
+//       },
+//       {
+//         id: 'ham',
+//         title: 'Hầm'
+//       },
+//       {
+//         id: 'goi',
+//         title: 'Gỏi/Trộn'
+//       },
+//       {
+//         id: 'canh_sup',
+//         title: 'Canh/Súp'
+//       },
+//       {
+//         id: 'quay',
+//         title: 'Quay'
+//       },
+//       {
+//         id: 'om_rim',
+//         title: 'Om/Rim'
+//       },
+//       {
+//         id: 'khac',
+//         title: 'Khác'
+//       }
+//     ]
+//   },
+//   {
+//     id: 4,
+//     title: 'Dịp lễ',
+//     color: 'text-teal-600',
+//     radio_search: [
+//       {
+//         id: 'buoi_sang',
+//         title: 'Buổi sáng'
+//       },
+//       {
+//         id: 'buoi_trua',
+//         title: 'Buổi trưa'
+//       },
+//       {
+//         id: 'buoi_toi',
+//         title: 'Buổi tối'
+//       },
+//       {
+//         id: 'le_hoi',
+//         title: 'Lễ hội'
+//       },
+//       {
+//         id: 'tet',
+//         title: 'Tết'
+//       },
+//       {
+//         id: 'sinh_nhat',
+//         title: 'Sinh nhật'
+//       },
+//       {
+//         id: 'giang_sinh',
+//         title: 'Giáng sinh'
+//       },
+//       {
+//         id: 'khac',
+//         title: 'Khác'
+//       }
+//     ]
+//   },
+//   {
+//     id: 5,
+//     title: 'Khác',
+//     color: 'text-pink-500',
+//     radio_search: [
+//       {
+//         id: 'thoi_gian_cao',
+//         title: 'Thời gian nấu ăn nhiều'
+//       },
+//       {
+//         id: 'thoi_gian_thap',
+//         title: 'Thời gian nấu ăn ít'
+//       },
+//       {
+//         id: 'nguoi_like_nhieu',
+//         title: 'Like nhiều nhất'
+//       },
+//       {
+//         id: 'moi_nhat',
+//         title: 'Mới nhất'
+//       }
+//     ]
+//   }
+// ]
 
 const checkTime = () => {
   var day = new Date()
@@ -351,9 +357,15 @@ export default function Cooking() {
       {checkTime()}
       <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-4 mb-4 mx-3'>
         <div className='flex flex-wrap gap-3 lg:gap-4 items-center justify-center'>
-          {searchItems.map((searchItem) => {
+          {/* {searchItems.map((searchItem) => {
             return <SearchCard key={searchItem.id} searchItem={searchItem} />
-          })}
+          })} */}
+          <SearchFood />
+          <SearchRegions />
+          <SearchCook />
+          <SearchHoliday />
+          <SearchHard />
+          <SearchTime />
         </div>
 
         <div className='flex gap-3 w-full justify-end lg:w-auto text-2xl'>

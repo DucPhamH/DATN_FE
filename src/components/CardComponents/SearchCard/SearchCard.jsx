@@ -20,10 +20,10 @@ export default function SearchCard({ searchItem }) {
       </div>
       {open && (
         <div
-          className='z-[999] border dark:border-gray-700 top-6 lg:top-7 right-[calc(-50%-10px)] max-h-64 overflow-y-auto  lg:left-0 absolute
+          className='z-[999] border dark:border-gray-700 top-6 lg:top-7 right-[calc(-50%-10px)] max-h-64 overflow-y-auto scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100  lg:left-0 absolute
           transition-all duration-300 ease-in-out bg-white dark:bg-gray-900 rounded-md shadow-md w-44'
         >
-          <ul className='py-2 text-sm text-gray-700'>
+          <ul className='py-2 text-sm  text-gray-700'>
             {searchItem.radio_search.map((item) => {
               return (
                 <li key={item.id}>
@@ -33,7 +33,7 @@ export default function SearchCard({ searchItem }) {
                       id={item.id}
                       defaultValue
                       name='default-radio'
-                      className='w-4 h-4 bg-gray-100 border-gray-300'
+                      className='w-4 h-4 radio radio-success'
                     />
                     <label htmlFor={item.id} className='ms-2 text-sm font-medium text-gray-900 dark:text-gray-300'>
                       {item.title}
