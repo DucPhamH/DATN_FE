@@ -126,3 +126,11 @@ input:-webkit-autofill:active {
   top: 0px;
   text-transform: uppercase;
 } */
+.slick-dots li.slick-active button:before {
+  color: rgba(111, 76, 10, 0.86) !important;
+  font-size: 15px !important;
+}
+.slick-dots li button:before {
+  color: rgb(240, 158, 7) !important;
+  font-size: 15px !important;
+}
