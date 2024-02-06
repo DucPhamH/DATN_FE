@@ -2,6 +2,7 @@ import React from 'react'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import background from '../../../assets/images/background.png'
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props
@@ -52,8 +53,13 @@ export default function FoodBanner() {
         <div className='h-[22rem]'>
           <div className='h-full border dark:border-none shadow shadow-red-400 rounded-lg w-full overflow-hidden'>
             <img
-              className='h-full w-full object-cover'
+              className='h-full w-full relative object-cover'
               src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
+              alt=''
+            />
+            <img
+              className='top-0 border dark:border-none shadow shadow-red-400 rounded-lg left-0 object-fill w-full h-[22rem] absolute'
+              src={background}
               alt=''
             />
           </div>
