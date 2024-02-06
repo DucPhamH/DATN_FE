@@ -3,7 +3,7 @@ import React from 'react'
 import { FaMedal } from 'react-icons/fa'
 import FoodBanner from '../../components/FoodComponents/FoodBanner'
 import { Link } from 'react-router-dom'
-import Albumcard from '../../components/CardComponents/AlbumCard'
+import AlbumCard from '../../components/CardComponents/AlbumCard'
 import BlogCard from '../../components/CardComponents/BlogCard'
 
 const foodItems = [
@@ -318,7 +318,7 @@ export default function Cooking() {
 
         <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
           {albumItems.map((albumItem) => {
-            return <Albumcard key={albumItem.id} />
+            return <AlbumCard key={albumItem.id} />
           })}
         </div>
       </div>

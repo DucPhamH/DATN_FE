@@ -1,2 +1,2 @@
-import Albumcard from './Albumcard'
-export default Albumcard
+import AlbumCard from './AlbumCard'
+export default AlbumCard

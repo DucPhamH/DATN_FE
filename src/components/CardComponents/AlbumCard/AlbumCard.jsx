@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Albumcard() {
+export default function AlbumCard() {
   return (
     <div className='card bg-base-100 shadow-md image-full'>
       <figure className='h-[24rem]'>
