@@ -140,7 +140,17 @@ export default function BlogLanding() {
               </div>
             </div> */}
             {blogItems.map((blogItem) => {
-              return <BlogCard key={blogItem.id} blogItem={blogItem} />
+              return (
+                <BlogCard
+                  key={blogItem.id}
+                  blogItem={blogItem}
+                  imgClass='lg:h-[40vh] rounded-t-xl scale-100 overflow-hidden'
+                  dateClass='flex items-center gap-4 py-3'
+                  titleClass='text-2xl font-bold  hover:text-color-secondary'
+                  descriptionClass='leading-relaxed line-clamp-2 my-5'
+                  linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                />
+              )
             })}
           </div>
         </MotionWrapper>

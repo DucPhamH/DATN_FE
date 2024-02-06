@@ -1,6 +1,7 @@
 import React from 'react'
 import SideBar from '../../components/GlobalComponents/SideBar'
 import Header from '../../components/GlobalComponents/Header'
+import Footer from '../../components/GlobalComponents/Footer'
 
 export default function MainLayout({ children }) {
   return (
@@ -8,7 +9,12 @@ export default function MainLayout({ children }) {
       <SideBar />
       <div className='md:ml-64 h-screen bg-gray-100 dark:bg-color-primary-dark w-full'>
         <Header />
-        <div className='mt-20 bg-gray-100 dark:bg-color-primary-dark'>{children}</div>
+        <div className='mt-20 bg-gray-100 dark:bg-color-primary-dark'>
+          {children}
+          <div className='mt-20'>
+            <Footer />
+          </div>
+        </div>
       </div>
     </div>
   )

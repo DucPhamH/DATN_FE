@@ -3,6 +3,8 @@ import React from 'react'
 import { FaMedal } from 'react-icons/fa'
 import FoodBanner from '../../components/FoodComponents/FoodBanner'
 import { Link } from 'react-router-dom'
+import Albumcard from '../../components/CardComponents/AlbumCard'
+import BlogCard from '../../components/CardComponents/BlogCard'
 
 const foodItems = [
   {
@@ -61,6 +63,61 @@ const foodItems = [
   }
 ]
 
+const albumItems = [
+  {
+    id: 1
+  },
+  {
+    id: 2
+  },
+  {
+    id: 3
+  },
+  {
+    id: 4
+  }
+]
+
+const blogItems = [
+  {
+    id: 1,
+    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
+    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    description:
+      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
+    date: '31/10/2023',
+    link: '#blog'
+  },
+
+  {
+    id: 2,
+    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
+    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    description:
+      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
+    date: '31/10/2023',
+    link: '#blog'
+  },
+
+  {
+    id: 3,
+    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
+    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    description:
+      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
+    date: '31/10/2023',
+    link: '#blog'
+  },
+  {
+    id: 4,
+    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
+    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
+    description:
+      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
+    date: '31/10/2023',
+    link: '#blog'
+  }
+]
 export default function Cooking() {
   return (
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
@@ -68,7 +125,7 @@ export default function Cooking() {
         <FoodBanner />
       </div>
 
-      <div className='grid mx-2 md:gap-10 grid-cols-1 lg:grid-cols-3'>
+      <div className='grid mx-2 md:gap-10 grid-cols-1 xl:grid-cols-3'>
         <div className='col-span-2 '>
           <div className='grid xl:grid-cols-3 items-center'>
             <div className='col-span-2 mb-2'>
@@ -81,7 +138,7 @@ export default function Cooking() {
             </div>
             <Link
               to='/cooking/cooking-food'
-              className='col-span-1 lg:flex lg:justify-end text-lg font-bold hover:text-blue-700 cursor-pointer transition-all duration-100'
+              className='col-span-1 xl:flex xl:justify-end text-lg font-bold hover:text-blue-700 cursor-pointer transition-all duration-100'
             >
               Xem thêm ...
             </Link>
@@ -101,7 +158,7 @@ export default function Cooking() {
             </div>
             <div className='border-b-[3px] w-[20%] border-red-300 '></div>
           </div>
-          <div className='mt-5 w-full border shadow-sm bg-white rounded-lg dark:bg-slate-800 dark:border-none'>
+          <div className='mt-5 mb-10 w-full border shadow-sm shadow-red-500 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='p-3'>
               <div className='flex justify-between items-center'>
                 <div className='flex items-center mb-4 mt-2 gap-3'>
@@ -240,6 +297,62 @@ export default function Cooking() {
               Top thành viên ...
             </div>
           </div>
+        </div>
+      </div>
+
+      <div className='mx-2 mt-5 mb-10'>
+        <div className='grid xl:grid-cols-3 items-center'>
+          <div className='col-span-2 mb-2'>
+            <div className='text-xl font-medium mb-2'>
+              <span>Bộ sưu tập nổi bật</span>
+            </div>
+            <div className='border-b-[3px] w-[20%] border-red-300 '></div>
+          </div>
+          <Link
+            to='/cooking/cooking-food'
+            className='col-span-1 xl:flex xl:justify-end text-lg font-bold hover:text-blue-700 cursor-pointer transition-all duration-100'
+          >
+            Xem thêm ...
+          </Link>
+        </div>
+
+        <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
+          {albumItems.map((albumItem) => {
+            return <Albumcard key={albumItem.id} />
+          })}
+        </div>
+      </div>
+
+      <div className='mx-2 mt-5'>
+        <div className='grid xl:grid-cols-3 items-center'>
+          <div className='col-span-2 mb-2'>
+            <div className='text-xl font-medium mb-2'>
+              <span>Bài viết nổi bật</span>
+            </div>
+            <div className='border-b-[3px] w-[20%] border-red-300 '></div>
+          </div>
+          <Link
+            to='/cooking/cooking-food'
+            className='col-span-1 xl:flex xl:justify-end text-lg font-bold hover:text-blue-700 cursor-pointer transition-all duration-100'
+          >
+            Xem thêm ...
+          </Link>
+        </div>
+
+        <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
+          {blogItems.map((blogItem) => {
+            return (
+              <BlogCard
+                key={blogItem.id}
+                blogItem={blogItem}
+                imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'
+                dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
+                titleClass=' font-bold hover:text-color-secondary'
+                descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
+                linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+              />
+            )
+          })}
         </div>
       </div>
     </div>
