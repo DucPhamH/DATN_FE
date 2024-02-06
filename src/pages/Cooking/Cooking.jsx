@@ -158,7 +158,7 @@ export default function Cooking() {
             </div>
             <div className='border-b-[3px] w-[20%] border-red-300 '></div>
           </div>
-          <div className='mt-5 mb-10 w-full border shadow-sm shadow-red-500 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
+          <div className='mt-5 mb-10 w-full border shadow-sm shadow-red-200 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='p-3'>
               <div className='flex justify-between items-center'>
                 <div className='flex items-center mb-4 mt-2 gap-3'>
