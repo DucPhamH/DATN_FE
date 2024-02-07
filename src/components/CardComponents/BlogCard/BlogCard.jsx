@@ -19,7 +19,7 @@ export default function BlogCard({ blogItem, imgClass, dateClass, titleClass, de
         </a>
         <p className={descriptionClass}>{blogItem.description}</p>
         <a href='#blog' className={linkClass}>
-          <span className='tracking-wider capitalize underline hover:no-underline'>Read more</span>
+          <span className='tracking-wider capitalize underline hover:no-underline'>Xem thêm</span>
         </a>
       </div>
     </div>

@@ -15,6 +15,7 @@ const MyProfile = lazy(() => import('./pages/MyProfile'))
 const FitnessCaculator = lazy(() => import('./pages/FitnessCaculator'))
 const Cooking = lazy(() => import('./pages/Cooking'))
 const CookingFood = lazy(() => import('./pages/CookingFood'))
+const Blog = lazy(() => import('./pages/Blog'))
 
 export default function useRouteElement() {
   const routeElement = useRoutes([
@@ -112,7 +113,7 @@ export default function useRouteElement() {
       element: (
         <MainLayout>
           <Suspense>
-            <div>Hello</div>
+            <Blog />
           </Suspense>
         </MainLayout>
       )

@@ -4,7 +4,7 @@ import { FaMedal } from 'react-icons/fa'
 import FoodBanner from '../../components/FoodComponents/FoodBanner'
 import { Link } from 'react-router-dom'
 import AlbumCard from '../../components/CardComponents/AlbumCard'
-import BlogCard from '../../components/CardComponents/BlogCard'
+import BlogCardV2 from '../../components/CardComponents/BlogCardV2'
 
 const foodItems = [
   {
@@ -120,7 +120,7 @@ const blogItems = [
 ]
 export default function Cooking() {
   return (
-    <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
+    <div className='h-full text-gray-900 dark:text-white mx-3'>
       <div className='w-full mb-14 grid grid-cols-1'>
         <FoodBanner />
       </div>
@@ -138,7 +138,7 @@ export default function Cooking() {
             </div>
             <Link
               to='/cooking/cooking-food'
-              className='col-span-1 xl:flex xl:justify-end text-lg font-bold hover:text-blue-700 cursor-pointer transition-all duration-100'
+              className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
             >
               Xem thêm ...
             </Link>
@@ -293,24 +293,24 @@ export default function Cooking() {
                 </div>
               </div>
             </div>
-            <div className='w-full text-center pb-4 font-bold hover:text-blue-600 cursor-pointer transition-all duration-300'>
+            <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
               Top thành viên ...
             </div>
           </div>
         </div>
       </div>
 
-      <div className='mx-2 mt-5 mb-10'>
+      <div className='mx-2 mt-5 mb-14'>
         <div className='grid xl:grid-cols-3 items-center'>
           <div className='col-span-2 mb-2'>
             <div className='text-xl font-medium mb-2'>
               <span>Bộ sưu tập nổi bật</span>
             </div>
-            <div className='border-b-[3px] w-[20%] border-red-300 '></div>
+            <div className='border-b-[3px] mb-2 w-[20%] border-red-300 '></div>
           </div>
           <Link
             to='/cooking/cooking-food'
-            className='col-span-1 xl:flex xl:justify-end text-lg font-bold hover:text-blue-700 cursor-pointer transition-all duration-100'
+            className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
           >
             Xem thêm ...
           </Link>
@@ -323,17 +323,17 @@ export default function Cooking() {
         </div>
       </div>
 
-      <div className='mx-2 mt-5'>
+      <div className='mx-2'>
         <div className='grid xl:grid-cols-3 items-center'>
           <div className='col-span-2 mb-2'>
             <div className='text-xl font-medium mb-2'>
               <span>Bài viết nổi bật</span>
             </div>
-            <div className='border-b-[3px] w-[20%] border-red-300 '></div>
+            <div className='border-b-[3px] mb-2 w-[20%] border-red-300 '></div>
           </div>
           <Link
-            to='/cooking/cooking-food'
-            className='col-span-1 xl:flex xl:justify-end text-lg font-bold hover:text-blue-700 cursor-pointer transition-all duration-100'
+            to='/blog'
+            className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
           >
             Xem thêm ...
           </Link>
@@ -342,7 +342,7 @@ export default function Cooking() {
         <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
           {blogItems.map((blogItem) => {
             return (
-              <BlogCard
+              <BlogCardV2
                 key={blogItem.id}
                 blogItem={blogItem}
                 imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'

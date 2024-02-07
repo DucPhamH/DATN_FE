@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function AlbumCard() {
   return (
-    <div className='card bg-base-100 shadow-md image-full'>
+    <div className='card dark:shadow-orange-900 bg-base-100 shadow-md image-full'>
       <figure className='h-[22rem]'>
         <img
           src='https://images.squarespace-cdn.com/content/v1/53883795e4b016c956b8d243/1551783604684-AE2UE7DYUGV96DUT4G80/chup-anh-thuc-an-1.jpg'

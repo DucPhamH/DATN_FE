@@ -199,51 +199,56 @@ export default function CookingFood() {
   return (
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
       {checkTime()}
-      <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-4 mb-6 mx-3'>
-        <div className='flex flex-wrap gap-3 lg:gap-4 items-center justify-center'>
-          <SearchFood />
-          <SearchRegions />
-          <SearchCook />
-          <SearchHoliday />
-          <SearchHard />
-          <SearchTime />
-        </div>
 
-        <div className='flex gap-3 w-full justify-end lg:w-auto text-2xl'>
-          <div className='hover:text-red-400 cursor-pointer'>
-            <BiFilter />
-          </div>
-        </div>
-      </div>
-
-      <div className='grid mx-2 md:gap-10 grid-cols-1 lg:grid-cols-3'>
+      <div className='grid mx-2 mt-5 md:gap-10 grid-cols-1 lg:grid-cols-3'>
         <div className='col-span-3 '>
-          <div className='grid xl:grid-cols-3 items-center'>
+          <div className='grid xl:grid-cols-4 items-center'>
             <div className='col-span-2 mb-2'>
               <div className='text-xl font-medium mb-2'>
                 <span>Xem 9 trên </span>
                 <span className='text-red-600'>1000 </span>
                 <span>công thức nấu ăn</span>
               </div>
-              <div className='border-b-[3px] w-[20%] border-red-300 '></div>
+              <div className='border-b-[3px] mb-2 w-[20%] border-red-300 '></div>
             </div>
-            <div className='col-span-1 mb-2 flex items-center '>
-              <form className='w-[100%] relative'>
-                <div className='relative'>
-                  <input
-                    type='search'
-                    id='search_input'
-                    placeholder='Tìm kiếm món ăn'
-                    className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
-                  />
-                  <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-lg'>
-                    <AiOutlineSearch />
-                  </button>
+            <div className='col-span-2 mb-2  md:flex xl:justify-end items-center '>
+              <select
+                defaultValue='new'
+                id='sort_by'
+                className='select mb-2 select-sm border bg-white dark:bg-slate-800 dark:border-none'
+              >
+                <option value='new'>Mới nhất</option>
+                <option value='a-z'>A-Z</option>
+                <option value='z-a'>Z-A</option>
+              </select>
+              <div className='flex items-center'>
+                <form className='md:ml-4 w-[100%] mb-2 md:min-w-[15rem] max-w-[20rem] relative'>
+                  <div className='relative'>
+                    <input
+                      type='search'
+                      id='search_input'
+                      placeholder='Tìm kiếm món ăn'
+                      className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
+                    />
+                    <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-lg'>
+                      <AiOutlineSearch />
+                    </button>
+                  </div>
+                </form>
+                <div className='mb-2 hover:text-red-600 h-[34px] w-[34px] flex items-center justify-center ml-2 border bg-white p-1 rounded-lg dark:bg-slate-800 dark:border-none cursor-pointer'>
+                  <AiOutlineCamera size={30} />
                 </div>
-              </form>
-              <div className='hover:text-red-600 flex items-center justify-center ml-2 border bg-white p-1 rounded-lg dark:bg-slate-800 dark:border-none cursor-pointer'>
-                <AiOutlineCamera size={30} />
               </div>
+            </div>
+          </div>
+          <div className='flex flex-wrap justify-between items-center border bg-white shadow-sm dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 rounded-xl py-1 px-3 mt-2 mb-1'>
+            <div className='flex flex-wrap gap-3 lg:gap-4 items-center justify-center'>
+              <SearchFood />
+              <SearchRegions />
+              <SearchCook />
+              <SearchHoliday />
+              <SearchHard />
+              <SearchTime />
             </div>
           </div>
 
@@ -253,7 +258,7 @@ export default function CookingFood() {
             })}
           </div>
           <div className='flex justify-center items-center'>
-            <button className='btn w-5/6 hover:bg-red-800 mb-6 text-xl bg-red-900 text-gray-200'>
+            <button className='btn w-full hover:bg-red-800 mb-6 text-xl bg-red-900 text-gray-200'>
               Xem thêm kết quả khác
             </button>
           </div>
