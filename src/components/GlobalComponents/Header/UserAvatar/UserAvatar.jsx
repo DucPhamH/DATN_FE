@@ -41,7 +41,7 @@ export default function UserAvatar() {
             animate={{ opacity: 1, y: '0%' }}
             exit={{ opacity: 0, y: '-10%', transition: { duration: '0.1' } }}
             transition={{ type: 'spring', stiffness: '200', duration: '0.1' }}
-            className='z-50 absolute top-[4rem] right-1 md:right-[18rem] bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
+            className='z-50 absolute top-[4rem] right-1 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
           >
             <div className='z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'>
               <ul className='py-2 text-gray-700 dark:text-gray-200'>
