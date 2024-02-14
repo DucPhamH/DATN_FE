@@ -7,8 +7,8 @@ export default function MainLayout({ children }) {
   return (
     <div className='flex justify-between text-gray-800 w-full bg-gray-100 h-full dark:text-gray-300 dark:bg-color-primary-dark'>
       <SideBar />
-      <div className='md:ml-64 h-screen bg-gray-100 dark:bg-color-primary-dark w-full'>
-        <Header />
+      <Header />
+      <div className='md:ml-64 h-screen bg-gray-100 dark:bg-color-primary-dark w-[100%]'>
         <div className='mt-20 bg-gray-100 dark:bg-color-primary-dark'>
           {children}
           <div className='mt-20'>
