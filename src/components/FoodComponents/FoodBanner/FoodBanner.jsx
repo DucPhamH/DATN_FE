@@ -54,13 +54,13 @@ export default function FoodBanner() {
     <div className='bg-gray'>
       <Slider {...settings}>
         <div className='h-[22rem]'>
-          <div className='h-full border dark:border-none shadow shadow-red-400 rounded-lg w-full overflow-hidden'>
+          <div className='h-full border dark:border-none shadow shadow-red-400 md:rounded-lg w-full overflow-hidden'>
             <img
               className='h-full w-full relative object-cover'
               src='https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg'
               alt=''
             />
-            <div className='w-full h-full bg-black opacity-50 absolute border dark:border-none shadow shadow-red-400 rounded-lg top-0 left-0' />
+            <div className='w-full h-full bg-black opacity-50 absolute border dark:border-none shadow shadow-red-400 md:rounded-lg top-0 left-0' />
             <div className='absolute z-10 lg:bottom-10 md:bottom-8 bottom-0 lg:px-7 md:px-10 px-4 py-4'>
               <p className='lg:text-4xl mb-2 md:text-2xl text-2xl font-semibold leading-9 text-white'>
                 Top 3 công thức hot ở <span className='text-red-500'>Cook</span>Healthy
@@ -78,13 +78,13 @@ export default function FoodBanner() {
           </div>
         </div>
         <div className='h-[22rem]'>
-          <div className='h-full border dark:border-none shadow shadow-red-400 rounded-lg w-full overflow-hidden'>
+          <div className='h-full border dark:border-none shadow shadow-red-400 md:rounded-lg w-full overflow-hidden'>
             <img
               className='h-full w-full object-cover'
               src='https://colombo.vn/upload/20922/20180814/Table-1.jpg'
               alt=''
             />
-            <div className='w-full h-full bg-black opacity-50 absolute border dark:border-none shadow shadow-red-400 rounded-lg top-0 left-0' />
+            <div className='w-full h-full bg-black opacity-50 absolute border dark:border-none shadow shadow-red-400 md:rounded-lg top-0 left-0' />
             <div className='absolute z-10 lg:bottom-10 md:bottom-8 bottom-0 lg:px-7 md:px-10 px-4 py-4'>
               <p className='lg:text-4xl mb-2 md:text-2xl text-2xl font-semibold leading-9 text-white'>
                 Top 3 công thức hot ở <span className='text-red-500'>Cook</span>Healthy
@@ -102,13 +102,13 @@ export default function FoodBanner() {
           </div>
         </div>
         <div className='h-[22rem]'>
-          <div className='h-full border dark:border-none shadow shadow-red-400 rounded-lg w-full overflow-hidden'>
+          <div className='h-full border dark:border-none shadow shadow-red-400 md:rounded-lg w-full overflow-hidden'>
             <img
               className='h-full w-full object-cover'
               src='https://images.squarespace-cdn.com/content/v1/53883795e4b016c956b8d243/1551783604684-AE2UE7DYUGV96DUT4G80/chup-anh-thuc-an-1.jpg'
               alt=''
             />
-            <div className='w-full h-full bg-black opacity-50 absolute border dark:border-none shadow shadow-red-400 rounded-lg top-0 left-0' />
+            <div className='w-full h-full bg-black opacity-50 absolute border dark:border-none shadow shadow-red-400 md:rounded-lg top-0 left-0' />
             <div className='absolute z-10 lg:bottom-10 md:bottom-8 bottom-0 lg:px-7 md:px-10 px-4 py-4'>
               <p className='lg:text-4xl mb-2 md:text-2xl text-2xl font-semibold leading-9 text-white'>
                 Top 3 công thức hot ở <span className='text-red-500'>Cook</span>Healthy
