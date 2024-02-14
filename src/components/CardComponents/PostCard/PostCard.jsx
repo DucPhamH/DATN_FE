@@ -28,7 +28,7 @@ export default function PostCard() {
       <div className='py-4'>
         <a className='flex' href='#'>
           <img
-            className='max-w-full rounded-lg'
+            className='max-w-full md:rounded-lg'
             src='https://images.squarespace-cdn.com/content/v1/53883795e4b016c956b8d243/1551783604684-AE2UE7DYUGV96DUT4G80/chup-anh-thuc-an-1.jpg'
           />
         </a>
