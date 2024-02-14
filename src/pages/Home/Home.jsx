@@ -57,15 +57,15 @@ export default function Home() {
     <div className=' grid xl:mx-10 xl:gap-12 xl:grid-cols-5'>
       <div className=' mt-2 bg-white dark:bg-color-primary dark:shadow-sm dark:shadow-red-300 dark: rounded-lg col-span-3 px-4'>
         <div>{checkTime()}</div>
-        <div className='flex justify-between items-center gap-4 w-full'>
-          <div className='cursor-pointer w-10 h-10 object-cover rounded-full'>
+        <div className='flex justify-between items-center gap-2 md:gap-4 w-full'>
+          <div className='w-8 h-8 md:w-10 overflow-hidden md:h-10 rounded-full cursor-pointer'>
             <img
-              className='w-10 h-10 object-cover border border-red-200  rounded-full'
+              className='w-8 h-8 md:w-10 object-cover border border-red-200 md:h-10 rounded-full'
               src={useravatar}
               alt='user photo'
             />
           </div>
-          <div className='bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-900  w-full cursor-pointer hover:bg-slate-200 transition-all h-12 my-4 flex items-center rounded-full'>
+          <div className='bg-slate-100 dark:bg-slate-800 dark:hover:bg-slate-900 w-full cursor-pointer hover:bg-slate-200 transition-all h-12 my-4 flex items-center rounded-full'>
             <span className='mx-4 text-gray-500 dark:text-gray-400'>Bạn đang nghĩ gì ?</span>
           </div>
         </div>
