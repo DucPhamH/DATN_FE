@@ -89,8 +89,8 @@ input:-webkit-autofill:active {
   @apply bg-blue-100 text-red-600 no-underline dark:bg-slate-700 dark:text-gray-400;
 }
 
-.modal,
-.overlay {
+.modal-customs,
+.overlay-customs {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -101,7 +101,7 @@ input:-webkit-autofill:active {
   z-index: 201;
 }
 
-.overlay {
+.overlay-customs {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
