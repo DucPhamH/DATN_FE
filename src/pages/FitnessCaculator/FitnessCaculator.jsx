@@ -103,11 +103,6 @@ export default function FitnessCaculator() {
           <FinessCard key={finessItem.id} finessItem={finessItem} />
         ))}
       </div>
-      <div className='flex justify-end mx-3 items-center'>
-        <button className='px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-500 hover:bg-red-600 border border-transparent rounded-lg '>
-          Xem thêm
-        </button>
-      </div>
     </div>
   )
 }

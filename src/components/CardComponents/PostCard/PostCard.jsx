@@ -1,10 +1,12 @@
 import React from 'react'
 import useravatar from '../../../assets/images/useravatar.jpg'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
-import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
-import { GoComment } from 'react-icons/go'
+import { AiFillHeart } from 'react-icons/ai'
+import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'
 import Comments from '../../SocialComponents/Comments'
+import { FaRegComment } from 'react-icons/fa'
+import { LiaComments } from 'react-icons/lia'
 
 export default function PostCard() {
   const [openComment, setOpenComment] = React.useState(false)
@@ -12,7 +14,7 @@ export default function PostCard() {
     setOpenComment(!openComment)
   }
   return (
-    <article className='mb-4 break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-slate-800 flex flex-col bg-clip-border'>
+    <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-slate-900 flex flex-col bg-clip-border'>
       <div className='flex justify-between items-start'>
         <div className='flex pb-4 px-4 md:px-0 items-center justify-between'>
           <div className='flex items-center'>
@@ -30,7 +32,7 @@ export default function PostCard() {
                   </svg>
                 </span>
               </div>
-              <div className='text-slate-500 dark:text-slate-300'>01 tháng 1 năm 2024</div>
+              <div className='text-slate-500 dark:text-slate-300'>01 tháng 1</div>
             </div>
           </div>
         </div>
@@ -70,14 +72,14 @@ export default function PostCard() {
       <div className='px-4 md:px-0'>
         <div className='flex justify-around'>
           <div className='flex cursor-pointer hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 justify-center items-center'>
-            <AiOutlineHeart className='mr-1' size={25} />
+            <CiHeart className='mr-1' size={25} />
             <span className='font-medium'>Thích</span>
           </div>
           <div
             onClick={handleOpenComment}
             className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'
           >
-            <GoComment className='mr-1' size={25} />
+            <LiaComments className='mr-1' size={25} />
             <span className='font-medium'>Bình luận</span>
           </div>
           <div className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'>
