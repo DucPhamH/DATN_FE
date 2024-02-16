@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react'
-import { AiOutlineClose } from 'react-icons/ai'
+import { useRef, useState } from 'react'
+
 import { toast } from 'react-toastify'
 
 export default function ModalUploadAvatar({ closeModalAvatar }) {
