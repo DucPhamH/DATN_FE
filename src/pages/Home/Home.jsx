@@ -1,7 +1,7 @@
 import { BsFillImageFill, BsFillSunFill } from 'react-icons/bs'
 import useravatar from '../../assets/images/useravatar.jpg'
 import { MdNightlight } from 'react-icons/md'
-import { FaCloudSun, FaMedal } from 'react-icons/fa'
+import { FaCloudSun } from 'react-icons/fa'
 import { PiClockAfternoonFill } from 'react-icons/pi'
 import PostCard from '../../components/CardComponents/PostCard'
 import BlogCard from '../../components/CardComponents/BlogCard'
@@ -97,7 +97,7 @@ const blogItems = [
 ]
 export default function Home() {
   return (
-    <div className=' grid xl:mx-10 pt-2 xl:gap-8 xl:grid-cols-5'>
+    <div className=' grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
       <div className='col-span-3'>
         <div className='bg-white py-2 px-4  shadow md:rounded-md dark:bg-slate-900'>
           <div>{checkTime()}</div>
@@ -109,7 +109,7 @@ export default function Home() {
                 alt='user photo'
               />
             </div>
-            <div className='bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-800 w-[90%] md:w-full cursor-pointer hover:bg-slate-200 transition-all h-10   md:h-12 my-4 flex items-center rounded-full'>
+            <div className='bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-800 w-[90%] md:w-[92%] cursor-pointer hover:bg-slate-200 transition-all h-10   md:h-12 my-4 flex items-center rounded-full'>
               <span className='mx-4 text-gray-500 dark:text-gray-400'>Bạn đang nghĩ gì ?</span>
             </div>
           </div>
@@ -259,9 +259,16 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <a href='#'>
+      <div
+        onClick={() => {
+          window.scroll({
+            top: 0,
+            behavior: 'smooth'
+          })
+        }}
+      >
         <AiOutlineArrowUp className='hidden sm:block fixed bottom-5 right-0 bg-blue-300 text-slate-50 text-5xl p-3 rounded-full mb-2 mr-20 hover:bg-blue-500' />
-      </a>
+      </div>
     </div>
   )
 }

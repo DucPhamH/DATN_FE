@@ -8,7 +8,7 @@ export default function Comments() {
         <input
           className='pt-2 pb-2 pl-3 w-full h-11 bg-slate-100 dark:bg-slate-600 rounded-lg placeholder:text-slate-600 dark:placeholder:text-slate-300 font-medium pr-20'
           type='text'
-          placeholder='Write a comment'
+          placeholder='Viết bình luận'
         />
         <span className='flex absolute right-3 top-2/4 -mt-3 items-center'>
           <svg className='mr-2' style={{ width: 26, height: 26 }} viewBox='0 0 24 24'>
@@ -43,7 +43,7 @@ export default function Comments() {
               </a>
 
               <button className='py-2 px-4 mx-1 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg'>
-                Repply
+                Trả lời
               </button>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function Comments() {
                 <span className=' font-bold'>69</span>
               </a>
               <button className='py-2 px-4 mx-1 font-medium hover:bg-slate-50 dark:hover:bg-slate-700 rounded-lg'>
-                Repply
+                Trả lời
               </button>
             </div>
             <div className='mt-4'>

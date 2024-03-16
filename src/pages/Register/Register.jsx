@@ -1,54 +1,104 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import InputPass from '../../components/InputComponents/InputPass'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import Input from '../../components/InputComponents/Input'
+import { schemaRegister } from '../../utils/rules'
+import { useMutation } from '@tanstack/react-query'
+import { registerAccount } from '../../apis/authApi'
+import { omit } from 'lodash'
+import { isAxiosUnprocessableEntityError } from '../../utils/utils'
+import { toast } from 'react-toastify'
 
 export default function Register() {
+  const navigate = useNavigate()
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaRegister)
+  })
+
+  const registerAccountMutation = useMutation({
+    mutationFn: (body) => registerAccount(body)
+  })
+
+  const onSubmit = handleSubmit((data) => {
+    const body = omit(data, ['confirm_password'])
+    registerAccountMutation.mutate(body, {
+      onSuccess: (data) => {
+        console.log(data)
+        toast.success('Đăng kí thành công')
+        navigate('/login')
+      },
+      onError: (error) => {
+        if (isAxiosUnprocessableEntityError(error)) {
+          const formError = error.response?.data.errors
+          if (formError?.name) {
+            setError('name', {
+              message: formError.name.msg,
+              type: 'Server'
+            })
+          }
+          if (formError?.email) {
+            setError('email', {
+              message: formError.email.msg,
+              type: 'Server'
+            })
+          }
+          if (formError?.password) {
+            setError('password', {
+              message: formError.password.msg,
+              type: 'Server'
+            })
+          }
+        }
+      }
+    })
+  })
   return (
     <form
       className='sm:w-2/3 w-full px-4 lg:px-5 lg:py-10 rounded-lg mx-auto lg:bg-white'
-      //   onSubmit={onSubmit}
+      onSubmit={onSubmit}
       noValidate
     >
       <h1 className='my-3'>
         <div className='w-auto h-3 sm:h-4 inline-flex text-4xl lg:text-red-700 font-bold'>Đăng kí</div>
       </h1>
-      <div className='pb-2 flex flex-col justify-start'>
-        <label className='text-gray-400 lg:text-red-900 text-left italic'> Your name</label>
-        <input
-          type='text'
-          name='name'
-          id='name'
-          placeholder='Your name'
-          className='block bg-white w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
-          //   {...register('email')}
-        />
-        <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
-      </div>
-      <div className='pb-2 flex flex-col justify-start'>
-        <label className='text-gray-400 lg:text-red-900 text-left italic'> Your email</label>
-        <input
-          type='email'
-          name='email'
-          id='email'
-          placeholder='Email'
-          className='block bg-white w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
-          //   {...register('email')}
-        />
-        <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
-      </div>
-      <InputPass title='Your password' placeholder='Password' />
-      <InputPass title='Your confirm password' placeholder='Confirm password' />
-      {/* <div className='pb-2 flex flex-col justify-start'>
-        <label className='text-red-900 text-left italic'> Your confirm password</label>
-        <input
-          className='block w-full px-3 py-2 text-lg text-black border border-gray-300 rounded-lg'
-          type='password'
-          placeholder='Confirm Password'
-          autoComplete='on'
-          //   {...register('confirm_password')}
-        />
-        <div className='flex min-h-[1rem] text-xs text-red-600'>  {errors.email?.message} </div>
-      </div> */}
+      <Input
+        title='Your name'
+        placeholder='Your name'
+        register={register}
+        errors={errors.name}
+        type='text'
+        name='name'
+        id='name'
+      />
+      <Input
+        title='Your email'
+        placeholder='Email'
+        register={register}
+        errors={errors.email}
+        type='email'
+        name='email'
+        id='email'
+      />
+      <InputPass
+        title='Your password'
+        placeholder='Password'
+        register={register}
+        errors={errors.password}
+        name='password'
+      />
+      <InputPass
+        title='Your confirm password'
+        placeholder='Confirm password'
+        register={register}
+        errors={errors.confirm_password}
+        name='confirm_password'
+      />
       <div className='px-4 pb-4 rounded-full pt-4'>
         <button className='uppercase block w-full transition-all duration-500 p-2 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'>
           sign up

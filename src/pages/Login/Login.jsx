@@ -1,41 +1,90 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import InputPass from '../../components/InputComponents/InputPass'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schemaLogin } from '../../utils/rules'
+import Input from '../../components/InputComponents/Input'
+import { useMutation } from '@tanstack/react-query'
+import { loginAccount } from '../../apis/authApi'
+import { toast } from 'react-toastify'
+import { isAxiosUnprocessableEntityError } from '../../utils/utils'
 
 export default function Login() {
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaLogin)
+  })
+  const loginAccountMutation = useMutation({
+    mutationFn: (body) => loginAccount(body)
+  })
+  const onSubmit = handleSubmit((data) => {
+    loginAccountMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        toast.success('Đăng nhập thành công')
+      },
+      onError: (error) => {
+        if (isAxiosUnprocessableEntityError(error)) {
+          const formError = error.response?.data.errors
+          console.log(formError)
+          if (formError?.email) {
+            setError('email', {
+              message: formError.email.msg,
+              type: 'Server'
+            })
+          }
+          if (formError?.password) {
+            setError('password', {
+              message: formError.password.msg,
+              type: 'Server'
+            })
+          }
+        }
+      }
+    })
+  })
   return (
-    <form
-      className='sm:w-2/3 w-full px-4 lg:px-5 lg:py-20 rounded-lg mx-auto lg:bg-white'
-      //   onSubmit={onSubmit}
-      noValidate
-    >
+    <div className='sm:w-2/3 w-full px-4 lg:px-5 lg:py-20 rounded-lg mx-auto lg:bg-white'>
       <h1 className='my-6'>
         <div className='w-auto h-3 sm:h-4 inline-flex text-4xl lg:text-red-700 font-bold'>Đăng nhập</div>
       </h1>
-      <div className='pb-2 flex flex-col justify-start'>
-        <label className='text-gray-400 lg:text-red-900 text-left italic'> Your email</label>
-        <input
+      <form onSubmit={onSubmit}>
+        <Input
+          title='Your email'
+          placeholder='Email'
+          register={register}
+          errors={errors.email}
           type='email'
           name='email'
           id='email'
-          placeholder='Email'
-          className='block bg-white dark:bg-white w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg '
-          //   {...register('email')}
         />
-        <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
-      </div>
-      <InputPass title='Your password' placeholder='Password' />
-      <div className='text-right text-sm'>
-        <Link className='ml-1 text-blue-400 hover:underline hover:text-red-700' to='/forgot-password'>
-          Quên mật khẩu ?
-        </Link>
-      </div>
-
-      <div className='px-4 pb-4 rounded-full pt-4'>
-        <button className='uppercase block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'>
-          sign in
-        </button>
-        <button className='px-4 py-3 mt-4 border flex justify-center items-center gap-2 border-slate-200 rounded-full w-full text-gray-400 font-semiboldhover:border-slate-400 hover:text-red-600 hover:shadow transition duration-150'>
+        <InputPass
+          title='Your password'
+          placeholder='Password'
+          register={register}
+          errors={errors.password}
+          name='password'
+        />
+        <div className='text-right text-sm'>
+          <Link className='ml-1 text-blue-400 hover:underline hover:text-red-700' to='/forgot-password'>
+            Quên mật khẩu ?
+          </Link>
+        </div>
+        <div className='px-4 rounded-full pt-4'>
+          <button className='uppercase block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'>
+            sign in
+          </button>
+        </div>
+      </form>
+      <div className='px-4 pb-4 rounded-full'>
+        <button
+          onClick={() => console.log('hello')}
+          className='px-4 py-3 mt-4 border flex justify-center items-center gap-2 border-slate-200 rounded-full w-full text-gray-400 font-semiboldhover:border-slate-400 hover:text-red-600 hover:shadow transition duration-150'
+        >
           <img
             className='w-6 h-6'
             src='https://www.svgrepo.com/show/475656/google-color.svg'
@@ -51,6 +100,6 @@ export default function Login() {
           </Link>
         </div>
       </div>
-    </form>
+    </div>
   )
 }

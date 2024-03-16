@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
-export default function InputPass({ title, placeholder }) {
+export default function InputPass({ title, placeholder, register, errors, name }) {
   const [showPass, setShowPass] = useState(false)
 
   const onShowPass = () => {
@@ -17,7 +17,7 @@ export default function InputPass({ title, placeholder }) {
         name='password'
         placeholder={placeholder}
         autoComplete='on'
-        //   {...register('password')}
+        {...register(`${name}`)}
       />
       <div
         onClick={() => onShowPass()}
@@ -25,7 +25,7 @@ export default function InputPass({ title, placeholder }) {
       >
         {showPass === false ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
       </div>
-      <div className='flex min-h-[1rem] text-xs text-red-600'> {/* {errors.email?.message} */}</div>
+      <div className='flex min-h-[1rem] text-xs text-red-600'> {errors?.message}</div>
     </div>
   )
 }
