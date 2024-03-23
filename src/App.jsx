@@ -4,6 +4,9 @@ import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { injectStyle } from 'react-toastify/dist/inject-style'
 import { contextClass } from './services/objectUi'
+import { useContext, useEffect } from 'react'
+import { LocalStorageEventTarget } from './utils/auth'
+import { AppContext } from './contexts/app.context'
 
 if (typeof window !== 'undefined') {
   injectStyle()
@@ -11,7 +14,15 @@ if (typeof window !== 'undefined') {
 
 function App() {
   const routeElement = useRouteElement()
-  // toast.warning('Hey 👋, see how easy!')
+
+  const { reset } = useContext(AppContext)
+  useEffect(() => {
+    LocalStorageEventTarget.addEventListener('clearLS', reset)
+    return () => {
+      LocalStorageEventTarget.removeEventListener('clearLS', reset)
+    }
+  }, [reset])
+
   return (
     <div>
       {routeElement}

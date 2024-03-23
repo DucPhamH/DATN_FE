@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HiOutlineLogout } from 'react-icons/hi'
 import useravatar from '../../../../assets/images/useravatar.jpg'
+import { useMutation } from '@tanstack/react-query'
+import { logoutAccount } from '../../../../apis/authApi'
+import { getRefreshTokenFromLS } from '../../../../utils/auth'
+import { AppContext } from '../../../../contexts/app.context'
+import { toast } from 'react-toastify'
 export default function UserAvatar() {
   const [isMenu, setIsMenu] = useState(false)
   const ref = useRef()
@@ -17,6 +22,26 @@ export default function UserAvatar() {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
+  const { setIsAuthenticated, setProfile } = useContext(AppContext)
+  const logoutAccountMutation = useMutation({
+    mutationFn: (body) => logoutAccount(body)
+  })
+
+  const onLogout = () => {
+    const data = { refresh_token: getRefreshTokenFromLS() }
+    console.log(data)
+    logoutAccountMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data.data.message)
+        setIsAuthenticated(false)
+        setProfile(null)
+        toast.success(data.data.message)
+      },
+      onError: (error) => {
+        console.log(error)
+      }
+    })
+  }
 
   return (
     <div ref={ref}>
@@ -65,15 +90,15 @@ export default function UserAvatar() {
                 </li>
               </ul>
               <div className='py-2 '>
-                <a
-                  href='#'
-                  className='flex justify-between items-center px-4 py-2 text-sm transition-all duration-400 text-gray-700 dark:hover:text-white hover:text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200'
+                <div
+                  onClick={onLogout}
+                  className='flex cursor-pointer justify-between items-center px-4 py-2 text-sm transition-all duration-400 text-gray-700 dark:hover:text-white hover:text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200'
                 >
                   Đăng xuất
                   <div className='text-base'>
                     <HiOutlineLogout />
                   </div>
-                </a>
+                </div>
               </div>
             </div>
           </motion.div>

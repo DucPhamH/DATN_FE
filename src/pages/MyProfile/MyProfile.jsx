@@ -7,6 +7,8 @@ import useravatar from '../../assets/images/useravatar.jpg'
 import avatarbg from '../../assets/images/avatarbg.jpg'
 import { useState } from 'react'
 import ModalUploadAvatar from '../../components/ProfileComponents/ModalUploadAvatar'
+import { currentAccount } from '../../apis/userApi'
+import { useQuery } from '@tanstack/react-query'
 
 export default function MyProfile() {
   const [modalAvatar, setModalAvatar] = useState(false)
@@ -18,6 +20,14 @@ export default function MyProfile() {
   const closeModalAvatar = () => {
     setModalAvatar(false)
   }
+  const { data: userData } = useQuery({
+    queryKey: ['me'],
+    queryFn: () => {
+      return currentAccount()
+    }
+  })
+  console.log(userData)
+
   return (
     <div>
       <div className='h-full dark:bg-slate-900 rounded-lg bg-white text-gray-900 dark:text-white mx-3'>

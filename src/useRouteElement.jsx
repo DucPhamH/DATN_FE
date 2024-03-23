@@ -1,11 +1,13 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useRoutes } from 'react-router-dom'
+import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 // import Home from './pages/Home'
 // import HomeLanding from './pages/HomeLanding'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useContext } from 'react'
 import AuthLayout from './layouts/AuthLayout'
 import NotFound from './pages/NotFound'
 import MainLayout from './layouts/MainLayout'
+import { AppContext } from './contexts/app.context'
+import LoginGoogle from './pages/LoginGoogle'
 
 const HomeLanding = lazy(() => import('./pages/HomeLanding'))
 const Login = lazy(() => import('./pages/Login'))
@@ -18,6 +20,16 @@ const CookingFood = lazy(() => import('./pages/CookingFood'))
 const Blog = lazy(() => import('./pages/Blog'))
 
 export default function useRouteElement() {
+  function ProtectedRoute() {
+    const { isAuthenticated } = useContext(AppContext)
+    return isAuthenticated ? <Outlet /> : <Navigate to='/login' />
+  }
+
+  function RejectedRoute() {
+    const { isAuthenticated } = useContext(AppContext)
+    console.log(isAuthenticated)
+    return !isAuthenticated ? <Outlet /> : <Navigate to='/home' />
+  }
   const routeElement = useRoutes([
     {
       path: '/',
@@ -29,24 +41,35 @@ export default function useRouteElement() {
       )
     },
     {
-      path: '/login',
-      element: (
-        <AuthLayout>
-          <Suspense>
-            <Login />
-          </Suspense>
-        </AuthLayout>
-      )
+      path: '',
+      element: <RejectedRoute />,
+      children: [
+        {
+          path: '/login',
+          element: (
+            <AuthLayout>
+              <Suspense>
+                <Login />
+              </Suspense>
+            </AuthLayout>
+          )
+        },
+
+        {
+          path: '/register',
+          element: (
+            <AuthLayout>
+              <Suspense>
+                <Register />
+              </Suspense>
+            </AuthLayout>
+          )
+        }
+      ]
     },
     {
-      path: '/register',
-      element: (
-        <AuthLayout>
-          <Suspense>
-            <Register />
-          </Suspense>
-        </AuthLayout>
-      )
+      path: '/login-google',
+      element: <LoginGoogle />
     },
     {
       path: '/home',
@@ -59,35 +82,42 @@ export default function useRouteElement() {
       )
     },
     {
-      path: '/my-profile',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <MyProfile />
-          </Suspense>
-        </MainLayout>
-      ),
+      path: '',
+      element: <ProtectedRoute />,
       children: [
         {
-          path: '',
-          element: <div>Post</div>
-        },
-        {
-          path: 'info',
+          path: '/my-profile',
           element: (
-            <div>
-              Info
-              <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>{' '}
-              <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>
-            </div>
-          )
-        },
-        {
-          path: 'blog',
-          element: <div>blog</div>
+            <MainLayout>
+              <Suspense>
+                <MyProfile />
+              </Suspense>
+            </MainLayout>
+          ),
+          children: [
+            {
+              path: '',
+              element: <div>Post</div>
+            },
+            {
+              path: 'info',
+              element: (
+                <div>
+                  Info
+                  <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>{' '}
+                  <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>
+                </div>
+              )
+            },
+            {
+              path: 'blog',
+              element: <div>blog</div>
+            }
+          ]
         }
       ]
     },
+
     {
       path: '/cooking',
       element: (
