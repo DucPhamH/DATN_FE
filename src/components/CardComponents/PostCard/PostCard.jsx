@@ -55,6 +55,42 @@ export default function PostCard() {
           />
         </a>
       </div>
+      {/* <div className='py-4'>
+        <div className='flex justify-between gap-1 mb-1'>
+          <a className='flex' href='#'>
+            <img
+              className='max-w-full rounded-tl-lg'
+              src='https://images.fpt.shop/unsafe/filters:quality(90)/fptshop.com.vn/uploads/images/tin-tuc/157765/Originals/15(1).jpg'
+            />
+          </a>
+          <a className='flex' href='#'>
+            <img
+              className='max-w-full'
+              src='https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/07/hinh-dep-10.jpg'
+            />
+          </a>
+          <a className='flex' href='#'>
+            <img
+              className='max-w-full rounded-tr-lg'
+              src='https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/07/hinh-dep-10.jpg'
+            />
+          </a>
+        </div>
+        <div className='flex justify-between gap-1'>
+          <a className='flex' href='#'>
+            <img
+              className='max-w-full rounded-bl-lg'
+              src='https://images.pexels.com/photos/1429748/pexels-photo-1429748.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            />
+          </a>
+          <a className='flex' href='#'>
+            <img
+              className='max-w-full rounded-br-lg'
+              src='https://images.pexels.com/photos/69020/pexels-photo-69020.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260'
+            />
+          </a>
+        </div>
+      </div> */}
 
       <div className='px-4 md:px-0'>
         <div className='flex justify-between items-center'>

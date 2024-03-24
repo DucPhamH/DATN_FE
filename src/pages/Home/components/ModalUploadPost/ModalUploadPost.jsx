@@ -1,14 +1,17 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { toast } from 'react-toastify'
 import useravatar from '../../../../assets/images/useravatar.jpg'
 import { BsFillImageFill } from 'react-icons/bs'
 import { MdEmojiEmotions } from 'react-icons/md'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
+import { useMutation } from '@tanstack/react-query'
+import { upload } from '../../../../apis/authApi'
+
 export default function ModalUploadPost({ closeModalPost }) {
   const theme = localStorage.getItem('theme')
   const inputRef = useRef(null)
-  const [image, setImage] = useState('')
+  const [image, setImage] = useState([])
   const [showImagePopup, setShowImagePopup] = useState(false)
   const [showEmoji, setShowEmoji] = useState(false)
   const [content, setContent] = useState('')
@@ -17,18 +20,49 @@ export default function ModalUploadPost({ closeModalPost }) {
     inputRef.current.click()
   }
   const handleImageChange = (e) => {
-    const file = e.target.files[0]
-    console.log(file)
-    setImage(file)
+    // const file = e.target.files[0]
+    // console.log(e.target.files[0])
+    // setImage(file)
+    // for (const key of Object.keys(e.target.files)) {
+    //   console.log(e.target.files[key])
+    //   setImage(e.target.files[key])
+    // }
+    setImage((prev) => [...prev, ...e.target.files])
   }
+  useEffect(() => {
+    if (image.length > 5) {
+      setImage((prev) => prev.slice(0, 5))
+    }
+  }, [image])
+
+  const handleDeleteImage = (index) => {
+    setImage((prev) => prev.filter((_, i) => i !== index))
+  }
+  console.log(image)
+
+  const uploadMutation = useMutation({
+    mutationFn: (body) => upload(body)
+  })
   // console.log(image)
   const handleUpload = () => {
     var formData = new FormData()
-    console.log(image)
-    formData.append('postImage', image)
+    // formData.append('image', image)
+    for (let i = 0; i < image.length; i++) {
+      const file = image[i]
+      formData.append('image', file)
+    }
+    formData.append('content', content)
+    uploadMutation.mutate(formData, {
+      onSuccess: (data) => {
+        console.log(data)
+      },
+      onError: (error) => {
+        console.log(error)
+      }
+    })
     console.log(formData.append)
     toast.success('Upload bài viết thành công')
-    //ghep api o day
+    // ghep api o day
   }
 
   // add emoji
@@ -43,18 +77,18 @@ export default function ModalUploadPost({ closeModalPost }) {
   return (
     <div className='modal-customs'>
       <div className='overlay-customs' onClick={closeModalPost}></div>
-      <div className='modal-content min-w-[360px] md:min-w-[400px] dark:bg-gray-900 bg-white'>
+      <div className='modal-content min-w-[360px] md:min-w-[450px] dark:bg-gray-900 bg-white'>
         <div className='relative w-full max-w-md max-h-full'>
           <div className='text-center'>
             <div className='flex justify-between'>
-              <div className='px-2 py-1'></div>
+              <div className='px-3 py-1'></div>
               <h3 className=' mb-2 font-medium text-lg md:text-xl text-black dark:text-gray-200'>Tạo bài viết</h3>
-              <div className='text-lg font-semibold'>
+              <div className='text-2xl font-semibold'>
                 <span
                   onClick={closeModalPost}
-                  className=' hover:bg-slate-100 transition-all dark:hover:bg-slate-700 cursor-pointer rounded-full px-2 py-1'
+                  className=' hover:bg-slate-100 transition-all dark:hover:bg-slate-700 cursor-pointer rounded-full px-3 py-1'
                 >
-                  X
+                  &times;
                 </span>
               </div>
             </div>
@@ -90,16 +124,58 @@ export default function ModalUploadPost({ closeModalPost }) {
               ></textarea>
               {showImagePopup && (
                 <div className='max-w-sm my-1 mx-auto overflow-hidden items-center'>
-                  <div className='flex justify-center items-center' onClick={handleImageClick}>
-                    {image ? (
-                      <img
-                        className='h-[14rem] w-[22rem] border object-contain'
-                        src={URL.createObjectURL(image)}
-                        alt='avatar'
-                      />
+                  <div className='flex justify-center items-center'>
+                    {image.length !== 0 ? (
+                      // <img
+                      //   className='h-[14rem] w-[22rem] border object-contain'
+                      //   // src={URL.createObjectURL(image)}
+                      //   alt='avatar'
+                      // />
+                      <div className='grid grid-cols-3 gap-1'>
+                        {image.map((img, index) => (
+                          <div className='relative' key={index}>
+                            <img
+                              className='h-[8rem]  w-[8rem] border object-contain'
+                              src={URL.createObjectURL(img)}
+                              alt='avatar'
+                            />
+                            <div onClick={() => handleDeleteImage(index)} className='flex justify-center items-center'>
+                              <span className=' absolute font-semibold text-white top-0 right-0 m-1 hover:bg-slate-600 transition-all bg-slate-700 cursor-pointer rounded-full px-2'>
+                                &times;
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                        {image.length < 5 && (
+                          <div
+                            onClick={handleImageClick}
+                            className='max-w-sm h-[8rem] w-[8rem] flex justify-center dark:bg-slate-950  bg-gray-100 border-dashed border-2 border-gray-400  items-center mx-auto text-center cursor-pointer'
+                          >
+                            <label id='images' className='cursor-pointer'>
+                              <svg
+                                xmlns='http://www.w3.org/2000/svg'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                strokeWidth='1.5'
+                                stroke='currentColor'
+                                className='w-8 h-8 text-gray-700 dark:text-white mx-auto mb-4'
+                              >
+                                <path
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                  d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5'
+                                />
+                              </svg>
+                              <h5 className=' text-xs font-bold tracking-tight dark:text-white text-gray-700'>
+                                Thêm ảnh
+                              </h5>
+                            </label>
+                          </div>
+                        )}
+                      </div>
                     ) : (
                       <div className='max-w-sm h-[14rem] w-[22rem] flex justify-center dark:bg-slate-950  bg-gray-100 border-dashed border-2 border-gray-400  items-center mx-auto text-center cursor-pointer'>
-                        <label id='images' className='cursor-pointer'>
+                        <label onClick={handleImageClick} id='images' className='cursor-pointer'>
                           <svg
                             xmlns='http://www.w3.org/2000/svg'
                             fill='none'
@@ -118,7 +194,7 @@ export default function ModalUploadPost({ closeModalPost }) {
                             Upload picture
                           </h5>
                           <p className='font-normal text-sm dark:text-white text-gray-400'>
-                            Chọn 1 ảnh theo định dạng <b className='dark:text-white text-gray-600'>JPG, PNG</b>.
+                            Chọn 1 đến 5 ảnh theo định dạng <b className='dark:text-white text-gray-600'>JPG, PNG</b>.
                           </p>
                         </label>
                       </div>
@@ -130,7 +206,8 @@ export default function ModalUploadPost({ closeModalPost }) {
                     onChange={handleImageChange}
                     type='file'
                     className='hidden'
-                    accept='image/*'
+                    multiple
+                    accept='image/jpeg, image/png'
                   />
                 </div>
               )}
