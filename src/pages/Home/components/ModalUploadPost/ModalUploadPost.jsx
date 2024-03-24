@@ -60,7 +60,6 @@ export default function ModalUploadPost({ closeModalPost }) {
         console.log(error)
       }
     })
-    console.log(formData.append)
     toast.success('Upload bài viết thành công')
     // ghep api o day
   }
@@ -131,11 +130,11 @@ export default function ModalUploadPost({ closeModalPost }) {
                       //   // src={URL.createObjectURL(image)}
                       //   alt='avatar'
                       // />
-                      <div className='grid grid-cols-3 gap-1'>
+                      <div className='grid grid-cols-3 gap-2'>
                         {image.map((img, index) => (
                           <div className='relative' key={index}>
                             <img
-                              className='h-[8rem]  w-[8rem] border object-contain'
+                              className='h-[7rem] w-[7rem] border object-contain'
                               src={URL.createObjectURL(img)}
                               alt='avatar'
                             />
@@ -149,7 +148,7 @@ export default function ModalUploadPost({ closeModalPost }) {
                         {image.length < 5 && (
                           <div
                             onClick={handleImageClick}
-                            className='max-w-sm h-[8rem] w-[8rem] flex justify-center dark:bg-slate-950  bg-gray-100 border-dashed border-2 border-gray-400  items-center mx-auto text-center cursor-pointer'
+                            className=' h-[7rem] w-[7rem] flex justify-center dark:bg-slate-950  bg-gray-100 border-dashed border-2 border-gray-400  items-center  text-center cursor-pointer'
                           >
                             <label id='images' className='cursor-pointer'>
                               <svg
@@ -158,7 +157,7 @@ export default function ModalUploadPost({ closeModalPost }) {
                                 viewBox='0 0 24 24'
                                 strokeWidth='1.5'
                                 stroke='currentColor'
-                                className='w-8 h-8 text-gray-700 dark:text-white mx-auto mb-4'
+                                className='w-7 h-7 text-gray-700 dark:text-white mx-auto mb-4'
                               >
                                 <path
                                   strokeLinecap='round'
