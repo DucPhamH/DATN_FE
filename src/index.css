@@ -134,3 +134,15 @@ input:-webkit-autofill:active {
   color: rgb(240, 158, 7) !important;
   font-size: 15px !important;
 }
+
+.post-content {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+.textarea-post {
+  font-size: 1.25rem;
+  width: 100%;
+  border: none;
+  resize: none;
+  outline: none;
+}

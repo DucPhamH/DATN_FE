@@ -108,7 +108,7 @@ export default function SideBar() {
     <div className='fixed z-[100]'>
       <div
         onClick={() => setOpen(false)}
-        className={`md:hidden fixed inset-0 max-h-screen z-[100] bg-black/50 ${open ? 'block' : 'hidden'} `}
+        className={`md:hidden fixed inset-0 max-h-screen z-[80] bg-black/50 ${open ? 'block' : 'hidden'} `}
       ></div>
       <motion.div
         ref={sidebarRef}

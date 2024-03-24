@@ -6,6 +6,9 @@ import { PiClockAfternoonFill } from 'react-icons/pi'
 import PostCard from '../../components/CardComponents/PostCard'
 import BlogCard from '../../components/CardComponents/BlogCard'
 import { AiOutlineArrowUp } from 'react-icons/ai'
+import { useState } from 'react'
+
+import ModalUploadPost from './components/ModalUploadPost'
 const checkTime = () => {
   var day = new Date()
   var hr = day.getHours()
@@ -96,179 +99,197 @@ const blogItems = [
   }
 ]
 export default function Home() {
+  const [modalPost, setModalPost] = useState(false)
+
+  const openModalPost = () => {
+    setModalPost(true)
+  }
+
+  const closeModalPost = () => {
+    setModalPost(false)
+  }
   return (
-    <div className=' grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
-      <div className='col-span-3'>
-        <div className='bg-white py-2 px-4  shadow md:rounded-md dark:bg-slate-900'>
-          <div>{checkTime()}</div>
-          <div className='flex justify-between items-center gap-2 md:gap-4 w-full'>
-            <div className='w-8 h-8 md:w-10 overflow-hidden md:h-10 rounded-full cursor-pointer'>
-              <img
-                className='w-8 h-8 md:w-10 object-cover border border-red-200 md:h-10 rounded-full'
-                src={useravatar}
-                alt='user photo'
-              />
+    <>
+      <div className=' grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
+        <div className='col-span-3'>
+          <div className='bg-white py-2 px-4  shadow md:rounded-md dark:bg-slate-900'>
+            <div>{checkTime()}</div>
+            <div className='flex justify-between items-center gap-2 md:gap-4 w-full'>
+              <div className='w-8 h-8 md:w-10 overflow-hidden md:h-10 rounded-full cursor-pointer'>
+                <img
+                  className='w-8 h-8 md:w-10 object-cover border border-red-200 md:h-10 rounded-full'
+                  src={useravatar}
+                  alt='user photo'
+                />
+              </div>
+              <div
+                onClick={openModalPost}
+                className='bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-800 w-[90%] md:w-[92%] cursor-pointer hover:bg-slate-200 transition-all h-10   md:h-12 my-4 flex items-center rounded-full'
+              >
+                <span className='mx-4 text-gray-500 dark:text-gray-400'>Bạn đang nghĩ gì ?</span>
+              </div>
             </div>
-            <div className='bg-slate-100 dark:bg-slate-700 dark:hover:bg-slate-800 w-[90%] md:w-[92%] cursor-pointer hover:bg-slate-200 transition-all h-10   md:h-12 my-4 flex items-center rounded-full'>
-              <span className='mx-4 text-gray-500 dark:text-gray-400'>Bạn đang nghĩ gì ?</span>
+            <div className='border mb-4 dark:border-gray-700 border-red-200 '></div>
+            <div className='flex mb-2 items-center justify-between'>
+              <div onClick={openModalPost} className='flex mx-1'>
+                <BsFillImageFill className='text-2xl text-blue-700 dark:text-blue-300 cursor-pointer' />
+              </div>
+              <button
+                onClick={openModalPost}
+                className='btn btn-sm bg-red-800 hover:bg-red-900  text-sm text-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out'
+              >
+                Đăng bài viết
+              </button>
             </div>
           </div>
-          <div className='border mb-4 dark:border-gray-700 border-red-200 '></div>
-          <div className='flex mb-2 items-center justify-between'>
-            <div className='flex mx-1'>
-              <BsFillImageFill className='text-2xl text-blue-700 dark:text-blue-300 cursor-pointer' />
-            </div>
-            <button className='btn btn-sm bg-red-800 hover:bg-red-900  text-sm text-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out'>
-              Đăng bài viết
-            </button>
+          <div className='my-3'>
+            <PostCard />
+            <PostCard />
+            <PostCard />
           </div>
         </div>
-        <div className='my-3'>
-          <PostCard />
-          <PostCard />
-          <PostCard />
+        <div className='hidden  xl:block col-span-2'>
+          <div className='w-full mb-2 shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
+            <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
+              Bạn có thể biết!
+            </div>
+            <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
+            <div className='p-3'>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>@Hart</span>
+                    </div>
+                  </div>
+                </div>
+                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>@Hart</span>
+                    </div>
+                  </div>
+                </div>
+                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>@Hart</span>
+                    </div>
+                  </div>
+                </div>
+                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>@Hart</span>
+                    </div>
+                  </div>
+                </div>
+                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
+              </div>
+              <div className='flex justify-between items-center'>
+                <div className='flex items-center mb-4 mt-2 gap-3'>
+                  <div className='avatar'>
+                    <div className='mask mask-squircle w-12 h-12'>
+                      <img
+                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
+                        alt='Avatar Tailwind CSS Component'
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <div className='font-bold'>Hart Hagerty</div>
+                    <div className=''>
+                      <span className='text-sm opacity-50'>@Hart</span>
+                    </div>
+                  </div>
+                </div>
+                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
+              </div>
+            </div>
+          </div>
+          <div className='w-full shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
+            <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
+              Tin tức mới nhất
+            </div>
+            <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
+            <div className='p-3'>
+              {blogItems.map((blogItem) => {
+                return (
+                  <div className='mb-2 mx-5' key={blogItem.id}>
+                    <BlogCard
+                      blogItem={blogItem}
+                      imgClass='lg:h-[32vh] rounded-t-xl scale-100 overflow-hidden'
+                      dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
+                      titleClass=' font-bold hover:text-color-secondary'
+                      descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
+                      linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                    />
+                  </div>
+                )
+              })}
+              <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
+                Xem thêm bài viết...
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          onClick={() => {
+            window.scroll({
+              top: 0,
+              behavior: 'smooth'
+            })
+          }}
+        >
+          <AiOutlineArrowUp className='hidden sm:block fixed bottom-5 right-0 bg-blue-300 text-slate-50 text-5xl p-3 rounded-full mb-2 mr-20 hover:bg-blue-500' />
         </div>
       </div>
-      <div className='hidden  xl:block col-span-2'>
-        <div className='w-full mb-2 shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
-          <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-            Bạn có thể biết!
-          </div>
-          <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-          <div className='p-3'>
-            <div className='flex justify-between items-center'>
-              <div className='flex items-center mb-4 mt-2 gap-3'>
-                <div className='avatar'>
-                  <div className='mask mask-squircle w-12 h-12'>
-                    <img
-                      src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                      alt='Avatar Tailwind CSS Component'
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className='font-bold'>Hart Hagerty</div>
-                  <div className=''>
-                    <span className='text-sm opacity-50'>@Hart</span>
-                  </div>
-                </div>
-              </div>
-              <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-            </div>
-            <div className='flex justify-between items-center'>
-              <div className='flex items-center mb-4 mt-2 gap-3'>
-                <div className='avatar'>
-                  <div className='mask mask-squircle w-12 h-12'>
-                    <img
-                      src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                      alt='Avatar Tailwind CSS Component'
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className='font-bold'>Hart Hagerty</div>
-                  <div className=''>
-                    <span className='text-sm opacity-50'>@Hart</span>
-                  </div>
-                </div>
-              </div>
-              <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-            </div>
-            <div className='flex justify-between items-center'>
-              <div className='flex items-center mb-4 mt-2 gap-3'>
-                <div className='avatar'>
-                  <div className='mask mask-squircle w-12 h-12'>
-                    <img
-                      src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                      alt='Avatar Tailwind CSS Component'
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className='font-bold'>Hart Hagerty</div>
-                  <div className=''>
-                    <span className='text-sm opacity-50'>@Hart</span>
-                  </div>
-                </div>
-              </div>
-              <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-            </div>
-            <div className='flex justify-between items-center'>
-              <div className='flex items-center mb-4 mt-2 gap-3'>
-                <div className='avatar'>
-                  <div className='mask mask-squircle w-12 h-12'>
-                    <img
-                      src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                      alt='Avatar Tailwind CSS Component'
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className='font-bold'>Hart Hagerty</div>
-                  <div className=''>
-                    <span className='text-sm opacity-50'>@Hart</span>
-                  </div>
-                </div>
-              </div>
-              <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-            </div>
-            <div className='flex justify-between items-center'>
-              <div className='flex items-center mb-4 mt-2 gap-3'>
-                <div className='avatar'>
-                  <div className='mask mask-squircle w-12 h-12'>
-                    <img
-                      src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                      alt='Avatar Tailwind CSS Component'
-                    />
-                  </div>
-                </div>
-                <div>
-                  <div className='font-bold'>Hart Hagerty</div>
-                  <div className=''>
-                    <span className='text-sm opacity-50'>@Hart</span>
-                  </div>
-                </div>
-              </div>
-              <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-            </div>
-          </div>
-        </div>
-        <div className='w-full shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
-          <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-            Tin tức mới nhất
-          </div>
-          <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-          <div className='p-3'>
-            {blogItems.map((blogItem) => {
-              return (
-                <div className='mb-2 mx-5' key={blogItem.id}>
-                  <BlogCard
-                    blogItem={blogItem}
-                    imgClass='lg:h-[32vh] rounded-t-xl scale-100 overflow-hidden'
-                    dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                    titleClass=' font-bold hover:text-color-secondary'
-                    descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
-                    linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
-                  />
-                </div>
-              )
-            })}
-            <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
-              Xem thêm bài viết...
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        onClick={() => {
-          window.scroll({
-            top: 0,
-            behavior: 'smooth'
-          })
-        }}
-      >
-        <AiOutlineArrowUp className='hidden sm:block fixed bottom-5 right-0 bg-blue-300 text-slate-50 text-5xl p-3 rounded-full mb-2 mr-20 hover:bg-blue-500' />
-      </div>
-    </div>
+      {modalPost && <ModalUploadPost closeModalPost={closeModalPost} />}
+    </>
   )
 }

@@ -9,7 +9,7 @@ import {
   setProfileToLS,
   setRefreshTokenToLS
 } from './auth'
-import { isAxiosExpiredTokenError, isAxiosUnauthorizedError, isErrorData } from './utils'
+import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'
 
 const URL = {
   BASE_URL: 'http://localhost:4000/api',
