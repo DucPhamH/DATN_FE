@@ -6,12 +6,13 @@ import { MdEmojiEmotions } from 'react-icons/md'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import { useMutation } from '@tanstack/react-query'
-import { upload } from '../../../../apis/authApi'
+import { createPost } from '../../../../apis/postApi'
 
 export default function ModalUploadPost({ closeModalPost }) {
   const theme = localStorage.getItem('theme')
   const inputRef = useRef(null)
   const [image, setImage] = useState([])
+  const [selectedValue, setSelectedValue] = useState(0)
   const [showImagePopup, setShowImagePopup] = useState(false)
   const [showEmoji, setShowEmoji] = useState(false)
   const [content, setContent] = useState('')
@@ -20,50 +21,17 @@ export default function ModalUploadPost({ closeModalPost }) {
     inputRef.current.click()
   }
   const handleImageChange = (e) => {
-    // const file = e.target.files[0]
-    // console.log(e.target.files[0])
-    // setImage(file)
-    // for (const key of Object.keys(e.target.files)) {
-    //   console.log(e.target.files[key])
-    //   setImage(e.target.files[key])
-    // }
     setImage((prev) => [...prev, ...e.target.files])
   }
-  useEffect(() => {
-    if (image.length > 5) {
-      setImage((prev) => prev.slice(0, 5))
-    }
-  }, [image])
-
+  const handleSelectChange = (e) => {
+    setSelectedValue(e.target.value)
+  }
   const handleDeleteImage = (index) => {
     setImage((prev) => prev.filter((_, i) => i !== index))
   }
-  console.log(image)
-
   const uploadMutation = useMutation({
-    mutationFn: (body) => upload(body)
+    mutationFn: (body) => createPost(body)
   })
-  // console.log(image)
-  const handleUpload = () => {
-    var formData = new FormData()
-    // formData.append('image', image)
-    for (let i = 0; i < image.length; i++) {
-      const file = image[i]
-      formData.append('image', file)
-    }
-    formData.append('content', content)
-    uploadMutation.mutate(formData, {
-      onSuccess: (data) => {
-        console.log(data)
-      },
-      onError: (error) => {
-        console.log(error)
-      }
-    })
-    toast.success('Upload bài viết thành công')
-    // ghep api o day
-  }
-
   // add emoji
   const addEmoji = (e) => {
     const sym = e.unified.split('-')
@@ -71,6 +39,39 @@ export default function ModalUploadPost({ closeModalPost }) {
     sym.forEach((el) => codeArray.push('0x' + el))
     let emoji = String.fromCodePoint(...codeArray)
     setContent(content + emoji)
+  }
+
+  useEffect(() => {
+    if (image.length > 5) {
+      setImage((prev) => prev.slice(0, 5))
+    }
+  }, [image])
+
+  const handleUpload = () => {
+    var formData = new FormData()
+    if (content === '' && image.length === 0) {
+      return toast.error('Nội dung hoặc ảnh không được để trống')
+    }
+
+    for (let i = 0; i < image.length; i++) {
+      const file = image[i]
+      formData.append('image', file)
+    }
+    formData.append('content', content)
+    formData.append('privacy', selectedValue)
+
+    uploadMutation.mutate(formData, {
+      onSuccess: (data) => {
+        console.log(data)
+        toast.success('Upload bài viết thành công')
+        setContent('')
+        setImage([])
+        closeModalPost()
+      },
+      onError: (error) => {
+        console.log(error)
+      }
+    })
   }
 
   return (
@@ -105,12 +106,13 @@ export default function ModalUploadPost({ closeModalPost }) {
                     </a>
                   </div>
                   <select
-                    defaultValue='new'
+                    defaultValue='0'
                     id='sort_by'
                     className='select mt-1 select-xs border-none outline-none bg-white dark:bg-slate-900 dark:border-none'
+                    onChange={handleSelectChange}
                   >
-                    <option value='global'>Công khai</option>
-                    <option value='private'>Chỉ mình tôi</option>
+                    <option value='0'>Công khai</option>
+                    <option value='1'>Chỉ mình tôi</option>
                   </select>
                 </div>
               </div>
@@ -134,7 +136,7 @@ export default function ModalUploadPost({ closeModalPost }) {
                         {image.map((img, index) => (
                           <div className='relative' key={index}>
                             <img
-                              className='h-[7rem] w-[7rem] border object-contain'
+                              className='h-[6.5rem] w-[6.5rem] md:h-[7rem] md:w-[7rem] border object-contain'
                               src={URL.createObjectURL(img)}
                               alt='avatar'
                             />
@@ -148,7 +150,7 @@ export default function ModalUploadPost({ closeModalPost }) {
                         {image.length < 5 && (
                           <div
                             onClick={handleImageClick}
-                            className=' h-[7rem] w-[7rem] flex justify-center dark:bg-slate-950  bg-gray-100 border-dashed border-2 border-gray-400  items-center  text-center cursor-pointer'
+                            className=' h-[6.5rem] w-[6.5rem] md:h-[7rem] md:w-[7rem] flex justify-center dark:bg-slate-950  bg-gray-100 border-dashed border-2 border-gray-400  items-center  text-center cursor-pointer'
                           >
                             <label id='images' className='cursor-pointer'>
                               <svg
@@ -237,14 +239,39 @@ export default function ModalUploadPost({ closeModalPost }) {
               </div>
               <div className='border dark:border-gray-700 my-2 border-red-200 '></div>
               <div className='flex items-center justify-center'>
-                <div className='w-full'>
-                  <label
-                    onClick={handleUpload}
-                    className='w-full dark:hover:bg-pink-800 transition-all duration-300 text-white bg-red-600 dark:bg-pink-700 hover:bg-red-700 font-medium rounded-lg text-sm px-5 py-2 flex items-center justify-center mr-2 mb-2 cursor-pointer'
-                  >
-                    <button className='text-center ml-2'>Tải lên</button>
-                  </label>
-                </div>
+                {uploadMutation.isPending ? (
+                  <div className='w-full cursor-not-allowed'>
+                    <label className='w-full transition-all duration-300 text-white bg-slate-400 font-medium rounded-lg text-sm px-5 py-2 flex items-center justify-center mr-2 mb-2'>
+                      <svg
+                        aria-hidden='true'
+                        className='inline w-6 h-6 text-gray-200 cursor-not-allowed animate-spin dark:text-gray-600 fill-pink-600'
+                        viewBox='0 0 100 101'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                      >
+                        <path
+                          d='M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z'
+                          fill='currentColor'
+                        />
+                        <path
+                          d='M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z'
+                          fill='currentFill'
+                        />
+                      </svg>
+                      <button disabled className='text-center cursor-not-allowed ml-2'>
+                        Tải lên
+                      </button>
+                    </label>
+                  </div>
+                ) : (
+                  <div className='w-full'>
+                    <label className='w-full dark:hover:bg-pink-800 transition-all duration-300 text-white bg-red-600 dark:bg-pink-700 hover:bg-red-700 font-medium rounded-lg text-sm px-5 py-2 flex items-center justify-center mr-2 mb-2 cursor-pointer'>
+                      <button onClick={handleUpload} className='text-center ml-2'>
+                        Tải lên
+                      </button>
+                    </label>
+                  </div>
+                )}
               </div>
             </section>
           </div>

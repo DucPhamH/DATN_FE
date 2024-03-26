@@ -47,15 +47,15 @@ export default function PostCard() {
 
       <p className='px-4 md:px-0'>Tôi đã làm thành công món bún đậu chấm tương ớt</p>
 
-      <div className='py-4'>
+      {/* <div className='py-4'>
         <a className='flex' href='#'>
           <img
             className='max-w-full md:rounded-lg'
             src='https://images.squarespace-cdn.com/content/v1/53883795e4b016c956b8d243/1551783604684-AE2UE7DYUGV96DUT4G80/chup-anh-thuc-an-1.jpg'
           />
         </a>
-      </div>
-      {/* <div className='py-4'>
+      </div> */}
+      <div className='py-4'>
         <div className='flex justify-between gap-1 mb-1'>
           <a className='flex' href='#'>
             <img
@@ -90,7 +90,7 @@ export default function PostCard() {
             />
           </a>
         </div>
-      </div> */}
+      </div>
 
       <div className='px-4 md:px-0'>
         <div className='flex justify-between items-center'>

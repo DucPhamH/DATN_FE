@@ -30,7 +30,6 @@ class Http {
     this.instance.interceptors.request.use(
       (config) => {
         if (this.accessToken && config.headers) {
-          console.log(this.accessToken)
           config.headers.Authorization = this.accessToken
           return config
         }
