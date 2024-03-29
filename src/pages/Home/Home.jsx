@@ -6,9 +6,13 @@ import { PiClockAfternoonFill } from 'react-icons/pi'
 import PostCard from '../../components/CardComponents/PostCard'
 import BlogCard from '../../components/CardComponents/BlogCard'
 import { AiOutlineArrowUp } from 'react-icons/ai'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ModalUploadPost from './components/ModalUploadPost'
+import { getNewsFeed } from '../../apis/postApi'
+import { useInfiniteQuery } from '@tanstack/react-query'
+import { useInView } from 'react-intersection-observer'
+import LoadingHome from './components/LoadingHome'
 const checkTime = () => {
   var day = new Date()
   var hr = day.getHours()
@@ -108,6 +112,48 @@ export default function Home() {
   const closeModalPost = () => {
     setModalPost(false)
   }
+  const { ref, inView } = useInView()
+  const fetchNewsFeed = async ({ pageParam }) => {
+    return await getNewsFeed({ page: pageParam })
+  }
+
+  const { data, status, fetchNextPage, isFetchingNextPage, hasNextPage } = useInfiniteQuery({
+    queryKey: ['newFeeds'],
+    queryFn: fetchNewsFeed,
+    initialPageParam: 1,
+    getNextPageParam: (lastPage, allPages) => {
+      const nextPage = lastPage.data.result.newFeeds.length ? allPages.length + 1 : undefined
+      // console.log(nextPage)
+      return nextPage
+    }
+  })
+
+  const content = data?.pages.map((dataNewFeeds) =>
+    dataNewFeeds.data.result.newFeeds.map((newFeed, index) => {
+      if (dataNewFeeds.data.result.newFeeds.length == index + 1) {
+        return <PostCard innerRef={ref} key={newFeed._id} data={newFeed} />
+      }
+      return <PostCard key={newFeed._id} data={newFeed} />
+    })
+  )
+
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage()
+    }
+  }, [inView, hasNextPage, fetchNextPage])
+
+  if (status === 'pending') {
+    return <LoadingHome />
+  }
+
+  if (status === 'error') {
+    return (
+      <div className='w-full p-10 text-center font-bold text-red-600 dark:text-pink-700 h-[100rem]'>
+        Có lỗi xảy ra vui lòng load lại trang
+      </div>
+    )
+  }
   return (
     <>
       <div className=' grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
@@ -143,12 +189,11 @@ export default function Home() {
             </div>
           </div>
           <div className='my-3'>
-            <PostCard />
-            <PostCard />
-            <PostCard />
+            {content}
+            {isFetchingNextPage && <h3>Loading...</h3>}
           </div>
         </div>
-        <div className='hidden  xl:block col-span-2'>
+        <div className='hidden xl:block col-span-2'>
           <div className='w-full mb-2 shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
             <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Bạn có thể biết!
@@ -278,6 +323,14 @@ export default function Home() {
             </div>
           </div>
         </div>
+        {/* <button ref={ref} className='btn-neutral btn'>
+          {' '}
+          click me
+        </button> */}
+        {/* <button disabled={!hasNextPage || isFetchingNextPage}>
+          {isFetchingNextPage ? 'Loading more...' : hasNextPage ? 'Load More' : 'Nothing more to load'}
+        </button>
+        <button onClick={() => fetchNextPage()}> load more</button> */}
         <div
           onClick={() => {
             window.scroll({

@@ -7,6 +7,7 @@ import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import { useMutation } from '@tanstack/react-query'
 import { createPost } from '../../../../apis/postApi'
+import { queryClient } from '../../../../main'
 
 export default function ModalUploadPost({ closeModalPost }) {
   const theme = localStorage.getItem('theme')
@@ -66,6 +67,7 @@ export default function ModalUploadPost({ closeModalPost }) {
         toast.success('Upload bài viết thành công')
         setContent('')
         setImage([])
+        queryClient.invalidateQueries({ queryKey: ['newFeeds'] })
         closeModalPost()
       },
       onError: (error) => {

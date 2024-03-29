@@ -6,3 +6,5 @@ export const createPost = (body) =>
       'Content-Type': 'multipart/form-data'
     }
   })
+
+export const getNewsFeed = (params) => http.get('/posts', { params })
