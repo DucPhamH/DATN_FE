@@ -15,7 +15,7 @@ export default function SearchInput() {
   }
 
   return (
-    <form className='w-[10rem] mr-3 md:w-[16rem] lg:w-[20rem] relative'>
+    <form className='w-[12rem] mr-3 md:w-[16rem] lg:w-[20rem] relative'>
       <div className='relative'>
         <input
           type='search'

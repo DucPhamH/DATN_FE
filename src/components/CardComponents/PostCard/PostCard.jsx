@@ -1,12 +1,118 @@
-import React from 'react'
+import React, { useState } from 'react'
 import useravatar from '../../../assets/images/useravatar.jpg'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiFillHeart } from 'react-icons/ai'
 import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'
-import Comments from '../../SocialComponents/Comments'
 import { LiaComments } from 'react-icons/lia'
 import moment from 'moment'
+import { likePost, unlikePost } from '../../../apis/postApi'
+import { useMutation } from '@tanstack/react-query'
+import { queryClient } from '../../../main'
+import Comments from '../../../pages/Home/components/Comments'
+import ModalSharePost from '../../../pages/Home/components/ModalSharePost'
+import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreContent'
+
+export default function PostCard({ innerRef, data }) {
+  const [openComment, setOpenComment] = useState(false)
+  const [openSharePost, setOpenSharePost] = useState(false)
+
+  const handleCloseSharePost = () => {
+    setOpenSharePost(false)
+  }
+  const handleOpenSharePost = () => {
+    setOpenSharePost(true)
+  }
+  const handleOpenComment = () => {
+    setOpenComment(!openComment)
+  }
+
+  const likeMutation = useMutation({
+    mutationFn: (body) => likePost(body)
+  })
+
+  const unlikeMutation = useMutation({
+    mutationFn: (body) => unlikePost(body)
+  })
+
+  const handleLike = () => {
+    if (data.is_like) {
+      unlikeMutation.mutate(
+        { post_id: data._id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('newsFeed')
+          }
+        }
+      )
+    } else {
+      likeMutation.mutate(
+        { post_id: data._id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('newsFeed')
+          }
+        }
+      )
+    }
+  }
+
+  return (
+    <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-slate-900 flex flex-col bg-clip-border'>
+      <CheckTypeOfPost data={data} />
+      <div className='px-4 md:px-0' ref={innerRef}>
+        <div className='flex justify-between items-center'>
+          <a className='inline-flex items-center' href='#'>
+            <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={25} />
+            <span className='text-lg font-bold'>{data.like_count}</span>
+            <span className='ml-3'>Lượt thích</span>
+          </a>
+          <div className='flex gap-3 items-center'>
+            <div>{data.share_count} bình luận</div>
+            <div>{data.share_count} lượt chia sẻ</div>
+          </div>
+        </div>
+      </div>
+      <div className='border mt-2 mb-4 dark:border-gray-700 border-red-200 '></div>
+      <div className='px-4 md:px-0'>
+        <div className='flex justify-around'>
+          <div
+            onClick={handleLike}
+            className='flex cursor-pointer hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 justify-center items-center'
+          >
+            {data.is_like ? (
+              <>
+                <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600' size={20} />
+                <span className='font-medium '>Đã thích</span>
+              </>
+            ) : (
+              <>
+                <CiHeart className='mr-1' size={20} />
+                <span className='font-medium'>Thích</span>
+              </>
+            )}
+          </div>
+          <div
+            onClick={handleOpenComment}
+            className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'
+          >
+            <LiaComments className='mr-1' size={20} />
+            <span className='font-medium'>Bình luận</span>
+          </div>
+          <div
+            onClick={handleOpenSharePost}
+            className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'
+          >
+            <PiShareFatLight className='mr-1' size={20} />
+            <span className='font-medium'>Chia sẻ</span>
+          </div>
+        </div>
+      </div>
+      {openComment && <Comments />}
+      {openSharePost && <ModalSharePost handleCloseSharePost={handleCloseSharePost} post={data} />}
+    </article>
+  )
+}
 
 function CheckTypeOfPost({ data }) {
   if (data.type === 0) {
@@ -39,8 +145,9 @@ function CheckTypeOfPost({ data }) {
             <BiDotsHorizontalRounded />
           </button>
         </div>
-
-        <p className='px-4 md:px-0'>{data.content}</p>
+        <ShowMoreContent className='px-4 whitespace-pre-line pb-5 md:px-0'>
+          <p className=''>{data.content}</p>
+        </ShowMoreContent>
         <CheckLengthOfImages images={data.images} />
       </>
     )
@@ -74,7 +181,9 @@ function CheckTypeOfPost({ data }) {
           <BiDotsHorizontalRounded />
         </button>
       </div>
-      <p className='px-4 pb-5 md:px-0'>{data.content}</p>
+      <ShowMoreContent className='px-4 whitespace-pre-line pb-5 md:px-0'>
+        <p className=''>{data.content}</p>
+      </ShowMoreContent>
       <div className='border mt-2 mb-2 dark:border-gray-700 border-red-200 '></div>
       <div className='flex justify-between items-start'>
         <div className='flex pb-4 px-4 md:px-0 items-center justify-between'>
@@ -82,7 +191,7 @@ function CheckTypeOfPost({ data }) {
             <a className='inline-block mr-4' href='#'>
               <img
                 className='rounded-full max-w-none w-10 h-10 md:w-12 md:h-12'
-                src={data.parent_user.avatar === '' ? useravatar : data.user.avatar}
+                src={data.parent_user.avatar === '' ? useravatar : data.parent_user.avatar}
               />
             </a>
             <div className='flex flex-col'>
@@ -96,14 +205,15 @@ function CheckTypeOfPost({ data }) {
           </div>
         </div>
       </div>
-      <p className='px-4 mx-3 pb-5 md:px-0'>{data.parent_post.content}</p>
+      <ShowMoreContent className='px-4 whitespace-pre-line pb-5 md:px-0'>
+        <p className=''>{data.parent_post.content}</p>
+      </ShowMoreContent>
       <CheckLengthOfImages images={data.parent_images} />
     </>
   )
 }
 
 function CheckLengthOfImages({ images }) {
-  console.log(images)
   if (images.length === 0) {
     return <div className='pt-5'></div>
   }
@@ -190,63 +300,5 @@ function CheckLengthOfImages({ images }) {
         </a>
       </div>
     </div>
-  )
-}
-
-export default function PostCard({ innerRef, data }) {
-  const [openComment, setOpenComment] = React.useState(false)
-  const handleOpenComment = () => {
-    setOpenComment(!openComment)
-  }
-
-  console.log(data)
-
-  return (
-    <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-slate-900 flex flex-col bg-clip-border'>
-      <CheckTypeOfPost data={data} />
-      <div className='px-4 md:px-0' ref={innerRef}>
-        <div className='flex justify-between items-center'>
-          <a className='inline-flex items-center' href='#'>
-            <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={25} />
-            <span className='text-lg font-bold'>{data.like_count}</span>
-            <span className='ml-3'>Lượt thích</span>
-          </a>
-          <div className='flex gap-3 items-center'>
-            <div>{data.share_count} bình luận</div>
-            <div>{data.share_count} lượt chia sẻ</div>
-          </div>
-        </div>
-      </div>
-      <div className='border mt-2 mb-4 dark:border-gray-700 border-red-200 '></div>
-      <div className='px-4 md:px-0'>
-        <div className='flex justify-around'>
-          <div className='flex cursor-pointer hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 justify-center items-center'>
-            {data.is_like ? (
-              <>
-                <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600' size={20} />
-                <span className='font-medium '>Đã thích</span>
-              </>
-            ) : (
-              <>
-                <CiHeart className='mr-1' size={20} />
-                <span className='font-medium'>Thích</span>
-              </>
-            )}
-          </div>
-          <div
-            onClick={handleOpenComment}
-            className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'
-          >
-            <LiaComments className='mr-1' size={20} />
-            <span className='font-medium'>Bình luận</span>
-          </div>
-          <div className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'>
-            <PiShareFatLight className='mr-1' size={20} />
-            <span className='font-medium'>Chia sẻ</span>
-          </div>
-        </div>
-      </div>
-      {openComment && <Comments />}
-    </article>
   )
 }

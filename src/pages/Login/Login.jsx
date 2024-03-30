@@ -54,8 +54,6 @@ export default function Login() {
     })
   })
 
-  console.log(import.meta.env)
-
   const getGoogleAuthUrl = () => {
     const { VITE_GOOGLE_CLIENT_ID, VITE_GOOGLE_REDIRECT_URI } = import.meta.env
     const url = `https://accounts.google.com/o/oauth2/v2/auth`

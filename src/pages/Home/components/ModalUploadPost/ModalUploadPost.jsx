@@ -9,7 +9,7 @@ import { useMutation } from '@tanstack/react-query'
 import { createPost } from '../../../../apis/postApi'
 import { queryClient } from '../../../../main'
 
-export default function ModalUploadPost({ closeModalPost }) {
+export default function ModalUploadPost({ closeModalPost, profile }) {
   const theme = localStorage.getItem('theme')
   const inputRef = useRef(null)
   const [image, setImage] = useState([])
@@ -67,7 +67,7 @@ export default function ModalUploadPost({ closeModalPost }) {
         toast.success('Upload bài viết thành công')
         setContent('')
         setImage([])
-        queryClient.invalidateQueries({ queryKey: ['newFeeds'] })
+        // queryClient.invalidateQueries({ queryKey: ['newFeeds'] })
         closeModalPost()
       },
       onError: (error) => {
@@ -99,12 +99,15 @@ export default function ModalUploadPost({ closeModalPost }) {
             <section className='w-full mx-auto items-center '>
               <div className='flex mt-2 mb-2 items-center'>
                 <a className='inline-block' href='#'>
-                  <img className='rounded-full max-w-none w-10 h-10 md:w-10 md:h-10' src={useravatar} />
+                  <img
+                    className='rounded-full max-w-none w-10 h-10 md:w-10 md:h-10'
+                    src={profile.avatar === '' ? useravatar : profile.avatar}
+                  />
                 </a>
                 <div className='flex flex-col justify-center ml-1 items-start'>
                   <div className='flex justify-center items-center'>
                     <a className='inline-block ml-2 text-sm font-bold' href='#'>
-                      Phạm Đức
+                      {profile?.name}
                     </a>
                   </div>
                   <select
@@ -121,7 +124,7 @@ export default function ModalUploadPost({ closeModalPost }) {
               <textarea
                 autoFocus={true}
                 className='textarea-post text-sm placeholder:text-base scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 p-3 bg-white dark:bg-gray-900 '
-                placeholder='Đức ơi bạn đang nghĩ gì thế ?'
+                placeholder={`${profile.name.split(' ').slice(-1).join('')} ơi, bạn đang nghĩ gì thế?`}
                 onChange={(e) => setContent(e.target.value)}
                 value={content}
               ></textarea>
@@ -129,11 +132,6 @@ export default function ModalUploadPost({ closeModalPost }) {
                 <div className='max-w-sm my-1 mx-auto overflow-hidden items-center'>
                   <div className='flex justify-center items-center'>
                     {image.length !== 0 ? (
-                      // <img
-                      //   className='h-[14rem] w-[22rem] border object-contain'
-                      //   // src={URL.createObjectURL(image)}
-                      //   alt='avatar'
-                      // />
                       <div className='grid grid-cols-3 gap-2'>
                         {image.map((img, index) => (
                           <div className='relative' key={index}>
@@ -214,7 +212,7 @@ export default function ModalUploadPost({ closeModalPost }) {
                   />
                 </div>
               )}
-              <div className='flex justify-between mt-5 mx-2'>
+              <div className='flex justify-between mx-2'>
                 <div className='' onClick={() => setShowImagePopup(!showImagePopup)}>
                   <BsFillImageFill className='text-2xl text-blue-700 dark:text-blue-300 cursor-pointer' />
                 </div>

@@ -22,7 +22,7 @@ export default function UserAvatar() {
       document.removeEventListener('mousedown', handleClickOutside)
     }
   }, [])
-  const { setIsAuthenticated, setProfile } = useContext(AppContext)
+  const { setIsAuthenticated, setProfile, profile } = useContext(AppContext)
   const logoutAccountMutation = useMutation({
     mutationFn: (body) => logoutAccount(body)
   })
@@ -53,8 +53,8 @@ export default function UserAvatar() {
       >
         <div className='w-8 h-8 md:w-10 object-cover md:h-10 rounded-full'>
           <img
-            className='w-8 h-8 md:w-10 object-cover border border-red-200 md:h-10 rounded-full'
-            src={useravatar}
+            className='w-8 h-8 md:w-10 object-cover md:h-10 rounded-full'
+            src={profile.avatar === '' ? useravatar : profile.avatar}
             alt='user photo'
           />
         </div>

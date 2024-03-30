@@ -71,20 +71,21 @@ export default function useRouteElement() {
       path: '/login-google',
       element: <LoginGoogle />
     },
-    {
-      path: '/home',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <Home />
-          </Suspense>
-        </MainLayout>
-      )
-    },
+
     {
       path: '',
       element: <ProtectedRoute />,
       children: [
+        {
+          path: '/home',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Home />
+              </Suspense>
+            </MainLayout>
+          )
+        },
         {
           path: '/my-profile',
           element: (
@@ -94,6 +95,7 @@ export default function useRouteElement() {
               </Suspense>
             </MainLayout>
           ),
+
           children: [
             {
               path: '',
