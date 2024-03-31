@@ -12,6 +12,9 @@ import { queryClient } from '../../../main'
 import Comments from '../../../pages/Home/components/Comments'
 import ModalSharePost from '../../../pages/Home/components/ModalSharePost'
 import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreContent'
+import 'photoswipe/dist/photoswipe.css'
+import { Gallery, Item } from 'react-photoswipe-gallery'
+import ThreeDotPost from '../../../pages/Home/components/ThreeDotPost'
 
 export default function PostCardInfo({ data }) {
   const [openComment, setOpenComment] = useState(false)
@@ -58,15 +61,15 @@ export default function PostCardInfo({ data }) {
   }
 
   return (
-    <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-slate-900 flex flex-col bg-clip-border'>
+    <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:dark:bg-color-primary flex flex-col bg-clip-border'>
       <CheckTypeOfPost data={data} />
       <div className='px-4 md:px-0'>
         <div className='flex justify-between items-center'>
-          <a className='inline-flex items-center' href='#'>
-            <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={25} />
-            <span className='text-lg font-bold'>{data.like_count}</span>
-            <span className='ml-3'>Lượt thích</span>
-          </a>
+          <div className='inline-flex items-center'>
+            <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={20} />
+            <span className='font-bold'>{data.like_count}</span>
+            <span className='ml-1 md:ml-2'>Lượt thích</span>
+          </div>
           <div className='flex gap-3 items-center'>
             <div>{data.comment_count} bình luận</div>
             <div>{data.share_count} lượt chia sẻ</div>
@@ -139,13 +142,7 @@ function CheckTypeOfPost({ data }) {
               </div>
             </div>
           </div>
-          <button
-            className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
-         hover:text-red-600 dark:hover:text-red-600  dark:text-white'
-            type='button'
-          >
-            <BiDotsHorizontalRounded />
-          </button>
+          <ThreeDotPost userID={data.user._id} />
         </div>
         <ShowMoreContent className='px-4  text-sm whitespace-pre-line pb-5 md:px-0'>
           <p className=''>{data.content}</p>
@@ -175,13 +172,7 @@ function CheckTypeOfPost({ data }) {
             </div>
           </div>
         </div>
-        <button
-          className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
-   hover:text-red-600 dark:hover:text-red-600  dark:text-white'
-          type='button'
-        >
-          <BiDotsHorizontalRounded />
-        </button>
+        <ThreeDotPost userID={data.user._id} />
       </div>
       <ShowMoreContent className='px-4 whitespace-pre-line  text-sm pb-5 md:px-0'>
         <p className=''>{data.content}</p>
@@ -223,86 +214,323 @@ function CheckLengthOfImages({ images }) {
   }
   if (images.length === 1) {
     return (
-      <div className='py-4'>
-        <a className='flex' href='#'>
-          <img className='max-w-full rounded-lg' src={images[0]} />
-        </a>
-      </div>
+      <Gallery
+        options={{
+          showHideAnimationType: 'none',
+          showAnimationDuration: 0,
+          hideAnimationDuration: 0,
+          clickToCloseNonZoomable: false,
+          secondaryZoomLevel: 4,
+          maxZoomLevel: 10,
+          counter: false
+        }}
+      >
+        <div className='py-4'>
+          <div className='flex'>
+            <Item original={images[0]} width='1024' height='768'>
+              {({ ref, open }) => (
+                <img
+                  className='max-w-full rounded-lg'
+                  src={images[0]}
+                  alt=''
+                  referrerPolicy='no-referrer'
+                  ref={ref}
+                  onClick={open}
+                />
+              )}
+            </Item>
+          </div>
+        </div>
+      </Gallery>
     )
   }
   if (images.length === 2) {
     return (
-      <div className='py-4'>
-        <div className='flex justify-between gap-1'>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-          </a>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover rounded-tr-lg' src={images[1]} />
-          </a>
+      <Gallery
+        options={{
+          showHideAnimationType: 'none',
+          showAnimationDuration: 0,
+          hideAnimationDuration: 0,
+          clickToCloseNonZoomable: false,
+          secondaryZoomLevel: 4,
+          maxZoomLevel: 10,
+          counter: false
+        }}
+      >
+        <div className='py-4'>
+          <div className='flex justify-between gap-1'>
+            <div className='flex'>
+              <Item original={images[0]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover rounded-tl-lg'
+                    src={images[0]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+            </div>
+            <div className='flex'>
+              <Item original={images[1]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover rounded-tr-lg'
+                    src={images[1]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+            </div>
+          </div>
         </div>
-      </div>
+      </Gallery>
     )
   }
   if (images.length === 3) {
     return (
-      <div className='py-4'>
-        <div className='flex justify-between gap-1 mb-1'>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-          </a>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover' src={images[1]} />
-          </a>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
-          </a>
+      <Gallery
+        options={{
+          showHideAnimationType: 'none',
+          showAnimationDuration: 0,
+          hideAnimationDuration: 0,
+          clickToCloseNonZoomable: false,
+          secondaryZoomLevel: 4,
+          maxZoomLevel: 10,
+          counter: false
+        }}
+      >
+        <div className='py-4'>
+          <div className='flex justify-between gap-1 mb-1'>
+            <div className='flex'>
+              <Item original={images[0]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover rounded-tl-lg'
+                    src={images[0]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+              {/* <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} /> */}
+            </div>
+            <div className='flex'>
+              <Item original={images[1]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover'
+                    src={images[1]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+              {/* <img className='max-w-full object-cover' src={images[1]} /> */}
+            </div>
+            <div className='flex' href='#'>
+              <Item original={images[2]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover rounded-tr-lg'
+                    src={images[2]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+              {/* <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} /> */}
+            </div>
+          </div>
         </div>
-      </div>
+      </Gallery>
     )
   }
   if (images.length === 4) {
     return (
-      <div className='py-4'>
-        <div className='flex justify-between gap-1'>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-          </a>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover' src={images[1]} />
-          </a>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover rounded-br-lg' src={images[3]} />
-          </a>
-          <a className='flex' href='#'>
-            <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
-          </a>
+      <Gallery
+        options={{
+          showHideAnimationType: 'none',
+          showAnimationDuration: 0,
+          hideAnimationDuration: 0,
+          clickToCloseNonZoomable: false,
+          secondaryZoomLevel: 4,
+          maxZoomLevel: 10,
+          counter: false
+        }}
+      >
+        <div className='py-4'>
+          <div className='flex justify-between gap-1'>
+            <div className='flex'>
+              <Item original={images[0]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover rounded-tl-lg'
+                    src={images[0]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+              {/* <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} /> */}
+            </div>
+            <div className='flex'>
+              <Item original={images[1]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover'
+                    src={images[1]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+              {/* <img className='max-w-full object-cover' src={images[1]} /> */}
+            </div>
+            <div className='flex'>
+              <Item original={images[2]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover '
+                    src={images[2]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+              {/* <img className='max-w-full object-cover  rounded-br-lg' src={images[3]} /> */}
+            </div>
+            <div className='flex'>
+              <Item original={images[3]} width='1024' height='768'>
+                {({ ref, open }) => (
+                  <img
+                    className='max-w-full object-cover rounded-tr-lg'
+                    src={images[3]}
+                    alt=''
+                    referrerPolicy='no-referrer'
+                    ref={ref}
+                    onClick={open}
+                  />
+                )}
+              </Item>
+              {/* <img className='max-w-full object-cover rounded-tr-lg ' src={images[3]} /> */}
+            </div>
+          </div>
+          <div className='flex justify-between gap-1'></div>
         </div>
-        <div className='flex justify-between gap-1'></div>
-      </div>
+      </Gallery>
     )
   }
   return (
-    <div className='py-4'>
-      <div className='flex justify-between gap-1 mb-1'>
-        <a className='flex' href='#'>
-          <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-        </a>
-        <a className='flex' href='#'>
-          <img className='max-w-full object-cover' src={images[1]} />
-        </a>
-        <a className='flex' href='#'>
-          <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
-        </a>
+    <Gallery
+      options={{
+        showHideAnimationType: 'none',
+        showAnimationDuration: 0,
+        hideAnimationDuration: 0,
+        clickToCloseNonZoomable: false,
+        secondaryZoomLevel: 4,
+        maxZoomLevel: 10,
+        counter: false
+      }}
+    >
+      <div className='py-4'>
+        <div className='flex justify-between gap-1 mb-1'>
+          <div className='flex'>
+            <Item original={images[0]} width='1024' height='768'>
+              {({ ref, open }) => (
+                <img
+                  className='max-w-full object-cover rounded-tl-lg'
+                  src={images[0]}
+                  alt=''
+                  referrerPolicy='no-referrer'
+                  ref={ref}
+                  onClick={open}
+                />
+              )}
+            </Item>
+            {/* <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} /> */}
+          </div>
+          <div className='flex'>
+            <Item original={images[1]} width='1024' height='768'>
+              {({ ref, open }) => (
+                <img
+                  className='max-w-full object-cover'
+                  src={images[1]}
+                  alt=''
+                  referrerPolicy='no-referrer'
+                  ref={ref}
+                  onClick={open}
+                />
+              )}
+            </Item>
+            {/* <img className='max-w-full object-cover' src={images[1]} /> */}
+          </div>
+          <div className='flex'>
+            <Item original={images[2]} width='1024' height='768'>
+              {({ ref, open }) => (
+                <img
+                  className='max-w-full object-cover rounded-tr-lg'
+                  src={images[2]}
+                  alt=''
+                  referrerPolicy='no-referrer'
+                  ref={ref}
+                  onClick={open}
+                />
+              )}
+            </Item>
+            {/* <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} /> */}
+          </div>
+        </div>
+        <div className='flex justify-between gap-1'>
+          <div className='flex'>
+            <Item original={images[3]} width='1024' height='768'>
+              {({ ref, open }) => (
+                <img
+                  className='max-w-full object-cover rounded-bl-lg'
+                  src={images[3]}
+                  alt=''
+                  referrerPolicy='no-referrer'
+                  ref={ref}
+                  onClick={open}
+                />
+              )}
+            </Item>
+            {/* <img className='max-w-full object-cover rounded-bl-lg' src={images[3]} /> */}
+          </div>
+          <div className='flex'>
+            <Item original={images[4]} width='1024' height='768'>
+              {({ ref, open }) => (
+                <img
+                  className='max-w-full object-cover rounded-br-lg'
+                  src={images[4]}
+                  alt=''
+                  referrerPolicy='no-referrer'
+                  ref={ref}
+                  onClick={open}
+                />
+              )}
+            </Item>
+            {/* <img className='max-w-full object-cover rounded-br-lg' src={images[4]} /> */}
+          </div>
+        </div>
       </div>
-      <div className='flex justify-between gap-1'>
-        <a className='flex' href='#'>
-          <img className='max-w-full object-cover rounded-bl-lg' src={images[3]} />
-        </a>
-        <a className='flex' href='#'>
-          <img className='max-w-full object-cover rounded-br-lg' src={images[4]} />
-        </a>
-      </div>
-    </div>
+    </Gallery>
   )
 }

@@ -44,7 +44,6 @@ export default function Comments({ post }) {
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = lastPage.data.result.comments.length ? allPages.length + 1 : undefined
-      console.log(nextPage)
       return nextPage
     },
     placeholderData: keepPreviousData

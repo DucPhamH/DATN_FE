@@ -13,6 +13,7 @@ import Comments from '../../../pages/Home/components/Comments'
 import ModalSharePost from '../../../pages/Home/components/ModalSharePost'
 import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreContent'
 import { useNavigate } from 'react-router-dom'
+import ThreeDotPost from '../../../pages/Home/components/ThreeDotPost'
 
 export default function PostCard({ innerRef, data }) {
   const [openComment, setOpenComment] = useState(false)
@@ -60,15 +61,15 @@ export default function PostCard({ innerRef, data }) {
   }
 
   return (
-    <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-slate-900 flex flex-col bg-clip-border'>
+    <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-color-primary flex flex-col bg-clip-border'>
       <CheckTypeOfPost data={data} navigate={navigate} />
       <div className='px-4 md:px-0' ref={innerRef}>
         <div className='flex justify-between items-center'>
-          <a className='inline-flex items-center' href='#'>
-            <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={25} />
-            <span className='text-lg font-bold'>{data.like_count}</span>
-            <span className='ml-3'>Lượt thích</span>
-          </a>
+          <div className='inline-flex items-center'>
+            <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={20} />
+            <span className='font-bold'>{data.like_count}</span>
+            <span className='ml-1 md:ml-2'>Lượt thích</span>
+          </div>
           <div className='flex gap-3 items-center'>
             <div>{data.comment_count} bình luận</div>
             <div>{data.share_count} lượt chia sẻ</div>
@@ -144,17 +145,18 @@ function CheckTypeOfPost({ data, navigate }) {
           <div className='flex gap-1 items-center'>
             <div
               onClick={() => navigate(`/post/${data._id}`)}
-              className='text-sm font-medium transition-all hover:text-blue-400 cursor-pointer'
+              className='text-xs md:text-sm font-medium transition-all hover:text-blue-400 cursor-pointer'
             >
-              Xem bài viết
+              Xem thêm
             </div>
-            <button
+            <ThreeDotPost userID={data.user._id} />
+            {/* <button
               className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
          hover:text-red-600 dark:hover:text-red-600  dark:text-white'
               type='button'
             >
               <BiDotsHorizontalRounded />
-            </button>
+            </button> */}
           </div>
         </div>
         <ShowMoreContent className='px-4 text-sm whitespace-pre-line pb-5 md:px-0'>
@@ -188,17 +190,18 @@ function CheckTypeOfPost({ data, navigate }) {
         <div className='flex gap-1 items-center'>
           <div
             onClick={() => navigate(`/post/${data._id}`)}
-            className='text-sm font-medium transition-all hover:text-blue-400 cursor-pointer'
+            className='text-xs md:text-sm font-medium transition-all hover:text-blue-400 cursor-pointer'
           >
-            Xem bài viết
+            Xem thêm
           </div>
-          <button
+          <ThreeDotPost userID={data.user._id} />
+          {/* <button
             className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
          hover:text-red-600 dark:hover:text-red-600  dark:text-white'
             type='button'
           >
             <BiDotsHorizontalRounded />
-          </button>
+          </button> */}
         </div>
       </div>
       <ShowMoreContent className='px-4  whitespace-pre-line text-sm pb-5 md:px-0'>

@@ -1,25 +1,9 @@
-// import { BsFillImageFill, BsFillSunFill } from 'react-icons/bs'
-// import useravatar from '../../assets/images/useravatar.jpg'
-// import { MdNightlight } from 'react-icons/md'
-// import { FaCloudSun } from 'react-icons/fa'
-// import { PiClockAfternoonFill } from 'react-icons/pi'
-// import PostCard from '../../components/CardComponents/PostCard'
 import { useParams } from 'react-router-dom'
 import BlogCard from '../../components/CardComponents/BlogCard'
 import { useQuery } from '@tanstack/react-query'
 import { getPost } from '../../apis/postApi'
 import LoadingHome from '../Home/components/LoadingHome'
 import PostCardInfo from '../../components/CardComponents/PostCardInfo'
-// import { AiOutlineArrowUp } from 'react-icons/ai'
-// import { useContext, useEffect, useState } from 'react'
-
-// import ModalUploadPost from './components/ModalUploadPost'
-// import { getNewsFeed } from '../../apis/postApi'
-// import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
-// import { useInView } from 'react-intersection-observer'
-// import LoadingHome from './components/LoadingHome'
-// import { AppContext } from '../../contexts/app.context'
-// import Loading from '../../components/GlobalComponents/Loading'
 
 const blogItems = [
   {
@@ -44,7 +28,6 @@ const blogItems = [
 ]
 export default function PostInfo() {
   const { id } = useParams()
-  console.log(id)
   const { data, status } = useQuery({
     queryKey: ['post-info', id],
     queryFn: () => {
@@ -52,38 +35,6 @@ export default function PostInfo() {
     }
   })
   const post = data?.data.result[0]
-  console.log(post)
-  //   const { ref, inView } = useInView()
-  //   const fetchNewsFeed = async ({ pageParam }) => {
-  //     return await getNewsFeed({ page: pageParam })
-  //   }
-
-  //   const { data, status, fetchNextPage, isFetchingNextPage, hasNextPage } = useInfiniteQuery({
-  //     queryKey: ['newFeeds'],
-  //     queryFn: fetchNewsFeed,
-  //     initialPageParam: 1,
-  //     getNextPageParam: (lastPage, allPages) => {
-  //       const nextPage = lastPage.data.result.newFeeds.length ? allPages.length + 1 : undefined
-  //       return nextPage
-  //     },
-  //     placeholderData: keepPreviousData,
-  //     staleTime: 1000 * 60 * 5
-  //   })
-
-  //   const content = data?.pages.map((dataNewFeeds) =>
-  //     dataNewFeeds.data.result.newFeeds.map((newFeed, index) => {
-  //       if (dataNewFeeds.data.result.newFeeds.length == index + 1) {
-  //         return <PostCard innerRef={ref} key={newFeed._id} data={newFeed} />
-  //       }
-  //       return <PostCard key={newFeed._id} data={newFeed} />
-  //     })
-  //   )
-
-  //   useEffect(() => {
-  //     if (inView && hasNextPage) {
-  //       fetchNextPage()
-  //     }
-  //   }, [inView, hasNextPage, fetchNextPage])
 
   if (status === 'pending') {
     return <LoadingHome />
@@ -98,14 +49,14 @@ export default function PostInfo() {
   }
   return (
     <>
-      <div className=' grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
-        <div className='col-span-3'>
+      <div className='grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
+        <div className='col-span-3 h-screen'>
           <div className='my-3'>
             <PostCardInfo data={post} />
           </div>
         </div>
         <div className='hidden xl:block col-span-2'>
-          <div className='w-full shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
+          <div className='w-full shadow bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Tin tức mới nhất
             </div>

@@ -114,7 +114,7 @@ export default function Home() {
     <>
       <div className=' grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
         <div className='col-span-3'>
-          <div className='bg-white py-2 px-4  shadow md:rounded-md dark:bg-slate-900'>
+          <div className='bg-white py-2 px-4  shadow md:rounded-md dark:bg-color-primary'>
             <div>{checkTime(profile)}</div>
             <div className='flex justify-between items-center gap-2 md:gap-4 w-full'>
               <div className='w-8 h-8 md:w-10 overflow-hidden md:h-10 rounded-full cursor-pointer'>
@@ -150,7 +150,7 @@ export default function Home() {
           </div>
         </div>
         <div className='hidden xl:block col-span-2'>
-          <div className='w-full mb-2 shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
+          <div className='w-full mb-2 shadow bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Bạn có thể biết!
             </div>
@@ -253,7 +253,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className='w-full shadow bg-white rounded-lg dark:bg-slate-900 dark:border-none'>
+          <div className='w-full shadow bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Tin tức mới nhất
             </div>

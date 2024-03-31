@@ -28,7 +28,6 @@ export default function useRouteElement() {
 
   function RejectedRoute() {
     const { isAuthenticated } = useContext(AppContext)
-    console.log(isAuthenticated)
     return !isAuthenticated ? <Outlet /> : <Navigate to='/home' />
   }
   const routeElement = useRoutes([
