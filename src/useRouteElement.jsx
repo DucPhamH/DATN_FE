@@ -18,6 +18,7 @@ const FitnessCaculator = lazy(() => import('./pages/FitnessCaculator'))
 const Cooking = lazy(() => import('./pages/Cooking'))
 const CookingFood = lazy(() => import('./pages/CookingFood'))
 const Blog = lazy(() => import('./pages/Blog'))
+const PostInfo = lazy(() => import('./pages/PostInfo'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -54,7 +55,6 @@ export default function useRouteElement() {
             </AuthLayout>
           )
         },
-
         {
           path: '/register',
           element: (
@@ -82,6 +82,16 @@ export default function useRouteElement() {
             <MainLayout>
               <Suspense>
                 <Home />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: '/post/:id',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <PostInfo />
               </Suspense>
             </MainLayout>
           )

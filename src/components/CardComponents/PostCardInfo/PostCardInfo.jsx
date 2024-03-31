@@ -12,12 +12,10 @@ import { queryClient } from '../../../main'
 import Comments from '../../../pages/Home/components/Comments'
 import ModalSharePost from '../../../pages/Home/components/ModalSharePost'
 import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreContent'
-import { useNavigate } from 'react-router-dom'
 
-export default function PostCard({ innerRef, data }) {
+export default function PostCardInfo({ data }) {
   const [openComment, setOpenComment] = useState(false)
   const [openSharePost, setOpenSharePost] = useState(false)
-  const navigate = useNavigate()
 
   const handleCloseSharePost = () => {
     setOpenSharePost(false)
@@ -61,8 +59,8 @@ export default function PostCard({ innerRef, data }) {
 
   return (
     <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-slate-900 flex flex-col bg-clip-border'>
-      <CheckTypeOfPost data={data} navigate={navigate} />
-      <div className='px-4 md:px-0' ref={innerRef}>
+      <CheckTypeOfPost data={data} />
+      <div className='px-4 md:px-0'>
         <div className='flex justify-between items-center'>
           <a className='inline-flex items-center' href='#'>
             <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={25} />
@@ -116,7 +114,7 @@ export default function PostCard({ innerRef, data }) {
   )
 }
 
-function CheckTypeOfPost({ data, navigate }) {
+function CheckTypeOfPost({ data }) {
   if (data.type === 0) {
     return (
       <>
@@ -141,26 +139,18 @@ function CheckTypeOfPost({ data, navigate }) {
               </div>
             </div>
           </div>
-          <div className='flex gap-1 items-center'>
-            <div
-              onClick={() => navigate(`/post/${data._id}`)}
-              className='text-sm font-medium transition-all hover:text-blue-400 cursor-pointer'
-            >
-              Xem bài viết
-            </div>
-            <button
-              className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
+          <button
+            className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
          hover:text-red-600 dark:hover:text-red-600  dark:text-white'
-              type='button'
-            >
-              <BiDotsHorizontalRounded />
-            </button>
-          </div>
+            type='button'
+          >
+            <BiDotsHorizontalRounded />
+          </button>
         </div>
-        <ShowMoreContent className='px-4 text-sm whitespace-pre-line pb-5 md:px-0'>
+        <ShowMoreContent className='px-4  text-sm whitespace-pre-line pb-5 md:px-0'>
           <p className=''>{data.content}</p>
         </ShowMoreContent>
-        <CheckLengthOfImages navigate={navigate} data={data} images={data.images} />
+        <CheckLengthOfImages images={data.images} />
       </>
     )
   }
@@ -185,23 +175,15 @@ function CheckTypeOfPost({ data, navigate }) {
             </div>
           </div>
         </div>
-        <div className='flex gap-1 items-center'>
-          <div
-            onClick={() => navigate(`/post/${data._id}`)}
-            className='text-sm font-medium transition-all hover:text-blue-400 cursor-pointer'
-          >
-            Xem bài viết
-          </div>
-          <button
-            className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
-         hover:text-red-600 dark:hover:text-red-600  dark:text-white'
-            type='button'
-          >
-            <BiDotsHorizontalRounded />
-          </button>
-        </div>
+        <button
+          className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
+   hover:text-red-600 dark:hover:text-red-600  dark:text-white'
+          type='button'
+        >
+          <BiDotsHorizontalRounded />
+        </button>
       </div>
-      <ShowMoreContent className='px-4  whitespace-pre-line text-sm pb-5 md:px-0'>
+      <ShowMoreContent className='px-4 whitespace-pre-line  text-sm pb-5 md:px-0'>
         <p className=''>{data.content}</p>
       </ShowMoreContent>
       <div className='border mt-2 mb-2 dark:border-gray-700 border-red-200 '></div>
@@ -230,96 +212,96 @@ function CheckTypeOfPost({ data, navigate }) {
       <ShowMoreContent className='px-4 whitespace-pre-line text-sm pb-5 md:px-0'>
         <p className=''>{data.parent_post.content}</p>
       </ShowMoreContent>
-      <CheckLengthOfImages navigate={navigate} data={data.parent_post} images={data.parent_images} />
+      <CheckLengthOfImages images={data.parent_images} />
     </>
   )
 }
 
-function CheckLengthOfImages({ images, navigate, data }) {
+function CheckLengthOfImages({ images }) {
   if (images.length === 0) {
     return <div className='pt-5'></div>
   }
   if (images.length === 1) {
     return (
-      <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
-        <div className='flex'>
+      <div className='py-4'>
+        <a className='flex' href='#'>
           <img className='max-w-full rounded-lg' src={images[0]} />
-        </div>
+        </a>
       </div>
     )
   }
   if (images.length === 2) {
     return (
-      <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
+      <div className='py-4'>
         <div className='flex justify-between gap-1'>
-          <div className='flex'>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-          </div>
-          <div className='flex'>
+          </a>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover rounded-tr-lg' src={images[1]} />
-          </div>
+          </a>
         </div>
       </div>
     )
   }
   if (images.length === 3) {
     return (
-      <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
+      <div className='py-4'>
         <div className='flex justify-between gap-1 mb-1'>
-          <div className='flex'>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-          </div>
-          <div className='flex'>
+          </a>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover' src={images[1]} />
-          </div>
-          <div className='flex'>
+          </a>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
-          </div>
+          </a>
         </div>
       </div>
     )
   }
   if (images.length === 4) {
     return (
-      <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
+      <div className='py-4'>
         <div className='flex justify-between gap-1'>
-          <div className='flex'>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-          </div>
-          <div className='flex'>
+          </a>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover' src={images[1]} />
-          </div>
-          <div className='flex'>
+          </a>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover rounded-br-lg' src={images[3]} />
-          </div>
-          <div className='flex'>
+          </a>
+          <a className='flex' href='#'>
             <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
-          </div>
+          </a>
         </div>
         <div className='flex justify-between gap-1'></div>
       </div>
     )
   }
   return (
-    <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
+    <div className='py-4'>
       <div className='flex justify-between gap-1 mb-1'>
-        <div className='flex'>
+        <a className='flex' href='#'>
           <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
-        </div>
-        <div className='flex'>
+        </a>
+        <a className='flex' href='#'>
           <img className='max-w-full object-cover' src={images[1]} />
-        </div>
-        <div className='flex'>
+        </a>
+        <a className='flex' href='#'>
           <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
-        </div>
+        </a>
       </div>
       <div className='flex justify-between gap-1'>
-        <div className='flex'>
+        <a className='flex' href='#'>
           <img className='max-w-full object-cover rounded-bl-lg' src={images[3]} />
-        </div>
-        <div className='flex'>
+        </a>
+        <a className='flex' href='#'>
           <img className='max-w-full object-cover rounded-br-lg' src={images[4]} />
-        </div>
+        </a>
       </div>
     </div>
   )

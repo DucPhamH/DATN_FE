@@ -1,6 +1,6 @@
 import useravatar from '../../../../assets/images/useravatar.jpg'
 import { MdEmojiEmotions } from 'react-icons/md'
-import { createContext, useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import moment from 'moment'
@@ -43,6 +43,7 @@ export default function ModalSharePost({ handleCloseSharePost, post }) {
       onSuccess: () => {
         toast.success('Chia sẻ bài viết thành công')
         // queryClient.invalidateQueries('newsFeed')
+        setContent('')
         handleCloseSharePost()
       },
       onError: () => {
