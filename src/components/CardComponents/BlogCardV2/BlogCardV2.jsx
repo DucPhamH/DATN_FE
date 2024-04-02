@@ -21,9 +21,6 @@ export default function BlogCardV2({ blogItem, imgClass, dateClass, titleClass, 
         <p className={descriptionClass}>{blogItem.description}</p>
         <div className='flex justify-between items-center'>
           <a href='#blog' className={linkClass}>
-            <span className=' text-sm font-normal transition-all duration-200 text-red-600 dark:text-gray-300 dark:border-none dark:bg-gray-800 hover:text-red-800 dark:hover:text-red-400 p-1 border rounded border-red-500'>
-              + Lưu lại
-            </span>
             <span className='ml-1 text-sm font-medium text-gray-400'>13k lượt lưu</span>
           </a>
           <div className='flex items-center'>

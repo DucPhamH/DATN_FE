@@ -50,7 +50,7 @@ export default function PostInfo() {
   return (
     <>
       <div className='grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
-        <div className='col-span-3 h-screen'>
+        <div className='col-span-3 h-full'>
           <div className='my-3'>
             <PostCardInfo data={post} />
           </div>

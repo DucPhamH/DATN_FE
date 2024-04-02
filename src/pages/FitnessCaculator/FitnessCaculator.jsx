@@ -15,7 +15,7 @@ const finessItems = [
     name: 'Tính chỉ số BMI',
     image: BMI,
     description: 'Body Mass Index Caculator',
-    link: '/fitness/bmi',
+    link: '/fitness/fitness-caculator/BMI',
     color: 'bg-orange-500'
   },
   {

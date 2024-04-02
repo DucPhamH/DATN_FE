@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 
@@ -45,7 +45,6 @@ export default function InputEmoji({ content, setContent, handleCreateComment })
           <path d='M2,21L23,12L2,3V10L17,12L2,14V21Z' />
         </svg>
       </span>
-
       {showEmoji && (
         <div className='absolute right-20 bottom-0'>
           <Picker

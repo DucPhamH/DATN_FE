@@ -86,9 +86,9 @@ export default function Home() {
 
   const content = data?.pages.map((dataNewFeeds) =>
     dataNewFeeds.data.result.newFeeds.map((newFeed, index) => {
-      if (dataNewFeeds.data.result.newFeeds.length == index + 1) {
-        return <PostCard innerRef={ref} key={newFeed._id} data={newFeed} />
-      }
+      // if (dataNewFeeds.data.result.newFeeds.length == index + 1) {
+      //   return <PostCard innerRef={ref} key={newFeed._id} data={newFeed} />
+      // }
       return <PostCard key={newFeed._id} data={newFeed} />
     })
   )
@@ -146,7 +146,7 @@ export default function Home() {
           </div>
           <div className='my-3'>
             {content}
-            {isFetchingNextPage && <Loading />}
+            <div ref={ref}>{isFetchingNextPage && <Loading />}</div>
           </div>
         </div>
         <div className='hidden xl:block col-span-2'>

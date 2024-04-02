@@ -115,6 +115,9 @@ input:-webkit-autofill:active {
   transform: translate(-50%, -50%);
   padding: 15px 16px;
   border-radius: 10px;
+
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
 }
 
 /* .badge {

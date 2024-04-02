@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import useravatar from '../../../assets/images/useravatar.jpg'
-import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiFillHeart } from 'react-icons/ai'
 import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'
@@ -15,7 +14,7 @@ import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreCont
 import { useNavigate } from 'react-router-dom'
 import ThreeDotPost from '../../../pages/Home/components/ThreeDotPost'
 
-export default function PostCard({ innerRef, data }) {
+export default function PostCard({ data }) {
   const [openComment, setOpenComment] = useState(false)
   const [openSharePost, setOpenSharePost] = useState(false)
   const navigate = useNavigate()
@@ -63,7 +62,7 @@ export default function PostCard({ innerRef, data }) {
   return (
     <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-color-primary flex flex-col bg-clip-border'>
       <CheckTypeOfPost data={data} navigate={navigate} />
-      <div className='px-4 md:px-0' ref={innerRef}>
+      <div className='px-4 md:px-0'>
         <div className='flex justify-between items-center'>
           <div className='inline-flex items-center'>
             <AiFillHeart className='mr-1 text-red-500 dark:text-pink-600 ' size={20} />
@@ -150,13 +149,6 @@ function CheckTypeOfPost({ data, navigate }) {
               Xem thêm
             </div>
             <ThreeDotPost userID={data.user._id} />
-            {/* <button
-              className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
-         hover:text-red-600 dark:hover:text-red-600  dark:text-white'
-              type='button'
-            >
-              <BiDotsHorizontalRounded />
-            </button> */}
           </div>
         </div>
         <ShowMoreContent className='px-4 text-sm whitespace-pre-line pb-5 md:px-0'>
@@ -195,13 +187,6 @@ function CheckTypeOfPost({ data, navigate }) {
             Xem thêm
           </div>
           <ThreeDotPost userID={data.user._id} />
-          {/* <button
-            className='flex relative items-center transition-all duration-700 text-2xl px-2 font-medium text-gray-900 rounded-full
-         hover:text-red-600 dark:hover:text-red-600  dark:text-white'
-            type='button'
-          >
-            <BiDotsHorizontalRounded />
-          </button> */}
         </div>
       </div>
       <ShowMoreContent className='px-4  whitespace-pre-line text-sm pb-5 md:px-0'>
