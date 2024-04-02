@@ -1,6 +1,7 @@
 import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import Input from '../../components/InputComponents/Input'
 
 export default function BMI() {
   return (
@@ -15,7 +16,9 @@ export default function BMI() {
                     CÁCH TÍNH VÀ Ý NGHĨA CỦA CHỈ SỐ BMI TRONG ĐÁNH GIÁ TÌNH TRẠNG CƠ THỂ
                   </h1>
                   <div className='flex items-center'>
-                    <IoTimeOutline className='mr-1' /> 02/04/2024
+                    Viết bởi: <span className='font-semibold text-red-600 dark:text-pink-400 ml-1'>Cook</span>
+                    <span className='font-semibold'>Healthy</span>
+                    <IoTimeOutline className='mr-1 ml-2' /> 02/04/2024
                   </div>
                 </header>
                 <div className='font-medium'>Xem thêm các công thức tính khác:</div>
@@ -45,13 +48,13 @@ export default function BMI() {
                   tế thế giới (WHO) dành cho người Châu Âu lẫn số liệu của Hiệp hội đái đường các nước Châu Á dành cho
                   người Châu Á.
                 </p>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://cdn.tgdd.vn//News/1180083//cach-tinh-ti-le-co-the-giup-ban-xac-dinh-voc-dang-cua-minh-chuan-khong3-800x450.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
 
                 <p className='mt-2 font-medium dark:text-gray-300'>Cụ thể cách tính như sau: </p>
                 <div className='mb-3 mx-5'>
@@ -60,13 +63,13 @@ export default function BMI() {
                   </p>
                   <p className='dark:text-gray-300'>(Trong đó chiều cao tính đơn vị mét, cân nặng tính theo kg.)</p>
                 </div>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://cdn.tgdd.vn/Files/2020/08/10/1278602/cach-tinh-chi-so-bmi-cua-co-the-1_800x450.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
 
                 <p>
                   Chỉ số BMI càng cao thì lượng mỡ trong cơ thể càng nhiều, dẫn tới nhiều nguy cơ phát sinh bệnh lý, vấn
@@ -85,13 +88,13 @@ export default function BMI() {
                   được sử dụng trong y tế và sức khỏe, áp dụng rộng rãi trên toàn thế giới.
                 </p>
                 <h2 className='font-bold text-xl my-3 dark:text-gray-300'>2. Ý nghĩa của chỉ số BMI</h2>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://shopmyphamhn.com/ckfinder/userfiles/images/257209067_140025038360142_8998998080792324161_n.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
                 <p>
                   Như vậy, với người Việt Nam, chỉ số BMI lý tưởng là từ 18,5 - 22,9. Nếu chỉ BMI dưới 18.5 thì đây là
                   dấu hiệu bạn bị thiếu cân, cần tập thể thao và thực hiện chế độ ăn uống nghỉ ngơi tốt. Chỉ số BMI lớn
@@ -115,13 +118,13 @@ export default function BMI() {
                   <li className='ml-6'>{`35 < BMI < 39.9: Béo phì cấp độ II `}</li>
                   <li className='ml-6'>{`BMI >= 40: Béo phì cấp độ III`}</li>
                 </ul>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://medlatec.vn/ImagePath/images/20200705/20200705_chi-so-bmi-3.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
                 <h2 className='font-bold text-lg my-3 dark:text-gray-300'>2.2. Chỉ số BMI chuẩn cho nữ giới</h2>
                 <p className='font-medium'>Phân loại chỉ số BMI ở nữ giới</p>
                 <ul className='list-disc'>
@@ -143,38 +146,38 @@ export default function BMI() {
                   so với số liệu chỉ số BMI của người Châu Á. Nếu kết quả không nằm trong vùng an toàn - người bình
                   thường thì cần thay đổi lối sống, lối sinh hoạt và dinh dưỡng.
                 </p>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://khoinguonsangtao.vn/wp-content/uploads/2022/11/cach-lam-gio-trai-cay-chon-hoa-qua.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
                 <p>
                   Đặc biệt với người nằm trong nhóm tiền béo phì đến béo phì cấp độ 3 có thể áp dụng một số cách sau để
                   điều chỉnh:
                 </p>
                 <h2 className='font-bold text-lg my-3 dark:text-gray-300'>3.1. Chế độ ăn uống</h2>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://www.linhchikhangnam.com/wp-content/uploads/2020/10/woman-eating-salad.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
                 <p>
                   Cắt giảm lượng calo tiêu thụ hằng ngày, đặc biệt là những đồ uống, đồ ăn có nhiều đường như trà ngọt,
                   nước ngọt, bánh kẹo,… Đường trong các loại thực phẩm này thường khiến cơ thể dư thừa đường và năng
                   lượng, gây tích tụ mỡ thừa cơ thể.
                 </p>
                 <h2 className='font-bold text-lg my-3 dark:text-gray-300'>3.2. Tập thể dục</h2>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://images2.thanhnien.vn/zoom/622_389/Uploaded/congthang/2021_08_10/hittho_jnzz_utvx_RHVA.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
                 <p>
                   Thống kê cho thấy, những người giảm cân hiệu quả và những người duy trì chỉ số BMI lý tưởng đều thường
                   dành từ 30 - 90 phút mỗi ngày, tất cả các ngày trong tuần để tăng cường sức khỏe chung của cơ thể,
@@ -182,26 +185,26 @@ export default function BMI() {
                   chứng trầm cảm, stress và các bệnh lý nguy cơ như: bệnh tim mạch, ung thư ruột, tiểu đường,…
                 </p>
                 <h2 className='font-bold text-lg my-3 dark:text-gray-300'>3.3. Uống thuốc giảm cân</h2>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://cdn.nhathuoclongchau.com.vn/unsafe/800x0/filters:quality(95)/https://cms-prod.s3-sgn09.fptcloud.com/cac_loai_thuoc_giam_can_an_toan_hieu_qua_duoc_bac_si_khuyen_dung_4_8ffe586ebe.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
                 <p>
                   Ở một số người béo phì cấp độ nặng cần can thiệp sớm hoặc chế độ dinh dưỡng và luyện tập không giúp
                   giảm cân hiệu quả thì thuốc giảm cân cũng được nhiều người lựa chọn. Thuốc giảm cân giúp giảm cân nặng
                   nhanh hơn, ngừa nguy cơ mắc bệnh lý nguy hiểm.
                 </p>
                 <h2 className='font-bold text-lg my-3 dark:text-gray-300'>3.4. Phẫu thuật</h2>
-                <figure className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://www.vinmec.com/s3-images/20191003_161115_301829_phau-thuat-giam-can.max-800x800.jpg'
-                    alt
+                    alt=''
                   />
-                </figure>
+                </div>
                 <p>
                   Đây là biện pháp mạnh mẽ cuối cùng để giảm mỡ thừa và cân nặng đáng kể khi các phương pháp kia không
                   hiệu quả hoặc biến chứng nguy hiểm đã xảy ra. Tuy nhiên cần cân nhắc thực hiện và chọn địa chỉ uy tín.
@@ -214,30 +217,55 @@ export default function BMI() {
           </main>
         </div>
         <div className='col-span-6 my-3 xl:my-0 xl:col-span-2'>
-          <div className=' shadow  bg-white rounded-lg dark:bg-color-primary dark:border-none'>
-            <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-              Tin tức mới nhất
+          <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
+            <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
+              Tính toán BMI <p className='text-base text-black dark:text-gray-300'>(Theo hệ kilogram và mét)</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <div className='p-3'>
-              {/* {blogItems.map((blogItem) => {
-                return (
-                  <div className='mb-2 mx-5' key={blogItem.id}>
-                    <BlogCard
-                      blogItem={blogItem}
-                      imgClass='lg:h-[32vh] rounded-t-xl scale-100 overflow-hidden'
-                      dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                      titleClass=' font-bold hover:text-color-secondary'
-                      descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
-                      linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
-                    />
-                  </div>
-                )
-              })} */}
-              <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
-                Xem thêm bài viết...
+            <form className='p-3'>
+              <Input
+                title='Nhập cân nặng (kg)'
+                type='number'
+                name='weight'
+                id='weight'
+                placeholder='Nhập cân nặng của bạn'
+              />
+              <Input
+                title='Nhập chiều cao (m)'
+                type='number'
+                name='height'
+                id='height'
+                placeholder='Nhập chiều cao của bạn'
+              />
+              <div className='flex justify-center'>
+                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
               </div>
+            </form>
+          </div>
+          <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
+            <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
+              Tính toán BMI <p className='text-base text-black dark:text-gray-300'>(Theo hệ pound và inch)</p>
             </div>
+            <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
+            <form className='p-3'>
+              <Input
+                title='Nhập cân nặng (pound)'
+                type='number'
+                name='pound'
+                id='pound'
+                placeholder='Nhập cân nặng của bạn'
+              />
+              <Input
+                title='Nhập chiều cao (inch)'
+                type='number'
+                name='inch'
+                id='inch'
+                placeholder='Nhập chiều cao của bạn'
+              />
+              <div className='flex justify-center'>
+                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>

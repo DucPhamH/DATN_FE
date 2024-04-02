@@ -79,7 +79,12 @@ const finessItems = [
 export default function FitnessCaculator() {
   return (
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
-      <h2 className='text-xl font-semibold mx-3 text-red-700 dark:text-gray-300'>Công cụ tính toán</h2>
+      <div className='mb-2 mx-3'>
+        <div className='text-xl font-medium mb-2'>
+          <span>Công cụ tính toán </span>
+        </div>
+        <div className='border-b-[3px] mb-2 w-[10%] border-red-300 '></div>
+      </div>
       <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
         <div className='m-1 flex justify-center gap-2'>
           <div className='mt-1'>

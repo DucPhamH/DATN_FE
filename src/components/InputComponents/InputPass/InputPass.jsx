@@ -10,7 +10,7 @@ export default function InputPass({ title, placeholder, register, errors, name }
 
   return (
     <div className='pb-2 relative flex flex-col justify-start'>
-      <label className='text-gray-400 lg:text-red-900 text-left italic'> {title}</label>
+      <label className='text-gray-400 lg:text-red-900 mb-1 text-left italic'> {title}</label>
       <input
         className=' w-full bg-white placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
         type={showPass === false ? 'password' : 'text'}

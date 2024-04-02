@@ -5,9 +5,7 @@ import { FaCloudSun } from 'react-icons/fa'
 import { PiClockAfternoonFill } from 'react-icons/pi'
 import PostCard from '../../components/CardComponents/PostCard'
 import BlogCard from '../../components/CardComponents/BlogCard'
-import { AiOutlineArrowUp } from 'react-icons/ai'
 import { useContext, useEffect, useState } from 'react'
-
 import ModalUploadPost from './components/ModalUploadPost'
 import { getNewsFeed } from '../../apis/postApi'
 import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
@@ -278,16 +276,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-        <div
-          onClick={() => {
-            window.scroll({
-              top: 0,
-              behavior: 'smooth'
-            })
-          }}
-        >
-          <AiOutlineArrowUp className='hidden sm:block fixed bottom-5 right-0 bg-blue-300 text-slate-50 text-5xl p-3 rounded-full mb-2 mr-20 hover:bg-blue-500' />
         </div>
       </div>
       {modalPost && <ModalUploadPost profile={profile} closeModalPost={closeModalPost} />}
