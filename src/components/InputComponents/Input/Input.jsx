@@ -1,7 +1,7 @@
 export default function Input({
   title,
   placeholder,
-  className = 'block bg-white dark:bg-slate-800 dark:border-none w-full placeholder:text-sm px-3 py-2  text-black text-lg border border-gray-300 rounded-lg',
+  className = 'block bg-white dark:bg-slate-800 dark:border-none w-full placeholder:text-sm px-3 py-2  text-black dark:text-gray-400 text-lg border border-gray-300 rounded-lg',
   register = () => {},
   errors,
   type = 'text',

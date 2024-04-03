@@ -23,7 +23,7 @@ const finessItems = [
     name: 'Tính chỉ số Calo',
     image: calo,
     description: 'Calories Caculator',
-    link: '/fitness/calo',
+    link: '/fitness/fitness-caculator/calories',
     color: 'bg-green-500'
   },
   {

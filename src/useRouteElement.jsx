@@ -21,6 +21,8 @@ const Blog = lazy(() => import('./pages/Blog'))
 const PostInfo = lazy(() => import('./pages/PostInfo'))
 const BlogDetail = lazy(() => import('./pages/BlogDetail'))
 const BMI = lazy(() => import('./pages/BMI'))
+const Calories = lazy(() => import('./pages/Calories'))
+
 export default function useRouteElement() {
   function ProtectedRoute() {
     const { isAuthenticated } = useContext(AppContext)
@@ -196,6 +198,16 @@ export default function useRouteElement() {
         <MainLayout>
           <Suspense>
             <BMI />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator/calories',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <Calories />
           </Suspense>
         </MainLayout>
       )
