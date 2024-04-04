@@ -22,6 +22,12 @@ const PostInfo = lazy(() => import('./pages/PostInfo'))
 const BlogDetail = lazy(() => import('./pages/BlogDetail'))
 const BMI = lazy(() => import('./pages/BMI'))
 const Calories = lazy(() => import('./pages/Calories'))
+const BMR = lazy(() => import('./pages/BMR'))
+const BodyFat = lazy(() => import('./pages/BodyFat'))
+const IBW = lazy(() => import('./pages/IBW'))
+const LBM = lazy(() => import('./pages/LBM'))
+const CaloBurned = lazy(() => import('./pages/CaloBurned'))
+const WaterPerDay = lazy(() => import('./pages/WaterPerDay'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -208,6 +214,66 @@ export default function useRouteElement() {
         <MainLayout>
           <Suspense>
             <Calories />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator/BMR',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <BMR />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator/body-fat',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <BodyFat />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator/IBW',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <IBW />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator/LBM',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <LBM />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator/calo-burned',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <CaloBurned />
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'fitness/fitness-caculator/water-need',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <WaterPerDay />
           </Suspense>
         </MainLayout>
       )

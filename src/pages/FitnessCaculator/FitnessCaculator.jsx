@@ -31,7 +31,7 @@ const finessItems = [
     name: 'Tính lượng chất béo',
     image: bodyFat,
     description: 'Body Fat Caculator',
-    link: '/fitness/bodyfat',
+    link: '/fitness/fitness-caculator/body-fat',
     color: 'bg-blue-500'
   },
   {
@@ -39,7 +39,7 @@ const finessItems = [
     name: 'Tính chỉ số BMR',
     image: BMR,
     description: 'Basal Metabolic Rate Caculator',
-    link: '/fitness/bmr',
+    link: '/fitness/fitness-caculator/BMR',
     color: 'bg-teal-500'
   },
   {
@@ -47,7 +47,7 @@ const finessItems = [
     name: 'Tính chỉ số IBW',
     image: IBW,
     description: 'Idea Body Weight Caculator',
-    link: '/fitness/ibw',
+    link: '/fitness/fitness-caculator/IBW',
     color: 'bg-red-700'
   },
   {
@@ -55,7 +55,7 @@ const finessItems = [
     name: 'Tính chỉ số LBM',
     image: LBM,
     description: 'Lean Body Mass Caculator',
-    link: '/fitness/lbm',
+    link: '/fitness/fitness-caculator/LBM',
     color: 'bg-blue-300'
   },
   {
@@ -63,7 +63,7 @@ const finessItems = [
     name: 'Tính lượng Calo đốt cháy',
     image: caloBurned,
     description: 'Calories Burned Caculator',
-    link: '/fitness/caloburned',
+    link: '/fitness/fitness-caculator/calo-burned',
     color: 'bg-pink-500'
   },
   {
@@ -71,7 +71,7 @@ const finessItems = [
     name: 'Tính lượng nước uống',
     image: waterNeed,
     description: 'Water Per Day Caculator',
-    link: '/fitness/waterneed',
+    link: '/fitness/fitness-caculator/water-need',
     color: 'bg-green-800'
   }
 ]
