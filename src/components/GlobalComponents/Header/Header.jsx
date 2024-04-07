@@ -1,5 +1,4 @@
 import SearchInput from './SearchInput'
-import { AiFillMessage } from 'react-icons/ai'
 import { IoMdNotifications } from 'react-icons/io'
 import UserAvatar from './UserAvatar'
 

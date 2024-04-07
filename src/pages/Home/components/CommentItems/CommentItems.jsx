@@ -1,16 +1,28 @@
 import moment from 'moment'
 import useravatar from '../../../../assets/images/useravatar.jpg'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import InputEmoji from '../../../../components/InputComponents/InputEmoji'
 import ShowMoreContent from '../../../../components/GlobalComponents/ShowMoreContent/ShowMoreContent'
 import { createComment, getChildComments } from '../../../../apis/postApi'
 import { keepPreviousData, useInfiniteQuery, useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../../main'
 import { toast } from 'react-toastify'
+import { AppContext } from '../../../../contexts/app.context'
+import { useNavigate } from 'react-router-dom'
 
 export default function CommentItems({ comment }) {
   const [showReply, setShowReply] = useState(false)
   const [content, setContent] = useState('')
+  const { profile } = useContext(AppContext)
+  const navigate = useNavigate()
+
+  const checkNavigateUser = () => {
+    if (profile._id === comment.user._id) {
+      navigate('/me')
+    } else {
+      navigate(`/user/${comment.user._id}`)
+    }
+  }
 
   const fetchChildComment = async ({ pageParam }) => {
     return await getChildComments({ page: pageParam, parent_comment_id: comment._id })
@@ -59,23 +71,26 @@ export default function CommentItems({ comment }) {
   }
   const contentChildComment = data?.pages.map((dataChildComments) =>
     dataChildComments.data.result.child_comments.map((child_comment) => {
-      return <CommentChildItems comment={child_comment} key={child_comment._id} />
+      return <CommentChildItems navigate={navigate} profile={profile} comment={child_comment} key={child_comment._id} />
     })
   )
 
   return (
     <div className=' flex pb-4'>
-      <a className='inline-block mr-4' href='#'>
+      <div onClick={checkNavigateUser} className='inline-block mr-4'>
         <img
           className='rounded-full max-w-none w-12 h-12'
           src={comment.user.avatar === '' ? useravatar : comment.user.avatar}
         />
-      </a>
+      </div>
       <div className='w-full'>
         <div>
-          <a className='inline-block text-base font-bold mr-2' href='#'>
+          <div
+            onClick={checkNavigateUser}
+            className='inline-block hover:underline cursor-pointer text-base font-bold mr-2'
+          >
             {comment.user.name}
-          </a>
+          </div>
           <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).startOf('D').fromNow()}</span>
         </div>
         <ShowMoreContent className='text-sm' lines={2}>
@@ -116,21 +131,32 @@ export default function CommentItems({ comment }) {
   )
 }
 
-function CommentChildItems({ comment }) {
+function CommentChildItems({ comment, profile, navigate }) {
+  const checkNavigateUser = () => {
+    if (profile._id === comment.user._id) {
+      navigate('/me')
+    } else {
+      navigate(`/user/${comment.user._id}`)
+    }
+  }
+  console.log(comment)
   return (
     <div className='mt-4 '>
       <div className='media flex pb-4'>
-        <a className='mr-4' href='#'>
+        <div onClick={checkNavigateUser} className='mr-4'>
           <img
             className='rounded-full max-w-none w-10 h-10'
             src={comment.user.avatar === '' ? useravatar : comment.user.avatar}
           />
-        </a>
+        </div>
         <div className='media-body'>
           <div>
-            <a className='inline-block text-base font-bold mr-2' href='#'>
+            <div
+              onClick={checkNavigateUser}
+              className='inline-block hover:underline cursor-pointer text-base font-bold mr-2'
+            >
               {comment.user.name}
-            </a>
+            </div>
             <span className='text-slate-500 dark:text-slate-300'>
               {moment(comment.createdAt).startOf('D').fromNow()}
             </span>

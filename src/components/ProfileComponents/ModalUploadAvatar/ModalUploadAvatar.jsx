@@ -77,12 +77,12 @@ export default function ModalUploadAvatar({ closeModalAvatar }) {
                   />
                   <div className='flex items-center justify-center'>
                     <div className='w-full'>
-                      <label
+                      <div
                         onClick={handleUpload}
                         className='w-full transition-all duration-300 text-white bg-red-600 dark:bg-pink-700 hover:bg-red-700 font-medium rounded-lg text-sm px-5 py-2.5 flex items-center justify-center mr-2 mb-2 cursor-pointer'
                       >
                         <button className='text-center ml-2'>Tải lên</button>
-                      </label>
+                      </div>
                     </div>
                   </div>
                 </div>

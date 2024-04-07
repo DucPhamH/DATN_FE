@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import useravatar from '../../../assets/images/useravatar.jpg'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiFillHeart } from 'react-icons/ai'
@@ -6,7 +6,7 @@ import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'
 import { LiaComments } from 'react-icons/lia'
 import moment from 'moment'
-import { likePost, unlikePost } from '../../../apis/postApi'
+import { deletePostForEachUser, likePost, unlikePost } from '../../../apis/postApi'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../main'
 import Comments from '../../../pages/Home/components/Comments'
@@ -15,11 +15,31 @@ import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreCont
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import ThreeDotPost from '../../../pages/Home/components/ThreeDotPost'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
+import { MdPublic } from 'react-icons/md'
+import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
+import { AppContext } from '../../../contexts/app.context'
 
 export default function PostCardInfo({ data }) {
   const [openComment, setOpenComment] = useState(false)
   const [openSharePost, setOpenSharePost] = useState(false)
+  const { profile } = useContext(AppContext)
+  const navigate = useNavigate()
 
+  const checkNavigateProfileUser = () => {
+    if (profile._id === data.user._id) {
+      return navigate('/me')
+    }
+    return navigate(`/user/${data.user._id}`)
+  }
+
+  const checkNavigateProfileParentUser = () => {
+    if (profile._id === data.parent_user._id) {
+      return navigate('/me')
+    }
+    return navigate(`/user/${data.parent_user._id}`)
+  }
   const handleCloseSharePost = () => {
     setOpenSharePost(false)
   }
@@ -44,7 +64,7 @@ export default function PostCardInfo({ data }) {
         { post_id: data._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('newsFeed')
+            queryClient.invalidateQueries('post-info')
           }
         }
       )
@@ -53,16 +73,39 @@ export default function PostCardInfo({ data }) {
         { post_id: data._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('newsFeed')
+            queryClient.invalidateQueries('post-info')
           }
         }
       )
     }
   }
 
+  const deletePostMutation = useMutation({
+    mutationFn: (body) => deletePostForEachUser(body)
+  })
+
+  const handleDeletePost = () => {
+    deletePostMutation.mutate(
+      { post_id: data._id },
+      {
+        onSuccess: () => {
+          toast.success('Xóa bài viết thành công'), queryClient.invalidateQueries('post-info'), navigate('/home')
+        },
+        onError: (error) => {
+          console.log(error)
+        }
+      }
+    )
+  }
+
   return (
     <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:dark:bg-color-primary flex flex-col bg-clip-border'>
-      <CheckTypeOfPost data={data} />
+      <CheckTypeOfPost
+        data={data}
+        handleDeletePost={handleDeletePost}
+        checkNavigateProfileUser={checkNavigateProfileUser}
+        checkNavigateProfileParentUser={checkNavigateProfileParentUser}
+      />
       <div className='px-4 md:px-0'>
         <div className='flex justify-between items-center'>
           <div className='inline-flex items-center'>
@@ -71,8 +114,20 @@ export default function PostCardInfo({ data }) {
             <span className='ml-1 md:ml-2'>Lượt thích</span>
           </div>
           <div className='flex gap-3 items-center'>
-            <div>{data.comment_count} bình luận</div>
-            <div>{data.share_count} lượt chia sẻ</div>
+            <div
+              onClick={handleOpenComment}
+              className='hover:text-red-600 dark:hover:text-pink-600 cursor-pointer transition-all'
+            >
+              {data.comment_count} bình luận
+            </div>
+            {data.status === 0 ? (
+              <div
+                onClick={handleOpenSharePost}
+                className='hover:text-red-600 dark:hover:text-pink-600 cursor-pointer transition-all'
+              >
+                {data.share_count} lượt chia sẻ
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
@@ -102,13 +157,15 @@ export default function PostCardInfo({ data }) {
             <LiaComments className='mr-1' size={20} />
             <span className='font-medium'>Bình luận</span>
           </div>
-          <div
-            onClick={handleOpenSharePost}
-            className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'
-          >
-            <PiShareFatLight className='mr-1' size={20} />
-            <span className='font-medium'>Chia sẻ</span>
-          </div>
+          {data.status === 0 ? (
+            <div
+              onClick={handleOpenSharePost}
+              className='flex cursor-pointer justify-center hover:text-red-700 transition-all dark:hover:text-pink-500 duration-150 items-center'
+            >
+              <PiShareFatLight className='mr-1' size={20} />
+              <span className='font-medium'>Chia sẻ</span>
+            </div>
+          ) : null}
         </div>
       </div>
       {openComment && <Comments post={data} />}
@@ -117,32 +174,43 @@ export default function PostCardInfo({ data }) {
   )
 }
 
-function CheckTypeOfPost({ data }) {
+function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUser, checkNavigateProfileUser }) {
   if (data.type === 0) {
     return (
       <>
         <div className='flex justify-between items-start'>
           <div className='flex pb-4 px-4 md:px-0 items-center justify-between'>
             <div className='flex items-center'>
-              <a className='inline-block mr-4' href='#'>
+              <div onClick={checkNavigateProfileUser} className='inline-block mr-4'>
                 <img
                   className='rounded-full max-w-none w-12 h-12 md:w-14 md:h-14'
                   src={data.user.avatar === '' ? useravatar : data.user.avatar}
                 />
-              </a>
+              </div>
               <div className='flex flex-col'>
-                <div className='flex items-center'>
-                  <a className='inline-block text-lg font-bold mr-2' href='#'>
+                <div onClick={checkNavigateProfileUser} className='flex items-center'>
+                  <div className='inline-block cursor-pointer hover:underline text-lg font-bold mr-2'>
                     {data.user.name}
-                  </a>
+                  </div>
                 </div>
-                <div className='text-slate-500 dark:text-slate-300'>
-                  {moment(data.createdAt).startOf('D').fromNow()}
+                <div className='flex gap-2 items-center'>
+                  <div className='text-slate-500 dark:text-slate-300'>
+                    {moment(data.createdAt).startOf('D').fromNow()}
+                  </div>
+                  {data.status === 0 ? (
+                    <div>
+                      <MdPublic />
+                    </div>
+                  ) : (
+                    <div>
+                      <RiGitRepositoryPrivateFill />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          <ThreeDotPost userID={data.user._id} />
+          <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} />
         </div>
         <ShowMoreContent className='px-4  text-sm whitespace-pre-line pb-5 md:px-0'>
           <p className=''>{data.content}</p>
@@ -156,23 +224,36 @@ function CheckTypeOfPost({ data }) {
       <div className='flex justify-between items-start'>
         <div className='flex pb-4 px-4 md:px-0 items-center justify-between'>
           <div className='flex items-center'>
-            <a className='inline-block mr-4' href='#'>
+            <div onClick={checkNavigateProfileUser} className='inline-block mr-4'>
               <img
                 className='rounded-full max-w-none w-12 h-12 md:w-14 md:h-14'
                 src={data.user.avatar === '' ? useravatar : data.user.avatar}
               />
-            </a>
+            </div>
             <div className='flex flex-col'>
-              <div className='flex items-center'>
-                <a className='inline-block text-lg font-bold mr-2' href='#'>
+              <div onClick={checkNavigateProfileUser} className='flex items-center'>
+                <div className='inline-block cursor-pointer hover:underline text-lg font-bold mr-2'>
                   {data.user.name}
-                </a>
+                </div>
+              </div>{' '}
+              <div className='flex gap-2 items-center'>
+                <div className='text-slate-500 dark:text-slate-300'>
+                  {moment(data.createdAt).startOf('D').fromNow()}
+                </div>
+                {data.status === 0 ? (
+                  <div>
+                    <MdPublic />
+                  </div>
+                ) : (
+                  <div>
+                    <RiGitRepositoryPrivateFill />
+                  </div>
+                )}
               </div>
-              <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).startOf('D').fromNow()}</div>
             </div>
           </div>
         </div>
-        <ThreeDotPost userID={data.user._id} />
+        <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} />
       </div>
       <ShowMoreContent className='px-4 whitespace-pre-line  text-sm pb-5 md:px-0'>
         <p className=''>{data.content}</p>
@@ -181,20 +262,31 @@ function CheckTypeOfPost({ data }) {
       <div className='flex justify-between items-start'>
         <div className='flex pb-4 px-4 md:px-0 items-center justify-between'>
           <div className='flex mx-3 items-center'>
-            <a className='inline-block mr-4' href='#'>
+            <div onClick={checkNavigateProfileParentUser} className='inline-block mr-4'>
               <img
                 className='rounded-full max-w-none w-10 h-10 md:w-12 md:h-12'
                 src={data.parent_user.avatar === '' ? useravatar : data.parent_user.avatar}
               />
-            </a>
+            </div>
             <div className='flex flex-col'>
-              <div className='flex items-center'>
-                <a className='inline-block font-bold mr-2' href='#'>
+              <div onClick={checkNavigateProfileParentUser} className='flex items-center'>
+                <div className='inline-block cursor-pointer hover:underline font-bold mr-2'>
                   {data.parent_user.name}
-                </a>
+                </div>
               </div>
-              <div className='text-slate-500 dark:text-slate-300'>
-                {moment(data.parent_post.createdAt).startOf('D').fromNow()}
+              <div className='flex gap-2 items-center'>
+                <div className='text-slate-500 dark:text-slate-300'>
+                  {moment(data.parent_post.createdAt).startOf('D').fromNow()}
+                </div>
+                {data.parent_post.status === 0 ? (
+                  <div>
+                    <MdPublic />
+                  </div>
+                ) : (
+                  <div>
+                    <RiGitRepositoryPrivateFill />
+                  </div>
+                )}
               </div>
             </div>
           </div>

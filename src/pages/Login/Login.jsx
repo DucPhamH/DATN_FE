@@ -10,6 +10,7 @@ import { toast } from 'react-toastify'
 import { isAxiosUnprocessableEntityError } from '../../utils/utils'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context'
+import Loading from '../../components/GlobalComponents/Loading'
 
 export default function Login() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
@@ -101,9 +102,24 @@ export default function Login() {
           </Link>
         </div>
         <div className='px-4 rounded-full pt-4'>
-          <button className='uppercase block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'>
-            sign in
-          </button>
+          {loginAccountMutation.isPending ? (
+            <div className='block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-gray-500 first-letter:focus:outline-none'>
+              <div className='flex justify-center items-center'>
+                <Loading
+                  className='w-10 mx-1 flex justify-center items-center'
+                  classNameSpin='inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-red-600'
+                />
+                Loading...
+              </div>
+            </div>
+          ) : (
+            <button
+              type='submit'
+              className='uppercase block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'
+            >
+              sign in
+            </button>
+          )}
         </div>
       </form>
       <div className='px-4 pb-4 rounded-full'>

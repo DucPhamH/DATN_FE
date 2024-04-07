@@ -115,21 +115,10 @@ input:-webkit-autofill:active {
   transform: translate(-50%, -50%);
   padding: 15px 16px;
   border-radius: 10px;
-
   max-height: calc(100vh - 80px);
-  overflow-y: auto;
+  /* overflow-y: auto; */
 }
 
-/* .badge {
-  background-color: wheat;
-  border-radius: 9999px;
-  margin-top: 0.5rem;
-  margin-left: 0.5rem;
-  padding: 0.5rem;
-  position: absolute;
-  top: 0px;
-  text-transform: uppercase;
-} */
 .slick-dots li.slick-active button:before {
   color: rgba(111, 76, 10, 0.86) !important;
   font-size: 15px !important;

@@ -81,7 +81,7 @@ export default function UserAvatar() {
                 </li>
                 <li>
                   <Link
-                    to='/my-profile'
+                    to='/me'
                     onClick={() => setIsMenu(false)}
                     className='block px-4 py-2 transition-all duration-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'
                   >

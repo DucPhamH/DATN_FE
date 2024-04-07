@@ -1,8 +1,7 @@
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { navBarsProfile } from '../../../services/objectUi'
 export default function NavBarProfile() {
   const path = useLocation()
-  console.log(path.pathname)
 
   return (
     <div className={`flex justify-center md:justify-start items-center my-2 `}>

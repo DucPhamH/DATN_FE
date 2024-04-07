@@ -23,7 +23,7 @@ export default {
         xl: '1280px'
       },
       colors: {
-        'color-primary': '#01051e',
+        'color-primary': '#0f172a',
         'color-primary-light': '#f6f2f2',
         'color-primary-dark': '#010410',
         'color-secondary': '#ef571a',

@@ -1,7 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
-// import Home from './pages/Home'
-// import HomeLanding from './pages/HomeLanding'
 import { Suspense, lazy, useContext } from 'react'
 import AuthLayout from './layouts/AuthLayout'
 import NotFound from './pages/NotFound'
@@ -13,7 +11,7 @@ const HomeLanding = lazy(() => import('./pages/HomeLanding'))
 const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
-const MyProfile = lazy(() => import('./pages/MyProfile'))
+const Me = lazy(() => import('./pages/Me'))
 const FitnessCaculator = lazy(() => import('./pages/FitnessCaculator'))
 const Cooking = lazy(() => import('./pages/Cooking'))
 const CookingFood = lazy(() => import('./pages/CookingFood'))
@@ -28,6 +26,7 @@ const IBW = lazy(() => import('./pages/IBW'))
 const LBM = lazy(() => import('./pages/LBM'))
 const CaloBurned = lazy(() => import('./pages/CaloBurned'))
 const WaterPerDay = lazy(() => import('./pages/WaterPerDay'))
+const UserProfile = lazy(() => import('./pages/UserProfile'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -105,35 +104,24 @@ export default function useRouteElement() {
           )
         },
         {
-          path: '/my-profile',
+          path: '/me',
           element: (
             <MainLayout>
               <Suspense>
-                <MyProfile />
+                <Me />
               </Suspense>
             </MainLayout>
-          ),
-
-          children: [
-            {
-              path: '',
-              element: <div>Post</div>
-            },
-            {
-              path: 'info',
-              element: (
-                <div>
-                  Info
-                  <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>{' '}
-                  <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div> <div>Info</div>
-                </div>
-              )
-            },
-            {
-              path: 'blog',
-              element: <div>blog</div>
-            }
-          ]
+          )
+        },
+        {
+          path: '/user/:id',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <UserProfile />
+              </Suspense>
+            </MainLayout>
+          )
         }
       ]
     },
@@ -183,7 +171,7 @@ export default function useRouteElement() {
       element: (
         <MainLayout>
           <Suspense>
-            <div>Hello</div>
+            <div className=' '>Hello</div>
           </Suspense>
         </MainLayout>
       )
