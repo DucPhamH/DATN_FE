@@ -59,7 +59,6 @@ export default function CommentItems({ comment }) {
       },
       {
         onSuccess: () => {
-          toast.success('Bình luận bài viết thành công')
           queryClient.invalidateQueries('child-comments')
           setContent('')
         },
@@ -91,7 +90,7 @@ export default function CommentItems({ comment }) {
           >
             {comment.user.name}
           </div>
-          <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).startOf('D').fromNow()}</span>
+          <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).fromNow()}</span>
         </div>
         <ShowMoreContent className='text-sm' lines={2}>
           <p className=''>{comment.content}</p>
@@ -157,9 +156,7 @@ function CommentChildItems({ comment, profile, navigate }) {
             >
               {comment.user.name}
             </div>
-            <span className='text-slate-500 dark:text-slate-300'>
-              {moment(comment.createdAt).startOf('D').fromNow()}
-            </span>
+            <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).fromNow()}</span>
           </div>
           <ShowMoreContent className='text-sm' lines={2}>
             <p className='text-sm'>{comment.content}</p>

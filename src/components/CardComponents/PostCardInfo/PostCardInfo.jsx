@@ -194,9 +194,7 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
                   </div>
                 </div>
                 <div className='flex gap-2 items-center'>
-                  <div className='text-slate-500 dark:text-slate-300'>
-                    {moment(data.createdAt).startOf('D').fromNow()}
-                  </div>
+                  <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
                   {data.status === 0 ? (
                     <div>
                       <MdPublic />
@@ -237,9 +235,7 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
                 </div>
               </div>{' '}
               <div className='flex gap-2 items-center'>
-                <div className='text-slate-500 dark:text-slate-300'>
-                  {moment(data.createdAt).startOf('D').fromNow()}
-                </div>
+                <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
                 {data.status === 0 ? (
                   <div>
                     <MdPublic />
@@ -275,9 +271,7 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
                 </div>
               </div>
               <div className='flex gap-2 items-center'>
-                <div className='text-slate-500 dark:text-slate-300'>
-                  {moment(data.parent_post.createdAt).startOf('D').fromNow()}
-                </div>
+                <div className='text-slate-500 dark:text-slate-300'>{moment(data.parent_post.createdAt).fromNow()}</div>
                 {data.parent_post.status === 0 ? (
                   <div>
                     <MdPublic />

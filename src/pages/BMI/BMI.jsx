@@ -216,7 +216,7 @@ export default function BMI() {
             </div>
           </main>
         </div>
-        <div className='col-span-6 my-3 xl:my-0 xl:col-span-2'>
+        <div className='col-span-6 order-first xl:order-last my-3 xl:my-0 xl:col-span-2'>
           <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Tính toán BMI <p className='text-base text-black dark:text-gray-300'>(Theo hệ kilogram và mét)</p>
@@ -242,7 +242,7 @@ export default function BMI() {
               </div>
             </form>
           </div>
-          <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
+          {/* <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Tính toán BMI <p className='text-base text-black dark:text-gray-300'>(Theo hệ pound và inch)</p>
             </div>
@@ -266,7 +266,7 @@ export default function BMI() {
                 <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
               </div>
             </form>
-          </div>
+          </div> */}
         </div>
       </div>
     </>

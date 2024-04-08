@@ -7,7 +7,6 @@ import data from '@emoji-mart/data'
 import Picker from '@emoji-mart/react'
 import { useMutation } from '@tanstack/react-query'
 import { createPost } from '../../../../apis/postApi'
-import { queryClient } from '../../../../main'
 
 export default function ModalUploadPost({ closeModalPost, profile }) {
   const theme = localStorage.getItem('theme')
@@ -218,15 +217,15 @@ export default function ModalUploadPost({ closeModalPost, profile }) {
                 </div>
                 <div className='relative'>
                   <MdEmojiEmotions
-                    className='text-3xl text-red-500 dark:text-pink-500 cursor-pointer'
+                    className='text-3xl  text-red-500 dark:text-pink-500 cursor-pointer'
                     onClick={() => setShowEmoji(!showEmoji)}
                   />
                   {showEmoji && (
-                    <div className='absolute right-8 bottom-0'>
+                    <div className='absolute right-8 bottom-[-4rem]'>
                       <Picker
                         data={data}
-                        emojiSize={20}
-                        emojiButtonSize={28}
+                        emojiSize={18}
+                        emojiButtonSize={25}
                         onEmojiSelect={addEmoji}
                         maxFrequentRows={0}
                         previewPosition='none'

@@ -27,7 +27,6 @@ export default function Comments({ post }) {
       },
       {
         onSuccess: () => {
-          toast.success('Binhf luận bài viết thành công')
           queryClient.invalidateQueries('comments')
           setContent('')
         },

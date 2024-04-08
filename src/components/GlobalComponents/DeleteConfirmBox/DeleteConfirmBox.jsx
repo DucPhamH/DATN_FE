@@ -21,14 +21,14 @@ export default function DeleteConfirmBox({ title, subtitle, handleDelete, closeM
             onClick={handleDelete}
             className='block btn btn-sm w-full md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
           >
-            Delete Account
+            Xóa
           </button>
           <button
             onClick={closeModal}
             className='block btn btn-sm w-full text-gray-700 hover:bg-slate-300 dark:text-gray-700 md:inline-block md:w-auto  bg-gray-200 rounded-lg font-semibold text-sm mt-4
     md:mt-0 md:order-1'
           >
-            Cancel
+            Hủy
           </button>
         </div>
       </div>

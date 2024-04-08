@@ -13,7 +13,7 @@ export default function BodyFat() {
               <article className='mx-auto w-full '>
                 <header className='mb-3 not-format'>
                   <h1 className='mb-1 text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
-                    Chỉ số BMR là gì? Công thức tính và yếu tố tác động đến chỉ số đo BMR
+                    Cách tính body fat trong cơ thể
                   </h1>
                   <div className='flex items-center'>
                     Thu thập bởi: <span className='font-semibold text-red-600 dark:text-pink-400 ml-1'>Cook</span>
@@ -22,8 +22,9 @@ export default function BodyFat() {
                   </div>
                 </header>
                 <p className='lead mb-4 font-medium'>
-                  Việc đo BMR sẽ cho chúng ta biết mức năng lượng tối thiểu mà cơ thể cần. Qua đó để cơ thể thực hiện
-                  các chức năng năng hoạt động cơ bản nhằm duy trì sự sống khi chúng ta trong trạng thái nghỉ ngơi.
+                  Body fat là công cụ để tính lượng mỡ thừa trong cơ thể, giúp đánh giá tình trạng thừa cân, béo phì của
+                  mỗi người. Ngoài ra, hiện nay giới trẻ còn sử dụng cụm từ body fat để chỉ những cơ thể có “eo bánh mì”
+                  quyến rũ. Hãy cùng tham khảo cách tính body fat để xác định cơ thể của bạn thuộc trường hợp nào nhé!
                 </p>
                 <div className='font-medium'>Xem thêm các công thức tính khác:</div>
                 <ul>
@@ -37,179 +38,182 @@ export default function BodyFat() {
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
+                    <Link className=' hover:underline'> Tính lượng nước uống cần thiết trong 1 ngày</Link>
                   </li>
                 </ul>
 
                 <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
-                    src='https://sasukegym.vn/wp-content/uploads/2019/11/bmr.jpg'
+                    src='https://i.ytimg.com/vi/mwvgCRR-jrY/maxresdefault.jpg'
                     alt=''
                   />
                 </div>
                 <p className='lead mb-3 font-medium'>
-                  Để có một vóc dáng đẹp hoặc có cân nặng phù hợp thì cần có một chế độ ăn uống và luyện tập hợp lý. Mà
-                  hai yếu tố này thì cần lưu ý đến chỉ số BMR để có thể điều chỉnh lượng Calo phù hợp cho bản thân. Vậy
-                  BMR là gì? Cách đo BMR như thế nào? Hãy tìm hiểu thông qua bài viết dưới đây nhé.
+                  Body fat là thuật ngữ được sử dụng để chỉ tỷ lệ lượng mỡ có trong cơ thể so với tổng trọng lượng cơ
+                  thể. Nó thường được đo lường dưới dạng phần trăm và là một chỉ số quan trọng để đánh giá sức khỏe và
+                  tình trạng thể chất của người. Lượng mỡ trong cơ thể không chỉ đơn thuần là &quot;mỡ xấu,&quot; mà còn
+                  bao gồm các loại mỡ có vai trò quan trọng trong các chức năng cơ thể.
                 </p>
-                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>1. Chỉ số BMR là gì?</h2>
+                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>1. Body fat trong cơ thể là gì?</h2>
                 <p className='mb-1'>
-                  - Chỉ số BMR (Basal Metabolic Rate) là chỉ số cho chúng ta biết tỷ lệ trao đổi chất cơ bản trong cơ
-                  thể con người. Đây là chỉ số cung cấp cho bạn biết mức năng lượng tối thiểu mà cơ thể người cần có, từ
-                  đó giúp bạn duy trì được sự ổn định của các chức năng sống của cơ thể như hệ tuần hoàn, hệ tiêu hoá,
-                  hệ hô hấp… Việc tính BMR phụ thuộc vào nhiều yếu tố, chỉ số BMR sẽ chiếm khoảng 70% tổng số lượng Calo
-                  tiêu hao mỗi ngày.
+                  - Body fat là một khái niệm thường được sử dụng để đo lường lượng mỡ có mặt trên cơ thể so với lượng
+                  cơ bắp. Nếu tỉ lệ này vượt quá mức tiêu chuẩn, có thể dẫn đến tình trạng thừa cân hoặc béo phì, đây là
+                  điều không tốt cho sức khỏe.
                 </p>
                 <p className='mb-1'>
-                  - Quá trình cơ thể mỗi người đốt cháy Calo không phải hầu như xuất phát từ các yếu tố bên ngoài như
-                  vận động, di chuyển đi lại… mà là các hoạt động của các bộ phận như não, tim, gan, phổi, hô hấp… cũng
-                  đều tiêu hao năng lượng, ngay cả khi bạn đang trong trạng thái nghỉ ngơi cũng {''}
-                  <span className='font-medium'>tiêu tốn Calo.</span>
+                  - Theo tạp chí Lifestyle của Mỹ, body fat được hiểu là chỉ số đánh giá tỷ lệ phần trăm mỡ trên cơ thể
+                  so với tổng trọng lượng. BMI (Body Mass Index) là một chỉ số mà chuyên gia sức khỏe thường sử dụng để
+                  đánh giá tình trạng cơ thể, bao gồm cả mức độ bình thường, suy dinh dưỡng, thừa cân, và béo phì.
                 </p>
                 <div className='flex overflow-hidden gap-3 w-full items-center my-2 justify-center'>
                   <img
                     className='object-cover rounded-md '
-                    src='https://mrsun.vn/wp-content/uploads/2022/11/brm-la-gi-2.png'
+                    src='https://i.ytimg.com/vi/RS3JuDwUZMU/maxresdefault.jpg'
                     alt=''
                   />
                 </div>
                 <p className='mb-1'>
-                  - Vì vậy, việc đo BMR có thể giúp mọi người theo dõi trọng lượng của cơ thể mình. Tổng lượng Calo cũng
-                  như mức độ hoạt động của cơ thể mỗi ngày đều phụ thuộc vào chỉ số BMR. Tức là, nếu muốn tăng cân thì
-                  BMR cho biết bạn phải hấp thụ lượng ăn lớn hơn tổng lượng Calo cần có. Còn nếu muốn giảm cân thì bạn
-                  cần phải có chế độ tập luyện và có chế độ ăn phù hợp.
+                  Nói chung, lượng mỡ trong cơ thể có thể gây ra những ảnh hưởng xấu đối với sức khỏe và hình thể của
+                  người. Các chỉ số về body fat sẽ cung cấp thông tin về tình trạng cơ thể, từ đó giúp xác định liệu cơ
+                  thể có ổn định hay không, có cần điều chỉnh lối sống và chế độ dinh dưỡng hay không. Điều này giúp bạn
+                  tính toán lượng calo cần giảm bớt thông qua việc tăng cường hoạt động vận động, nhằm đưa cơ thể về
+                  trạng thái sức khỏe tốt nhất.
                 </p>
-                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>2. Công thức tính chỉ số đo BMR</h2>
+                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>2. Phân loại body fat</h2>
 
                 <p className='mt-2'>
-                  BMR tượng trưng cho mức tiêu thụ năng lượng ở điều kiện không hoạt động. Công thức được tính dựa trên
-                  chỉ số chiều cao, cân nặng và độ tuổi của một người. Theo phương trình Mifflin-St Jeor ta có:
+                  Mặc dù thuật ngữ &quot;fat&quot; thường được hiểu là lượng mỡ trên toàn bộ cơ thể, thực tế, cơ thể con
+                  người chúng ta chứa nhiều loại mỡ khác nhau, mỗi loại đóng vai trò riêng và có ảnh hưởng khác nhau đối
+                  với sức khỏe. Các loại chính bao gồm tế bào mỡ trắng, mỡ nâu và mỡ màu beige (nâu nhạt và vàng nhạt),
+                  được dự trữ dưới dạng mỡ thiết yếu, mỡ dưới da và mỡ nội tạng.
                 </p>
-                <ul className='list-disc mt-3 mb-4'>
-                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
-                    Nam giới: (9.99 x Weight [kg]) + (6.25 x Height [cm]) - (4.92 x Age) + 5
-                  </li>
-                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
-                    Nữ giới: (9.99 x Weight [kg]) + (6.25 x Height [cm]) - (4.92 x Age) - 161
-                  </li>
-                </ul>
-                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
-                  <img
-                    className='object-cover rounded-md w-[100%]'
-                    src='https://www.inchcalculator.com/wp-content/uploads/2021/04/bmr-formulas.png'
-                    alt=''
-                  />
-                </div>
-                <p className='mt-3'>
-                  Theo Hiệp hội Dinh dưỡng Hoa Kỳ, công thức Mifflin St Jeor tính chỉ số BMR chuẩn được đánh giá là công
-                  thức có độ chính xác cao nhất. Hiện nay, công thức này trở thành tiêu chuẩn để đo BMR và được ứng dụng
-                  khá phổ biến.
+                <p className='mt-2 font-medium dark:text-gray-300'>Mỡ trắng (white fat):</p>
+                <p className='mt-2'>
+                  Mỡ trắng được hình thành từ tế bào mỡ lớn màu trắng, thường được lưu trữ dưới da, xung quanh các nội
+                  tạng và ở một số khu vực như cánh tay, mông và đùi. Chúng là nguồn dự trữ năng lượng của cơ thể và
+                  đóng vai trò quan trọng trong chức năng của nhiều loại hormone như estrogen, leptin, insulin, cortisol
+                  (hormone căng thẳng), và growth hormone (hormone tăng trưởng).
                 </p>
 
-                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>
-                  2. Các yếu tố tác động đến chỉ số BMR
-                </h2>
-                <p className='mb-2'>Chỉ số BMR của một người được xác định bởi các yếu tố như sau:</p>
-                <ul className='list-disc mt-3 mb-4'>
-                  <li className='ml-6 mb-1'>
-                    Khối lượng của cơ: Cơ bắp là số lượng mô có trên cơ thể của mỗi người và chúng cần nhiều năng lượng
-                    để hoạt động hơn các mô mỡ. Điều này sẽ tác động trực tiếp tới chỉ số đo BMR.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Trọng lượng của cơ thể: Theo các nhà nghiên cứu, người có kích thước trọng lượng cơ thể lớn hơn so
-                    với người bình thường, đồng nghĩa với việc có chỉ số BMR cao hơn. Bởi vậy cơ thể cần tiêu hao một
-                    lượng Calo nhiều hơn để duy trì sức khỏe ổn định.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Độ tuổi: Tuổi tác tỉ lệ thuận với độ lớn chỉ số BMR. Có nghĩa là tuổi của bạn càng cao, thì mức tiêu
-                    hao năng lượng của bạn càng chậm. Điều này đã khiến chỉ số BMR chuẩn cũng giảm đi.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Giới tính: Theo nghiên cứu, nam giới có chỉ số BMR cao hơn nữ giới, do khối lượng cơ bắp của nam
-                    giới nhiều hơn, hơn nữa tỷ lệ mỡ của cơ thể nam giới cũng ít hơn..
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Yếu tố di truyền: Khả năng trao đổi chất của một người có thể được quyết định bởi một phần gen di
-                    truyền. Đây cũng là yếu tố rất quan trọng, tác động lớn đến chỉ số BMR.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Tập thể dục thể thao: Việc tập luyện thể thao thường xuyên vừa giúp rèn luyện sức khỏe, vừa giúp cho
-                    chỉ số BMR tăng lên.
-                  </li>
-                </ul>
-                <p>
-                  Ngoài ra còn một số nhân tố tác động đến việc đo BMR như yếu tố nội tiết tố nhất là ở nữ giới, thuốc,
-                  chế độ ăn uống cũng như chế độ sinh hoạt.
+                <p className='mt-2 font-medium dark:text-gray-300'>Mỡ nâu (brown fat):</p>
+                <p className='mt-2'>
+                  Mỡ nâu chủ yếu xuất hiện ở trẻ em, nhưng người lớn vẫn giữ một lượng nhỏ, thường ở cổ và vai. Mỡ nâu
+                  giúp đốt cháy axit béo để tạo nhiệt và giữ ấm cơ thể. Sự nghiên cứu về cách kích thích hoạt động của
+                  mỡ nâu đang nhận được sự quan tâm lớn để ngăn chặn béo phì.
                 </p>
                 <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
-                    src='https://drinkocany.com/wp-content/uploads/2022/12/tinh-bmr-4-1.jpg'
+                    src='https://www.healthcourses.com.au/wp-content/uploads/2019/11/brownfatbyRaySoccio750-5.jpg'
                     alt=''
                   />
                 </div>
-                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>3. Cách điều chỉnh chỉ số BMR</h2>
+                <p className='mt-2 font-medium dark:text-gray-300'>Mỡ màu beige (beige fat):</p>
+                <p className='mt-2'>
+                  Beige fat hay còn được gọi là brite fat, là một lĩnh vực nghiên cứu mới với tế bào mỡ hoạt động giữa
+                  tế bào mỡ nâu và trắng. Tương tự như mỡ nâu, tế bào màu beige giúp đốt cháy mỡ hiệu quả hơn so với
+                  việc dự trữ. Có niềm tin rằng một số hormone và enzyme được kích thích trong điều kiện căng thẳng,
+                  lạnh, hoặc tập luyện có thể chuyển đổi mỡ trắng thành mỡ màu beige.
+                </p>
+                <p className='mt-2 font-medium dark:text-gray-300'>Mỡ thiết yếu (essential fat):</p>
+                <p className='mt-2'>
+                  Mỡ thiết yếu là một loại mỡ cực kỳ quan trọng cho sự sống còn và sức khỏe của cơ thể. Nó xuất hiện
+                  trong các khu vực như não, tủy xương, và dây thần kinh màng che bảo vệ các cơ quan nội tạng. Mỡ thiết
+                  yếu đóng vai trò quan trọng trong việc điều chỉ hormone, bao gồm những hormone liên quan đến sinh sản,
+                  hấp thụ vitamin và điều chỉnh nhiệt độ.
+                </p>
+                <p className='mt-2 font-medium dark:text-gray-300'>Mỡ dưới da (subcutaneous fat):</p>
+                <p className='mt-2'>
+                  Mỡ dưới da là lượng mỡ được tích tụ dưới lớp da và là sự kết hợp của tế bào mỡ nâu, mỡ màu beige và mỡ
+                  trắng. Đây là loại mỡ chiếm đa số trên cơ thể và có thể bóp hoặc véo được, đặc biệt là ở cánh tay,
+                  vùng bụng, đùi và mông. Việc đo lường subcutaneous fat thường được thực hiện bằng cách sử dụng thước
+                  kẹp, sau đó dùng các số liệu này để ước tính tỷ lệ mỡ cơ thể. Lượng mỡ dưới da vừa phải là điều bình
+                  thường và có lợi cho sức khỏe, tuy nhiên, sự tích tụ quá mức có thể gây ra mất cân bằng hormone.
+                </p>
+                <p className='mt-2 font-medium dark:text-gray-300'>Mỡ nội tạng (visceral fat):</p>
+                <p className='mt-2'>
+                  Mỡ nội tạng thường được biết đến là mỡ bụng, là loại mỡ trắng dự trữ trong bụng, xung quanh các cơ
+                  quan nội tạng như gan, thận, tụy, ruột và tim. Mức độ mỡ nội tạng cao có thể tăng nguy cơ mắc các bệnh
+                  như tiểu đường, bệnh tim, đột quỵ, và ung thư. Đây là một loại mỡ nguy hiểm mà việc kiểm soát là quan
+                  trọng để duy trì sức khỏe.
+                </p>
+
+                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>2. Cách tính Body Fat trong cơ thể</h2>
                 <p className='mb-2'>
-                  Chỉ số BMR sẽ cho bạn biết mức năng lượng cần cho cơ thể để cơ thể hoạt động, giúp duy trì sự sống.
-                  Dưới đây là một số cách điều chỉnh về chỉ số BMR, cụ thể:
+                  Đo lượng mỡ cơ thể là một quá trình quan trọng để đánh giá sức khỏe và tình trạng thể chất.
                 </p>
                 <ul className='list-disc mt-3 mb-4'>
                   <li className='ml-6 mb-1'>
-                    Luyện tập để tăng cơ: Khi bạn càng có nhiều cơ thì lúc nghỉ ngơi cơ thể bạn càng đốt cháy nhiều năng
-                    lượng. Do vậy, việc tập luyện thể thao thường xuyên sẽ giúp bạn tăng cơ đồng nghĩa với việc chỉ số
-                    đo BMR của bạn cũng tăng.
+                    Đo chu vi vòng eo và rốn: Nam và nữ đều cần đo chu vi vòng eo quanh rốn mà không hóp bụng vào.
                   </li>
+                  <li className='ml-6 mb-1'>Đo chu vi cổ: Bắt đầu từ dưới thanh quản, không căng cổ lên.</li>
                   <li className='ml-6 mb-1'>
-                    Xây dựng chế độ ăn khoa học, đủ chất: Một cách làm tăng chỉ số BMR đó là ăn uống đủ chất, đủ lượng
-                    Calo. Nếu bạn muốn giảm cân, không nên giảm chế độ ăn uống một cách đột ngột, mà hãy giảm từ từ
-                    xuống đến mức phù hợp với bản thân.
+                    Phụ nữ, đo chu vi hông: Đo chu vi của hông để sử dụng trong công thức tính chỉ số mỡ cơ thể.
                   </li>
-                  <li className='ml-6 mb-1'>
-                    Tuyệt đối không nên bỏ đói hoặc ăn kiêng quá mức: Thực tế, khi bạn không ăn thì có thể giảm được vài
-                    cân, tuy nhiên phần giảm này đa số là nước. Điều này sẽ làm chậm quá trình trao đổi chất bên trong
-                    cơ thể của bạn.
+                </ul>
+                <p className='mt-2 font-medium dark:text-gray-300'>Công thức tính chỉ số body fat:</p>
+                <ul className='list-disc mt-3 mb-4'>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Nam giới: 495/(1.0324 - 0.19077(LOG(eo – cổ)) + 0.15456(LOG(chiều cao))) - 450.
+                  </li>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Nữ giới: 495/(1.29579 - 0.35004(LOG(eo + hông – cổ)) + 0.22100(LOG(chiều cao))) - 450.
                   </li>
                 </ul>
                 <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
-                    src='https://i1-suckhoe.vnecdn.net/2023/09/29/telemmglpict000349937914-16951-9330-5519-1695986615.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=ewIg1ulcImuxykA29O8zaQ'
+                    src='https://img1.wsimg.com/isteam/ip/d2561a12-aed2-4099-ae4e-faa16967cc2d/body%20fat%20measurement%20locations.jpeg/:/cr=t:0%25,l:0%25,w:100%25,h:100%25/rs=w:600,h:600,cg:true'
                     alt=''
                   />
                 </div>
                 <p>
-                  Trên đây là những thông tin về chỉ số đo BMR. Hy vọng bài viết trên sẽ mang lại cho người đọc các
-                  thông tin hữu ích về cách tính chỉ số BMR trong việc điều chỉnh chỉ số BMR cũng như lượng Calo tiêu
-                  thụ mỗi ngày.
+                  Phương pháp cách tính body fat này mang lại cái nhìn tổng quan về lượng mỡ cơ thể, nhưng việc tìm đến
+                  chuyên gia y tế là quan trọng để có đánh giá chi tiết và lời khuyên phù hợp với tình trạng sức khỏe và
+                  mục tiêu tập luyện của từng người.
                 </p>
               </article>
             </div>
           </main>
         </div>
-        <div className='col-span-6 my-3 xl:my-0 xl:col-span-2'>
+        <div className='col-span-6 order-first xl:order-last my-3 xl:my-0 xl:col-span-2'>
           <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-              Tính toán BMR{' '}
-              <p className='text-base text-black dark:text-gray-300'>(Theo phương trình Mifflin-St Jeor)</p>
+              Tính toán Body-Fat{' '}
+              <p className='text-base text-black dark:text-gray-300'>(Theo phương trình SI, Metric Units)</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
             <form className='p-3'>
               <Input
-                title='Nhập cân nặng (kg)'
-                type='number'
-                name='weight'
-                id='weight'
-                placeholder='Nhập cân nặng của bạn'
-              />
-              <Input
-                title='Nhập chiều cao (m)'
+                title='Nhập chiều cao (cm)'
                 type='number'
                 name='height'
                 id='height'
                 placeholder='Nhập chiều cao của bạn'
               />
-              <Input title='Nhập độ tuổi' type='number' name='age' id='age' placeholder='Nhập độ tuổi của bạn' />
+              <Input
+                title='Nhập vòng eo (cm)'
+                type='number'
+                name='waist'
+                id='waist'
+                placeholder='Nhập vòng eo của bạn'
+              />
+              <Input
+                title='Nhập số đo vòng cổ (cm)'
+                type='number'
+                name='neck'
+                id='neck'
+                placeholder='Nhập số đo vòng cổ của bạn'
+              />
+              <Input
+                title='Nhập số đo hông (cm)'
+                type='number'
+                name='hip'
+                id='hip'
+                placeholder='Nhập số đo vòng hông của bạn'
+              />
+
               <div className='mb-3'>
                 <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
                   Giới tính của bạn là:

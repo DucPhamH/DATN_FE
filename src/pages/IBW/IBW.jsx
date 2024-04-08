@@ -13,7 +13,7 @@ export default function IBW() {
               <article className='mx-auto w-full '>
                 <header className='mb-3 not-format'>
                   <h1 className='mb-1 text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
-                    Chỉ số BMR là gì? Công thức tính và yếu tố tác động đến chỉ số đo BMR
+                    Tính cân nặng lý tưởng của cơ thể
                   </h1>
                   <div className='flex items-center'>
                     Thu thập bởi: <span className='font-semibold text-red-600 dark:text-pink-400 ml-1'>Cook</span>
@@ -21,15 +21,11 @@ export default function IBW() {
                     <IoTimeOutline className='mr-1 ml-2' /> 02/04/2024
                   </div>
                 </header>
-                <p className='lead mb-4 font-medium'>
-                  Việc đo BMR sẽ cho chúng ta biết mức năng lượng tối thiểu mà cơ thể cần. Qua đó để cơ thể thực hiện
-                  các chức năng năng hoạt động cơ bản nhằm duy trì sự sống khi chúng ta trong trạng thái nghỉ ngơi.
-                </p>
                 <div className='font-medium'>Xem thêm các công thức tính khác:</div>
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số IBW </Link>
+                    <Link className=' hover:underline'> Tính toán lượng nước uống hàng ngày </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
@@ -44,172 +40,104 @@ export default function IBW() {
                 <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
-                    src='https://sasukegym.vn/wp-content/uploads/2019/11/bmr.jpg'
+                    src='https://i.ytimg.com/vi/9MZqe-QL9OU/maxresdefault.jpg'
                     alt=''
                   />
                 </div>
-                <p className='lead mb-3 font-medium'>
-                  Để có một vóc dáng đẹp hoặc có cân nặng phù hợp thì cần có một chế độ ăn uống và luyện tập hợp lý. Mà
-                  hai yếu tố này thì cần lưu ý đến chỉ số BMR để có thể điều chỉnh lượng Calo phù hợp cho bản thân. Vậy
-                  BMR là gì? Cách đo BMR như thế nào? Hãy tìm hiểu thông qua bài viết dưới đây nhé.
-                </p>
-                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>1. Chỉ số BMR là gì?</h2>
+
+                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>
+                  1. Chỉ số cân nặng lý tưởng là gì? Tôi cần cân nặng bao nhiêu là tốt?
+                </h2>
                 <p className='mb-1'>
-                  - Chỉ số BMR (Basal Metabolic Rate) là chỉ số cho chúng ta biết tỷ lệ trao đổi chất cơ bản trong cơ
-                  thể con người. Đây là chỉ số cung cấp cho bạn biết mức năng lượng tối thiểu mà cơ thể người cần có, từ
-                  đó giúp bạn duy trì được sự ổn định của các chức năng sống của cơ thể như hệ tuần hoàn, hệ tiêu hoá,
-                  hệ hô hấp… Việc tính BMR phụ thuộc vào nhiều yếu tố, chỉ số BMR sẽ chiếm khoảng 70% tổng số lượng Calo
-                  tiêu hao mỗi ngày.
+                  - Hầu hết mọi người tại đã cố gắng giảm cân hoặc biết giảm cân 1 lần trong đời. Điều này phần lớn là
+                  do nhận thức về trọng lượng cơ thể &quot;lý tưởng&quot;, thường điều này dựa trên những gì chúng ta
+                  thấy thông qua các phương tiện truyền thông xã hội,TV, phim ảnh, tạp chí, v.v. Mặc dù chỉ số cân nặng
+                  lý tưởng (IBW - Idea Body Weight) ngày nay đôi khi dựa trên sự hấp dẫn thị giác, IBW thật sự được sử
+                  dụng để trong y tế, đặc biệt là những bệnh nhân béo phì để từ đó xác định liều lượng thuốc cần dùng.
+                  Ngày nay, IBW cũng được sử dụng rộng rãi để xác định cân nặng lý tưởng của một người như anh A có
+                  chiều cao là x thì số cân nặng lý tưởng y. Ngoài ra, IBW được ứng dụng trong các môn thể thao, vì
+                  nhiều môn thể thao phân loại người dựa trên trọng lượng cơ thể của họ. .
                 </p>
                 <p className='mb-1'>
-                  - Quá trình cơ thể mỗi người đốt cháy Calo không phải hầu như xuất phát từ các yếu tố bên ngoài như
-                  vận động, di chuyển đi lại… mà là các hoạt động của các bộ phận như não, tim, gan, phổi, hô hấp… cũng
-                  đều tiêu hao năng lượng, ngay cả khi bạn đang trong trạng thái nghỉ ngơi cũng {''}
-                  <span className='font-medium'>tiêu tốn Calo.</span>
+                  - Lưu ý rằng IBW (chỉ số cân nặng lý tưởng) không phải là một phép đo hoàn hảo. Vì nó không xem xét tỷ
+                  lệ phần trăm mỡ cơ thể trong cơ thể của một người. Điều này có nghĩa là các vận động viên khỏe mạnh có
+                  thể được coi là thừa cân nếu chỉ dựa trên IBW của họ (đặc biệt là dân thể hình) đó là lý do vì sao IBW
+                  không được xem là thước đo không toàn diện để đánh giá sức khỏe và cân nặng của mỗi người. Nếu bạn
+                  dưới hoặc vượt qua IBW nhưng bạn vẫn khỏe mạnh.
                 </p>
                 <div className='flex overflow-hidden gap-3 w-full items-center my-2 justify-center'>
                   <img
                     className='object-cover rounded-md '
-                    src='https://mrsun.vn/wp-content/uploads/2022/11/brm-la-gi-2.png'
+                    src='https://c.ndtvimg.com/2021-03/m9kqc43g_weight_625x300_04_March_21.jpg'
                     alt=''
                   />
                 </div>
                 <p className='mb-1'>
-                  - Vì vậy, việc đo BMR có thể giúp mọi người theo dõi trọng lượng của cơ thể mình. Tổng lượng Calo cũng
-                  như mức độ hoạt động của cơ thể mỗi ngày đều phụ thuộc vào chỉ số BMR. Tức là, nếu muốn tăng cân thì
-                  BMR cho biết bạn phải hấp thụ lượng ăn lớn hơn tổng lượng Calo cần có. Còn nếu muốn giảm cân thì bạn
-                  cần phải có chế độ tập luyện và có chế độ ăn phù hợp.
+                  - Một người nên cân nặng bao nhiêu không thể xác định chính xác bằng 1 công thức. Nó phụ thuộc rất
+                  nhiều vào mỗi cá nhân. Cho đến nay, không có biện pháp nào từ IBW (chỉ số cân nặng lý tưởng) đến chỉ
+                  số khối cơ thể (BMI), hoặc bất kỳ ai khác có thể xác định rõ ràng trọng lượng lý tưởng một người.
+                  Chúng chỉ là những tài liệu tham khảo và điều quan trọng hơn là phải tuân thủ các lựa chọn cuộc sống
+                  lành mạnh như tập thể dục thường xuyên, ăn nhiều loại thực phẩm chưa qua chế biến, ngủ đủ giấc, v.v.
+                  hơn là theo đuổi một trọng lượng cụ thể dựa trên một công thức.
                 </p>
-                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>2. Công thức tính chỉ số đo BMR</h2>
+                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>
+                  2. Công thức để tìm chỉ số cân nặng lý tưởng
+                </h2>
+                <p className='mb-1'>
+                  Tất cả các công thức, có công thức IBW được phát triển chủ yếu để tạo thuận lợi cho việc tính toán
+                  liều lượng thuốc. Nếu bạn là một nam 177cm ước tính cân nặng lý tưởng của bạn với công thức Devine,
+                  được xác như sau = (2,3 × 10) kg + 50 kg để có kết quả là 73 kg (chỉ số cân nặng lý tưởng của bạn)
+                </p>
+                <p className='mb-1'>
+                  Các công thức khác nhau về các giá trị được sử dụng dựa trên nghiên cứu của các nhà khoa học liên quan
+                  đến sự phát triển của họ và công thức của họ. Công thức Devine là công thức được sử dụng rộng rãi nhất
+                  để đo lường IBW.
+                </p>
 
-                <p className='mt-2'>
-                  BMR tượng trưng cho mức tiêu thụ năng lượng ở điều kiện không hoạt động. Công thức được tính dựa trên
-                  chỉ số chiều cao, cân nặng và độ tuổi của một người. Theo phương trình Mifflin-St Jeor ta có:
-                </p>
+                <p className='mt-2'>B. J. Devine Công thức (1974):</p>
                 <ul className='list-disc mt-3 mb-4'>
                   <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
-                    Nam giới: (9.99 x Weight [kg]) + (6.25 x Height [cm]) - (4.92 x Age) + 5
+                    Nam giới: 50,0 kg + 2,3 kg mỗi inch trên 5 feet
                   </li>
                   <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
-                    Nữ giới: (9.99 x Weight [kg]) + (6.25 x Height [cm]) - (4.92 x Age) - 161
+                    Nữ giới: 45,5 kg + 2,3 kg mỗi inch trên 5 feet
                   </li>
                 </ul>
-                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex overflow-hidden gap-3 w-full items-center my-2 justify-center'>
                   <img
-                    className='object-cover rounded-md w-[100%]'
-                    src='https://www.inchcalculator.com/wp-content/uploads/2021/04/bmr-formulas.png'
+                    className='object-cover rounded-md '
+                    src='https://www.thetechedvocate.org/wp-content/uploads/2023/09/2-Table1-1.png'
                     alt=''
                   />
                 </div>
                 <p className='mt-3'>
-                  Theo Hiệp hội Dinh dưỡng Hoa Kỳ, công thức Mifflin St Jeor tính chỉ số BMR chuẩn được đánh giá là công
-                  thức có độ chính xác cao nhất. Hiện nay, công thức này trở thành tiêu chuẩn để đo BMR và được ứng dụng
-                  khá phổ biến.
-                </p>
-
-                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>
-                  2. Các yếu tố tác động đến chỉ số BMR
-                </h2>
-                <p className='mb-2'>Chỉ số BMR của một người được xác định bởi các yếu tố như sau:</p>
-                <ul className='list-disc mt-3 mb-4'>
-                  <li className='ml-6 mb-1'>
-                    Khối lượng của cơ: Cơ bắp là số lượng mô có trên cơ thể của mỗi người và chúng cần nhiều năng lượng
-                    để hoạt động hơn các mô mỡ. Điều này sẽ tác động trực tiếp tới chỉ số đo BMR.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Trọng lượng của cơ thể: Theo các nhà nghiên cứu, người có kích thước trọng lượng cơ thể lớn hơn so
-                    với người bình thường, đồng nghĩa với việc có chỉ số BMR cao hơn. Bởi vậy cơ thể cần tiêu hao một
-                    lượng Calo nhiều hơn để duy trì sức khỏe ổn định.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Độ tuổi: Tuổi tác tỉ lệ thuận với độ lớn chỉ số BMR. Có nghĩa là tuổi của bạn càng cao, thì mức tiêu
-                    hao năng lượng của bạn càng chậm. Điều này đã khiến chỉ số BMR chuẩn cũng giảm đi.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Giới tính: Theo nghiên cứu, nam giới có chỉ số BMR cao hơn nữ giới, do khối lượng cơ bắp của nam
-                    giới nhiều hơn, hơn nữa tỷ lệ mỡ của cơ thể nam giới cũng ít hơn..
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Yếu tố di truyền: Khả năng trao đổi chất của một người có thể được quyết định bởi một phần gen di
-                    truyền. Đây cũng là yếu tố rất quan trọng, tác động lớn đến chỉ số BMR.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Tập thể dục thể thao: Việc tập luyện thể thao thường xuyên vừa giúp rèn luyện sức khỏe, vừa giúp cho
-                    chỉ số BMR tăng lên.
-                  </li>
-                </ul>
-                <p>
-                  Ngoài ra còn một số nhân tố tác động đến việc đo BMR như yếu tố nội tiết tố nhất là ở nữ giới, thuốc,
-                  chế độ ăn uống cũng như chế độ sinh hoạt.
-                </p>
-                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
-                  <img
-                    className='object-cover rounded-md w-[100%]'
-                    src='https://drinkocany.com/wp-content/uploads/2022/12/tinh-bmr-4-1.jpg'
-                    alt=''
-                  />
-                </div>
-                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>3. Cách điều chỉnh chỉ số BMR</h2>
-                <p className='mb-2'>
-                  Chỉ số BMR sẽ cho bạn biết mức năng lượng cần cho cơ thể để cơ thể hoạt động, giúp duy trì sự sống.
-                  Dưới đây là một số cách điều chỉnh về chỉ số BMR, cụ thể:
-                </p>
-                <ul className='list-disc mt-3 mb-4'>
-                  <li className='ml-6 mb-1'>
-                    Luyện tập để tăng cơ: Khi bạn càng có nhiều cơ thì lúc nghỉ ngơi cơ thể bạn càng đốt cháy nhiều năng
-                    lượng. Do vậy, việc tập luyện thể thao thường xuyên sẽ giúp bạn tăng cơ đồng nghĩa với việc chỉ số
-                    đo BMR của bạn cũng tăng.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Xây dựng chế độ ăn khoa học, đủ chất: Một cách làm tăng chỉ số BMR đó là ăn uống đủ chất, đủ lượng
-                    Calo. Nếu bạn muốn giảm cân, không nên giảm chế độ ăn uống một cách đột ngột, mà hãy giảm từ từ
-                    xuống đến mức phù hợp với bản thân.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Tuyệt đối không nên bỏ đói hoặc ăn kiêng quá mức: Thực tế, khi bạn không ăn thì có thể giảm được vài
-                    cân, tuy nhiên phần giảm này đa số là nước. Điều này sẽ làm chậm quá trình trao đổi chất bên trong
-                    cơ thể của bạn.
-                  </li>
-                </ul>
-                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
-                  <img
-                    className='object-cover rounded-md w-[100%]'
-                    src='https://i1-suckhoe.vnecdn.net/2023/09/29/telemmglpict000349937914-16951-9330-5519-1695986615.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=ewIg1ulcImuxykA29O8zaQ'
-                    alt=''
-                  />
-                </div>
-                <p>
-                  Trên đây là những thông tin về chỉ số đo BMR. Hy vọng bài viết trên sẽ mang lại cho người đọc các
-                  thông tin hữu ích về cách tính chỉ số BMR trong việc điều chỉnh chỉ số BMR cũng như lượng Calo tiêu
-                  thụ mỗi ngày.
+                  Có những hạn chế đối với tất cả các công thức và phương pháp. Bởi vì các công thức được thiết kế để có
+                  thể áp dụng cho càng nhiều người càng tốt, nó không thể chính xác cao cho mọi cá nhân. Các công thức
+                  chỉ có chiều cao và giới tính, và có không cân nhắc về khuyết tật thể chất, mức độ hoạt động hoặc khối
+                  lượng cơ bắp đến tỷ lệ mỡ cơ thể, còn được gọi là thành phần cơ thể. Chỉ số cân nặng lý tưởng của
+                  chúng tôi là giá trị tham khảo và được sử dụng như một hướng dẫn chung dựa trên các công thức phổ
+                  biến, và kết quả của nó không nhằm mục đích là những giá trị bắt buộc mà một người phải đạt được để có
+                  được “cân nặng lý tưởng”.
                 </p>
               </article>
             </div>
           </main>
         </div>
-        <div className='col-span-6 my-3 xl:my-0 xl:col-span-2'>
+        <div className='col-span-6 order-first xl:order-last my-3 xl:my-0 xl:col-span-2'>
           <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-              Tính toán BMR{' '}
-              <p className='text-base text-black dark:text-gray-300'>(Theo phương trình Mifflin-St Jeor)</p>
+              Tính toán IBW{' '}
+              <p className='text-base text-black dark:text-gray-300'>(Theo B. J. Devine Công thức (1974))</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
             <form className='p-3'>
               <Input
-                title='Nhập cân nặng (kg)'
-                type='number'
-                name='weight'
-                id='weight'
-                placeholder='Nhập cân nặng của bạn'
-              />
-              <Input
-                title='Nhập chiều cao (m)'
+                title='Nhập chiều cao (cm)'
                 type='number'
                 name='height'
                 id='height'
                 placeholder='Nhập chiều cao của bạn'
               />
-              <Input title='Nhập độ tuổi' type='number' name='age' id='age' placeholder='Nhập độ tuổi của bạn' />
               <div className='mb-3'>
                 <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
                   Giới tính của bạn là:

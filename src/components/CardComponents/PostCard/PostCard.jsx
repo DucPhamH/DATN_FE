@@ -5,6 +5,7 @@ import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'
 import { LiaComments } from 'react-icons/lia'
 import moment from 'moment'
+import 'moment/locale/vi'
 import { deletePostForEachUser, likePost, unlikePost } from '../../../apis/postApi'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../main'
@@ -210,9 +211,7 @@ function CheckTypeOfPost({
                   </div>
                 </div>
                 <div className='flex gap-2 items-center'>
-                  <div className='text-slate-500 dark:text-slate-300'>
-                    {moment(data.createdAt).startOf('D').fromNow()}
-                  </div>
+                  <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
                   {data.status === 0 ? (
                     <div>
                       <MdPublic />
@@ -261,9 +260,7 @@ function CheckTypeOfPost({
                 </div>
               </div>
               <div className='flex gap-2 items-center'>
-                <div className='text-slate-500 dark:text-slate-300'>
-                  {moment(data.createdAt).startOf('D').fromNow()}
-                </div>
+                <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
                 {data.status === 0 ? (
                   <div>
                     <MdPublic />
@@ -307,9 +304,7 @@ function CheckTypeOfPost({
                 </div>
               </div>
               <div className='flex gap-2 items-center'>
-                <div className='text-slate-500 dark:text-slate-300'>
-                  {moment(data.parent_post.createdAt).startOf('D').fromNow()}
-                </div>
+                <div className='text-slate-500 dark:text-slate-300'>{moment(data.parent_post.createdAt).fromNow()}</div>
                 {data.parent_post.status === 0 ? (
                   <div>
                     <MdPublic />

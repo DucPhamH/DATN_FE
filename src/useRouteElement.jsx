@@ -167,7 +167,7 @@ export default function useRouteElement() {
       )
     },
     {
-      path: '/chef',
+      path: '/album',
       element: (
         <MainLayout>
           <Suspense>

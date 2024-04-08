@@ -111,7 +111,7 @@ export default function Home() {
   return (
     <>
       <div className=' grid xl:mx-8 pt-2 xl:gap-6 xl:grid-cols-5'>
-        <div className='col-span-3'>
+        <div className='xl:col-span-3'>
           <div className='bg-white py-2 px-4  shadow md:rounded-md dark:bg-color-primary'>
             <div>{checkTime(profile)}</div>
             <div className='flex justify-between items-center gap-2 md:gap-4 w-full'>

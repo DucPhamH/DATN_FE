@@ -1,10 +1,11 @@
 import useravatar from '../../assets/images/useravatar.jpg'
 import avatarbg from '../../assets/images/avatarbg.jpg'
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, useMutation } from '@tanstack/react-query'
 import TabsProfile from '../../components/GlobalComponents/TabsProfile'
 import UserPost from './components/UserPost'
 import { useParams } from 'react-router-dom'
+import { followUser } from '../../apis/userApi'
 
 export default function UserProfile() {
   const { id } = useParams()
@@ -22,7 +23,16 @@ export default function UserProfile() {
   //     }
   //   })
   //   console.log(userData)
+  const followMutation = useMutation({
+    mutationFn: (body) => followUser(body)
+  })
 
+  const handleFollow = () => {
+    followMutation.mutate({ follow_id: id })
+  }
+  const handleUnfollow = () => {
+    followMutation.mutate({ follow_id: id })
+  }
   return (
     <div>
       <div className='h-full rounded-lg text-gray-900 dark:text-white'>

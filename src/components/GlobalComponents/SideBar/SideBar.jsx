@@ -6,13 +6,14 @@ import logo from '../../../assets/images/logo.png'
 // * React icons
 import { FaCookieBite, FaShareAlt } from 'react-icons/fa'
 import { BsFillCalendarHeartFill, BsFillHeartFill, BsPeopleFill } from 'react-icons/bs'
-import { GiChefToque } from 'react-icons/gi'
 import { useMediaQuery } from 'react-responsive'
 import { MdMenu } from 'react-icons/md'
 import { NavLink, useLocation } from 'react-router-dom'
 import Submenu from './SubMenu'
 import DarkMode from '../DarkMode'
-import { AiFillSetting } from 'react-icons/ai'
+
+import { IoMdAlbums } from 'react-icons/io'
+import { MdBook } from 'react-icons/md'
 
 export default function SideBar() {
   let isTabletMid = useMediaQuery({ query: '(max-width: 767px)' })
@@ -108,15 +109,15 @@ export default function SideBar() {
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/blog'} className='link-custom '>
-                <FaShareAlt size={25} className='min-w-max' />
-                Góc chia sẻ
+              <NavLink to={'/album'} className='link-custom '>
+                <IoMdAlbums size={25} className='min-w-max' />
+                Album
               </NavLink>
             </li>
             <li>
-              <NavLink to={'/chef'} className='link-custom '>
-                <GiChefToque size={25} className='min-w-max' />
-                Thuê đầu bếp
+              <NavLink to={'/blog'} className='link-custom '>
+                <FaShareAlt size={25} className='min-w-max' />
+                Góc chia sẻ
               </NavLink>
             </li>
 
@@ -132,8 +133,8 @@ export default function SideBar() {
             )}
             <li>
               <NavLink to={'/settings'} className='link-custom '>
-                <AiFillSetting size={25} className='min-w-max' />
-                Cài đặt
+                <MdBook size={25} className='min-w-max' />
+                Mục đã lưu
               </NavLink>
             </li>
           </ul>

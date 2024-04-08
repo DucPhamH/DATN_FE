@@ -7,7 +7,7 @@ import moment from 'moment'
 import { useMutation } from '@tanstack/react-query'
 import { sharePost } from '../../../../apis/postApi'
 import { toast } from 'react-toastify'
-import { queryClient } from '../../../../main'
+
 import { AppContext } from '../../../../contexts/app.context'
 
 export default function ModalSharePost({ handleCloseSharePost, post }) {
@@ -112,11 +112,11 @@ export default function ModalSharePost({ handleCloseSharePost, post }) {
                     onClick={() => setShowEmoji(!showEmoji)}
                   />
                   {showEmoji && (
-                    <div className='absolute right-8 bottom-0'>
+                    <div className='absolute right-8 bottom-[-6rem]'>
                       <Picker
                         data={data}
-                        emojiSize={20}
-                        emojiButtonSize={28}
+                        emojiSize={18}
+                        emojiButtonSize={25}
                         onEmojiSelect={addEmoji}
                         maxFrequentRows={0}
                         previewPosition='none'

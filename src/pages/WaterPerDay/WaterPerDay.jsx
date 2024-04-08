@@ -13,7 +13,7 @@ export default function WaterPerDay() {
               <article className='mx-auto w-full '>
                 <header className='mb-3 not-format'>
                   <h1 className='mb-1 text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
-                    Chỉ số BMR là gì? Công thức tính và yếu tố tác động đến chỉ số đo BMR
+                    Cách tính lượng nước cần uống mỗi ngày của cơ thể và lưu ý khi uống
                   </h1>
                   <div className='flex items-center'>
                     Thu thập bởi: <span className='font-semibold text-red-600 dark:text-pink-400 ml-1'>Cook</span>
@@ -22,8 +22,10 @@ export default function WaterPerDay() {
                   </div>
                 </header>
                 <p className='lead mb-4 font-medium'>
-                  Việc đo BMR sẽ cho chúng ta biết mức năng lượng tối thiểu mà cơ thể cần. Qua đó để cơ thể thực hiện
-                  các chức năng năng hoạt động cơ bản nhằm duy trì sự sống khi chúng ta trong trạng thái nghỉ ngơi.
+                  Nước là thành phần cơ bản và không thể thiếu trong quá trình trao đổi của cơ thể con người. Việc đảm
+                  bảo uống đủ lượng nước hàng ngày có thể giúp cải thiện sức khỏe, tăng cường năng lượng và duy trì cân
+                  nặng. Tuy nhiên, uống bao nhiêu nước mới là đủ, tham khảo bài viết dưới đây để biết cách tính lượng
+                  nước cần uống.
                 </p>
                 <div className='font-medium'>Xem thêm các công thức tính khác:</div>
                 <ul>
@@ -44,145 +46,150 @@ export default function WaterPerDay() {
                 <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
-                    src='https://sasukegym.vn/wp-content/uploads/2019/11/bmr.jpg'
+                    src='https://image.sggp.org.vn/w1000/Uploaded/2024/fwcgmzsfdazs/2023_12_15/1-1441.jpg.webp'
                     alt=''
                   />
                 </div>
-                <p className='lead mb-3 font-medium'>
-                  Để có một vóc dáng đẹp hoặc có cân nặng phù hợp thì cần có một chế độ ăn uống và luyện tập hợp lý. Mà
-                  hai yếu tố này thì cần lưu ý đến chỉ số BMR để có thể điều chỉnh lượng Calo phù hợp cho bản thân. Vậy
-                  BMR là gì? Cách đo BMR như thế nào? Hãy tìm hiểu thông qua bài viết dưới đây nhé.
-                </p>
-                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>1. Chỉ số BMR là gì?</h2>
+
+                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>
+                  1. Cách tính lượng nước cần uống mỗi ngày của cơ thể
+                </h2>
                 <p className='mb-1'>
-                  - Chỉ số BMR (Basal Metabolic Rate) là chỉ số cho chúng ta biết tỷ lệ trao đổi chất cơ bản trong cơ
-                  thể con người. Đây là chỉ số cung cấp cho bạn biết mức năng lượng tối thiểu mà cơ thể người cần có, từ
-                  đó giúp bạn duy trì được sự ổn định của các chức năng sống của cơ thể như hệ tuần hoàn, hệ tiêu hoá,
-                  hệ hô hấp… Việc tính BMR phụ thuộc vào nhiều yếu tố, chỉ số BMR sẽ chiếm khoảng 70% tổng số lượng Calo
-                  tiêu hao mỗi ngày.
+                  Hầu hết chúng ta thường được khuyên nên uống 2 lít nước/ngày, tuy nhiên đây chỉ là con số trung bình.
+                  Lượng nước uống cơ bản hàng ngày được tính theo công thức sau:
                 </p>
+                <ul className='list-disc mt-3 mb-4'>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Lượng nước uống cơ bản hàng ngày (lít) = cân nặng (kg) x 0.03 lít
+                  </li>
+                </ul>
                 <p className='mb-1'>
-                  - Quá trình cơ thể mỗi người đốt cháy Calo không phải hầu như xuất phát từ các yếu tố bên ngoài như
-                  vận động, di chuyển đi lại… mà là các hoạt động của các bộ phận như não, tim, gan, phổi, hô hấp… cũng
-                  đều tiêu hao năng lượng, ngay cả khi bạn đang trong trạng thái nghỉ ngơi cũng {''}
-                  <span className='font-medium'>tiêu tốn Calo.</span>
+                  Ví dụ, đối với người 60kg cân nặng thì lượng nước cơ bản cần uống mỗi ngày là: 60 (kg) x 0.03 lít =
+                  1.8 lít. Vậy mỗi ngày bạn cần bổ sung cho cơ thể 1.8 lít tương đương 1800ml nước.
                 </p>
                 <div className='flex overflow-hidden gap-3 w-full items-center my-2 justify-center'>
                   <img
                     className='object-cover rounded-md '
-                    src='https://mrsun.vn/wp-content/uploads/2022/11/brm-la-gi-2.png'
+                    src='https://cdn.tgdd.vn//News/1163869//cach-tinh-chinh-xac-luong-nuoc-can-uong-moi-ngay-cua-co-the-1-800x450.jpg'
                     alt=''
                   />
                 </div>
                 <p className='mb-1'>
-                  - Vì vậy, việc đo BMR có thể giúp mọi người theo dõi trọng lượng của cơ thể mình. Tổng lượng Calo cũng
-                  như mức độ hoạt động của cơ thể mỗi ngày đều phụ thuộc vào chỉ số BMR. Tức là, nếu muốn tăng cân thì
-                  BMR cho biết bạn phải hấp thụ lượng ăn lớn hơn tổng lượng Calo cần có. Còn nếu muốn giảm cân thì bạn
-                  cần phải có chế độ tập luyện và có chế độ ăn phù hợp.
-                </p>
-                <h2 className='font-bold text-xl my-3 dark:text-gray-300'>2. Công thức tính chỉ số đo BMR</h2>
-
-                <p className='mt-2'>
-                  BMR tượng trưng cho mức tiêu thụ năng lượng ở điều kiện không hoạt động. Công thức được tính dựa trên
-                  chỉ số chiều cao, cân nặng và độ tuổi của một người. Theo phương trình Mifflin-St Jeor ta có:
+                  Theo Hệ thống Đại học Missouri - Mỹ, những người có cường độ luyện tập thể dục cao nên uống thêm 12 oz
+                  (khoảng 360ml) nước cho mỗi 30 phút khi luyện tập. Như vậy, công thức tính lượng nước cần uống khi vận
+                  động như sau:
                 </p>
                 <ul className='list-disc mt-3 mb-4'>
                   <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
-                    Nam giới: (9.99 x Weight [kg]) + (6.25 x Height [cm]) - (4.92 x Age) + 5
+                    [Cân nặng(kg) + (Thời gian luyện tập/30 phút x 12 oz)] x 0.03 lít = Lượng nước (lít).
+                  </li>
+                </ul>
+                <p className='mb-1'>
+                  Ví dụ, với 60kg cân nặng như trên và bạn tập thể dục 60 phút mỗi ngày, ta sẽ có: [60kg (60/30 phút x
+                  12 oz)] x 0.03 lít = (60 + 24) x 0.03 = 2.52 lít nước/ngày.
+                </p>
+                <div className='flex overflow-hidden gap-3 w-full items-center my-2 justify-center'>
+                  <img
+                    className='object-cover rounded-md '
+                    src='https://cdn.tgdd.vn//News/1163869//cach-tinh-chinh-xac-luong-nuoc-can-uong-moi-ngay-cua-co-the-2-800x450.jpg'
+                    alt=''
+                  />
+                </div>
+                <p className='mb-1'>Lượng nước mỗi nhóm tuổi cần uống cụ thể như sau:</p>
+                <ul className='list-disc mt-3 mb-4'>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Trẻ em cân nặng 1 - 10kg: Mỗi ngày cần bổ sung 100ml nước/kg cân nặng
                   </li>
                   <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
-                    Nữ giới: (9.99 x Weight [kg]) + (6.25 x Height [cm]) - (4.92 x Age) - 161
+                    Trẻ em cân nặng 11 - 20kg: Mỗi ngày cần bổ sung 1.000ml nước và thêm 50ml đối với mỗi 1kg tăng thêm.
+                  </li>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Trẻ em nặng từ 21kg trở lên: Mỗi ngày cần bổ sung 1.500ml và thêm 20ml đối với mỗi 1kg tăng thêm.
+                  </li>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Trẻ vị thành niên 10 - 18 tuổi: Mỗi ngày cần bổ sung 40ml nước/kg cân nặng.
+                  </li>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Người trưởng thành 19 - 30 tuổi và có hoạt động thể lực nặng: Mỗi ngày cần bổ sung khoảng 40ml
+                    nước/kg cân nặng.
+                  </li>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Người lớn 19 - 55 tuổi, hoạt động thể lực ở mức trung bình: Mỗi ngày cần bổ sung khoảng 35ml nước/kg
+                    cân nặng.
+                  </li>
+                  <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
+                    Người trưởng thành trên 55 tuổi: Mỗi ngày cần bổ sung khoảng 30ml nước/kg cân nặng..
                   </li>
                 </ul>
-                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
-                  <img
-                    className='object-cover rounded-md w-[100%]'
-                    src='https://www.inchcalculator.com/wp-content/uploads/2021/04/bmr-formulas.png'
-                    alt=''
-                  />
-                </div>
-                <p className='mt-3'>
-                  Theo Hiệp hội Dinh dưỡng Hoa Kỳ, công thức Mifflin St Jeor tính chỉ số BMR chuẩn được đánh giá là công
-                  thức có độ chính xác cao nhất. Hiện nay, công thức này trở thành tiêu chuẩn để đo BMR và được ứng dụng
-                  khá phổ biến.
-                </p>
 
-                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>
-                  2. Các yếu tố tác động đến chỉ số BMR
-                </h2>
-                <p className='mb-2'>Chỉ số BMR của một người được xác định bởi các yếu tố như sau:</p>
-                <ul className='list-disc mt-3 mb-4'>
-                  <li className='ml-6 mb-1'>
-                    Khối lượng của cơ: Cơ bắp là số lượng mô có trên cơ thể của mỗi người và chúng cần nhiều năng lượng
-                    để hoạt động hơn các mô mỡ. Điều này sẽ tác động trực tiếp tới chỉ số đo BMR.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Trọng lượng của cơ thể: Theo các nhà nghiên cứu, người có kích thước trọng lượng cơ thể lớn hơn so
-                    với người bình thường, đồng nghĩa với việc có chỉ số BMR cao hơn. Bởi vậy cơ thể cần tiêu hao một
-                    lượng Calo nhiều hơn để duy trì sức khỏe ổn định.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Độ tuổi: Tuổi tác tỉ lệ thuận với độ lớn chỉ số BMR. Có nghĩa là tuổi của bạn càng cao, thì mức tiêu
-                    hao năng lượng của bạn càng chậm. Điều này đã khiến chỉ số BMR chuẩn cũng giảm đi.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Giới tính: Theo nghiên cứu, nam giới có chỉ số BMR cao hơn nữ giới, do khối lượng cơ bắp của nam
-                    giới nhiều hơn, hơn nữa tỷ lệ mỡ của cơ thể nam giới cũng ít hơn..
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Yếu tố di truyền: Khả năng trao đổi chất của một người có thể được quyết định bởi một phần gen di
-                    truyền. Đây cũng là yếu tố rất quan trọng, tác động lớn đến chỉ số BMR.
-                  </li>
-                  <li className='ml-6 mb-1'>
-                    Tập thể dục thể thao: Việc tập luyện thể thao thường xuyên vừa giúp rèn luyện sức khỏe, vừa giúp cho
-                    chỉ số BMR tăng lên.
-                  </li>
-                </ul>
-                <p>
-                  Ngoài ra còn một số nhân tố tác động đến việc đo BMR như yếu tố nội tiết tố nhất là ở nữ giới, thuốc,
-                  chế độ ăn uống cũng như chế độ sinh hoạt.
-                </p>
-                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
-                  <img
-                    className='object-cover rounded-md w-[100%]'
-                    src='https://drinkocany.com/wp-content/uploads/2022/12/tinh-bmr-4-1.jpg'
-                    alt=''
-                  />
-                </div>
-                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>3. Cách điều chỉnh chỉ số BMR</h2>
+                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>2. Các lưu ý khi uống nước</h2>
                 <p className='mb-2'>
-                  Chỉ số BMR sẽ cho bạn biết mức năng lượng cần cho cơ thể để cơ thể hoạt động, giúp duy trì sự sống.
-                  Dưới đây là một số cách điều chỉnh về chỉ số BMR, cụ thể:
+                  Trên thực tế, có 4 yếu tố ảnh hưởng đến lượng nước bạn cần bổ sung mỗi ngày, cụ thể:
                 </p>
                 <ul className='list-disc mt-3 mb-4'>
                   <li className='ml-6 mb-1'>
-                    Luyện tập để tăng cơ: Khi bạn càng có nhiều cơ thì lúc nghỉ ngơi cơ thể bạn càng đốt cháy nhiều năng
-                    lượng. Do vậy, việc tập luyện thể thao thường xuyên sẽ giúp bạn tăng cơ đồng nghĩa với việc chỉ số
-                    đo BMR của bạn cũng tăng.
+                    Hoạt động thể chất: Vận động thường xuyên giúp cơ thể đổ mồ hôi, do đó bạn cần uống nước để bù đắp
+                    lượng nước mà cơ thể đã bài tiết ra ngoài qua mồ hôi. Bạn nên chú ý uống đủ nước trước, trong, sau
+                    khi luyện tập và bổ sung thêm nước điện giải nếu đang luyện tập trong cường độ cao.
                   </li>
                   <li className='ml-6 mb-1'>
-                    Xây dựng chế độ ăn khoa học, đủ chất: Một cách làm tăng chỉ số BMR đó là ăn uống đủ chất, đủ lượng
-                    Calo. Nếu bạn muốn giảm cân, không nên giảm chế độ ăn uống một cách đột ngột, mà hãy giảm từ từ
-                    xuống đến mức phù hợp với bản thân.
+                    Yếu tố môi trường: Nhiệt độ và độ ẩm tăng cao cũng ảnh hưởng đến lượng nước bạn cần bổ sung mỗi
+                    ngày. Những ngày thời tiết nóng ẩm, mồ hôi bài tiết nhiều hơn nên bạn cần uống nhiều nước hơn.
                   </li>
                   <li className='ml-6 mb-1'>
-                    Tuyệt đối không nên bỏ đói hoặc ăn kiêng quá mức: Thực tế, khi bạn không ăn thì có thể giảm được vài
-                    cân, tuy nhiên phần giảm này đa số là nước. Điều này sẽ làm chậm quá trình trao đổi chất bên trong
-                    cơ thể của bạn.
+                    Vấn đề sức khỏe: Tình trạng nôn mửa, sốt, tiêu chảy,... khiến cơ thể bạn mất nhiều nước và chất điện
+                    giải hơn. Do đó, điều bạn cần làm là bù nước bằng đường uống, sử dụng dung dịch oresol để bù lại
+                    lượng nước và chất điện giải đã mất.
+                  </li>
+                  <li className='ml-6 mb-1'>
+                    Mang thai hoặc cho con bú: Phụ nữ trong thời kỳ mang thai hoặc cho con bú cần bổ sung nước cho cơ
+                    thể nhiều hơn các đối tượng khác. Văn phòng Sức khỏe Phụ nữ khuyến cáo rằng mỗi ngày, phụ nữ mang
+                    thai nên bổ sung khoảng 10 cốc (tương đương 2,4 lít) nước trong khi phụ nữ đang cho con bú nên bổ
+                    sung khoảng 13 cốc (tương đương 3,1 lít) nước mỗi ngày.
                   </li>
                 </ul>
+
                 <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
-                    src='https://i1-suckhoe.vnecdn.net/2023/09/29/telemmglpict000349937914-16951-9330-5519-1695986615.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=ewIg1ulcImuxykA29O8zaQ'
+                    src='https://primer.vn/wp-content/uploads/2023/07/luong-nuoc-uong-moi-ngay-theo-can-nang-2.jpg'
                     alt=''
                   />
                 </div>
-                <p>
-                  Trên đây là những thông tin về chỉ số đo BMR. Hy vọng bài viết trên sẽ mang lại cho người đọc các
-                  thông tin hữu ích về cách tính chỉ số BMR trong việc điều chỉnh chỉ số BMR cũng như lượng Calo tiêu
-                  thụ mỗi ngày.
-                </p>
+                <h2 className='font-bold text-xl mt-5 mb-3 dark:text-gray-300'>3. Thời điểm bạn nên uống nước</h2>
+                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                  <img
+                    className='object-cover rounded-md w-[100%]'
+                    src='https://cdn.tgdd.vn//News/1163869//cach-tinh-chinh-xac-luong-nuoc-can-uong-moi-ngay-cua-co-the-5-800x450.jpg'
+                    alt=''
+                  />
+                </div>
+                <ul className='list-disc mt-3 mb-4'>
+                  <li className='ml-6 mb-1'>
+                    Khi thức dậy: Buổi sáng là một trong những thời điểm lý tưởng để bạn bắt đầu uống nước. Sau một thời
+                    gian dài không ăn uống, cơ thể của bạn cần được cung cấp nước. Đặc biệt, uống một cốc nước lọc vắt
+                    thêm nửa quả chanh vào buổi sáng giúp tăng cường vitamin C, kali và chất chống oxy hóa cho cơ thể.
+                  </li>
+                  <li className='ml-6 mb-1'>
+                    Bất cứ khi nào bạn đổ mồ hôi: Bất kỳ hoạt động nào cũng có thể khiến cơ thể bạn đổ mồ hôi: Dù là tắm
+                    nước nóng hay tiếp xúc cơ thể với ánh nắng mặt trời trong một thời gian dài. Đổ mồ hôi để giúp cơ
+                    thể hạ nhiệt khiến bạn mau khát hơn, do đó bạn cần uống nhiều nước để bù lại lượng nước đã mất.
+                  </li>
+                  <li className='ml-6 mb-1'>
+                    Khi tập thể dục: Tập luyện thể thao với cường độ cao khiến cơ thể bạn đổ nhiều mồ hôi hơn. Bạn nên
+                    bổ sung cho cơ thể 150 - 300ml nước sau khoảng 10 - 15 phút hoạt động thể chất.
+                  </li>
+                  <li className='ml-6 mb-1'>
+                    Trước bữa ăn: Uống nước trước bữa ăn có thể giúp bạn giảm cân hiệu quả. Một nghiên cứu cho thấy
+                    những người bổ sung 500ml nước lọc trước bữa ăn, sau 12 tuần, họ giảm 1.5kg so với những người không
+                    làm điều này.
+                  </li>
+                  <li className='ml-6 mb-1'>
+                    Khi bạn cần tập trung: Thời điểm đầu giờ chiều là lúc cơ thể bạn dễ bị hao hụt năng lượng và sự tập
+                    trung nhất. Lúc này, thay vì uống cà phê, bạn nên uống nước lọc (có thể thêm một chút chanh) để cải
+                    thiện tâm trạng và sự tập trung của bạn.
+                  </li>
+                </ul>
               </article>
             </div>
           </main>
@@ -190,8 +197,8 @@ export default function WaterPerDay() {
         <div className='col-span-6 my-3 xl:my-0 xl:col-span-2'>
           <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-              Tính toán BMR{' '}
-              <p className='text-base text-black dark:text-gray-300'>(Theo phương trình Mifflin-St Jeor)</p>
+              Tính toán lượng nước uống
+              <p className='text-base text-black dark:text-gray-300'></p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
             <form className='p-3'>
@@ -203,32 +210,12 @@ export default function WaterPerDay() {
                 placeholder='Nhập cân nặng của bạn'
               />
               <Input
-                title='Nhập chiều cao (m)'
+                title='Nhập thời gian tập luyện (phút)'
                 type='number'
-                name='height'
-                id='height'
-                placeholder='Nhập chiều cao của bạn'
+                name='time'
+                id='time'
+                placeholder='Nhập thời gian tập luyện của bạn'
               />
-              <Input title='Nhập độ tuổi' type='number' name='age' id='age' placeholder='Nhập độ tuổi của bạn' />
-              <div className='mb-3'>
-                <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
-                  Giới tính của bạn là:
-                </div>
-                <div className='flex items-center pb-2'>
-                  <div className='flex items-center'>
-                    <input type='radio' defaultValue name='default-radio' id='men' className='radio radio-success' />
-                    <label htmlFor='men' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
-                      Nam
-                    </label>
-                  </div>
-                  <div className='flex items-center'>
-                    <input type='radio' name='default-radio' id='womam' className='radio radio-success' />
-                    <label htmlFor='woman' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
-                      Nữ
-                    </label>
-                  </div>
-                </div>
-              </div>
 
               <div className='flex justify-center'>
                 <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
