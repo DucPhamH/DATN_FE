@@ -3,14 +3,15 @@ import useravatar from '../../../../assets/images/useravatar.jpg'
 import { useContext, useState } from 'react'
 import InputEmoji from '../../../../components/InputComponents/InputEmoji'
 import ShowMoreContent from '../../../../components/GlobalComponents/ShowMoreContent/ShowMoreContent'
-import { createComment, getChildComments } from '../../../../apis/postApi'
+import { createComment, deleteChildComment, deleteComment, getChildComments } from '../../../../apis/postApi'
 import { keepPreviousData, useInfiniteQuery, useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../../main'
-import { toast } from 'react-toastify'
 import { AppContext } from '../../../../contexts/app.context'
 import { useNavigate } from 'react-router-dom'
+import ThreeDotComment from '../ThreeDotComment'
+import { toast } from 'react-toastify'
 
-export default function CommentItems({ comment }) {
+export default function CommentItems({ comment, post }) {
   const [showReply, setShowReply] = useState(false)
   const [content, setContent] = useState('')
   const { profile } = useContext(AppContext)
@@ -70,9 +71,38 @@ export default function CommentItems({ comment }) {
   }
   const contentChildComment = data?.pages.map((dataChildComments) =>
     dataChildComments.data.result.child_comments.map((child_comment) => {
-      return <CommentChildItems navigate={navigate} profile={profile} comment={child_comment} key={child_comment._id} />
+      return (
+        <CommentChildItems
+          post={post}
+          navigate={navigate}
+          profile={profile}
+          comment={child_comment}
+          key={child_comment._id}
+        />
+      )
     })
   )
+
+  const deleteCommentMutation = useMutation({
+    mutationFn: (body) => deleteComment(body)
+  })
+
+  const handleDeleteComment = async () => {
+    deleteCommentMutation.mutate(
+      {
+        comment_id: comment._id
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('comments')
+          toast.success('Xóa bình luận thành công')
+        },
+        onError: () => {
+          console.log('error')
+        }
+      }
+    )
+  }
 
   return (
     <div className=' flex pb-4'>
@@ -126,11 +156,14 @@ export default function CommentItems({ comment }) {
           </div>
         )}
       </div>
+      <div>
+        <ThreeDotComment post={post} userID={comment.user._id} handleDeletePost={handleDeleteComment} />
+      </div>
     </div>
   )
 }
 
-function CommentChildItems({ comment, profile, navigate }) {
+function CommentChildItems({ comment, profile, navigate, post }) {
   const checkNavigateUser = () => {
     if (profile._id === comment.user._id) {
       navigate('/me')
@@ -138,29 +171,55 @@ function CommentChildItems({ comment, profile, navigate }) {
       navigate(`/user/${comment.user._id}`)
     }
   }
+  const deleteChildCommentMutation = useMutation({
+    mutationFn: (body) => deleteChildComment(body)
+  })
+
+  const handleDeleteChildComment = async () => {
+    deleteChildCommentMutation.mutate(
+      {
+        comment_id: comment._id
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('child-comments')
+          toast.success('Xóa bình luận thành công')
+        },
+        onError: () => {
+          console.log('error')
+        }
+      }
+    )
+  }
   console.log(comment)
   return (
-    <div className='mt-4 '>
-      <div className='media flex pb-4'>
-        <div onClick={checkNavigateUser} className='mr-4'>
-          <img
-            className='rounded-full max-w-none w-10 h-10'
-            src={comment.user.avatar === '' ? useravatar : comment.user.avatar}
-          />
-        </div>
-        <div className='media-body'>
-          <div>
-            <div
-              onClick={checkNavigateUser}
-              className='inline-block hover:underline cursor-pointer text-base font-bold mr-2'
-            >
-              {comment.user.name}
-            </div>
-            <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).fromNow()}</span>
+    <div className='mt-4  '>
+      <div className=' pb-4 flex justify-between'>
+        <div className='media flex'>
+          <div onClick={checkNavigateUser} className='mr-4'>
+            <img
+              className='rounded-full max-w-none w-10 h-10'
+              src={comment.user.avatar === '' ? useravatar : comment.user.avatar}
+            />
           </div>
-          <ShowMoreContent className='text-sm' lines={2}>
-            <p className='text-sm'>{comment.content}</p>
-          </ShowMoreContent>
+          <div className='media-body'>
+            <div>
+              <div
+                onClick={checkNavigateUser}
+                className='inline-block hover:underline cursor-pointer text-base font-bold mr-2'
+              >
+                {comment.user.name}
+              </div>
+              <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).fromNow()}</span>
+            </div>
+            <ShowMoreContent className='text-sm' lines={2}>
+              <p className='text-sm'>{comment.content}</p>
+            </ShowMoreContent>
+          </div>
+        </div>
+
+        <div>
+          <ThreeDotComment post={post} userID={comment.user._id} handleDeletePost={handleDeleteChildComment} />
         </div>
       </div>
     </div>

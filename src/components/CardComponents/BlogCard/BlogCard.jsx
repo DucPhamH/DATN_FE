@@ -1,8 +1,6 @@
-import React from 'react'
-
 export default function BlogCard({ blogItem, imgClass, dateClass, titleClass, descriptionClass, linkClass }) {
   return (
-    <div className='border border-gray-300 dark:border-gray-800 rounded-xl'>
+    <div className='border border-gray-300 dark:border-gray-800  rounded-xl'>
       <div className={imgClass}>
         <img
           src={blogItem.image}

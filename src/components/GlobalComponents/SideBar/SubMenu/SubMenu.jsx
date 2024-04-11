@@ -11,15 +11,15 @@ export default function Submenu({ data }) {
   // console.log(data.menus)
   return (
     <>
-      <li
+      <div
         className={`link-custom ${pathname.includes(data.path) && 'text-red-600 dark:text-yellow-500'}`}
         onClick={() => setSubMenuOpen(!subMenuOpen)}
       >
         <data.icon size={23} className='min-w-max' />
         <p className='flex-1'>{data.name}</p>
         <IoIosArrowDown className={` ${subMenuOpen && 'rotate-180'} duration-200 `} />
-      </li>
-      <motion.ul
+      </div>
+      <motion.div
         animate={
           subMenuOpen
             ? {
@@ -32,13 +32,13 @@ export default function Submenu({ data }) {
         className='flex h-0 flex-col pl-14 text-[0.8rem] font-normal overflow-hidden'
       >
         {data.menus?.map((menu) => (
-          <li key={menu.subName}>
+          <div key={menu.subName}>
             <NavLink to={`/${data.path}/${menu.subPath}`} className='link-custom bg-transparent'>
               {menu.subName}
             </NavLink>
-          </li>
+          </div>
         ))}
-      </motion.ul>
+      </motion.div>
     </>
   )
 }

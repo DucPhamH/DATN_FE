@@ -34,3 +34,14 @@ export const schemaRegister = yup.object({
     .max(160, 'Độ dài từ 6 - 160 ký tự')
     .oneOf([yup.ref('password'), null], 'Mật khẩu không khớp')
 })
+
+export const schemaCreateBlog = yup.object({
+  title: yup.string().required('Tiêu đề là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự'),
+  image: yup.string().required('Link ảnh là bắt buộc').url('Link ảnh không đúng định dạng'),
+  description: yup.string().required('Mô tả là bắt buộc').min(10, 'Độ dài từ 10 ký tự'),
+  // nếu category_blog_id = DEFAULT thì sẽ báo lỗi
+  category_blog_id: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 thể loại blog'),
+  content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 10 ký tự')
+})
+
+//validate dynamic form

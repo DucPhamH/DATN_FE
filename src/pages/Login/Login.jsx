@@ -81,8 +81,8 @@ export default function Login() {
       </h1>
       <form onSubmit={onSubmit} noValidate>
         <Input
-          title='Your email'
-          placeholder='Email'
+          title='Email của bạn'
+          placeholder='Nhập email của bạn'
           register={register}
           errors={errors.email}
           type='email'
@@ -90,8 +90,8 @@ export default function Login() {
           id='email'
         />
         <InputPass
-          title='Your password'
-          placeholder='Password'
+          title='Mật khẩu của bạn'
+          placeholder='Nhập mật khẩu của bạn'
           register={register}
           errors={errors.password}
           name='password'
@@ -117,7 +117,7 @@ export default function Login() {
               type='submit'
               className='uppercase block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'
             >
-              sign in
+              Đăng nhập
             </button>
           )}
         </div>

@@ -28,6 +28,7 @@ export default function Register() {
 
   const onSubmit = handleSubmit((data) => {
     const body = omit(data, ['confirm_password'])
+    console.log(data)
     registerAccountMutation.mutate(body, {
       onSuccess: (data) => {
         console.log(data)
@@ -69,8 +70,8 @@ export default function Register() {
         <div className='w-auto h-3 sm:h-4 inline-flex text-4xl lg:text-red-700 font-bold'>Đăng kí</div>
       </h1>
       <Input
-        title='Your name'
-        placeholder='Your name'
+        title='Tên của bạn'
+        placeholder='Nhập tên của bạn'
         register={register}
         errors={errors.name}
         type='text'
@@ -78,8 +79,8 @@ export default function Register() {
         id='name'
       />
       <Input
-        title='Your email'
-        placeholder='Email'
+        title='Email của bạn'
+        placeholder='Nhập email của bạn'
         register={register}
         errors={errors.email}
         type='email'
@@ -87,15 +88,15 @@ export default function Register() {
         id='email'
       />
       <InputPass
-        title='Your password'
-        placeholder='Password'
+        title='Mật khẩu của bạn'
+        placeholder='Nhập mật khẩu của bạn'
         register={register}
         errors={errors.password}
         name='password'
       />
       <InputPass
-        title='Your confirm password'
-        placeholder='Confirm password'
+        title='Xác nhận mật khẩu'
+        placeholder='Nhập lại mật khẩu của bạn'
         register={register}
         errors={errors.confirm_password}
         name='confirm_password'
@@ -113,7 +114,7 @@ export default function Register() {
           </div>
         ) : (
           <button className='uppercase block w-full transition-all duration-500 p-2 mt-3 text-lg rounded-full bg-orange-500 hover:bg-orange-600 focus:outline-none'>
-            sign up
+            Đăng kí
           </button>
         )}
 

@@ -11,9 +11,11 @@ import { MdMenu } from 'react-icons/md'
 import { NavLink, useLocation } from 'react-router-dom'
 import Submenu from './SubMenu'
 import DarkMode from '../DarkMode'
+import { FaPenToSquare } from 'react-icons/fa6'
 
 import { IoMdAlbums } from 'react-icons/io'
 import { MdBook } from 'react-icons/md'
+import Logo from '../Logo'
 
 export default function SideBar() {
   let isTabletMid = useMediaQuery({ query: '(max-width: 767px)' })
@@ -70,6 +72,15 @@ export default function SideBar() {
         { subName: 'Lịch trình tập luyện', subPath: 'ex-schedule' }
       ],
       path: 'schedule'
+    },
+    {
+      name: 'Tạo bài viết',
+      icon: FaPenToSquare,
+      menus: [
+        { subName: 'Tạo bài viết nấu ăn', subPath: 'food-list' },
+        { subName: 'Tạo blog dinh dưỡng', subPath: 'blog-list' }
+      ],
+      path: 'chef'
     }
   ]
 
@@ -86,16 +97,10 @@ export default function SideBar() {
         animate={open ? 'open' : 'closed'}
         className=' bg-white dark:bg-color-primary-dark dark:text-gray-300 text-gray shadow-md dark:shadow-yellow-800 max-w-[16rem] w-[16rem] overflow-hidden z-[999] h-screen relative'
       >
-        <div className='flex items-center gap-2.5 font-medium pb-3.5 pt-3 mx-3'>
-          <img src={logo} width={50} alt='icon-app' />
-          <span className='text-2xl flex font-bold whitespace-pre'>
-            <span className='text-red-500'>Cook</span>Healthy
-            <DarkMode />
-          </span>
-        </div>
+        <Logo />
 
         <div className='flex flex-col h-full'>
-          <ul className='whitespace-pre px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 md:h-[72%] h-[70%]'>
+          <ul className='whitespace-pre  px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 md:h-[72%] h-[70%]'>
             <li>
               <NavLink to={'/home'} className='link-custom '>
                 <BsPeopleFill size={25} className='min-w-max' />
@@ -175,7 +180,10 @@ export default function SideBar() {
           <IoIosArrowBack size={25} />
         </motion.div> */}
       </motion.div>
-      <div className='my-3 ml-4 mr-3 md:hidden absolute top-2 z-50' onClick={() => setOpen(true)}>
+      <div
+        className='my-3 cursor-pointer hover:text-red-600 transition-all ml-4 mr-3 md:hidden absolute top-2 z-50'
+        onClick={() => setOpen(true)}
+      >
         <MdMenu size={25} />
       </div>
     </div>

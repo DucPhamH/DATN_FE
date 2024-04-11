@@ -17,3 +17,5 @@ export const getComments = (params) => http.get(`/posts/actions/comment`, { para
 export const createComment = (body) => http.post('/posts/actions/comment', body)
 export const getChildComments = (params) => http.get(`/posts/actions/child-comment`, { params })
 export const deletePostForEachUser = (body) => http.post('/posts/actions/delete-post', body)
+export const deleteComment = (body) => http.post('/posts/actions/delete-comment', body)
+export const deleteChildComment = (body) => http.post('/posts/actions/delete-child-comment', body)

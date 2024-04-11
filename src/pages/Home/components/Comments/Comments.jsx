@@ -4,7 +4,6 @@ import CommentItems from '../CommentItems'
 import Loading from '../../../../components/GlobalComponents/Loading'
 import { useState } from 'react'
 import InputEmoji from '../../../../components/InputComponents/InputEmoji'
-import { toast } from 'react-toastify'
 import { queryClient } from '../../../../main'
 
 export default function Comments({ post }) {
@@ -50,7 +49,7 @@ export default function Comments({ post }) {
 
   const contentComment = data?.pages.map((dataComments) =>
     dataComments.data.result.comments.map((comment) => {
-      return <CommentItems comment={comment} key={comment._id} />
+      return <CommentItems post={post} comment={comment} key={comment._id} />
     })
   )
 

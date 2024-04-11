@@ -9,6 +9,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+.custorm-blog li {
+  list-style-type: disc;
+  margin-left: 2rem;
+  margin-top: 2px;
+}
+
 .container {
   background-size: cover;
   background-position: center;
@@ -117,6 +123,16 @@ input:-webkit-autofill:active {
   border-radius: 10px;
   max-height: calc(100vh - 80px);
   /* overflow-y: auto; */
+}
+.ql-snow .ql-tooltip input[type='text'] {
+  display: none;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  height: 26px;
+  margin: 0px;
+  background: white;
+  padding: 3px 5px;
+  width: 170px;
 }
 
 .slick-dots li.slick-active button:before {
@@ -392,4 +408,14 @@ input:-webkit-autofill:active {
     top: 60%;
     opacity: 0;
   }
+}
+
+/* căn giữa video */
+.ql-video {
+  margin: 0 auto;
+  display: block;
+  /* auto convert chiều cao với chiều rộng của video theo tỉ lệ của video */
+  max-height: 400px;
+  height: 300px;
+  width: 100%;
 }

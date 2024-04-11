@@ -1,5 +1,4 @@
-import BlogCardV2 from '../../components/CardComponents/BlogCardV2'
-import FoodCard from '../../components/CardComponents/FoodCard/FoodCard'
+import BlogCard from '../../components/CardComponents/BlogCard'
 
 import { AiOutlineSearch } from 'react-icons/ai'
 
@@ -201,7 +200,7 @@ export default function Blog() {
           <div className='grid gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
             {blogItems.map((blogItem) => {
               return (
-                <BlogCardV2
+                <BlogCard
                   key={blogItem.id}
                   blogItem={blogItem}
                   imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'

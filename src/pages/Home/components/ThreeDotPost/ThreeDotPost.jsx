@@ -42,21 +42,21 @@ export default function ThreeDotPost({ userID, handleDeletePost }) {
         {isMenu && (
           <div className='z-10 absolute right-0 xl:right-[35%] bg-white divide-y divide-gray-100 text-sm rounded-lg shadow w-36 dark:bg-slate-800 dark:divide-gray-600'>
             <div className='z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-36 dark:bg-slate-800 dark:divide-gray-600'>
-              <ul className='py-2 text-gray-700 dark:text-gray-200'>
+              <div className='py-2 text-gray-700 dark:text-gray-200'>
                 {profile._id === userID ? (
-                  <li onClick={handleOpenDeleteBox}>
+                  <div onClick={handleOpenDeleteBox}>
                     <div className='flex cursor-pointer justify-between items-center  px-4 py-2 transition-all duration-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
                       Xóa bài viết
                     </div>
-                  </li>
+                  </div>
                 ) : (
-                  <li>
+                  <div>
                     <span className='flex cursor-pointer justify-between items-center px-4 py-2 transition-all duration-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
                       Báo cáo
                     </span>
-                  </li>
+                  </div>
                 )}
-              </ul>
+              </div>
             </div>
           </div>
         )}

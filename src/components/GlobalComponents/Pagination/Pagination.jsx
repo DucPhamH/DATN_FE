@@ -19,7 +19,8 @@ Với range = 2 áp dụng cho khoảng cách đầu, cuối và xung quanh curr
 
 const RANGE = 2
 export default function Pagination({ queryConfig, pageSize, url }) {
-  const page = Number(queryConfig._page)
+  // const page = Number(queryConfig._page)
+  const page = 2
   const renderPagination = () => {
     let dotAfter = false
     let dotBefore = false
@@ -27,7 +28,10 @@ export default function Pagination({ queryConfig, pageSize, url }) {
       if (!dotBefore) {
         dotBefore = true
         return (
-          <span key={index} className='bg-white rounded text-black px-3 py-2 shadow-sm mx-2 border'>
+          <span
+            key={index}
+            className='bg-white dark:shadow-orange-900 dark:bg-gray-900 dark:text-white dark:border-gray-800 rounded  text-black px-3 py-2 shadow-sm mx-2 border'
+          >
             ...
           </span>
         )
@@ -38,7 +42,10 @@ export default function Pagination({ queryConfig, pageSize, url }) {
       if (!dotAfter) {
         dotAfter = true
         return (
-          <span key={index} className='bg-white  text-black px-3 py-2 shadow-sm mx-2 border'>
+          <span
+            key={index}
+            className='bg-white dark:shadow-orange-900 dark:bg-gray-900 dark:text-white dark:border-gray-800  rounded text-black px-3 py-2 shadow-sm mx-2 border'
+          >
             ...
           </span>
         )
@@ -87,11 +94,9 @@ export default function Pagination({ queryConfig, pageSize, url }) {
       })
   }
   return (
-    <div className='flex flex-wrap mt-6 justify-center'>
+    <div className='flex flex-wrap gap- mt-6 justify-center'>
       {page === 1 ? (
-        <span className='mx-2 cursor-not-allowed rounded border text-gray-500 bg-white/60 px-3 py-2  shadow-sm'>
-          Prev
-        </span>
+        <span className=' cursor-not-allowed rounded border text-gray-500 bg-white/60 px-3 py-2  shadow-sm'>Prev</span>
       ) : (
         <Link
           to={{
@@ -101,16 +106,14 @@ export default function Pagination({ queryConfig, pageSize, url }) {
               _page: (page - 1).toString()
             }).toString()
           }}
-          className='mx-2  dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
+          className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
         >
           Prev
         </Link>
       )}
       {renderPagination()}
       {page === pageSize ? (
-        <span className='mx-2 cursor-not-allowed rounded border text-gray-500 bg-white/60 px-3 py-2  shadow-sm'>
-          Next
-        </span>
+        <span className=' cursor-not-allowed rounded border text-gray-500 bg-white/60 px-3 py-2  shadow-sm'>Next</span>
       ) : (
         <Link
           to={{
@@ -120,7 +123,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
               _page: (page + 1).toString()
             }).toString()
           }}
-          className='mx-2  dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
+          className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
         >
           Next
         </Link>

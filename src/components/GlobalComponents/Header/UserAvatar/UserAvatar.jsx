@@ -69,8 +69,8 @@ export default function UserAvatar() {
             className='z-50 absolute top-[4rem] right-1 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'
           >
             <div className='z-50 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-color-primary dark:divide-gray-600'>
-              <ul className='py-2 text-gray-700 dark:text-gray-200'>
-                <li>
+              <div className='py-2 text-gray-700 dark:text-gray-200'>
+                <div>
                   <Link
                     to='/home'
                     onClick={() => setIsMenu(false)}
@@ -78,8 +78,8 @@ export default function UserAvatar() {
                   >
                     Trang chủ
                   </Link>
-                </li>
-                <li>
+                </div>
+                <div>
                   <Link
                     to='/me'
                     onClick={() => setIsMenu(false)}
@@ -87,8 +87,8 @@ export default function UserAvatar() {
                   >
                     Thông tin
                   </Link>
-                </li>
-              </ul>
+                </div>
+              </div>
               <div className='py-2 '>
                 <div
                   onClick={onLogout}

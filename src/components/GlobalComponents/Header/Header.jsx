@@ -1,10 +1,25 @@
 import SearchInput from './SearchInput'
 import { IoMdNotifications } from 'react-icons/io'
 import UserAvatar from './UserAvatar'
+import { useLocation } from 'react-router-dom'
+import Logo from '../Logo'
 
 export default function Header() {
+  const location = useLocation()
+
   return (
     <div className='flex pl-8 pr-4 py-3 w-full justify-between items-center transition-all duration-500 z-50 bg-white dark:bg-color-primary-dark shadow-sm dark:shadow-yellow-800 fixed'>
+      {location.pathname === '/chef/create-blog' ? (
+        <div className='hidden sm:block'>
+          <Logo
+            className='flex items-center gap-2.5 font-medium  mx-3'
+            textClassName='text-xl flex font-bold whitespace-pre'
+            sizeLogo={40}
+          />
+        </div>
+      ) : (
+        <div className=''></div>
+      )}
       <div className=''></div>
       <div className='flex justify-between items-center'>
         <div className=''>

@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound'
 import MainLayout from './layouts/MainLayout'
 import { AppContext } from './contexts/app.context'
 import LoginGoogle from './pages/LoginGoogle'
+import CreateLayout from './layouts/CreateLayout'
 
 const HomeLanding = lazy(() => import('./pages/HomeLanding'))
 const Login = lazy(() => import('./pages/Login'))
@@ -27,6 +28,8 @@ const LBM = lazy(() => import('./pages/LBM'))
 const CaloBurned = lazy(() => import('./pages/CaloBurned'))
 const WaterPerDay = lazy(() => import('./pages/WaterPerDay'))
 const UserProfile = lazy(() => import('./pages/UserProfile'))
+const CreateBlog = lazy(() => import('./pages/CreateBlog'))
+const BlogList = lazy(() => import('./pages/BlogList'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -286,7 +289,36 @@ export default function useRouteElement() {
         </MainLayout>
       )
     },
-
+    {
+      path: 'chef/create-food',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <div>Hello</div>
+          </Suspense>
+        </MainLayout>
+      )
+    },
+    {
+      path: 'chef/create-blog',
+      element: (
+        <CreateLayout>
+          <Suspense>
+            <CreateBlog />
+          </Suspense>
+        </CreateLayout>
+      )
+    },
+    {
+      path: 'chef/blog-list',
+      element: (
+        <MainLayout>
+          <Suspense>
+            <BlogList />
+          </Suspense>
+        </MainLayout>
+      )
+    },
     {
       path: '*',
       element: <NotFound />
