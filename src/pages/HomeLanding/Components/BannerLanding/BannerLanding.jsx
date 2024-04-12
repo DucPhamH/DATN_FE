@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import MotionWrapper from '../../../layouts/MotionWrapper'
+import MotionWrapper from '../../../../layouts/MotionWrapper'
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
-import chef from '../../../assets/images/chef.png'
-import chefdark from '../../../assets/images/chefdark.png'
+import chef from '../../../../assets/images/chef.png'
+import chefdark from '../../../../assets/images/chefdark.png'
 import ButtonLanding from '../ButtonLanding'
-import { AppContext } from '../../../contexts/app.context'
+import { AppContext } from '../../../../contexts/app.context'
 
 export default function BannerLanding() {
   const { theme } = useContext(AppContext)

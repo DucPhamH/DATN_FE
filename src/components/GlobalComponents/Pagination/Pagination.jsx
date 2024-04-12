@@ -19,8 +19,8 @@ Với range = 2 áp dụng cho khoảng cách đầu, cuối và xung quanh curr
 
 const RANGE = 2
 export default function Pagination({ queryConfig, pageSize, url }) {
-  // const page = Number(queryConfig._page)
-  const page = 2
+  const page = Number(queryConfig.page)
+
   const renderPagination = () => {
     let dotAfter = false
     let dotBefore = false
@@ -76,7 +76,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
               pathname: url,
               search: createSearchParams({
                 ...queryConfig,
-                _page: pageNumber.toString()
+                page: pageNumber.toString()
               }).toString()
             }}
             key={index}
@@ -96,14 +96,16 @@ export default function Pagination({ queryConfig, pageSize, url }) {
   return (
     <div className='flex flex-wrap gap- mt-6 justify-center'>
       {page === 1 ? (
-        <span className=' cursor-not-allowed rounded border text-gray-500 bg-white/60 px-3 py-2  shadow-sm'>Prev</span>
+        <span className=' cursor-not-allowed rounded border text-gray-500 dark:text-gray-200 dark:bg-gray-800 dark:border-none bg-white/60 px-3 py-2  shadow-sm'>
+          Prev
+        </span>
       ) : (
         <Link
           to={{
             pathname: url,
             search: createSearchParams({
               ...queryConfig,
-              _page: (page - 1).toString()
+              page: (page - 1).toString()
             }).toString()
           }}
           className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
@@ -113,14 +115,16 @@ export default function Pagination({ queryConfig, pageSize, url }) {
       )}
       {renderPagination()}
       {page === pageSize ? (
-        <span className=' cursor-not-allowed rounded border text-gray-500 bg-white/60 px-3 py-2  shadow-sm'>Next</span>
+        <span className=' cursor-not-allowed rounded border text-gray-500 dark:text-gray-200 dark:bg-gray-800 dark:border-none bg-white/60 px-3 py-2  shadow-sm'>
+          Next
+        </span>
       ) : (
         <Link
           to={{
             pathname: url,
             search: createSearchParams({
               ...queryConfig,
-              _page: (page + 1).toString()
+              page: (page + 1).toString()
             }).toString()
           }}
           className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'

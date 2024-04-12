@@ -30,6 +30,7 @@ const WaterPerDay = lazy(() => import('./pages/WaterPerDay'))
 const UserProfile = lazy(() => import('./pages/UserProfile'))
 const CreateBlog = lazy(() => import('./pages/CreateBlog'))
 const BlogList = lazy(() => import('./pages/BlogList'))
+const EditBlog = lazy(() => import('./pages/EditBlog'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -305,6 +306,16 @@ export default function useRouteElement() {
         <CreateLayout>
           <Suspense>
             <CreateBlog />
+          </Suspense>
+        </CreateLayout>
+      )
+    },
+    {
+      path: 'chef/edit-blog/:id',
+      element: (
+        <CreateLayout>
+          <Suspense>
+            <EditBlog />
           </Suspense>
         </CreateLayout>
       )

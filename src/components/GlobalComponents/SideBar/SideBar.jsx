@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
-import logo from '../../../assets/images/logo.png'
-
 // * React icons
 import { FaCookieBite, FaShareAlt } from 'react-icons/fa'
 import { BsFillCalendarHeartFill, BsFillHeartFill, BsPeopleFill } from 'react-icons/bs'
@@ -10,9 +8,7 @@ import { useMediaQuery } from 'react-responsive'
 import { MdMenu } from 'react-icons/md'
 import { NavLink, useLocation } from 'react-router-dom'
 import Submenu from './SubMenu'
-import DarkMode from '../DarkMode'
 import { FaPenToSquare } from 'react-icons/fa6'
-
 import { IoMdAlbums } from 'react-icons/io'
 import { MdBook } from 'react-icons/md'
 import Logo from '../Logo'

@@ -10,7 +10,7 @@ export default function MainLayout({ children }) {
       <SideBar />
       <Header />
       <div className='md:ml-64 h-screen bg-gray-100 dark:bg-color-primary-dark w-[100%]'>
-        <div className='mt-20 bg-gray-100 dark:bg-color-primary-dark'>
+        <div className='mt-20  bg-gray-100 dark:bg-color-primary-dark'>
           {children}
           <div
             onClick={() => {

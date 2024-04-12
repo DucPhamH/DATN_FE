@@ -1,5 +1,4 @@
-import React from 'react'
-import MotionWrapper from '../../../layouts/MotionWrapper'
+import MotionWrapper from '../../../../layouts/MotionWrapper'
 import ButtonLanding from '../ButtonLanding'
 
 export default function ContactLanding() {

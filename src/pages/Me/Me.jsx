@@ -1,5 +1,4 @@
 import { BiSolidPencil } from 'react-icons/bi'
-import ThreeDots from '../../components/ProfileComponents/ThreeDots'
 import { BsFillCameraFill } from 'react-icons/bs'
 import useravatar from '../../assets/images/useravatar.jpg'
 import avatarbg from '../../assets/images/avatarbg.jpg'

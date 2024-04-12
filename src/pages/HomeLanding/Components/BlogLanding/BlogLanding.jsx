@@ -1,6 +1,5 @@
-import React from 'react'
-import MotionWrapper from '../../../layouts/MotionWrapper'
-import BlogCard from '../../CardComponents/BlogCard'
+import MotionWrapper from '../../../../layouts/MotionWrapper'
+import BlogCard from '../../../../components/CardComponents/BlogCard'
 
 const blogItems = [
   {

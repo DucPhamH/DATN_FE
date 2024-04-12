@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { navBars } from '../../../services/objectUi'
+import { navBars } from '../../../../services/objectUi'
 import ButtonLanding from '../ButtonLanding'
 import UserAvatarLanding from '../UserAvatarLanding'
-import DarkMode from '../../GlobalComponents/DarkMode'
+import DarkMode from '../../../../components/GlobalComponents/DarkMode'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'
 

@@ -50,7 +50,14 @@ export default function MePost() {
         <div className='xl:col-span-3'>
           <div className='my-3'>
             {content}
-            <div ref={ref}>{isFetchingNextPage && <Loading />}</div>
+            {/* <div ref={ref}>{isFetchingNextPage && <Loading />}</div> */}
+            <div ref={ref}>
+              {isFetchingNextPage ? (
+                <Loading />
+              ) : (
+                <div className='flex justify-center font-medium'>Không còn bài viết</div>
+              )}
+            </div>
           </div>
         </div>
         <div className=' order-first xl:order-last xl:col-span-2'>

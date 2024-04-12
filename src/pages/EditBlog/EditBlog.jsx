@@ -9,30 +9,41 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaCreateBlog } from '../../utils/rules'
 import { useQuery } from '@tanstack/react-query'
-import { createBlog, getCategoryBlogs } from '../../apis/blogApi'
+import { getBlogForChef, getCategoryBlogs, updateBlogForChef } from '../../apis/blogApi'
 import Loading from '../../components/GlobalComponents/Loading'
+import { FaRegComment } from 'react-icons/fa'
+import { LiaEyeSolid } from 'react-icons/lia'
+import useravatar from '../../assets/images/useravatar.jpg'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import CreateConfirmBox from '../../components/GlobalComponents/CreateConfirmBox'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { queryClient } from '../../main'
+import EditConfirmBox from '../../components/GlobalComponents/EditConfirmBox'
 
-export default function CreateBlog() {
+export default function EditBlog() {
+  const [openEdit, setOpenEdit] = useState(false)
+  const handleOpenEdit = () => {
+    setOpenEdit(true)
+  }
+  const handleCloseEdit = () => {
+    setOpenEdit(false)
+  }
+  const { id } = useParams()
   const navigate = useNavigate()
-  const [openCreate, setOpenCreate] = useState(false)
+  const { data } = useQuery({
+    queryKey: ['blog-info', id],
+    queryFn: () => {
+      return getBlogForChef(id)
+    }
+  })
+  const blog = data?.data.result[0]
 
-  const handleOpenCreate = () => {
-    setOpenCreate(true)
-  }
-  const handleCloseCreate = () => {
-    setOpenCreate(false)
-  }
   const {
     register,
     handleSubmit,
     setValue,
     watch,
-    reset,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schemaCreateBlog),
@@ -44,24 +55,35 @@ export default function CreateBlog() {
       content: ''
     }
   })
+  console.log(id)
 
-  const createBlogMutation = useMutation({
-    mutationFn: (body) => createBlog(body)
+  const editBlogMutation = useMutation({
+    mutationFn: (body) => updateBlogForChef(id, body)
   })
   const onSubmit = handleSubmit((data) => {
     console.log(data)
-    createBlogMutation.mutate(data, {
+    editBlogMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
-        reset()
-        handleCloseCreate()
-        toast.success('Tạo bài viết thành công')
+        toast.success('Chỉnh sửa bài viết thành công')
+        handleCloseEdit()
+        queryClient.invalidateQueries('blog-info')
       },
       onError: (error) => {
         console.log(error)
       }
     })
   })
+
+  useEffect(() => {
+    if (blog) {
+      setValue('title', blog.title)
+      setValue('image', blog.image)
+      setValue('description', blog.description)
+      setValue('content', blog.content)
+      setValue('category_blog_id', blog.category_blog._id)
+    }
+  }, [blog, setValue])
   const onEditorStateChange = (editorState) => {
     setValue('content', editorState)
   }
@@ -82,14 +104,17 @@ export default function CreateBlog() {
       <div className='flex flex-wrap justify-between items-center pt-3 px-8'>
         <div className='mb-2'>
           <div className='text-xl md:text-2xl font-medium mb-2'>
-            <span>Trang tạo blog dinh dưỡng</span>
+            <span>Chỉnh sửa blog dinh dưỡng</span>
           </div>
           <div className='border-b-[3px] mb-2 w-[50%] border-red-300 '></div>
         </div>
-        <button className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'>
-          <div onClick={() => navigate('/chef/blog-list')} className='flex gap-1 items-center justify-center'>
+        <button
+          onClick={() => navigate('/chef/blog-list')}
+          className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
+        >
+          <div className='flex gap-1 items-center justify-center'>
             <IoMdHome />
-            Trở về trang chủ
+            Trở về trang chính
           </div>
         </button>
       </div>
@@ -151,6 +176,7 @@ export default function CreateBlog() {
 
               <div className='flex min-h-[1rem] text-xs text-red-600'>{errors.category_blog_id?.message}</div>
             </div>
+
             {/* Description */}
             <div className='sm:col-span-2'>
               <TextArea
@@ -177,30 +203,22 @@ export default function CreateBlog() {
               />
               <div className='flex min-h-[1rem] text-xs text-red-600'> {errors.content?.message}</div>
             </div>
-            {/* {createBlogMutation.isPending ? (
-              <button
-                disabled
-                className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
-              >
-                <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
-              </button>
-            ) : ( )} */}
 
-            {openCreate && (
-              <CreateConfirmBox
-                title='Xác nhận tạo bài viết'
-                subtitle='Bạn có chắc chắn muốn tạo bài viết này không?'
+            {openEdit && (
+              <EditConfirmBox
+                title='Chỉnh sửa bài viết'
+                subtitle='Bạn có chắc chắn muốn chỉnh sửa bài viết này không?'
                 handleCreate={onSubmit}
-                closeModal={handleCloseCreate}
-                isPending={createBlogMutation.isPending}
+                closeModal={handleCloseEdit}
+                isPending={editBlogMutation.isPending}
               />
             )}
           </form>
           <button
-            onClick={handleOpenCreate}
+            onClick={handleOpenEdit}
             className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
           >
-            <div className='flex gap-1 items-center justify-center'>Tạo bài viết</div>
+            <div className='flex gap-1 items-center justify-center'>Chỉnh sửa bài viết</div>
           </button>
         </div>
 
@@ -215,6 +233,40 @@ export default function CreateBlog() {
                       {titleWatch === '' ? 'Tiêu đề bài viết' : titleWatch}
                     </h1>
                     <div className='border-b-[1px] my-3 border-red-300 '></div>
+                    <div className='flex justify-between items-center'>
+                      <div className=''>
+                        <div className='flex font-bold items-center gap-2'>
+                          Người viết:
+                          {/* <span className='font-semibold text-red-600 dark:text-pink-400 ml-1'>Cook</span>
+                      <span className='font-semibold'>Healthy</span> */}
+                          <div className='mr-4 flex items-center gap-2'>
+                            <img
+                              className='rounded-full max-w-none w-8 h-8'
+                              // src={comment.user.avatar === '' ? useravatar : comment.user.avatar}
+                              src={useravatar}
+                            />
+                            <div className='font-medium hover:underline cursor-pointer'>Tên tác giả</div>
+                          </div>
+                        </div>
+                        <div className='flex font-bold items-center'>
+                          Ngày tạo: <span className='ml-2 font-medium'>02/04/2024</span>
+                        </div>
+                      </div>
+                      <div className='font-bold text-red-900 dark:text-pink-500'>
+                        <div className='flex items-center gap-1'>
+                          <div className='text-xl'>
+                            <LiaEyeSolid />
+                          </div>
+                          18 lượt xem
+                        </div>
+                        <div className='flex items-center gap-1'>
+                          <div className=''>
+                            <FaRegComment />
+                          </div>
+                          20 bình luận
+                        </div>
+                      </div>
+                    </div>
                   </header>
 
                   <p className='lead mb-3 font-medium'>

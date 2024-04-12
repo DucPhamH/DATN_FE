@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import useravatar from '../../assets/images/useravatar.jpg'
 import { LiaEyeSolid } from 'react-icons/lia'
 import { FaRegComment } from 'react-icons/fa'
+import TextArea from '../../components/InputComponents/TextArea'
 
 export default function BlogDetail() {
   return (
@@ -16,7 +17,7 @@ export default function BlogDetail() {
                   <h1 className='mb-1 text-2xl xl:text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
                     CÁCH TÍNH VÀ Ý NGHĨA CỦA CHỈ SỐ BMI TRONG ĐÁNH GIÁ TÌNH TRẠNG CƠ THỂ
                   </h1>
-                  <div className='border-b-[1px] my-3 border-red-300 '></div>
+                  <div className='border-b-[1px]  my-3 border-red-300 '></div>
                   <div className='flex justify-between items-center'>
                     <div className=''>
                       <div className='flex font-bold items-center gap-2'>
@@ -245,12 +246,87 @@ export default function BlogDetail() {
                 </p>
               </article>
             </div>
+            <section className=' col-span-6  py-8 lg:py-16 antialiased'>
+              <div className='mx-auto px-4'>
+                <div className='flex justify-between items-center'>
+                  <h2 className='text-lg lg:text-2xl font-bold text-gray-900 dark:text-white'>
+                    Bình luận của cộng đồng
+                  </h2>
+                </div>
+                <div className='border-b-[1px]  my-3 border-red-300 '></div>
+                <form className='mb-6'>
+                  <TextArea
+                    className='block bg-white dark:bg-slate-800 dark:border-none w-full placeholder:text-sm px-3 py-2  text-black dark:text-gray-400 text-lg border border-gray-300 rounded-lg'
+                    id='comment'
+                    name='comment'
+                    placeholder='Hãy viết bình luận của bạn ở đây'
+                    title=''
+                    rows={5}
+                    required
+                  />
+                  <button className='block btn btn-sm  md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'>
+                    <div className='flex justify-center gap-2 items-center'>
+                      <div>Bình luận</div>
+                    </div>
+                  </button>
+                </form>
+                <article className='p-6 text-base bg-white rounded-lg dark:bg-gray-900'>
+                  <footer className='flex justify-between items-center mb-2'>
+                    <div className='flex items-center'>
+                      <p className='inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold'>
+                        <img
+                          className='mr-2 w-6 h-6 rounded-full'
+                          src='https://flowbite.com/docs/images/people/profile-picture-2.jpg'
+                          alt='Michael Gough'
+                        />
+                        Michael Gough
+                      </p>
+                      <p className='text-sm text-gray-600 dark:text-gray-400'>
+                        <time dateTime='2022-02-08' title='February 8th, 2022'>
+                          Feb. 8, 2022
+                        </time>
+                      </p>
+                    </div>
+                  </footer>
+                  <p className='text-gray-500 dark:text-gray-400'>
+                    Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
+                    instruments for the UX designers. The knowledge of the design tools are as important as the creation
+                    of the design strategy.
+                  </p>
+                </article>
+
+                <article className='p-6 mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900'>
+                  <footer className='flex justify-between items-center mb-2'>
+                    <div className='flex items-center'>
+                      <p className='inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white font-semibold'>
+                        <img
+                          className='mr-2 w-6 h-6 rounded-full'
+                          src='https://flowbite.com/docs/images/people/profile-picture-3.jpg'
+                          alt='Bonnie Green'
+                        />
+                        Bonnie Green
+                      </p>
+                      <p className='text-sm text-gray-600 dark:text-gray-400'>
+                        <time dateTime='2022-03-12' title='March 12th, 2022'>
+                          Mar. 12, 2022
+                        </time>
+                      </p>
+                    </div>
+                  </footer>
+                  <p className='text-gray-500 dark:text-gray-400'>
+                    The article covers the essentials, challenges, myths and stages the UX designer should consider
+                    while creating the design strategy.
+                  </p>
+                </article>
+              </div>
+            </section>
           </main>
-          <aside aria-label='Related articles' className='py-8 xl:mx-12 xl:px-10 lg:py-24 '>
+
+          {/* <aside aria-label='Related articles' className='py-8 xl:mx-12 xl:px-10 lg:py-24 '>
             <div className='px-4  max-w-screen-xl'>
               <h2 className='mb-8 text-2xl font-bold text-gray-900 dark:text-white'>Related articles</h2>
             </div>
-          </aside>
+          </aside> */}
 
           {/* <div className='col-span-6 order-first xl:order-last my-3 xl:my-0 xl:col-span-2'>
             <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>

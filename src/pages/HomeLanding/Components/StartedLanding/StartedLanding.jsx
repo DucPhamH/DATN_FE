@@ -1,7 +1,7 @@
 import React from 'react'
 import ButtonLanding from '../ButtonLanding'
-import MotionWrapper from '../../../layouts/MotionWrapper'
-import healthy from '../../../assets/images/healthy.png'
+import MotionWrapper from '../../../../layouts/MotionWrapper'
+import healthy from '../../../../assets/images/healthy.png'
 export default function StartedLanding() {
   return (
     <section id='started'>

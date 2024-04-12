@@ -82,6 +82,7 @@ export default function Login() {
       <form onSubmit={onSubmit} noValidate>
         <Input
           title='Email của bạn'
+          className='block bg-white w-full placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
           placeholder='Nhập email của bạn'
           register={register}
           errors={errors.email}

@@ -1,6 +1,8 @@
+import { useQuery } from '@tanstack/react-query'
+import { getCategoryBlogs } from '../../apis/blogApi'
 import BlogCard from '../../components/CardComponents/BlogCard'
-
 import { AiOutlineSearch } from 'react-icons/ai'
+import Loading from '../../components/GlobalComponents/Loading'
 
 const blogItems = [
   {
@@ -82,6 +84,19 @@ const blogItems = [
 ]
 
 export default function Blog() {
+  const { data: category, isFetching: isFechingCategory } = useQuery({
+    queryKey: ['category-blog'],
+    queryFn: () => {
+      return getCategoryBlogs()
+    }
+  })
+  console.log(category)
+
+  // viết hàm lấy id category từ các thẻ input radio mỗi khi click vào
+  const handleClickCategory = (e) => {
+    console.log(e.target.id)
+  }
+
   return (
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
       <div className='mx-2'>
@@ -95,13 +110,12 @@ export default function Blog() {
             </div>
             <div className='col-span-2 mb-2 md:flex xl:justify-end items-center '>
               <select
-                defaultValue='new'
+                defaultValue='desc'
                 id='sort_by'
                 className='select my-2 select-sm border bg-white dark:bg-slate-800 dark:border-none'
               >
-                <option value='new'>Mới nhất</option>
-                <option value='a-z'>A-Z</option>
-                <option value='z-a'>Z-A</option>
+                <option value='desc'>Mới nhất</option>
+                <option value='asc'>Cũ nhất</option>
               </select>
               <form className='md:ml-4 w-[100%] max-w-[20rem] relative'>
                 <div className='relative'>
@@ -120,80 +134,47 @@ export default function Blog() {
           </div>
           <div className='my-2'>
             <div className='flex items-center justify-center'>
-              <ul className='flex flex-wrap w-full py-2 gap-x-5 px-2'>
-                <li className=''>
-                  <input className='peer sr-only' defaultChecked type='radio' name='answer' id='tat-ca' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out'
-                    htmlFor='tat-ca'
-                  >
-                    Tất cả
-                  </label>
-                </li>
-                <li>
-                  <input className='peer sr-only' type='radio' name='answer' id='chuyen-bep' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out'
-                    htmlFor='chuyen-bep'
-                  >
-                    Chuyện bếp
-                  </label>
-                </li>
-                <li>
-                  <input className='peer sr-only' type='radio' name='answer' id='cam-nang' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out'
-                    htmlFor='cam-nang'
-                  >
-                    Cẩm nang & mẹo vặt
-                  </label>
-                </li>
-                <li>
-                  <input className='peer sr-only' type='radio' defaultValue='yesno' name='answer' id='mon-ngon' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out '
-                    htmlFor='mon-ngon'
-                  >
-                    Món ngon mỗi ngày
-                  </label>
-                </li>
-                <li>
-                  <input className='peer sr-only' type='radio' defaultValue='yesno' name='answer' id='lam-banh' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out '
-                    htmlFor='lam-banh'
-                  >
-                    Làm bánh
-                  </label>
-                </li>
-                <li>
-                  <input className='peer sr-only' type='radio' defaultValue='yesno' name='answer' id='bep' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out '
-                    htmlFor='bep'
-                  >
-                    Bếp & dụng cụ
-                  </label>
-                </li>
-                <li>
-                  <input className='peer sr-only' type='radio' defaultValue='yesno' name='answer' id='suc-khoe' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out '
-                    htmlFor='suc-khoe'
-                  >
-                    Sức khỏe
-                  </label>
-                </li>
-                <li>
-                  <input className='peer sr-only' type='radio' defaultValue='yesno' name='answer' id='kien-thuc' />
-                  <label
-                    className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out '
-                    htmlFor='kien-thuc'
-                  >
-                    Kiến thức & kinh nghiệm
-                  </label>
-                </li>
-              </ul>
+              {isFechingCategory ? (
+                <Loading />
+              ) : (
+                <ul className='flex flex-wrap w-full py-2 gap-x-5 px-2'>
+                  <li className=''>
+                    <input
+                      className='peer sr-only'
+                      onClick={handleClickCategory}
+                      defaultChecked
+                      type='radio'
+                      name='answer'
+                      id='tat-ca'
+                    />
+                    <label
+                      className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out'
+                      htmlFor='tat-ca'
+                    >
+                      Tất cả
+                    </label>
+                  </li>
+                  {category?.data?.result.map((item) => {
+                    return (
+                      <li key={item._id}>
+                        <input
+                          className='peer sr-only'
+                          onClick={handleClickCategory}
+                          type='radio'
+                          name='answer'
+                          id={item._id}
+                        />
+                        <label
+                          className='flex dark:bg-gray-700 my-1 dark:border-none justify-center cursor-pointer rounded-full border border-gray-300 bg-white py-1 px-3 hover:bg-gray-50 focus:outline-none peer-checked:border-transparent peer-checked:ring-2 peer-checked:ring-red-500 transition-all duration-500 ease-in-out'
+                          htmlFor={item._id}
+                        >
+                          {item.name}
+                        </label>
+                      </li>
+                    )
+                  })}
+                </ul>
+              )}
             </div>
           </div>
 

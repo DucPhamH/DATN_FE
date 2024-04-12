@@ -41,7 +41,7 @@ export const schemaCreateBlog = yup.object({
   description: yup.string().required('Mô tả là bắt buộc').min(10, 'Độ dài từ 10 ký tự'),
   // nếu category_blog_id = DEFAULT thì sẽ báo lỗi
   category_blog_id: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 thể loại blog'),
-  content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 10 ký tự')
+  content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 100 ký tự')
 })
 
 //validate dynamic form

@@ -1,4 +1,4 @@
-import ButtonLanding from '../../components/LandingComponents/ButtonLanding'
+import ButtonLanding from '../../pages/HomeLanding/Components/ButtonLanding'
 
 export default function NotFound() {
   return (

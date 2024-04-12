@@ -116,6 +116,7 @@ export default function PostCard({ data }) {
         handleDeletePost={handleDeletePost}
         checkNavigateProfileUser={checkNavigateProfileUser}
         checkNavigateProfileParentUser={checkNavigateProfileParentUser}
+        isPending={deletePostMutation.isPending}
       />
       <div className='px-4 md:px-0'>
         <div className='flex justify-between items-center'>
@@ -190,7 +191,8 @@ function CheckTypeOfPost({
   navigate,
   handleDeletePost,
   checkNavigateProfileUser,
-  checkNavigateProfileParentUser
+  checkNavigateProfileParentUser,
+  isPending
 }) {
   if (data.type === 0) {
     return (
@@ -232,7 +234,7 @@ function CheckTypeOfPost({
             >
               Xem thêm
             </div>
-            <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} />
+            <ThreeDotPost isPending={isPending} userID={data.user._id} handleDeletePost={handleDeletePost} />
           </div>
         </div>
         <ShowMoreContent className='px-4 text-sm whitespace-pre-line pb-5 md:px-0'>

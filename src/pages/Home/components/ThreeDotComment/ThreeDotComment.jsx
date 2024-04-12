@@ -3,8 +3,7 @@ import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AppContext } from '../../../../contexts/app.context'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
 
-export default function ThreeDotComment({ userID, handleDeletePost, post }) {
-  console.log(post)
+export default function ThreeDotComment({ userID, handleDeletePost, post, isPending }) {
   const { profile } = useContext(AppContext)
   const [isMenu, setIsMenu] = useState(false)
   const [openDeleteBox, setOpenDeleteBox] = useState(false)
@@ -67,6 +66,7 @@ export default function ThreeDotComment({ userID, handleDeletePost, post }) {
           subtitle='Bạn có chắc chắn muốn xóa bình luận này không?'
           handleDelete={handleDeletePost}
           closeModal={handleCloseDeleteBox}
+          isPending={isPending}
         />
       )}
     </>

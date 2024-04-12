@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { HiOutlineLogout } from 'react-icons/hi'
-import useravatar from '../../../assets/images/useravatar.jpg'
+import useravatar from '../../../../assets/images/useravatar.jpg'
 export default function UserAvatarLanding({ navBar }) {
   const [isMenu, setIsMenu] = useState(false)
   const ref = useRef()

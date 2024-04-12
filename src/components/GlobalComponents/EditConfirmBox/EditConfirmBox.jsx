@@ -1,7 +1,7 @@
 import { IoIosWarning } from 'react-icons/io'
 import Loading from '../Loading'
 
-export default function DeleteConfirmBox({ title, subtitle, type = 'submit', handleDelete, closeModal, isPending }) {
+export default function EditConfirmBox({ title, subtitle, type = 'submit', handleCreate, closeModal, isPending }) {
   return (
     <div className='modal-customs'>
       <div className='overlay-customs' onClick={closeModal}></div>
@@ -14,6 +14,7 @@ export default function DeleteConfirmBox({ title, subtitle, type = 'submit', han
               </div>
             </div>
           </div>
+
           <div className='mt-4 md:mt-0 md:ml-2 text-center md:text-left'>
             <p className='font-bold'>{title}</p>
             <p className='text-sm text-gray-800 dark:text-gray-400 mt-1'>{subtitle}</p>
@@ -30,12 +31,13 @@ export default function DeleteConfirmBox({ title, subtitle, type = 'submit', han
           ) : (
             <button
               type={type}
-              onClick={handleDelete}
+              onClick={handleCreate}
               className='block btn btn-sm w-full md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
             >
-              Xóa
+              Chỉnh sửa
             </button>
           )}
+
           <button
             onClick={closeModal}
             className='block btn btn-sm w-full text-gray-700 hover:bg-slate-300 dark:text-gray-700 md:inline-block md:w-auto  bg-gray-200 rounded-lg font-semibold text-sm mt-4

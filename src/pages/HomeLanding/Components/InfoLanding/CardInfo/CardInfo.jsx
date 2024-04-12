@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function CardInfo({ infoItem }) {
   return (
     <div className='border-2 border-solid border-color-gray text-center py-20 px-5 rounded-2xl cursor-pointer dark:hover:border-white hover:border-red-500 dark:hover:bg-color-primary hover:bg-yellow-100 ease-in duration-200'>

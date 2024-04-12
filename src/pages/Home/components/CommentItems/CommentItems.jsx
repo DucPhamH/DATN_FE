@@ -157,7 +157,12 @@ export default function CommentItems({ comment, post }) {
         )}
       </div>
       <div>
-        <ThreeDotComment post={post} userID={comment.user._id} handleDeletePost={handleDeleteComment} />
+        <ThreeDotComment
+          isPending={deleteCommentMutation.isPending}
+          post={post}
+          userID={comment.user._id}
+          handleDeletePost={handleDeleteComment}
+        />
       </div>
     </div>
   )
@@ -219,7 +224,12 @@ function CommentChildItems({ comment, profile, navigate, post }) {
         </div>
 
         <div>
-          <ThreeDotComment post={post} userID={comment.user._id} handleDeletePost={handleDeleteChildComment} />
+          <ThreeDotComment
+            isPending={deleteChildCommentMutation.isPending}
+            post={post}
+            userID={comment.user._id}
+            handleDeletePost={handleDeleteChildComment}
+          />
         </div>
       </div>
     </div>
