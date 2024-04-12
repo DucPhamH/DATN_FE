@@ -6,7 +6,7 @@ import { useState } from 'react'
 import ModalUploadAvatar from '../../components/ProfileComponents/ModalUploadAvatar'
 import { currentAccount } from '../../apis/userApi'
 import { useQuery } from '@tanstack/react-query'
-import MePost from './Components/MePost'
+import MePost from './components/MePost'
 import TabsProfile from '../../components/GlobalComponents/TabsProfile'
 
 export default function Me() {

@@ -1,4 +1,4 @@
-import HeaderLanding from './Components/HeaderLanding'
+import HeaderLanding from './components/HeaderLanding'
 import FooterLanding from './components/FooterLanding'
 import BannerLanding from './components/BannerLanding'
 import InfoLanding from './components/InfoLanding'

@@ -6,7 +6,7 @@ import { getBlogsForChef, getCategoryBlogs } from '../../apis/blogApi'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import Loading from '../../components/GlobalComponents/Loading'
 import useQueryConfig from '../../hooks/useQueryConfig'
-import BlogItem from './Components/BlogItem'
+import BlogItem from './components/BlogItem'
 import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
 
