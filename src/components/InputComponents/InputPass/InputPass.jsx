@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai'
 
-export default function InputPass({ title, placeholder, register, errors, name }) {
+export default function InputPass({ title, placeholder, register = () => {}, errors, name }) {
   const [showPass, setShowPass] = useState(false)
 
   const onShowPass = () => {
@@ -10,7 +10,10 @@ export default function InputPass({ title, placeholder, register, errors, name }
 
   return (
     <div className='pb-2 relative flex flex-col justify-start'>
-      <label className='text-gray-400 lg:text-red-900 mb-1 text-left italic'> {title}</label>
+      <label className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
+        {' '}
+        {title}
+      </label>
       <input
         className=' w-full bg-white placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
         type={showPass === false ? 'password' : 'text'}

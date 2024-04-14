@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
-import { getMePosts, getUserPosts } from '../../../../apis/postApi'
+import { getUserPosts } from '../../../../apis/postApi'
 import PostCard from '../../../../components/CardComponents/PostCard'
 import Loading from '../../../../components/GlobalComponents/Loading'
 
@@ -21,19 +21,9 @@ export default function UserPost({ user_id }) {
     }
   })
 
-  //   const { data, status, fetchNextPage, isFetchingNextPage, hasNextPage } = useInfiniteQuery({
-  //     queryKey: ['mePost'],
-  //     queryFn: fetchUserPost,
-  //     initialPageParam: 1,
-  //     getNextPageParam: (lastPage, allPages) => {
-  //       const nextPage = lastPage.data.result.posts.length ? allPages.length + 1 : undefined
-  //       return nextPage
-  //     }
-  //   })
-
   const content = data?.pages.map((dataMePost) =>
-    dataMePost.data.result.posts.map((newFeed) => {
-      return <PostCard key={newFeed._id} data={newFeed} />
+    dataMePost.data.result.posts.map((post) => {
+      return <PostCard key={post._id} data={post} />
     })
   )
 
@@ -60,7 +50,14 @@ export default function UserPost({ user_id }) {
         <div className='col-span-3'>
           <div className='my-3'>
             {content}
-            <div ref={ref}>{isFetchingNextPage && <Loading />}</div>
+            {/* <div ref={ref}>{isFetchingNextPage && <Loading />}</div> */}
+            <div ref={ref}>
+              {isFetchingNextPage ? (
+                <Loading />
+              ) : (
+                <div className='flex justify-center font-medium'>Không còn bài viết</div>
+              )}
+            </div>
           </div>
         </div>
         <div className='hidden xl:block col-span-2'></div>

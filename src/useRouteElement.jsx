@@ -7,6 +7,10 @@ import MainLayout from './layouts/MainLayout'
 import { AppContext } from './contexts/app.context'
 import LoginGoogle from './pages/LoginGoogle'
 import CreateLayout from './layouts/CreateLayout'
+import SendEmail from './pages/ForgotPassword/components/SendEmail'
+import InputConfirm from './pages/ForgotPassword/components/InputConfirm'
+import ChangePassForm from './pages/ForgotPassword/components/ChangePassForm'
+import ChangeSuccess from './pages/ForgotPassword/components/ChangeSuccess'
 
 const HomeLanding = lazy(() => import('./pages/HomeLanding'))
 const Login = lazy(() => import('./pages/Login'))
@@ -31,6 +35,8 @@ const UserProfile = lazy(() => import('./pages/UserProfile'))
 const CreateBlog = lazy(() => import('./pages/CreateBlog'))
 const BlogList = lazy(() => import('./pages/BlogList'))
 const EditBlog = lazy(() => import('./pages/EditBlog'))
+const LoginAdmin = lazy(() => import('./pages/LoginAdmin'))
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -62,6 +68,16 @@ export default function useRouteElement() {
             <AuthLayout>
               <Suspense>
                 <Login />
+              </Suspense>
+            </AuthLayout>
+          )
+        },
+        {
+          path: '/login/admin',
+          element: (
+            <AuthLayout>
+              <Suspense>
+                <LoginAdmin />
               </Suspense>
             </AuthLayout>
           )
@@ -329,6 +345,32 @@ export default function useRouteElement() {
           </Suspense>
         </MainLayout>
       )
+    },
+    {
+      path: '/forgot-password',
+      element: (
+        <Suspense>
+          <ForgotPassword />
+        </Suspense>
+      ),
+      children: [
+        {
+          path: '',
+          element: <SendEmail />
+        },
+        {
+          path: 'confirm-otp',
+          element: <InputConfirm />
+        },
+        {
+          path: 'change-password',
+          element: <ChangePassForm />
+        },
+        {
+          path: 'success',
+          element: <ChangeSuccess />
+        }
+      ]
     },
     {
       path: '*',
