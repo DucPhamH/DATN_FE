@@ -10,7 +10,9 @@ export default function TextArea({
 }) {
   return (
     <div className='pb-2 flex flex-col justify-start'>
-      <label className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>{title}</label>
+      <label className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
+        {title}
+      </label>
       <textarea
         id={id}
         name={name}

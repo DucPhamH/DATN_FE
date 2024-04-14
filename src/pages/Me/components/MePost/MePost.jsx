@@ -22,8 +22,8 @@ export default function MePost() {
   })
 
   const content = data?.pages.map((dataMePost) =>
-    dataMePost.data.result.posts.map((newFeed) => {
-      return <PostCard key={newFeed._id} data={newFeed} />
+    dataMePost.data.result.posts.map((post) => {
+      return <PostCard key={post._id} data={post} />
     })
   )
 

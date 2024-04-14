@@ -194,7 +194,7 @@ export default function WaterPerDay() {
             </div>
           </main>
         </div>
-        <div className='col-span-6 my-3 xl:my-0 xl:col-span-2'>
+        <div className='col-span-6 order-first xl:order-last my-3 xl:my-0 xl:col-span-2'>
           <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Tính toán lượng nước uống

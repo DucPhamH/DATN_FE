@@ -1,4 +1,3 @@
-import React from 'react'
 import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
@@ -196,7 +195,7 @@ export default function Calories() {
               />
               <Input title='Nhập độ tuổi' type='number' name='age' id='age' placeholder='Nhập độ tuổi của bạn' />
               <div className='mb-3'>
-                <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
+                <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Giới tính của bạn là:
                 </div>
                 <div className='flex items-center pb-2'>
@@ -215,7 +214,7 @@ export default function Calories() {
                 </div>
               </div>
               <div className='mb-3'>
-                <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
+                <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Mức độ hoạt động
                 </div>
                 <select className='select w-full mb-2 border border-gray-300 bg-white dark:bg-slate-800 dark:border-none'>

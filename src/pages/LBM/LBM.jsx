@@ -179,7 +179,7 @@ export default function LBM() {
             </div>
           </main>
         </div>
-        <div className='col-span-6 my-3 xl:my-0 xl:col-span-2'>
+        <div className='col-span-6 order-first xl:order-last my-3 xl:my-0 xl:col-span-2'>
           <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Tính toán LBM <p className='text-base text-black dark:text-gray-300'>(Theo công thức Hume)</p>
@@ -201,7 +201,7 @@ export default function LBM() {
                 placeholder='Nhập chiều cao của bạn'
               />
               <div className='mb-3'>
-                <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
+                <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Giới tính của bạn là:
                 </div>
                 <div className='flex items-center pb-2'>
