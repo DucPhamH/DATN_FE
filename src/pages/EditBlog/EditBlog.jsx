@@ -148,7 +148,7 @@ export default function EditBlog() {
               />
             </div>
             <div className='sm:col-span-2 pb-2'>
-              <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
+              <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                 Chọn 1 thể loại blog
               </div>
 
@@ -190,7 +190,7 @@ export default function EditBlog() {
             </div>
             {/* Content */}
             <div className='sm:col-span-2 pb-2'>
-              <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
+              <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                 Nhập nội dung bài viết
               </div>
               <ReactQuill

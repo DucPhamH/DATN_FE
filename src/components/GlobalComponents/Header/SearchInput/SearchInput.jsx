@@ -21,7 +21,7 @@ export default function SearchInput() {
           type='search'
           id='search_input'
           placeholder='Tìm kiếm'
-          className='w-full py-2 px-3 placeholder:text-sm rounded-full border border-red-600 bg-white dark:border-none dark:bg-slate-800'
+          className='w-full py-2 px-3  placeholder:text-sm rounded-full border border-red-600 bg-white dark:border-none dark:bg-slate-800'
           onChange={(e) => handleSearch(e)}
         />
         <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-full'>

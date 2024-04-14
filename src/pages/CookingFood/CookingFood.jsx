@@ -1,18 +1,15 @@
 import FoodCard from '../../components/CardComponents/FoodCard/FoodCard'
-import { BiFilter } from 'react-icons/bi'
 import { AiOutlineCamera, AiOutlineSearch } from 'react-icons/ai'
 import { MdNightlight } from 'react-icons/md'
 import { PiClockAfternoonFill } from 'react-icons/pi'
 import { BsFillSunFill } from 'react-icons/bs'
 import { FaCloudSun, FaLightbulb } from 'react-icons/fa'
-import Pagination from '../../components/GlobalComponents/Pagination'
 import SearchFood from '../../components/SearchComponents/SearchFood/SearchFood'
 import SearchHoliday from '../../components/SearchComponents/SearchHoliday'
 import SearchRegions from '../../components/SearchComponents/SearchRegions'
 import SearchCook from '../../components/SearchComponents/SearchCook'
 import SearchHard from '../../components/SearchComponents/SearchHard'
 import SearchTime from '../../components/SearchComponents/SearchTime'
-import { FaMedal } from 'react-icons/fa'
 
 const foodItems = [
   {

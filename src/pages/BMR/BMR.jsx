@@ -211,7 +211,7 @@ export default function BMR() {
               />
               <Input title='Nhập độ tuổi' type='number' name='age' id='age' placeholder='Nhập độ tuổi của bạn' />
               <div className='mb-3'>
-                <div className='text-gray-400 lg:text-red-900 mb-1 dark:text-pink-300 text-left italic'>
+                <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Giới tính của bạn là:
                 </div>
                 <div className='flex items-center pb-2'>

@@ -24,7 +24,7 @@ export default function CreateConfirmBox({ title, subtitle, type = 'submit', han
           {isPending ? (
             <button
               disabled
-              className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
+              className='block btn w-full btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
             >
               <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
             </button>
