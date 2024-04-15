@@ -43,7 +43,7 @@ export default function SearchRegions() {
       ref={ref}
     >
       <div className='flex justify-center items-center' onClick={() => setOpen(!open)}>
-        <div className='pr-1 lg:pr-3'>Vùng miền</div>
+        <div className='pr-1 text-sm font-medium lg:pr-2'>Vùng miền</div>
         <div className='text-[8px] text-gray-500'>
           <BiSolidDownArrow />
         </div>

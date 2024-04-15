@@ -116,7 +116,7 @@ const checkTime = () => {
             <FaCloudSun />
           </div>
         </h2>
-        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 text-sm font-medium tracking-[0.05rem] text-gray-800 dark:text-gray-400 '>
           <div className='m-1 flex justify-center gap-2'>
             <div className='mt-1'>
               <FaLightbulb />
@@ -136,7 +136,7 @@ const checkTime = () => {
             <BsFillSunFill />
           </div>
         </h2>
-        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 text-sm font-medium tracking-[0.05rem] text-gray-800 dark:text-gray-400 '>
           <div className='m-1 flex justify-center gap-2'>
             <div className='mt-1'>
               <FaLightbulb />
@@ -157,7 +157,7 @@ const checkTime = () => {
             <PiClockAfternoonFill />
           </div>
         </h2>
-        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 text-sm font-medium tracking-[0.05rem] text-gray-800 dark:text-gray-400 '>
           <div className='m-1 flex justify-center gap-2'>
             <div className='mt-1'>
               <FaLightbulb />
@@ -177,7 +177,7 @@ const checkTime = () => {
             <MdNightlight />
           </div>
         </h2>
-        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 italic tracking-[0.05rem] text-gray-800 dark:text-gray-400 font-normal'>
+        <div className='mx-3 mt-4  dark:bg-gray-900 rounded-lg bg-white p-3 text-sm font-medium tracking-[0.05rem] text-gray-800 dark:text-gray-400 '>
           <div className='m-1 flex justify-center gap-2'>
             <div className='mt-1'>
               <FaLightbulb />
