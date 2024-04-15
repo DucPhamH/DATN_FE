@@ -55,7 +55,7 @@ export default function SearchHoliday() {
       ref={ref}
     >
       <div className='flex justify-center items-center' onClick={() => setOpen(!open)}>
-        <div className='pr-1 lg:pr-3'>Dịp lễ</div>
+        <div className='pr-1 text-sm font-medium lg:pr-2'>Dịp lễ</div>
         <div className='text-[8px] text-gray-500'>
           <BiSolidDownArrow />
         </div>

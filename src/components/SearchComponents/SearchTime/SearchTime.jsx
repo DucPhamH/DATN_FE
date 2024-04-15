@@ -43,7 +43,7 @@ export default function SearchTime() {
       ref={ref}
     >
       <div className='flex justify-center items-center' onClick={() => setOpen(!open)}>
-        <div className='pr-1 lg:pr-3'>Thời gian</div>
+        <div className='pr-1 text-sm font-medium lg:pr-2'>Thời gian</div>
         <div className='text-[8px] text-gray-500'>
           <BiSolidDownArrow />
         </div>
