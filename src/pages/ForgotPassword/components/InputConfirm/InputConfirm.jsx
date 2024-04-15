@@ -19,7 +19,7 @@ export default function InputConfirm() {
       <div className='flex justify-center'>
         <form className='px-10 rounded-lg shadow-md py-10 bg-white  mt-[5rem]'>
           <div className='text-center mb-5'>
-            <h1 className='block text-2xl font-bold text-gray-800 dark:text-white'>Xác nhận OTP</h1>
+            <h1 className='block text-2xl font-bold text-gray-800 '>Xác nhận OTP</h1>
           </div>
           <div className='flex justify-center  gap-2 mb-6'>
             <input

@@ -149,7 +149,9 @@ export default function CreateBlog() {
                 </select>
               )}
 
-              <div className='flex min-h-[1rem] text-xs text-red-600'>{errors.category_blog_id?.message}</div>
+              <div className='flex min-h-[1rem] font-medium text-orange-300  text-xs lg:text-red-600'>
+                {errors.category_blog_id?.message}
+              </div>
             </div>
             {/* Description */}
             <div className='sm:col-span-2'>
@@ -175,7 +177,9 @@ export default function CreateBlog() {
                 modules={modules}
                 formats={formats}
               />
-              <div className='flex min-h-[1rem] text-xs text-red-600'> {errors.content?.message}</div>
+              <div className='flex min-h-[1rem] font-medium text-orange-300  text-xs lg:text-red-600'>
+                {errors.content?.message}
+              </div>
             </div>
             {/* {createBlogMutation.isPending ? (
               <button

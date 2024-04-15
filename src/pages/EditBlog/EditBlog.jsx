@@ -174,7 +174,9 @@ export default function EditBlog() {
                 </select>
               )}
 
-              <div className='flex min-h-[1rem] text-xs text-red-600'>{errors.category_blog_id?.message}</div>
+              <div className='flex min-h-[1rem] font-medium text-orange-300  text-xs lg:text-red-600'>
+                {errors.category_blog_id?.message}
+              </div>
             </div>
 
             {/* Description */}
@@ -201,7 +203,9 @@ export default function EditBlog() {
                 modules={modules}
                 formats={formats}
               />
-              <div className='flex min-h-[1rem] text-xs text-red-600'> {errors.content?.message}</div>
+              <div className='flex min-h-[1rem] font-medium text-orange-300  text-xs lg:text-red-600'>
+                {errors.content?.message}
+              </div>
             </div>
 
             {openEdit && (

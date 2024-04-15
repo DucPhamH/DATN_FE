@@ -83,6 +83,7 @@ export default function Login() {
         <Input
           title='Email của bạn'
           className='block bg-white w-full placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
+          classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1  text-left'
           placeholder='Nhập email của bạn'
           register={register}
           errors={errors.email}
@@ -92,16 +93,19 @@ export default function Login() {
         />
         <InputPass
           title='Mật khẩu của bạn'
+          className='block bg-white w-full placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
+          classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 text-left'
           placeholder='Nhập mật khẩu của bạn'
           register={register}
           errors={errors.password}
           name='password'
         />
-        <div className='flex justify-between text-sm'>
-          <Link className='text-red-400 hover:underline hover:text-red-700' to='/login/admin'>
+        <div className='flex justify-end text-sm'>
+          <Link className='text-red-600 font-medium hover:underline hover:text-red-700' to='/login/admin'>
             Đăng nhập admin
           </Link>
-          <Link className='text-blue-400 hover:underline hover:text-red-700' to='/forgot-password'>
+          <span className='font-medium text-black mx-1'>|</span>
+          <Link className='text-blue-400 font-medium hover:underline hover:text-red-700' to='/forgot-password'>
             Quên mật khẩu ?
           </Link>
         </div>
@@ -141,7 +145,7 @@ export default function Login() {
         </Link>
         <div className='text-gray-500 flex justify-center items-center mt-2 '>
           <span className='text-gray-400'>Bạn chưa có tài khoản?</span>
-          <Link className='ml-1 text-red-400 hover:underline hover:text-red-700' to='/register'>
+          <Link className='ml-1 font-medium text-red-400 hover:underline hover:text-red-700' to='/register'>
             Đăng ký
           </Link>
         </div>

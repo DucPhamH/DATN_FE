@@ -72,7 +72,8 @@ export default function Register() {
       <Input
         title='Tên của bạn'
         placeholder='Nhập tên của bạn'
-        className='block bg-white w-full placeholder:text-sm px-3 py-2  text-black  text-lg border border-gray-300 rounded-lg'
+        className='block bg-white w-full placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
+        classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1  text-left'
         register={register}
         errors={errors.name}
         type='text'
@@ -81,7 +82,8 @@ export default function Register() {
       />
       <Input
         title='Email của bạn'
-        className='block bg-white w-full placeholder:text-sm px-3 py-2  text-black  text-lg border border-gray-300 rounded-lg'
+        className='block bg-white w-full placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
+        classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1  text-left'
         placeholder='Nhập email của bạn'
         register={register}
         errors={errors.email}
@@ -91,6 +93,8 @@ export default function Register() {
       />
       <InputPass
         title='Mật khẩu của bạn'
+        className='block bg-white w-full placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
+        classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 text-left'
         placeholder='Nhập mật khẩu của bạn'
         register={register}
         errors={errors.password}
@@ -98,6 +102,8 @@ export default function Register() {
       />
       <InputPass
         title='Xác nhận mật khẩu'
+        className='block bg-white w-full placeholder:text-sm px-3 py-2 text-black text-lg border border-gray-300 rounded-lg'
+        classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 text-left'
         placeholder='Nhập lại mật khẩu của bạn'
         register={register}
         errors={errors.confirm_password}
@@ -122,7 +128,7 @@ export default function Register() {
 
         <div className='text-gray-500 flex justify-center items-center mt-2 '>
           <span className='text-gray-400'>Bạn đã có tài khoản?</span>
-          <Link className='ml-1 text-red-400 hover:underline hover:text-red-700' to='/login'>
+          <Link className='ml-1 font-medium text-red-400 hover:underline hover:text-red-700' to='/login'>
             Đăng nhập
           </Link>
         </div>

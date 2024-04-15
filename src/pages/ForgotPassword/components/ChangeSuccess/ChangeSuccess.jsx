@@ -16,10 +16,10 @@ export default function ChangeSuccess() {
       }}
     >
       <main className='w-full  max-w-md mx-auto p-6'>
-        <div className='mt-7 bg-white  rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 border-2 border-indigo-300'>
+        <div className='mt-7 bg-white  rounded-xl shadow-lg  border-2 border-indigo-300'>
           <div className='p-4 sm:p-7'>
             <div className='text-center'>
-              <h1 className='block text-2xl font-bold text-gray-800 dark:text-white'>Đổi mật khẩu thành công</h1>
+              <h1 className='block text-2xl font-bold text-gray-800 '>Đổi mật khẩu thành công</h1>
               <p className='mt-2 text-sm text-gray-600 dark:text-gray-400'>
                 <Link to='/login' className='text-blue-600 ml-2 decoration-2 hover:underline font-medium' href='#'>
                   Quay lại đăng nhập

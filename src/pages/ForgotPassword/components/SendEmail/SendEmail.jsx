@@ -18,11 +18,11 @@ export default function SendEmail() {
       }}
     >
       <main className='w-full  max-w-md mx-auto p-6'>
-        <div className='mt-7 bg-white  rounded-xl shadow-lg dark:bg-gray-800 dark:border-gray-700 border-2 border-indigo-300'>
+        <div className='mt-7 bg-white  rounded-xl shadow-lg  border-2 border-indigo-300'>
           <div className='p-4 sm:p-7'>
             <div className='text-center'>
-              <h1 className='block text-2xl font-bold text-gray-800 dark:text-white'>Quên mật khẩu ?</h1>
-              <p className='mt-2 text-sm text-gray-600 dark:text-gray-400'>
+              <h1 className='block text-2xl font-bold text-gray-800 '>Quên mật khẩu ?</h1>
+              <p className='mt-2 text-sm text-gray-600 '>
                 Bạn nhớ mật khẩu ?
                 <Link to='/login' className='text-blue-600 ml-2 decoration-2 hover:underline font-medium' href='#'>
                   Đăng nhập ở đây
@@ -39,6 +39,8 @@ export default function SendEmail() {
                       name='email'
                       id='email'
                       placeholder='Nhập email của bạn'
+                      className='block bg-white  w-full placeholder:text-sm px-3 py-2  text-black  text-lg border border-gray-300 rounded-lg'
+                      classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1  text-left'
                     />
                   </div>
                   <button
