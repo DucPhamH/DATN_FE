@@ -237,40 +237,6 @@ export default function EditBlog() {
                       {titleWatch === '' ? 'Tiêu đề bài viết' : titleWatch}
                     </h1>
                     <div className='border-b-[1px] my-3 border-red-300 '></div>
-                    <div className='flex justify-between items-center'>
-                      <div className=''>
-                        <div className='flex font-bold items-center gap-2'>
-                          Người viết:
-                          {/* <span className='font-semibold text-red-600 dark:text-pink-400 ml-1'>Cook</span>
-                      <span className='font-semibold'>Healthy</span> */}
-                          <div className='mr-4 flex items-center gap-2'>
-                            <img
-                              className='rounded-full max-w-none w-8 h-8'
-                              // src={comment.user.avatar === '' ? useravatar : comment.user.avatar}
-                              src={useravatar}
-                            />
-                            <div className='font-medium hover:underline cursor-pointer'>Tên tác giả</div>
-                          </div>
-                        </div>
-                        <div className='flex font-bold items-center'>
-                          Ngày tạo: <span className='ml-2 font-medium'>02/04/2024</span>
-                        </div>
-                      </div>
-                      <div className='font-bold text-red-900 dark:text-pink-500'>
-                        <div className='flex items-center gap-1'>
-                          <div className='text-xl'>
-                            <LiaEyeSolid />
-                          </div>
-                          18 lượt xem
-                        </div>
-                        <div className='flex items-center gap-1'>
-                          <div className=''>
-                            <FaRegComment />
-                          </div>
-                          20 bình luận
-                        </div>
-                      </div>
-                    </div>
                   </header>
 
                   <p className='lead mb-3 font-medium'>
