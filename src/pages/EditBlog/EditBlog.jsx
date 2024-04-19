@@ -11,9 +11,6 @@ import { schemaCreateBlog } from '../../utils/rules'
 import { useQuery } from '@tanstack/react-query'
 import { getBlogForChef, getCategoryBlogs, updateBlogForChef } from '../../apis/blogApi'
 import Loading from '../../components/GlobalComponents/Loading'
-import { FaRegComment } from 'react-icons/fa'
-import { LiaEyeSolid } from 'react-icons/lia'
-import useravatar from '../../assets/images/useravatar.jpg'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -31,7 +28,7 @@ export default function EditBlog() {
   }
   const { id } = useParams()
   const navigate = useNavigate()
-  const { data } = useQuery({
+  const { data, isFetching: isFetchingBlog } = useQuery({
     queryKey: ['blog-info', id],
     queryFn: () => {
       return getBlogForChef(id)
@@ -225,39 +222,42 @@ export default function EditBlog() {
             <div className='flex gap-1 items-center justify-center'>Chỉnh sửa bài viết</div>
           </button>
         </div>
+        {isFetchingBlog ? (
+          <Loading />
+        ) : (
+          <div className=' blog-view  max-w-3xl w-full pb-16  dark:text-gray-400  font-Roboto lg:pb-24 bg-white dark:bg-color-primary my-6  border border-gray-200 rounded-lg shadow mx-auto'>
+            <h2 className='text-xl font-bold border-b m-5 border-gray-400 pb-2 mb-5 '>Xem trước</h2>
+            <div className='grid gap-4 sm:grid-cols-1 sm:gap-6 '>
+              <main className=' '>
+                <div className='flex justify-between items-center px-3 xl:px-5 '>
+                  <article className='mx-auto w-full '>
+                    <header className='mb-3 not-format'>
+                      <h1 className='mb-1 text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
+                        {titleWatch === '' ? 'Tiêu đề bài viết' : titleWatch}
+                      </h1>
+                      <div className='border-b-[1px] my-3 border-red-300 '></div>
+                    </header>
 
-        <div className=' blog-view  max-w-3xl w-full pb-16  dark:text-gray-400  font-Roboto lg:pb-24 bg-white dark:bg-color-primary my-6  border border-gray-200 rounded-lg shadow mx-auto'>
-          <h2 className='text-xl font-bold border-b m-5 border-gray-400 pb-2 mb-5 '>Xem trước</h2>
-          <div className='grid gap-4 sm:grid-cols-1 sm:gap-6 '>
-            <main className=' '>
-              <div className='flex justify-between items-center px-3 xl:px-5 '>
-                <article className='mx-auto w-full '>
-                  <header className='mb-3 not-format'>
-                    <h1 className='mb-1 text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
-                      {titleWatch === '' ? 'Tiêu đề bài viết' : titleWatch}
-                    </h1>
-                    <div className='border-b-[1px] my-3 border-red-300 '></div>
-                  </header>
+                    <p className='lead mb-3 whitespace-pre-line font-medium'>
+                      {descriptionWatch === '' ? 'Mô tả bài viết' : descriptionWatch}
+                    </p>
+                    {imageWatch === '' ? (
+                      <div>Link ảnh bài viết</div>
+                    ) : (
+                      <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                        <img className='object-cover rounded-md w-[100%]' src={imageWatch} alt='' />
+                      </div>
+                    )}
 
-                  <p className='lead mb-3 font-medium'>
-                    {descriptionWatch === '' ? 'Mô tả bài viết' : descriptionWatch}
-                  </p>
-                  {imageWatch === '' ? (
-                    <div>Link ảnh bài viết</div>
-                  ) : (
-                    <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
-                      <img className='object-cover rounded-md w-[100%]' src={imageWatch} alt='' />
+                    <div className='custorm-blog'>
+                      {content === '' ? <div>Nội dung bài viết</div> : <div>{parse(content)}</div>}
                     </div>
-                  )}
-
-                  <div className='custorm-blog'>
-                    {content === '' ? <div>Nội dung bài viết</div> : <div>{parse(content)}</div>}
-                  </div>
-                </article>
-              </div>
-            </main>
+                  </article>
+                </div>
+              </main>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   )
