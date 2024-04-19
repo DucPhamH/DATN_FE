@@ -221,7 +221,7 @@ export default function CreateBlog() {
                     <div className='border-b-[1px] my-3 border-red-300 '></div>
                   </header>
 
-                  <p className='lead mb-3 font-medium'>
+                  <p className='lead mb-3 whitespace-pre-line font-medium'>
                     {descriptionWatch === '' ? 'Mô tả bài viết' : descriptionWatch}
                   </p>
                   {imageWatch === '' ? (
