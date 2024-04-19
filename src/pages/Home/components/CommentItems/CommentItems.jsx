@@ -159,7 +159,6 @@ export default function CommentItems({ comment, post }) {
       <div>
         <ThreeDotComment
           isPending={deleteCommentMutation.isPending}
-          post={post}
           userID={comment.user._id}
           handleDeletePost={handleDeleteComment}
         />

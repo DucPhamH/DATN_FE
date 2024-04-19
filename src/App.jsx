@@ -1,6 +1,6 @@
 import './App.css'
 import useRouteElement from './useRouteElement'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { injectStyle } from 'react-toastify/dist/inject-style'
 import { contextClass } from './services/objectUi'
