@@ -45,7 +45,6 @@ export default function CommentItems({ blog, comment }) {
         <ThreeDotComment
           userID={comment?.user._id}
           handleDeletePost={handleDeleteComment}
-          post={blog}
           isPending={deleteCommentMutation.isPending}
         />
       </footer>
