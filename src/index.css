@@ -14,14 +14,18 @@ body {
   margin-left: 2rem;
   margin-top: 2px;
 }
+.custorm-blog img {
+  @apply object-cover rounded-md w-[100%] mt-4 mb-2 max-h-[70%];
+}
 
-.custorm-blog h2 {
+.custorm-blog h2 h3 h4 h5 h6 {
   font-weight: 500;
 }
 .custorm-blog em {
   font-style: italic;
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 .container {

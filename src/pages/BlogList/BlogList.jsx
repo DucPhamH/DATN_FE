@@ -79,7 +79,7 @@ export default function BlogList() {
     }
   }
 
-  const { register, handleSubmit, reset } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       searchBlogs: queryConfig.search || ''
     }
@@ -91,7 +91,6 @@ export default function BlogList() {
         omit({ ...queryConfig, search: data.searchBlogs }, ['status', 'category_blog_id'])
       ).toString()
     })
-    reset()
   })
 
   return (

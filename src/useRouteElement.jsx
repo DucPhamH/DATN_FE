@@ -142,210 +142,210 @@ export default function useRouteElement() {
               </Suspense>
             </MainLayout>
           )
+        },
+        {
+          path: '/cooking',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Cooking />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: '/cooking/cooking-food',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <CookingFood />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: '/blog',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Blog />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: '/blog/:id',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <BlogDetail />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: '/album',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <div className=' '>Hello</div>
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <FitnessCaculator />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/BMI',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <BMI />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/calories',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Calories />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/BMR',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <BMR />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/body-fat',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <BodyFat />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/IBW',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <IBW />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/LBM',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <LBM />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/calo-burned',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <CaloBurned />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-caculator/water-need',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <WaterPerDay />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'fitness/fitness-history',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <div>Hello</div>
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'schedule/ex-schedule',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <div>Hello</div>
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'chef/create-food',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <div>Hello</div>
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'chef/create-blog',
+          element: (
+            <CreateLayout>
+              <Suspense>
+                <CreateBlog />
+              </Suspense>
+            </CreateLayout>
+          )
+        },
+        {
+          path: 'chef/edit-blog/:id',
+          element: (
+            <CreateLayout>
+              <Suspense>
+                <EditBlog />
+              </Suspense>
+            </CreateLayout>
+          )
+        },
+        {
+          path: 'chef/blog-list',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <BlogList />
+              </Suspense>
+            </MainLayout>
+          )
         }
       ]
     },
 
-    {
-      path: '/cooking',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <Cooking />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: '/cooking/cooking-food',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <CookingFood />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: '/blog',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <Blog />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: '/blog/:id',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <BlogDetail />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: '/album',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <div className=' '>Hello</div>
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <FitnessCaculator />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/BMI',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <BMI />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/calories',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <Calories />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/BMR',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <BMR />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/body-fat',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <BodyFat />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/IBW',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <IBW />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/LBM',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <LBM />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/calo-burned',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <CaloBurned />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-caculator/water-need',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <WaterPerDay />
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'fitness/fitness-history',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <div>Hello</div>
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'schedule/ex-schedule',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <div>Hello</div>
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'chef/create-food',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <div>Hello</div>
-          </Suspense>
-        </MainLayout>
-      )
-    },
-    {
-      path: 'chef/create-blog',
-      element: (
-        <CreateLayout>
-          <Suspense>
-            <CreateBlog />
-          </Suspense>
-        </CreateLayout>
-      )
-    },
-    {
-      path: 'chef/edit-blog/:id',
-      element: (
-        <CreateLayout>
-          <Suspense>
-            <EditBlog />
-          </Suspense>
-        </CreateLayout>
-      )
-    },
-    {
-      path: 'chef/blog-list',
-      element: (
-        <MainLayout>
-          <Suspense>
-            <BlogList />
-          </Suspense>
-        </MainLayout>
-      )
-    },
     {
       path: '/forgot-password',
       element: (
