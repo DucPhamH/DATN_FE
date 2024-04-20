@@ -18,7 +18,9 @@ export default function BlogList() {
     queryKey: ['category-blog'],
     queryFn: () => {
       return getCategoryBlogs()
-    }
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 10
   })
 
   const { data, isFetching } = useQuery({
@@ -116,7 +118,7 @@ export default function BlogList() {
                 </button>
                 <select
                   onChange={handleChangeSort}
-                  defaultValue='desc'
+                  defaultValue={queryConfig.sort}
                   id='sort'
                   className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
@@ -124,7 +126,7 @@ export default function BlogList() {
                   <option value='asc'>Lâu nhất</option>
                 </select>
                 <select
-                  defaultValue='all'
+                  defaultValue={queryConfig.status || 'all'}
                   onChange={handleChangeStatus}
                   id='status'
                   className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
@@ -137,7 +139,7 @@ export default function BlogList() {
                   <Loading className='flex ml-4' />
                 ) : (
                   <select
-                    defaultValue='all-category'
+                    defaultValue={queryConfig.category_blog_id || 'all-category'}
                     onChange={handleChangeCategory}
                     id='category'
                     className='select  select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
@@ -218,17 +220,17 @@ export default function BlogList() {
                   </tbody>
                 </table>
               </div>
-              {data?.data.result.blogs.length === 0 && (
-                <div className='flex justify-center items-center py-4'>
-                  <div className='text-gray-500 dark:text-gray-300'>Không có bài viết nào</div>
-                </div>
-              )}
-              {data?.data.result.totalPage > 1 && (
-                <div className='flex justify-center items-center'>
-                  <Pagination pageSize={data?.data.result.totalPage} queryConfig={queryConfig} url='/chef/blog-list' />
-                </div>
-              )}
             </>
+          )}
+          {data?.data.result.blogs.length === 0 && (
+            <div className='flex justify-center items-center py-4'>
+              <div className='text-gray-500 dark:text-gray-300'>Không có bài viết nào</div>
+            </div>
+          )}
+          {data?.data.result.totalPage > 1 && (
+            <div className='flex justify-center items-center'>
+              <Pagination pageSize={data?.data.result.totalPage} queryConfig={queryConfig} url='/chef/blog-list' />
+            </div>
           )}
         </div>
       </div>
