@@ -162,10 +162,10 @@ export default function CaloBurned() {
                 <p className='mt-2'>Máy tính này ước tính lượng calo được đốt cháy bằng phương trình sau.</p>
                 <ul className='list-disc mt-3 mb-4'>
                   <li className='ml-6 font-medium text-red-700 dark:text-sky-300'>
-                    Calories = Time × MET × Body Weight /200
+                    Calories = MET × Body Weight x 3.5 / 200
                   </li>
                 </ul>
-                <p>Trong đó thời gian tính bằng phút và trọng lượng cơ thể tính bằng kilôgam.</p>
+                <p>Trong đó thời gian tính bằng giờ và trọng lượng cơ thể tính bằng kilôgam.</p>
                 <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
@@ -207,8 +207,8 @@ export default function CaloBurned() {
               <Input
                 title='Nhập chỉ số MET'
                 type='number'
-                name='MET'
-                id='MET'
+                name='met'
+                id='met'
                 placeholder='Nhập chỉ số MET của hoạt động của bạn'
               />
 

@@ -2,8 +2,26 @@ import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Input from '../../components/InputComponents/Input'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schemaBMI } from '../../utils/rules'
 
 export default function BMI() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaBMI),
+    defaultValues: {
+      weight: '',
+      height: ''
+    }
+  })
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -222,11 +240,13 @@ export default function BMI() {
               Tính toán BMI <p className='text-base text-black dark:text-gray-300'>(Theo hệ kilogram và mét)</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form className='p-3'>
+            <form onSubmit={onSubmit} noValidate className='p-3'>
               <Input
                 title='Nhập cân nặng (kg)'
                 type='number'
                 name='weight'
+                register={register}
+                errors={errors.weight}
                 id='weight'
                 placeholder='Nhập cân nặng của bạn'
               />
@@ -234,6 +254,8 @@ export default function BMI() {
                 title='Nhập chiều cao (m)'
                 type='number'
                 name='height'
+                errors={errors.height}
+                register={register}
                 id='height'
                 placeholder='Nhập chiều cao của bạn'
               />
@@ -242,31 +264,6 @@ export default function BMI() {
               </div>
             </form>
           </div>
-          {/* <div className='shadow mb-6 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
-            <div className='flex flex-col dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-              Tính toán BMI <p className='text-base text-black dark:text-gray-300'>(Theo hệ pound và inch)</p>
-            </div>
-            <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form className='p-3'>
-              <Input
-                title='Nhập cân nặng (pound)'
-                type='number'
-                name='pound'
-                id='pound'
-                placeholder='Nhập cân nặng của bạn'
-              />
-              <Input
-                title='Nhập chiều cao (inch)'
-                type='number'
-                name='inch'
-                id='inch'
-                placeholder='Nhập chiều cao của bạn'
-              />
-              <div className='flex justify-center'>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
-              </div>
-            </form>
-          </div> */}
         </div>
       </div>
     </>

@@ -2,8 +2,25 @@ import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Input from '../../components/InputComponents/Input'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import { schemaWaterPerDay } from '../../utils/rules'
 
 export default function WaterPerDay() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaWaterPerDay),
+    defaultValues: {
+      weight: '',
+      time: ''
+    }
+  })
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -201,11 +218,13 @@ export default function WaterPerDay() {
               <p className='text-base text-black dark:text-gray-300'></p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form className='p-3'>
+            <form onSubmit={onSubmit} className='p-3'>
               <Input
                 title='Nhập cân nặng (kg)'
                 type='number'
                 name='weight'
+                register={register}
+                errors={errors.weight}
                 id='weight'
                 placeholder='Nhập cân nặng của bạn'
               />
@@ -213,6 +232,8 @@ export default function WaterPerDay() {
                 title='Nhập thời gian tập luyện (phút)'
                 type='number'
                 name='time'
+                register={register}
+                errors={errors.time}
                 id='time'
                 placeholder='Nhập thời gian tập luyện của bạn'
               />
