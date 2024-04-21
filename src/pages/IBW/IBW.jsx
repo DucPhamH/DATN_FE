@@ -2,8 +2,26 @@ import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Input from '../../components/InputComponents/Input'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schemaIBW } from '../../utils/rules'
 
 export default function IBW() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaIBW),
+    defaultValues: {
+      height: '',
+      gender: 'male'
+    }
+  })
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -130,10 +148,12 @@ export default function IBW() {
               <p className='text-base text-black dark:text-gray-300'>(Theo B. J. Devine Công thức (1974))</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form className='p-3'>
+            <form onSubmit={onSubmit} className='p-3'>
               <Input
                 title='Nhập chiều cao (cm)'
                 type='number'
+                register={register}
+                errors={errors.height}
                 name='height'
                 id='height'
                 placeholder='Nhập chiều cao của bạn'
@@ -144,14 +164,29 @@ export default function IBW() {
                 </div>
                 <div className='flex items-center pb-2'>
                   <div className='flex items-center'>
-                    <input type='radio' defaultValue name='default-radio' id='men' className='radio radio-success' />
-                    <label htmlFor='men' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
+                    <input
+                      type='radio'
+                      defaultChecked
+                      name='default-radio'
+                      value='male'
+                      {...register('gender')}
+                      id='male'
+                      className='radio radio-success'
+                    />
+                    <label htmlFor='male' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
                       Nam
                     </label>
                   </div>
                   <div className='flex items-center'>
-                    <input type='radio' name='default-radio' id='womam' className='radio radio-success' />
-                    <label htmlFor='woman' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
+                    <input
+                      type='radio'
+                      name='default-radio'
+                      value='female'
+                      {...register('gender')}
+                      id='female'
+                      className='radio radio-success'
+                    />
+                    <label htmlFor='female' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
                       Nữ
                     </label>
                   </div>

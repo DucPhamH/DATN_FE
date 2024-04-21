@@ -283,7 +283,7 @@ function CheckTypeOfPost({
           >
             Xem thêm
           </div>
-          <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} />
+          <ThreeDotPost isPending={isPending} userID={data.user._id} handleDeletePost={handleDeletePost} />
         </div>
       </div>
       <ShowMoreContent className='px-4  whitespace-pre-line text-sm pb-5 md:px-0'>

@@ -57,4 +57,42 @@ export const schemaCreateBlog = yup.object({
   content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 100 ký tự')
 })
 
-//validate dynamic form
+export const schemaBMI = yup.object({
+  height: yup.number().required('Chiều cao là bắt buộc').min(1, 'Chiều cao phải lớn hơn 0'),
+  weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0')
+})
+
+export const schemaBMR = yup.object({
+  age: yup.number().required('Tuổi là bắt buộc').min(1, 'Tuổi phải lớn hơn 0'),
+  weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0'),
+  height: yup.number().required('Chiều cao là bắt buộc').min(1, 'Chiều cao phải lớn hơn 0')
+})
+
+export const schemaTDEE = yup.object({
+  age: yup.number().required('Tuổi là bắt buộc').min(1, 'Tuổi phải lớn hơn 0'),
+  weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0'),
+  height: yup.number().required('Chiều cao là bắt buộc').min(1, 'Chiều cao phải lớn hơn 0'),
+  //nếu activity = DEFAULT thì sẽ báo lỗi
+  activity: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn mức độ hoạt động')
+})
+
+export const schemaIBW = yup.object({
+  height: yup.number().required('Chiều cao là bắt buộc').min(1, 'Chiều cao phải lớn hơn 0')
+})
+
+export const schemaLBM = yup.object({
+  weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0'),
+  height: yup.number().required('Chiều cao là bắt buộc').min(1, 'Chiều cao phải lớn hơn 0')
+})
+
+export const schemaBodyFat = yup.object({
+  height: yup.number().required('Chiều cao là bắt buộc').min(1, 'Chiều cao phải lớn hơn 0'),
+  hip: yup.number().required('Vòng mông là bắt buộc').min(1, 'Vòng mông phải lớn hơn 0'),
+  waist: yup.number().required('Vòng eo là bắt buộc').min(1, 'Vòng eo phải lớn hơn 0'),
+  neck: yup.number().required('Vòng cổ là bắt buộc').min(1, 'Vòng cổ phải lớn hơn 0')
+})
+
+export const schemaWaterPerDay = yup.object({
+  weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0'),
+  time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0')
+})

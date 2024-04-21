@@ -5,10 +5,9 @@ import { NavLink, useLocation } from 'react-router-dom'
 
 export default function Submenu({ data }) {
   const { pathname } = useLocation()
-  // console.log(pathname)
   const [subMenuOpen, setSubMenuOpen] = useState(false)
-  // console.log(data)
-  // console.log(data.menus)
+  console.log(subMenuOpen)
+
   return (
     <>
       <div

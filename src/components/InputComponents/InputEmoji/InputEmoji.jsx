@@ -24,10 +24,10 @@ export default function InputEmoji({ content, setContent, handleCreateComment })
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <span className='flex cursor-pointer hover:text-red-600 absolute right-3 top-2/4 -mt-3 items-center'>
+      <span className='flex cursor-pointer  absolute right-3 top-2/4 -mt-3 items-center'>
         <svg
           onClick={() => setShowEmoji(!showEmoji)}
-          className='mr-2'
+          className='mr-2 hover:text-red-600'
           style={{ width: 26, height: 26 }}
           viewBox='0 0 24 24'
         >

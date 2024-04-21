@@ -3,7 +3,28 @@ import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Input from '../../components/InputComponents/Input'
 import TDEETable from '../../assets/images/TDEETable.png'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schemaTDEE } from '../../utils/rules'
 export default function Calories() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaTDEE),
+    defaultValues: {
+      weight: '',
+      height: '',
+      age: '',
+      gender: 'male',
+      activity: 'DEFAULT'
+    }
+  })
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -178,36 +199,63 @@ export default function Calories() {
               Tính toán TDEE <p className='text-base text-black dark:text-gray-300'>(Theo hệ kilogram và mét)</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form className='p-3'>
+            <form noValidate onSubmit={onSubmit} className='p-3'>
               <Input
                 title='Nhập cân nặng (kg)'
                 type='number'
                 name='weight'
+                register={register}
+                errors={errors.weight}
                 id='weight'
                 placeholder='Nhập cân nặng của bạn'
               />
               <Input
                 title='Nhập chiều cao (cm)'
                 type='number'
+                register={register}
+                errors={errors.height}
                 name='height'
                 id='height'
                 placeholder='Nhập chiều cao của bạn'
               />
-              <Input title='Nhập độ tuổi' type='number' name='age' id='age' placeholder='Nhập độ tuổi của bạn' />
+              <Input
+                title='Nhập độ tuổi'
+                register={register}
+                errors={errors.age}
+                type='number'
+                name='age'
+                id='age'
+                placeholder='Nhập độ tuổi của bạn'
+              />
               <div className='mb-3'>
                 <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Giới tính của bạn là:
                 </div>
                 <div className='flex items-center pb-2'>
                   <div className='flex items-center'>
-                    <input type='radio' defaultValue name='default-radio' id='men' className='radio radio-success' />
-                    <label htmlFor='men' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
+                    <input
+                      type='radio'
+                      defaultChecked
+                      name='default-radio'
+                      value='male'
+                      {...register('gender')}
+                      id='male'
+                      className='radio radio-success'
+                    />
+                    <label htmlFor='male' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
                       Nam
                     </label>
                   </div>
                   <div className='flex items-center'>
-                    <input type='radio' name='default-radio' id='womam' className='radio radio-success' />
-                    <label htmlFor='woman' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
+                    <input
+                      type='radio'
+                      name='default-radio'
+                      value='female'
+                      {...register('gender')}
+                      id='female'
+                      className='radio radio-success'
+                    />
+                    <label htmlFor='female' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
                       Nữ
                     </label>
                   </div>
@@ -217,16 +265,24 @@ export default function Calories() {
                 <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Mức độ hoạt động
                 </div>
-                <select className='select w-full mb-2 border border-gray-300 bg-white dark:bg-slate-800 dark:border-none'>
-                  <option disabled selected>
+                <select
+                  defaultValue='DEFAULT'
+                  {...register('activity')}
+                  className='select w-full mb-2 border border-gray-300 bg-white dark:bg-slate-800 dark:border-none'
+                >
+                  <option disabled value='DEFAULT'>
                     Nhập mức độ hoạt động thường ngày
                   </option>
-                  <option>Không có hoặc ít vận động</option>
-                  <option>Nhẹ: 1-3 ngày/tuần</option>
-                  <option>Vừa phải: 3-5 ngày/tuần</option>
-                  <option>Năng động: 6-7 ngày/tuần</option>
-                  <option>Cực kỳ năng động, thể dục 2 lần/ngày</option>
+                  <option value='1.2'>Không có hoặc ít vận động</option>
+                  <option value='1.375'>Nhẹ: 1-3 ngày/tuần</option>
+                  <option value='1.55'>Vừa phải: 3-5 ngày/tuần</option>
+                  <option value='1.725'>Năng động: 6-7 ngày/tuần</option>
+                  <option value='1.9'>Cực kỳ năng động, thể dục 2 lần/ngày</option>
                 </select>
+
+                <div className='flex min-h-[1rem] font-medium text-orange-300  text-xs lg:text-red-600'>
+                  {errors.activity?.message}
+                </div>
               </div>
               <div className='flex justify-center'>
                 <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>

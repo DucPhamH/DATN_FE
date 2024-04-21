@@ -2,8 +2,28 @@ import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Input from '../../components/InputComponents/Input'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { schemaBMR } from '../../utils/rules'
 
 export default function BMR() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaBMR),
+    defaultValues: {
+      weight: '',
+      height: '',
+      age: '',
+      gender: 'male'
+    }
+  })
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+  })
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -194,11 +214,13 @@ export default function BMR() {
               <p className='text-base text-black dark:text-gray-300'>(Theo phương trình Mifflin-St Jeor)</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form className='p-3'>
+            <form onSubmit={onSubmit} className='p-3'>
               <Input
                 title='Nhập cân nặng (kg)'
                 type='number'
                 name='weight'
+                register={register}
+                errors={errors.weight}
                 id='weight'
                 placeholder='Nhập cân nặng của bạn'
               />
@@ -206,24 +228,49 @@ export default function BMR() {
                 title='Nhập chiều cao (cm)'
                 type='number'
                 name='height'
+                register={register}
+                errors={errors.height}
                 id='height'
                 placeholder='Nhập chiều cao của bạn'
               />
-              <Input title='Nhập độ tuổi' type='number' name='age' id='age' placeholder='Nhập độ tuổi của bạn' />
+              <Input
+                title='Nhập độ tuổi'
+                type='number'
+                register={register}
+                errors={errors.age}
+                name='age'
+                id='age'
+                placeholder='Nhập độ tuổi của bạn'
+              />
               <div className='mb-3'>
                 <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Giới tính của bạn là:
                 </div>
                 <div className='flex items-center pb-2'>
                   <div className='flex items-center'>
-                    <input type='radio' defaultValue name='default-radio' id='men' className='radio radio-success' />
-                    <label htmlFor='men' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
+                    <input
+                      type='radio'
+                      defaultChecked
+                      name='default-radio'
+                      value='male'
+                      {...register('gender')}
+                      id='male'
+                      className='radio radio-success'
+                    />
+                    <label htmlFor='male' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
                       Nam
                     </label>
                   </div>
                   <div className='flex items-center'>
-                    <input type='radio' name='default-radio' id='womam' className='radio radio-success' />
-                    <label htmlFor='woman' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
+                    <input
+                      type='radio'
+                      name='default-radio'
+                      value='female'
+                      {...register('gender')}
+                      id='female'
+                      className='radio radio-success'
+                    />
+                    <label htmlFor='female' className='ms-2 text-sm w-20 font-medium text-gray-900 dark:text-gray-300'>
                       Nữ
                     </label>
                   </div>
