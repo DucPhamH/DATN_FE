@@ -90,7 +90,7 @@ export default function BlogList() {
     navigate({
       pathname: '/chef/blog-list',
       search: createSearchParams(
-        omit({ ...queryConfig, search: data.searchBlogs }, ['status', 'category_blog_id'])
+        omit({ ...queryConfig, search: data.searchBlogs }, ['status', 'category_blog_id', 'page'])
       ).toString()
     })
   })

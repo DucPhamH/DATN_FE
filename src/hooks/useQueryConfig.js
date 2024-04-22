@@ -11,7 +11,8 @@ export default function useQueryConfig() {
       search: queryParams.search,
       sort: queryParams.sort || 'desc',
       status: queryParams.status,
-      category_blog_id: queryParams.category_blog_id
+      category_blog_id: queryParams.category_blog_id,
+      activity_category_id: queryParams.activity_category_id
     },
     isUndefined
   )

@@ -6,7 +6,14 @@ import TDEETable from '../../assets/images/TDEETable.png'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaTDEE } from '../../utils/rules'
+import { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { calculateTDEE } from '../../apis/calculatorApi'
+import { toast } from 'react-toastify'
+import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
+import Loading from '../../components/GlobalComponents/Loading'
 export default function Calories() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     register,
     handleSubmit,
@@ -21,9 +28,30 @@ export default function Calories() {
       activity: 'DEFAULT'
     }
   })
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const calculateTDEEMutation = useMutation({
+    mutationFn: (body) => calculateTDEE(body)
+  })
 
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    calculateTDEEMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        handleOpenModal()
+        toast.success('Tính toán chỉ số TDEE thành công')
+      },
+      onError: () => {
+        console.log('error')
+      }
+    })
   })
   return (
     <>
@@ -285,11 +313,27 @@ export default function Calories() {
                 </div>
               </div>
               <div className='flex justify-center'>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                {calculateTDEEMutation.isPending ? (
+                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                    <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
+                  </button>
+                ) : (
+                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                )}
               </div>
             </form>
           </div>
         </div>
+        {isModalOpen && (
+          <CalculatorModal
+            closeModal={handleCloseModal}
+            title='Chỉ số TDEE của bạn'
+            helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
+            isPending={calculateTDEEMutation.isLoading}
+            data={calculateTDEEMutation.data}
+            unit='calo/ngày'
+          />
+        )}
       </div>
     </>
   )

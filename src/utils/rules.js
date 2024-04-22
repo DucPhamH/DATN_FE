@@ -96,3 +96,9 @@ export const schemaWaterPerDay = yup.object({
   weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0'),
   time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0')
 })
+
+export const schemaCaloriesBurned = yup.object({
+  weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0'),
+  time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0'),
+  met: yup.number().required('MET là bắt buộc').min(1, 'MET phải lớn hơn 0')
+})

@@ -5,8 +5,15 @@ import Input from '../../components/InputComponents/Input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { schemaWaterPerDay } from '../../utils/rules'
+import { useState } from 'react'
+import { calculateWaterIntake } from '../../apis/calculatorApi'
+import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
+import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
+import Loading from '../../components/GlobalComponents/Loading'
 
 export default function WaterPerDay() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     register,
     handleSubmit,
@@ -18,8 +25,29 @@ export default function WaterPerDay() {
       time: ''
     }
   })
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const calculateWaterMutation = useMutation({
+    mutationFn: (body) => calculateWaterIntake(body)
+  })
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    calculateWaterMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        handleOpenModal()
+        toast.success('Tính toán lượng nước cần uống thành công')
+      },
+      onError: () => {
+        console.log('error')
+      }
+    })
   })
   return (
     <>
@@ -218,7 +246,7 @@ export default function WaterPerDay() {
               <p className='text-base text-black dark:text-gray-300'></p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form onSubmit={onSubmit} className='p-3'>
+            <form noValidate onSubmit={onSubmit} className='p-3'>
               <Input
                 title='Nhập cân nặng (kg)'
                 type='number'
@@ -239,11 +267,27 @@ export default function WaterPerDay() {
               />
 
               <div className='flex justify-center'>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                {calculateWaterMutation.isPending ? (
+                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                    <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
+                  </button>
+                ) : (
+                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                )}
               </div>
             </form>
           </div>
         </div>
+        {isModalOpen && (
+          <CalculatorModal
+            closeModal={handleCloseModal}
+            title='Lượng nước cần uống mỗi ngày'
+            helptext=''
+            isPending={calculateWaterMutation.isLoading}
+            data={calculateWaterMutation.data}
+            unit='lít'
+          />
+        )}
       </div>
     </>
   )

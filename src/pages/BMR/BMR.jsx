@@ -5,8 +5,15 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaBMR } from '../../utils/rules'
+import { useState } from 'react'
+import { calculateBMR } from '../../apis/calculatorApi'
+import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
+import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
+import Loading from '../../components/GlobalComponents/Loading'
 
 export default function BMR() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     register,
     handleSubmit,
@@ -20,9 +27,29 @@ export default function BMR() {
       gender: 'male'
     }
   })
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const calculateBMRMutation = useMutation({
+    mutationFn: (body) => calculateBMR(body)
+  })
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data)
+    calculateBMRMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        handleOpenModal()
+        toast.success('Tính toán chỉ số BMR thành công')
+      },
+      onError: () => {
+        console.log('error')
+      }
+    })
   })
   return (
     <>
@@ -214,7 +241,7 @@ export default function BMR() {
               <p className='text-base text-black dark:text-gray-300'>(Theo phương trình Mifflin-St Jeor)</p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form onSubmit={onSubmit} className='p-3'>
+            <form noValidate onSubmit={onSubmit} className='p-3'>
               <Input
                 title='Nhập cân nặng (kg)'
                 type='number'
@@ -276,13 +303,28 @@ export default function BMR() {
                   </div>
                 </div>
               </div>
-
               <div className='flex justify-center'>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                {calculateBMRMutation.isPending ? (
+                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                    <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
+                  </button>
+                ) : (
+                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                )}
               </div>
             </form>
           </div>
         </div>
+        {isModalOpen && (
+          <CalculatorModal
+            closeModal={handleCloseModal}
+            title='Chỉ số BMR của bạn'
+            helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
+            isPending={calculateBMRMutation.isLoading}
+            data={calculateBMRMutation.data}
+            unit='kcal'
+          />
+        )}
       </div>
     </>
   )

@@ -1,9 +1,115 @@
 import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+import { Link, createSearchParams, useNavigate } from 'react-router-dom'
 import Input from '../../components/InputComponents/Input'
+import { AiOutlineSearch } from 'react-icons/ai'
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
+import { getActivities, getActivitiesCategories } from '../../apis/activityApi'
+import Loading from '../../components/GlobalComponents/Loading'
+import useQueryConfig from '../../hooks/useQueryConfig'
+import { omit } from 'lodash'
+import { useForm } from 'react-hook-form'
+import Pagination from '../../components/GlobalComponents/Pagination'
+import { useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { calculateCaloriesBurned } from '../../apis/calculatorApi'
+import { toast } from 'react-toastify'
+import { schemaCaloriesBurned } from '../../utils/rules'
+import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 
 export default function CaloBurned() {
+  const navigate = useNavigate()
+  const queryConfig = omit(useQueryConfig(), ['sort', 'status', 'category_blog_id'])
+  const { data: category, isFetching: isFechingCategory } = useQuery({
+    queryKey: ['category-activity'],
+    queryFn: () => {
+      return getActivitiesCategories()
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 10
+  })
+
+  const { data, isFetching } = useQuery({
+    queryKey: ['list-activity', queryConfig],
+    queryFn: () => {
+      return getActivities(queryConfig)
+    },
+    placeholderData: keepPreviousData
+  })
+
+  const handleChangeCategory = (e) => {
+    if (e.target.value === 'all-category') {
+      navigate({
+        pathname: '/fitness/fitness-caculator/calo-burned',
+        search: createSearchParams({
+          ...omit(queryConfig, ['activity_category_id'])
+        }).toString()
+      })
+    } else {
+      navigate({
+        pathname: '/fitness/fitness-caculator/calo-burned',
+        search: createSearchParams({
+          ...queryConfig,
+          activity_category_id: e.target.value
+        }).toString()
+      })
+    }
+  }
+
+  const { register: registerActivity, handleSubmit: handleSubmitActivity } = useForm({
+    defaultValues: {
+      searchActivity: queryConfig.search || ''
+    }
+  })
+  const onSubmitSearch = handleSubmitActivity((data) => {
+    navigate({
+      pathname: '/fitness/fitness-caculator/calo-burned',
+      search: createSearchParams(
+        omit({ ...queryConfig, search: data.searchActivity }, ['activity_category_id', 'page'])
+      ).toString()
+    })
+  })
+
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaCaloriesBurned),
+    defaultValues: {
+      weight: '',
+      time: '',
+      met: ''
+    }
+  })
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const calculateCaloriesBurnedMutation = useMutation({
+    mutationFn: (body) => calculateCaloriesBurned(body)
+  })
+
+  const onSubmit = handleSubmit((data) => {
+    console.log(data)
+    calculateCaloriesBurnedMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        handleOpenModal()
+        toast.success('Tính toán chỉ số calo đốt cháy thành công')
+      },
+      onError: () => {
+        console.log('error')
+      }
+    })
+  })
+
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -21,6 +127,98 @@ export default function CaloBurned() {
                     <IoTimeOutline className='mr-1 ml-2' /> 02/04/2024
                   </div>
                 </header>
+                <div>
+                  <div className='font-medium mb-2'>Bảng tham khảo giá trị met:</div>
+                  <div className='mb-2'>
+                    <div className='flex flex-wrap gap-3  items-center'>
+                      <form
+                        id='form-activity'
+                        onSubmit={onSubmitSearch}
+                        noValidate
+                        className=' w-[100%] max-w-[20rem] min-w-[18rem] relative'
+                      >
+                        <div className='relative'>
+                          <input
+                            autoComplete='off'
+                            type='search'
+                            id='search_input'
+                            {...registerActivity('searchActivity')}
+                            placeholder='Tìm kiếm bài viết'
+                            className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
+                          />
+                          <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-lg'>
+                            <AiOutlineSearch />
+                          </button>
+                        </div>
+                      </form>
+                      {isFechingCategory ? (
+                        <Loading className='flex ml-4' />
+                      ) : (
+                        <select
+                          defaultValue={queryConfig.activity_category_id || 'all-category'}
+                          onChange={handleChangeCategory}
+                          id='category'
+                          className='select  select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
+                        >
+                          <option value='all-category'>Tất cả thể loại</option>
+                          {category?.data?.result.map((item) => {
+                            return (
+                              <option key={item._id} value={item._id}>
+                                {item.name}
+                              </option>
+                            )
+                          })}
+                        </select>
+                      )}
+                    </div>
+                  </div>
+                  <div className='border-[2px] my-3 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 dark:border-gray-500 shadow-sm max-h-[40 rem] xl:h-full overflow-y-auto overflow-x-auto'>
+                    {isFetching ? (
+                      <Loading className='w-full my-3 flex justify-center' />
+                    ) : (
+                      <table className=' w-full shadow-md  divide-y divide-gray-200'>
+                        <thead className='bg-gray-50 dark:bg-slate-800 '>
+                          <tr>
+                            <th
+                              scope='col'
+                              className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+                            >
+                              Tên hoạt động
+                            </th>
+
+                            <th
+                              scope='col'
+                              className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+                            >
+                              Giá trị met
+                            </th>
+                          </tr>
+                        </thead>
+
+                        <tbody className='bg-white dark:bg-color-primary dark:divide-gray-700 divide-y divide-gray-200'>
+                          {data?.data?.result.activities.map((activity) => {
+                            return <AcitivityItem key={activity._id} activity={activity} />
+                          })}
+                        </tbody>
+                      </table>
+                    )}
+                  </div>
+                  {data?.data.result.activities.length === 0 && (
+                    <div className='flex justify-center items-center py-4'>
+                      <div className='text-gray-500 dark:text-gray-300'>Không có hoạt động nào</div>
+                    </div>
+                  )}
+                  {data?.data.result.totalPage > 1 && (
+                    <div className='flex justify-center mb-5 items-center'>
+                      <Pagination
+                        pageSize={data?.data.result.totalPage}
+                        queryConfig={queryConfig}
+                        url='/fitness/fitness-caculator/calo-burned'
+                      />
+                    </div>
+                  )}
+                </div>
+
                 <p className='lead mb-4 font-medium'>
                   Số lượng calo mà cơ thể đốt cháy trong các hoạt động thường ngày hoặc tập thể dục phụ thuộc vào nhiều
                   yếu tố khác nhau nên đây không phải là một phép tính chính xác. Kết quả của máy tính này (và bất kỳ
@@ -44,7 +242,7 @@ export default function CaloBurned() {
                   </li>
                 </ul>
 
-                <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                <div className='flex flex-col items-center my-2 justify-center w-[100%]'>
                   <img
                     className='object-cover rounded-md w-[100%]'
                     src='https://healthyeater.com/wp-content/uploads/2018/04/calorie-burned-calculator-wide.jpg'
@@ -189,11 +387,13 @@ export default function CaloBurned() {
               Tính toán lượng calo đốt cháy <p className='text-base text-black dark:text-gray-300'></p>
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <form className='p-3'>
+            <form noValidate onSubmit={onSubmit} className='p-3'>
               <Input
                 title='Nhập cân nặng (kg)'
                 type='number'
                 name='weight'
+                register={register}
+                errors={errors.weight}
                 id='weight'
                 placeholder='Nhập cân nặng của bạn'
               />
@@ -201,6 +401,8 @@ export default function CaloBurned() {
                 title='Nhập thời gian (phút)'
                 type='number'
                 name='time'
+                register={register}
+                errors={errors.time}
                 id='time'
                 placeholder='Nhập thời gian hoạt động của bạn'
               />
@@ -208,17 +410,48 @@ export default function CaloBurned() {
                 title='Nhập chỉ số MET'
                 type='number'
                 name='met'
+                register={register}
+                errors={errors.met}
                 id='met'
                 placeholder='Nhập chỉ số MET của hoạt động của bạn'
               />
 
               <div className='flex justify-center'>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                {calculateCaloriesBurnedMutation.isPending ? (
+                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                    <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
+                  </button>
+                ) : (
+                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                )}
               </div>
             </form>
           </div>
         </div>
       </div>
+      {isModalOpen && (
+        <CalculatorModal
+          closeModal={handleCloseModal}
+          title='Lượng calo đốt cháy'
+          helptext=''
+          isPending={calculateCaloriesBurnedMutation.isLoading}
+          data={calculateCaloriesBurnedMutation.data}
+          unit='calo'
+        />
+      )}
     </>
+  )
+}
+
+const AcitivityItem = ({ activity }) => {
+  return (
+    <tr>
+      <td className='px-6 py-4 '>
+        <span className='text-sm  font-medium text-gray-900 dark:text-gray-300'>{activity.activity}</span>
+      </td>
+      <td className='px-6 py-4 '>
+        <div className='text-sm text-gray-900 dark:text-gray-300'>{activity.met}</div>
+      </td>
+    </tr>
   )
 }
