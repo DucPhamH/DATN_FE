@@ -5,8 +5,15 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaBodyFat } from '../../utils/rules'
+import { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { calculateBodyFat } from '../../apis/calculatorApi'
+import { toast } from 'react-toastify'
+import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
+import Loading from '../../components/GlobalComponents/Loading'
 
 export default function BodyFat() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     register,
     handleSubmit,
@@ -22,8 +29,30 @@ export default function BodyFat() {
     }
   })
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const calculateBodyFatMutation = useMutation({
+    mutationFn: (body) => calculateBodyFat(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    calculateBodyFatMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        handleOpenModal()
+        toast.success('Tính toán chỉ số body fat thành công')
+      },
+      onError: () => {
+        console.log('error')
+      }
+    })
   })
   return (
     <>
@@ -277,13 +306,28 @@ export default function BodyFat() {
                   </div>
                 </div>
               </div>
-
               <div className='flex justify-center'>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                {calculateBodyFatMutation.isPending ? (
+                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                    <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
+                  </button>
+                ) : (
+                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                )}
               </div>
             </form>
           </div>
         </div>
+        {isModalOpen && (
+          <CalculatorModal
+            closeModal={handleCloseModal}
+            title='Chỉ số body fat của bạn'
+            helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
+            isPending={calculateBodyFatMutation.isLoading}
+            data={calculateBodyFatMutation.data}
+            unit='% body fat'
+          />
+        )}
       </div>
     </>
   )

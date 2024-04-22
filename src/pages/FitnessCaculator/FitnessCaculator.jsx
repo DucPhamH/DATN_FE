@@ -22,7 +22,7 @@ const finessItems = [
     id: 2,
     name: 'Tính chỉ số Calo',
     image: calo,
-    description: 'Calories Caculator',
+    description: 'TDEE Caculator',
     link: '/fitness/fitness-caculator/calories',
     color: 'bg-green-500'
   },

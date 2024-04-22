@@ -5,8 +5,15 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaBMI } from '../../utils/rules'
+import { useState } from 'react'
+import { useMutation } from '@tanstack/react-query'
+import { calculateBMI } from '../../apis/calculatorApi'
+import { toast } from 'react-toastify'
+import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
+import Loading from '../../components/GlobalComponents/Loading'
 
 export default function BMI() {
+  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     register,
     handleSubmit,
@@ -19,9 +26,32 @@ export default function BMI() {
     }
   })
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false)
+  }
+
+  const calculateBMIMutation = useMutation({
+    mutationFn: (body) => calculateBMI(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    calculateBMIMutation.mutate(data, {
+      onSuccess: (data) => {
+        console.log(data)
+        handleOpenModal()
+        toast.success('Tính toán chỉ số BMI thành công')
+      },
+      onError: () => {
+        console.log('error')
+      }
+    })
   })
+
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -260,11 +290,27 @@ export default function BMI() {
                 placeholder='Nhập chiều cao của bạn'
               />
               <div className='flex justify-center'>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                {calculateBMIMutation.isPending ? (
+                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                    <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
+                  </button>
+                ) : (
+                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tính toán</button>
+                )}
               </div>
             </form>
           </div>
         </div>
+        {isModalOpen && (
+          <CalculatorModal
+            closeModal={handleCloseModal}
+            title='Chỉ số BMI của bạn'
+            helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
+            isPending={calculateBMIMutation.isLoading}
+            data={calculateBMIMutation.data}
+            unit='kg/m2'
+          />
+        )}
       </div>
     </>
   )
