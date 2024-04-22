@@ -99,9 +99,9 @@ export default function LBM() {
 
                 <h2 className='font-bold text-xl my-3 dark:text-gray-300'>1. Lean Body Mass là gì?</h2>
                 <p className='mb-1'>
-                  - Lean Body Mass là gì? "Lean Body Mass" (LBM) là một thuật ngữ y học dùng để mô tả phần của cơ thể
-                  không phải mỡ mà chứa các thành phần khác như cơ bắp, xương, nước và các mô không mỡ. Đây là phần cơ
-                  thể quan trọng, cho biết trọng lượng thực sự của cơ thể mà không tính đến mỡ thừa.
+                  - Lean Body Mass là gì? &quot;Lean Body Mass&quot; (LBM) là một thuật ngữ y học dùng để mô tả phần của
+                  cơ thể không phải mỡ mà chứa các thành phần khác như cơ bắp, xương, nước và các mô không mỡ. Đây là
+                  phần cơ thể quan trọng, cho biết trọng lượng thực sự của cơ thể mà không tính đến mỡ thừa.
                 </p>
                 <p className='mb-1'>
                   - Khi chúng ta nói về Lean Body Mass, chúng ta nói về trọng lượng của cơ thể mà không tính toán phần
@@ -288,7 +288,7 @@ export default function LBM() {
 
               <div className='flex justify-center'>
                 {calculateLBMMutation.isPending ? (
-                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                  <button disabled className='block btn  btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
                     <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
                   </button>
                 ) : (

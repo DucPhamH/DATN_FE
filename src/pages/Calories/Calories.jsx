@@ -314,7 +314,7 @@ export default function Calories() {
               </div>
               <div className='flex justify-center'>
                 {calculateTDEEMutation.isPending ? (
-                  <button disabled className='block btn w-full btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
+                  <button disabled className='block btn btn-sm  md:w-auto  bg-red-800 hover:bg-red-700 '>
                     <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
                   </button>
                 ) : (
