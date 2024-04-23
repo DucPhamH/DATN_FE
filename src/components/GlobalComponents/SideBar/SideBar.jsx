@@ -55,7 +55,7 @@ export default function SideBar() {
       name: 'Sức khoẻ',
       icon: BsFillHeartFill,
       menus: [
-        { subName: 'Công cụ tính toán', subPath: 'fitness-caculator' },
+        { subName: 'Công cụ tính toán', subPath: 'fitness-calculator' },
         { subName: 'Lịch sử tính toán', subPath: 'fitness-history' }
       ],
       path: 'fitness'

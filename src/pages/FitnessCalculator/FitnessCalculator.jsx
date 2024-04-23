@@ -14,40 +14,40 @@ const finessItems = [
     id: 1,
     name: 'Tính chỉ số BMI',
     image: BMI,
-    description: 'Body Mass Index Caculator',
-    link: '/fitness/fitness-caculator/BMI',
+    description: 'Body Mass Index Calculator',
+    link: '/fitness/fitness-calculator/BMI',
     color: 'bg-orange-500'
   },
   {
     id: 2,
     name: 'Tính chỉ số Calo',
     image: calo,
-    description: 'TDEE Caculator',
-    link: '/fitness/fitness-caculator/calories',
+    description: 'TDEE Calculator',
+    link: '/fitness/fitness-calculator/calories',
     color: 'bg-green-500'
   },
   {
     id: 3,
     name: 'Tính lượng chất béo',
     image: bodyFat,
-    description: 'Body Fat Caculator',
-    link: '/fitness/fitness-caculator/body-fat',
+    description: 'Body Fat Calculator',
+    link: '/fitness/fitness-calculator/body-fat',
     color: 'bg-blue-500'
   },
   {
     id: 4,
     name: 'Tính chỉ số BMR',
     image: BMR,
-    description: 'Basal Metabolic Rate Caculator',
-    link: '/fitness/fitness-caculator/BMR',
+    description: 'Basal Metabolic Rate Calculator',
+    link: '/fitness/fitness-calculator/BMR',
     color: 'bg-teal-500'
   },
   {
     id: 5,
     name: 'Tính chỉ số IBW',
     image: IBW,
-    description: 'Idea Body Weight Caculator',
-    link: '/fitness/fitness-caculator/IBW',
+    description: 'Idea Body Weight Calculator',
+    link: '/fitness/fitness-calculator/IBW',
     color: 'bg-red-700'
   },
   {
@@ -55,23 +55,23 @@ const finessItems = [
     name: 'Tính chỉ số LBM',
     image: LBM,
     description: 'Lean Body Mass Caculator',
-    link: '/fitness/fitness-caculator/LBM',
+    link: '/fitness/fitness-calculator/LBM',
     color: 'bg-blue-300'
   },
   {
     id: 7,
     name: 'Tính lượng Calo đốt cháy',
     image: caloBurned,
-    description: 'Calories Burned Caculator',
-    link: '/fitness/fitness-caculator/calo-burned',
+    description: 'Calories Burned Calculator',
+    link: '/fitness/fitness-calculator/calo-burned',
     color: 'bg-pink-500'
   },
   {
     id: 8,
     name: 'Tính lượng nước uống',
     image: waterNeed,
-    description: 'Water Per Day Caculator',
-    link: '/fitness/fitness-caculator/water-need',
+    description: 'Water Per Day Calculator',
+    link: '/fitness/fitness-calculator/water-need',
     color: 'bg-green-800'
   }
 ]

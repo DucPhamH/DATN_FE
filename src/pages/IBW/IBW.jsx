@@ -5,15 +5,19 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaIBW } from '../../utils/rules'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { calculateIBW } from '../../apis/calculatorApi'
+import { calculateIBW, saveIBWData } from '../../apis/calculatorApi'
 import { toast } from 'react-toastify'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
+import { AppContext } from '../../contexts/app.context'
+import { setProfileToLS } from '../../utils/auth'
 
 export default function IBW() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [dataIBW, setDataIBW] = useState({})
+  const { setProfile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -37,11 +41,17 @@ export default function IBW() {
     mutationFn: (body) => calculateIBW(body)
   })
 
+  const saveIBWMutation = useMutation({
+    mutationFn: (body) => saveIBWData(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    setDataIBW(data)
     calculateIBWMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
+        setDataIBW((prev) => ({ ...prev, IBW: data.data.result }))
         handleOpenModal()
         toast.success('Tính toán chỉ số IBW thành công')
       },
@@ -50,6 +60,19 @@ export default function IBW() {
       }
     })
   })
+  const handleSaveIBWData = () => {
+    saveIBWMutation.mutate(dataIBW, {
+      onSuccess: (data) => {
+        toast.success('Lưu chỉ số IBW thành công')
+        setProfile(data?.data.result)
+        setProfileToLS(data?.data.result)
+        handleCloseModal()
+      },
+      onError: () => {
+        toast.error('Lưu chỉ số IBW thất bại')
+      }
+    })
+  }
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -238,7 +261,8 @@ export default function IBW() {
             closeModal={handleCloseModal}
             title='Chỉ số cân nặng lý tưởng của bạn'
             helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
-            isPending={calculateIBWMutation.isLoading}
+            saveData={handleSaveIBWData}
+            isPending={saveIBWMutation.isPending}
             data={calculateIBWMutation.data}
             unit='kg'
           />

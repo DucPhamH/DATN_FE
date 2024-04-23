@@ -17,7 +17,7 @@ const Login = lazy(() => import('./pages/Login'))
 const Register = lazy(() => import('./pages/Register'))
 const Home = lazy(() => import('./pages/Home'))
 const Me = lazy(() => import('./pages/Me'))
-const FitnessCaculator = lazy(() => import('./pages/FitnessCaculator'))
+const FitnessCalculator = lazy(() => import('./pages/FitnessCalculator'))
 const Cooking = lazy(() => import('./pages/Cooking'))
 const CookingFood = lazy(() => import('./pages/CookingFood'))
 const Blog = lazy(() => import('./pages/Blog'))
@@ -37,6 +37,7 @@ const BlogList = lazy(() => import('./pages/BlogList'))
 const EditBlog = lazy(() => import('./pages/EditBlog'))
 const LoginAdmin = lazy(() => import('./pages/LoginAdmin'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
+const FitnessCalculatorHistory = lazy(() => import('./pages/FitnessCalculatorHistory'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -194,17 +195,17 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator',
+          path: 'fitness/fitness-calculator',
           element: (
             <MainLayout>
               <Suspense>
-                <FitnessCaculator />
+                <FitnessCalculator />
               </Suspense>
             </MainLayout>
           )
         },
         {
-          path: 'fitness/fitness-caculator/BMI',
+          path: 'fitness/fitness-calculator/BMI',
           element: (
             <MainLayout>
               <Suspense>
@@ -214,7 +215,7 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator/calories',
+          path: 'fitness/fitness-calculator/calories',
           element: (
             <MainLayout>
               <Suspense>
@@ -224,7 +225,7 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator/BMR',
+          path: 'fitness/fitness-calculator/BMR',
           element: (
             <MainLayout>
               <Suspense>
@@ -234,7 +235,7 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator/body-fat',
+          path: 'fitness/fitness-calculator/body-fat',
           element: (
             <MainLayout>
               <Suspense>
@@ -244,7 +245,7 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator/IBW',
+          path: 'fitness/fitness-calculator/IBW',
           element: (
             <MainLayout>
               <Suspense>
@@ -254,7 +255,7 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator/LBM',
+          path: 'fitness/fitness-calculator/LBM',
           element: (
             <MainLayout>
               <Suspense>
@@ -264,7 +265,7 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator/calo-burned',
+          path: 'fitness/fitness-calculator/calo-burned',
           element: (
             <MainLayout>
               <Suspense>
@@ -274,7 +275,7 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'fitness/fitness-caculator/water-need',
+          path: 'fitness/fitness-calculator/water-need',
           element: (
             <MainLayout>
               <Suspense>
@@ -288,7 +289,7 @@ export default function useRouteElement() {
           element: (
             <MainLayout>
               <Suspense>
-                <div>Hello</div>
+                <FitnessCalculatorHistory />
               </Suspense>
             </MainLayout>
           )

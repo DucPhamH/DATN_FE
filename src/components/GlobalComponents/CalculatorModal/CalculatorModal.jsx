@@ -11,10 +11,11 @@ export default function CalculatorModal({
   isPending,
   type = 'submit',
   data,
-  unit = ''
+  unit = '',
+  saveData = () => {}
 }) {
   const location = useLocation()
-  console.log('location', location)
+
   return (
     <ModalLayout
       closeModal={closeModal}
@@ -55,6 +56,7 @@ export default function CalculatorModal({
               ) : (
                 <button
                   type={type}
+                  onClick={saveData}
                   className='block btn btn-sm w-full md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
                 >
                   Lưu

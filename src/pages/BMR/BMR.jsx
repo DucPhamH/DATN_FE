@@ -5,15 +5,19 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaBMR } from '../../utils/rules'
-import { useState } from 'react'
-import { calculateBMR } from '../../apis/calculatorApi'
+import { useContext, useState } from 'react'
+import { calculateBMR, saveBMRData } from '../../apis/calculatorApi'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
+import { AppContext } from '../../contexts/app.context'
+import { setProfileToLS } from '../../utils/auth'
 
 export default function BMR() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [dataBMR, setDataBMR] = useState({})
+  const { setProfile, profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -27,6 +31,7 @@ export default function BMR() {
       gender: 'male'
     }
   })
+  console.log(profile)
   const handleOpenModal = () => {
     setIsModalOpen(true)
   }
@@ -39,10 +44,16 @@ export default function BMR() {
     mutationFn: (body) => calculateBMR(body)
   })
 
+  const saveBMRMutation = useMutation({
+    mutationFn: (body) => saveBMRData(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
+    setDataBMR(data)
     calculateBMRMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
+        setDataBMR((prev) => ({ ...prev, BMR: data.data.result }))
         handleOpenModal()
         toast.success('Tính toán chỉ số BMR thành công')
       },
@@ -51,6 +62,21 @@ export default function BMR() {
       }
     })
   })
+
+  const handleSaveBMRData = () => {
+    // setDataBMI dạng object chứa các giá trị height, weight, BMI
+    saveBMRMutation.mutate(dataBMR, {
+      onSuccess: (data) => {
+        toast.success('Lưu chỉ số BMR thành công')
+        setProfile(data?.data.result)
+        setProfileToLS(data?.data.result)
+        handleCloseModal()
+      },
+      onError: () => {
+        toast.error('Lưu chỉ số BMR thất bại')
+      }
+    })
+  }
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -319,8 +345,9 @@ export default function BMR() {
           <CalculatorModal
             closeModal={handleCloseModal}
             title='Chỉ số BMR của bạn'
+            saveData={handleSaveBMRData}
             helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
-            isPending={calculateBMRMutation.isLoading}
+            isPending={saveBMRMutation.isPending}
             data={calculateBMRMutation.data}
             unit='kcal'
           />
