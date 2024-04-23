@@ -5,15 +5,19 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaBodyFat } from '../../utils/rules'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { calculateBodyFat } from '../../apis/calculatorApi'
+import { calculateBodyFat, saveBodyFatData } from '../../apis/calculatorApi'
 import { toast } from 'react-toastify'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
+import { AppContext } from '../../contexts/app.context'
+import { setProfileToLS } from '../../utils/auth'
 
 export default function BodyFat() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [dataBodyFat, setDataBodyFat] = useState({})
+  const { setProfile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -40,12 +44,17 @@ export default function BodyFat() {
   const calculateBodyFatMutation = useMutation({
     mutationFn: (body) => calculateBodyFat(body)
   })
+  const saveBodyFatMutation = useMutation({
+    mutationFn: (body) => saveBodyFatData(body)
+  })
 
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    setDataBodyFat(data)
     calculateBodyFatMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
+        setDataBodyFat((prev) => ({ ...prev, body_fat: data.data.result }))
         handleOpenModal()
         toast.success('Tính toán chỉ số body fat thành công')
       },
@@ -54,6 +63,20 @@ export default function BodyFat() {
       }
     })
   })
+
+  const handleSaveBodyFatData = () => {
+    saveBodyFatMutation.mutate(dataBodyFat, {
+      onSuccess: (data) => {
+        toast.success('Lưu chỉ số body fat thành công')
+        setProfile(data?.data.result)
+        setProfileToLS(data?.data.result)
+        handleCloseModal()
+      },
+      onError: () => {
+        toast.error('Lưu chỉ số body fat thất bại')
+      }
+    })
+  }
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -322,8 +345,9 @@ export default function BodyFat() {
           <CalculatorModal
             closeModal={handleCloseModal}
             title='Chỉ số body fat của bạn'
+            saveData={handleSaveBodyFatData}
             helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
-            isPending={calculateBodyFatMutation.isLoading}
+            isPending={saveBodyFatMutation.isPending}
             data={calculateBodyFatMutation.data}
             unit='% body fat'
           />

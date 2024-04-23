@@ -6,14 +6,18 @@ import TDEETable from '../../assets/images/TDEETable.png'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaTDEE } from '../../utils/rules'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { calculateTDEE } from '../../apis/calculatorApi'
+import { calculateTDEE, saveTDEEData } from '../../apis/calculatorApi'
 import { toast } from 'react-toastify'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
+import { AppContext } from '../../contexts/app.context'
+import { setProfileToLS } from '../../utils/auth'
 export default function Calories() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [dataTDEE, setDataTDEE] = useState({})
+  const { setProfile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -40,11 +44,17 @@ export default function Calories() {
     mutationFn: (body) => calculateTDEE(body)
   })
 
+  const saveTDEEMutation = useMutation({
+    mutationFn: (body) => saveTDEEData(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    setDataTDEE(data)
     calculateTDEEMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
+        setDataTDEE((prev) => ({ ...prev, TDEE: data.data.result }))
         handleOpenModal()
         toast.success('Tính toán chỉ số TDEE thành công')
       },
@@ -53,6 +63,19 @@ export default function Calories() {
       }
     })
   })
+  const handleSaveTDEEData = () => {
+    saveTDEEMutation.mutate(dataTDEE, {
+      onSuccess: (data) => {
+        toast.success('Lưu chỉ số TDEE thành công')
+        setProfile(data?.data.result)
+        setProfileToLS(data?.data.result)
+        handleCloseModal()
+      },
+      onError: () => {
+        toast.error('Lưu chỉ số TDEE thất bại')
+      }
+    })
+  }
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -329,7 +352,8 @@ export default function Calories() {
             closeModal={handleCloseModal}
             title='Chỉ số TDEE của bạn'
             helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
-            isPending={calculateTDEEMutation.isLoading}
+            saveData={handleSaveTDEEData}
+            isPending={saveTDEEMutation.isPending}
             data={calculateTDEEMutation.data}
             unit='calo/ngày'
           />

@@ -5,15 +5,19 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaLBM } from '../../utils/rules'
-import { useState } from 'react'
-import { calculateLBM } from '../../apis/calculatorApi'
+import { useContext, useState } from 'react'
+import { calculateLBM, saveLBMData } from '../../apis/calculatorApi'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
+import { AppContext } from '../../contexts/app.context'
+import { setProfileToLS } from '../../utils/auth'
 
 export default function LBM() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [dataLBM, setDataLBM] = useState({})
+  const { setProfile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -38,11 +42,17 @@ export default function LBM() {
     mutationFn: (body) => calculateLBM(body)
   })
 
+  const saveLBMMutation = useMutation({
+    mutationFn: (body) => saveLBMData(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    setDataLBM(data)
     calculateLBMMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
+        setDataLBM((prev) => ({ ...prev, LBM: data.data.result }))
         handleOpenModal()
         toast.success('Tính toán chỉ số LBM thành công')
       },
@@ -51,6 +61,20 @@ export default function LBM() {
       }
     })
   })
+
+  const handleSaveLBMData = () => {
+    saveLBMMutation.mutate(dataLBM, {
+      onSuccess: (data) => {
+        toast.success('Lưu chỉ số LBM thành công')
+        setProfile(data?.data.result)
+        setProfileToLS(data?.data.result)
+        handleCloseModal()
+      },
+      onError: () => {
+        toast.error('Lưu chỉ số LBM thất bại')
+      }
+    })
+  }
   return (
     <>
       <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
@@ -303,7 +327,8 @@ export default function LBM() {
             closeModal={handleCloseModal}
             title='Chỉ số LBM của bạn'
             helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
-            isPending={calculateLBMMutation.isLoading}
+            saveData={handleSaveLBMData}
+            isPending={saveLBMMutation.isPending}
             data={calculateLBMMutation.data}
             unit='kg'
           />

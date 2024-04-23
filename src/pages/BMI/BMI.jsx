@@ -5,15 +5,19 @@ import Input from '../../components/InputComponents/Input'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaBMI } from '../../utils/rules'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
-import { calculateBMI } from '../../apis/calculatorApi'
+import { calculateBMI, saveBMIData } from '../../apis/calculatorApi'
 import { toast } from 'react-toastify'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
+import { AppContext } from '../../contexts/app.context'
+import { setProfileToLS } from '../../utils/auth'
 
 export default function BMI() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [dataBMI, setDataBMI] = useState({})
+  const { setProfile, profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -25,6 +29,8 @@ export default function BMI() {
       height: ''
     }
   })
+
+  console.log(profile)
 
   const handleOpenModal = () => {
     setIsModalOpen(true)
@@ -38,11 +44,17 @@ export default function BMI() {
     mutationFn: (body) => calculateBMI(body)
   })
 
+  const saveBMIMutation = useMutation({
+    mutationFn: (body) => saveBMIData(body)
+  })
+
   const onSubmit = handleSubmit((data) => {
-    console.log(data)
+    // data dạng object chứa các giá trị height, weight
+    setDataBMI(data)
     calculateBMIMutation.mutate(data, {
       onSuccess: (data) => {
-        console.log(data)
+        // set tiếp giá trị BMI vào dataBMI
+        setDataBMI((prev) => ({ ...prev, BMI: data.data.result }))
         handleOpenModal()
         toast.success('Tính toán chỉ số BMI thành công')
       },
@@ -51,6 +63,23 @@ export default function BMI() {
       }
     })
   })
+
+  // lấy kết quả BMI và các chỉ số height, weight để lưu vào database\
+
+  const handleSaveBMIData = () => {
+    // setDataBMI dạng object chứa các giá trị height, weight, BMI
+    saveBMIMutation.mutate(dataBMI, {
+      onSuccess: (data) => {
+        toast.success('Lưu chỉ số BMI thành công')
+        setProfile(data?.data.result)
+        setProfileToLS(data?.data.result)
+        handleCloseModal()
+      },
+      onError: () => {
+        toast.error('Lưu chỉ số BMI thất bại')
+      }
+    })
+  }
 
   return (
     <>
@@ -304,9 +333,10 @@ export default function BMI() {
         {isModalOpen && (
           <CalculatorModal
             closeModal={handleCloseModal}
+            saveData={handleSaveBMIData}
             title='Chỉ số BMI của bạn'
             helptext='Lưu ý: khi bạn lưu kết quả, các chỉ số liên quan sẽ được cập nhật và lưu lại trong hồ sơ cá nhân của bạn.'
-            isPending={calculateBMIMutation.isLoading}
+            isPending={saveBMIMutation.isPending}
             data={calculateBMIMutation.data}
             unit='kg/m2'
           />
