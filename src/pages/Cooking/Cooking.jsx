@@ -1,5 +1,4 @@
 import FoodCard from '../../components/CardComponents/FoodCard/FoodCard'
-import React from 'react'
 import { FaMedal } from 'react-icons/fa'
 import FoodBanner from '../../components/FoodComponents/FoodBanner'
 import { Link } from 'react-router-dom'

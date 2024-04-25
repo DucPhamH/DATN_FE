@@ -42,6 +42,39 @@ export default function FitnessCalculatorHistory() {
     )
   }
 
+  const checkNoteBMI = () => {
+    if (user?.BMI < 18.5) {
+      return 'Bạn đang quá gầy, hãy ăn uống điều độ nhé !'
+    } else if (user?.BMI >= 18.5 && user?.BMI < 24.9) {
+      return 'Bạn đang ở mức cân đối, hãy duy trì nhé !'
+    } else if (user?.BMI >= 25 && user?.BMI < 29.9) {
+      return 'Bạn đang thừa cân, hãy giảm cân nhé !'
+    } else {
+      return 'Bạn đang béo phì, hãy giảm cân nhé !'
+    }
+  }
+
+  const checkNoteBodyFat = () => {
+    if (user?.gender === 'male') {
+      return 'Đối với nam giới không tập luyện nên giữ mức tổng % body fat ở khoảng 14 - 24%'
+    }
+    return 'Đối với nữ giới không tập luyện nên duy trì mức tổng % body fat ở khoảng 21 - 31% .'
+  }
+
+  const calculatePercentLBM = () => {
+    const result = parseFloat((user.LBM / user.weight) * 100).toFixed(1)
+
+    if (result < 70) {
+      return `Kết quả của bạn là ${result}%, bạn đang quá gầy, hãy ăn uống điều độ nhé !`
+    }
+    if (result >= 70 && result < 90) {
+      return `Kết quả của bạn là ${result}%, bạn đang ở mức cân đối, hãy duy trì nhé !`
+    }
+    if (result >= 90 && result < 100) {
+      return `Kết quả của bạn là ${result}%, bạn đang thừa cân, hãy giảm cân nhé !`
+    }
+  }
+
   return (
     <div className='h-full mb-[30rem] text-gray-900 dark:text-gray-300 py-4 mx-3'>
       <div className='mx-2'>
@@ -80,14 +113,12 @@ export default function FitnessCalculatorHistory() {
                     </div>
 
                     <div className='border-t-2 dark:border-gray-500' />
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between gap-4'>
                       <div className='my-2'>
                         <p className='font-semibold text-base mb-2'>Lưu ý</p>
-                        <p className='text-sm font-medium text-red-700 dark:text-pink-300'>
-                          Bạn đang quá gầy, hãy ăn uống điều độ nhé !
-                        </p>
+                        <p className='text-sm font-medium text-red-700 dark:text-pink-300'>{checkNoteBMI()}</p>
                       </div>
-                      <div className='my-2'>
+                      <div className='my-2 min-w-[80px]'>
                         <p className='font-semibold text-base mb-2'>Kết quả</p>
                         <Counup number={user.BMI} title='kg/m^2' />
                       </div>
@@ -131,14 +162,15 @@ export default function FitnessCalculatorHistory() {
                     </div>
 
                     <div className='border-t-2 dark:border-gray-500' />
-                    <div className='flex justify-between'>
-                      <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Lưu ý</p>
+                    <div className='flex justify-between gap-4'>
+                      <div className='my-2 '>
+                        <p className='font-semibold text-base mb-2'>Có thể bạn chưa biết</p>
                         <p className='text-sm font-medium text-red-700 dark:text-pink-300'>
-                          Bạn đang quá gầy, hãy ăn uống điều độ nhé !
+                          Nếu bạn ăn uống dưới BMR, tức là không nạp đủ năng lượng mỗi ngày có thể cản trở các quá trình
+                          hoạt động cơ bản của cơ thể.
                         </p>
                       </div>
-                      <div className='my-2'>
+                      <div className='my-2  min-w-[80px]'>
                         <p className='font-semibold text-base mb-2'>Kết quả</p>
                         <Counup number={user.BMR} title='cal' />
                       </div>
@@ -188,15 +220,15 @@ export default function FitnessCalculatorHistory() {
                     </div>
 
                     <div className='border-t-2 dark:border-gray-500' />
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between gap-4'>
                       <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Lưu ý</p>
+                        <p className='font-semibold text-base mb-2'>Có thể bạn chưa biết</p>
                         <p className='text-sm font-medium text-red-700 dark:text-pink-300'>
-                          Bạn đang quá gầy, hãy ăn uống điều độ nhé !
+                          Bạn muốn giảm cân, hãy ăn ít calo hơn TDEE, bạn muốn tăng cân, hãy ăn nhiều calo hơn TDEE.
                         </p>
                       </div>
-                      <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Kết quả tính toán</p>
+                      <div className='my-2  min-w-[80px]'>
+                        <p className='font-semibold text-base mb-2'>Kết quả</p>
                         <Counup number={user.TDEE} title='cal' />
                       </div>
                     </div>
@@ -245,15 +277,13 @@ export default function FitnessCalculatorHistory() {
                     </div>
 
                     <div className='border-t-2 dark:border-gray-500' />
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between gap-4'>
                       <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Lưu ý</p>
-                        <p className='text-sm font-medium text-red-700 dark:text-pink-300'>
-                          Bạn đang quá gầy, hãy ăn uống điều độ nhé !
-                        </p>
+                        <p className='font-semibold text-base mb-2'> Có thể bạn chưa biết</p>
+                        <p className='text-sm font-medium text-red-700 dark:text-pink-300'>{checkNoteBodyFat()}</p>
                       </div>
-                      <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Kết quả tính toán</p>
+                      <div className='my-2 min-w-[80px]'>
+                        <p className='font-semibold text-base mb-2'>Kết quả</p>
                         <Counup number={user.body_fat} title='%' />
                       </div>
                     </div>
@@ -293,15 +323,13 @@ export default function FitnessCalculatorHistory() {
                     </div>
 
                     <div className='border-t-2 dark:border-gray-500' />
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between gap-4'>
                       <div className='my-2'>
                         <p className='font-semibold text-base mb-2'>Lưu ý</p>
-                        <p className='text-sm font-medium text-red-700 dark:text-pink-300'>
-                          Bạn đang quá gầy, hãy ăn uống điều độ nhé !
-                        </p>
+                        <p className='text-sm font-medium text-red-700 dark:text-pink-300'>{calculatePercentLBM()}</p>
                       </div>
-                      <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Kết quả tính toán</p>
+                      <div className='my-2  min-w-[80px]'>
+                        <p className='font-semibold text-base mb-2'>Kết quả</p>
                         <Counup number={user.LBM} title='kg' />
                       </div>
                     </div>
@@ -334,15 +362,16 @@ export default function FitnessCalculatorHistory() {
                     </div>
 
                     <div className='border-t-2 dark:border-gray-500' />
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between gap-4'>
                       <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Lưu ý</p>
+                        <p className='font-semibold text-base mb-2'>Có thể bạn chưa biết</p>
                         <p className='text-sm font-medium text-red-700 dark:text-pink-300'>
-                          Bạn đang quá gầy, hãy ăn uống điều độ nhé !
+                          Giữ ổn định được mức cân nặng của bạn ở mức hợp lý không chỉ giúp bạn giảm thiếu được những
+                          nguy cơ gây hại cho sức khỏe của chính mình mà còn giúp bạn trông cân đối hơn.
                         </p>
                       </div>
-                      <div className='my-2'>
-                        <p className='font-semibold text-base mb-2'>Kết quả tính toán</p>
+                      <div className='my-2  min-w-[80px]'>
+                        <p className='font-semibold text-base mb-2'>Kết quả</p>
                         <Counup number={user.IBW} title='kg' />
                       </div>
                     </div>

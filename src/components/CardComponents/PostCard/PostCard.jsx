@@ -5,6 +5,7 @@ import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'
 import { LiaComments } from 'react-icons/lia'
 import moment from 'moment'
+import { FaUserFriends } from 'react-icons/fa'
 import 'moment/locale/vi'
 import { deletePostForEachUser, likePost, unlikePost } from '../../../apis/postApi'
 import { useMutation } from '@tanstack/react-query'
@@ -107,6 +108,7 @@ export default function PostCard({ data }) {
       }
     )
   }
+  console.log(moment(data.createdAt).toDate())
 
   return (
     <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-color-primary flex flex-col bg-clip-border'>
@@ -214,11 +216,17 @@ function CheckTypeOfPost({
                 </div>
                 <div className='flex gap-2 items-center'>
                   <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
-                  {data.status === 0 ? (
+                  {data.status === 0 && (
                     <div>
                       <MdPublic />
                     </div>
-                  ) : (
+                  )}
+                  {data.status === 1 && (
+                    <div>
+                      <FaUserFriends />
+                    </div>
+                  )}
+                  {data.status === 2 && (
                     <div>
                       <RiGitRepositoryPrivateFill />
                     </div>
@@ -263,11 +271,17 @@ function CheckTypeOfPost({
               </div>
               <div className='flex gap-2 items-center'>
                 <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
-                {data.status === 0 ? (
+                {data.status === 0 && (
                   <div>
                     <MdPublic />
                   </div>
-                ) : (
+                )}
+                {data.status === 1 && (
+                  <div>
+                    <FaUserFriends />
+                  </div>
+                )}
+                {data.status === 2 && (
                   <div>
                     <RiGitRepositoryPrivateFill />
                   </div>
@@ -307,11 +321,26 @@ function CheckTypeOfPost({
               </div>
               <div className='flex gap-2 items-center'>
                 <div className='text-slate-500 dark:text-slate-300'>{moment(data.parent_post.createdAt).fromNow()}</div>
-                {data.parent_post.status === 0 ? (
+                {/* {data.parent_post.status === 0 ? (
                   <div>
                     <MdPublic />
                   </div>
                 ) : (
+                  <div>
+                    <RiGitRepositoryPrivateFill />
+                  </div>
+                )} */}
+                {data.parent_post.status === 0 && (
+                  <div>
+                    <MdPublic />
+                  </div>
+                )}
+                {data.parent_post.status === 1 && (
+                  <div>
+                    <FaUserFriends />
+                  </div>
+                )}
+                {data.parent_post.status === 2 && (
                   <div>
                     <RiGitRepositoryPrivateFill />
                   </div>

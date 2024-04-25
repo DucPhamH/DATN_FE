@@ -118,7 +118,8 @@ export default function ModalUploadPost({ closeModalPost, profile }) {
                   onChange={handleSelectChange}
                 >
                   <option value='0'>Công khai</option>
-                  <option value='1'>Chỉ mình tôi</option>
+                  <option value='1'>Chỉ người theo dõi</option>
+                  <option value='2'>Chỉ mình tôi</option>
                 </select>
               </div>
             </div>
