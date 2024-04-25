@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import useravatar from '../../../assets/images/useravatar.jpg'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiFillHeart } from 'react-icons/ai'
@@ -20,6 +20,7 @@ import { useNavigate } from 'react-router-dom'
 import { MdPublic } from 'react-icons/md'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { AppContext } from '../../../contexts/app.context'
+import { FaUserFriends } from 'react-icons/fa'
 
 export default function PostCardInfo({ data }) {
   const [openComment, setOpenComment] = useState(false)
@@ -195,11 +196,17 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
                 </div>
                 <div className='flex gap-2 items-center'>
                   <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
-                  {data.status === 0 ? (
+                  {data.status === 0 && (
                     <div>
                       <MdPublic />
                     </div>
-                  ) : (
+                  )}
+                  {data.status === 1 && (
+                    <div>
+                      <FaUserFriends />
+                    </div>
+                  )}
+                  {data.status === 2 && (
                     <div>
                       <RiGitRepositoryPrivateFill />
                     </div>
@@ -236,11 +243,17 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
               </div>{' '}
               <div className='flex gap-2 items-center'>
                 <div className='text-slate-500 dark:text-slate-300'>{moment(data.createdAt).fromNow()}</div>
-                {data.status === 0 ? (
+                {data.status === 0 && (
                   <div>
                     <MdPublic />
                   </div>
-                ) : (
+                )}
+                {data.status === 1 && (
+                  <div>
+                    <FaUserFriends />
+                  </div>
+                )}
+                {data.status === 2 && (
                   <div>
                     <RiGitRepositoryPrivateFill />
                   </div>
@@ -272,11 +285,26 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
               </div>
               <div className='flex gap-2 items-center'>
                 <div className='text-slate-500 dark:text-slate-300'>{moment(data.parent_post.createdAt).fromNow()}</div>
-                {data.parent_post.status === 0 ? (
+                {/* {data.parent_post.status === 0 ? (
                   <div>
                     <MdPublic />
                   </div>
                 ) : (
+                  <div>
+                    <RiGitRepositoryPrivateFill />
+                  </div>
+                )} */}
+                {data.parent_post.status === 0 && (
+                  <div>
+                    <MdPublic />
+                  </div>
+                )}
+                {data.parent_post.status === 1 && (
+                  <div>
+                    <FaUserFriends />
+                  </div>
+                )}
+                {data.parent_post.status === 2 && (
                   <div>
                     <RiGitRepositoryPrivateFill />
                   </div>

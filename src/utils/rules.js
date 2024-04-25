@@ -102,3 +102,15 @@ export const schemaCaloriesBurned = yup.object({
   time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0'),
   met: yup.number().required('MET là bắt buộc').min(1, 'MET phải lớn hơn 0')
 })
+
+export const schemaCreateWorkout = yup.object({
+  name: yup.string().required('Tên là bắt buộc').min(3, 'Độ dài từ 3 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
+  weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0'),
+  calo_target: yup.number().required('Lượng calo là bắt buộc').min(1, 'Lượng calo phải lớn hơn 0'),
+  // ngày bắt đầu phải nhỏ hơn ngày kết thúc
+  start_date: yup
+    .date()
+    .required('Ngày bắt đầu là bắt buộc')
+    .max(yup.ref('end_date'), 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc'),
+  end_date: yup.date().required('Ngày kết thúc là bắt buộc')
+})

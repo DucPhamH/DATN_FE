@@ -5,7 +5,6 @@ import { PiClockAfternoonFill } from 'react-icons/pi'
 import { BsFillSunFill } from 'react-icons/bs'
 import { FaCloudSun, FaLightbulb } from 'react-icons/fa'
 import SearchFood from '../../components/SearchComponents/SearchFood/SearchFood'
-import SearchHoliday from '../../components/SearchComponents/SearchHoliday'
 import SearchRegions from '../../components/SearchComponents/SearchRegions'
 import SearchCook from '../../components/SearchComponents/SearchCook'
 import SearchHard from '../../components/SearchComponents/SearchHard'
@@ -243,7 +242,6 @@ export default function CookingFood() {
               <SearchFood />
               <SearchRegions />
               <SearchCook />
-              <SearchHoliday />
               <SearchHard />
               <SearchTime />
             </div>

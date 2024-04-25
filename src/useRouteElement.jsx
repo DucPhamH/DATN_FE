@@ -11,6 +11,7 @@ import SendEmail from './pages/ForgotPassword/components/SendEmail'
 import InputConfirm from './pages/ForgotPassword/components/InputConfirm'
 import ChangePassForm from './pages/ForgotPassword/components/ChangePassForm'
 import ChangeSuccess from './pages/ForgotPassword/components/ChangeSuccess'
+import WorkoutScheduleDetail from './pages/WorkoutScheduleDetail'
 
 const HomeLanding = lazy(() => import('./pages/HomeLanding'))
 const Login = lazy(() => import('./pages/Login'))
@@ -38,6 +39,7 @@ const EditBlog = lazy(() => import('./pages/EditBlog'))
 const LoginAdmin = lazy(() => import('./pages/LoginAdmin'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const FitnessCalculatorHistory = lazy(() => import('./pages/FitnessCalculatorHistory'))
+const WorkoutSchedule = lazy(() => import('./pages/WorkoutSchedule'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -299,7 +301,17 @@ export default function useRouteElement() {
           element: (
             <MainLayout>
               <Suspense>
-                <div>Hello</div>
+                <WorkoutSchedule />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'schedule/ex-schedule/:id',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <WorkoutScheduleDetail />
               </Suspense>
             </MainLayout>
           )
