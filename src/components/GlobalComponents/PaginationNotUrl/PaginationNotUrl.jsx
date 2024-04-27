@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import { createSearchParams, Link } from 'react-router-dom'
 
 /**
 Với range = 2 áp dụng cho khoảng cách đầu, cuối và xung quanh current_page
@@ -18,8 +17,8 @@ Với range = 2 áp dụng cho khoảng cách đầu, cuối và xung quanh curr
  */
 
 const RANGE = 2
-export default function Pagination({ queryConfig, pageSize, url }) {
-  const page = Number(queryConfig.page)
+export default function PaginationNotUrl({ query, pageSize, setQuery }) {
+  const page = Number(query.page) ? Number(query.page) : 1
   console.log('page', page)
 
   const renderPagination = () => {
@@ -72,14 +71,15 @@ export default function Pagination({ queryConfig, pageSize, url }) {
         }
 
         return (
-          <Link
-            to={{
-              pathname: url,
-              search: createSearchParams({
-                ...queryConfig,
-                page: pageNumber.toString()
-              }).toString()
-            }}
+          <div
+            // to={{
+            //   pathname: url,
+            //   search: createSearchParams({
+            //     ...queryConfig,
+            //     page: pageNumber.toString()
+            //   }).toString()
+            // }}
+            onClick={() => setQuery({ ...query, page: pageNumber.toString() })}
             key={index}
             className={classNames(
               'bg-white rounded border dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 px-3 py-2 hover:text-orange-600 shadow-sm mx-2 cursor-pointer',
@@ -90,7 +90,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
             )}
           >
             {pageNumber}
-          </Link>
+          </div>
         )
       })
   }
@@ -101,18 +101,19 @@ export default function Pagination({ queryConfig, pageSize, url }) {
           Prev
         </span>
       ) : (
-        <Link
-          to={{
-            pathname: url,
-            search: createSearchParams({
-              ...queryConfig,
-              page: (page - 1).toString()
-            }).toString()
-          }}
+        <div
+          // to={{
+          //   pathname: url,
+          //   search: createSearchParams({
+          //     ...queryConfig,
+          //     page: (page - 1).toString()
+          //   }).toString()
+          // }}
+          onClick={() => setQuery({ ...query, page: (page - 1).toString() })}
           className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
         >
           Prev
-        </Link>
+        </div>
       )}
       {renderPagination()}
       {page === pageSize ? (
@@ -120,18 +121,19 @@ export default function Pagination({ queryConfig, pageSize, url }) {
           Next
         </span>
       ) : (
-        <Link
-          to={{
-            pathname: url,
-            search: createSearchParams({
-              ...queryConfig,
-              page: (page + 1).toString()
-            }).toString()
-          }}
+        <div
+          // to={{
+          //   pathname: url,
+          //   search: createSearchParams({
+          //     ...queryConfig,
+          //     page: (page + 1).toString()
+          //   }).toString()
+          // }}
+          onClick={() => setQuery({ ...query, page: (page + 1).toString() })}
           className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
         >
           Next
-        </Link>
+        </div>
       )}
     </div>
   )

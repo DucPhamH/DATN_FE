@@ -34,20 +34,21 @@ export default function CaloBurned() {
     queryFn: () => {
       return getActivities(queryConfig)
     },
-    placeholderData: keepPreviousData
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 10
   })
 
   const handleChangeCategory = (e) => {
     if (e.target.value === 'all-category') {
       navigate({
-        pathname: '/fitness/fitness-caculator/calo-burned',
+        pathname: '/fitness/fitness-calculator/calo-burned',
         search: createSearchParams({
           ...omit(queryConfig, ['activity_category_id'])
         }).toString()
       })
     } else {
       navigate({
-        pathname: '/fitness/fitness-caculator/calo-burned',
+        pathname: '/fitness/fitness-calculator/calo-burned',
         search: createSearchParams({
           ...queryConfig,
           activity_category_id: e.target.value
@@ -63,7 +64,7 @@ export default function CaloBurned() {
   })
   const onSubmitSearch = handleSubmitActivity((data) => {
     navigate({
-      pathname: '/fitness/fitness-caculator/calo-burned',
+      pathname: '/fitness/fitness-calculator/calo-burned',
       search: createSearchParams(
         omit({ ...queryConfig, search: data.searchActivity }, ['activity_category_id', 'page'])
       ).toString()
@@ -213,7 +214,7 @@ export default function CaloBurned() {
                       <Pagination
                         pageSize={data?.data.result.totalPage}
                         queryConfig={queryConfig}
-                        url='/fitness/fitness-caculator/calo-burned'
+                        url='/fitness/fitness-calculator/calo-burned'
                       />
                     </div>
                   )}

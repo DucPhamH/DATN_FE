@@ -15,7 +15,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointE
 
 export default function PieChart({ workout }) {
   const data = {
-    labels: ['Lượng calo đạt được', 'Lượng calo còn lại'],
+    labels: ['Lượng calo còn lại', 'Lượng calo đã đạt được'],
     datasets: [
       {
         label: 'Biểu đồ lượng calo',

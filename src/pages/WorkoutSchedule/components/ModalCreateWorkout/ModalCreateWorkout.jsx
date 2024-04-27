@@ -11,6 +11,7 @@ import { queryClient } from '../../../../main'
 import { useMutation } from '@tanstack/react-query'
 import Loading from '../../../../components/GlobalComponents/Loading'
 import { useNavigate } from 'react-router-dom'
+import moment from 'moment'
 
 export default function ModalCreateWorkout({ handleCloseModalCreateWorkout }) {
   const navigate = useNavigate()
@@ -49,7 +50,14 @@ export default function ModalCreateWorkout({ handleCloseModalCreateWorkout }) {
   })
   const onSubmit = handleSubmit((data) => {
     console.log(data)
-    createWorkoutMutation.mutate(data, {
+    //chuyển start_date và end_date về múi giờ việt nam dùng moment
+    const newData = {
+      ...data,
+      start_date: moment(data.start_date).add(7, 'hours').format(),
+      end_date: moment(data.end_date).add(7, 'hours').format()
+    }
+
+    createWorkoutMutation.mutate(newData, {
       onSuccess: (data) => {
         console.log(data?.data.result)
         handleCloseModalCreateWorkout()

@@ -8,7 +8,7 @@ import BlogCard from '../../components/CardComponents/BlogCard'
 import { useContext, useEffect, useState } from 'react'
 import ModalUploadPost from './components/ModalUploadPost'
 import { getNewsFeed } from '../../apis/postApi'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 import LoadingHome from './components/LoadingHome'
 import { AppContext } from '../../contexts/app.context'
@@ -77,7 +77,9 @@ export default function Home() {
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = lastPage.data.result.newFeeds.length ? allPages.length + 1 : undefined
       return nextPage
-    }
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 10
   })
 
   const content = data?.pages.map((dataNewFeeds) =>
