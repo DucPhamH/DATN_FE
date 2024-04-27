@@ -17,12 +17,23 @@ export const AppProvider = ({ children }) => {
   const [theme, setTheme] = useState(initialAppContext.theme)
   const [isAuthenticated, setIsAuthenticated] = useState(initialAppContext.isAuthenticated)
   const [profile, setProfile] = useState(initialAppContext.profile)
+
   const reset = () => {
     setIsAuthenticated(false)
     setProfile(null)
   }
   return (
-    <AppContext.Provider value={{ theme, setTheme, isAuthenticated, setIsAuthenticated, profile, setProfile, reset }}>
+    <AppContext.Provider
+      value={{
+        theme,
+        setTheme,
+        isAuthenticated,
+        setIsAuthenticated,
+        profile,
+        setProfile,
+        reset
+      }}
+    >
       {children}
     </AppContext.Provider>
   )

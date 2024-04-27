@@ -114,3 +114,17 @@ export const schemaCreateWorkout = yup.object({
     .max(yup.ref('end_date'), 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc'),
   end_date: yup.date().required('Ngày kết thúc là bắt buộc')
 })
+
+export const schemaAddItemWorkout = yup.object({
+  activity_name: yup
+    .string()
+    .required('Hoạt động là bắt buộc')
+    .min(3, 'Độ dài từ 3 - 160 ký tự')
+    .max(160, 'Độ dài từ 3 - 160 ký tự'),
+  time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0'),
+  met: yup.number().required('MET là bắt buộc').min(1, 'MET phải lớn hơn 0')
+})
+
+export const schemaAddTimeWorkout = yup.object({
+  time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0')
+})

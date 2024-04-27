@@ -108,7 +108,6 @@ export default function PostCard({ data }) {
       }
     )
   }
-  console.log(moment(data.createdAt).toDate())
 
   return (
     <article className='mb-4 shadow break-inside md:px-6 pt-6 pb-4 md:rounded-md bg-white dark:bg-color-primary flex flex-col bg-clip-border'>
