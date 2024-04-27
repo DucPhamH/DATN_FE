@@ -15,7 +15,6 @@ import { v4 as uuidv4 } from 'uuid'
 import ModalLayout from '../../../../layouts/ModalLayout'
 import { toast } from 'react-toastify'
 import { createWorkoutItem } from '../../../../apis/workoutScheduleApi'
-import moment from 'moment'
 import PaginationNotUrl from '../../../../components/GlobalComponents/PaginationNotUrl'
 import { queryClient } from '../../../../main'
 export default function CreateItemSchedule({ workout }) {
@@ -114,7 +113,7 @@ export default function CreateItemSchedule({ workout }) {
         met: item.met,
         workout_schedule_id: workout._id,
         // cộng thêm 7 tiếng để đồng bộ với giờ việt nam (UTC +7) dùng moment để chuyển đổi
-        current_date: moment(timeWorkout).add(7, 'hours').format()
+        current_date: timeWorkout
       }
     })
 
