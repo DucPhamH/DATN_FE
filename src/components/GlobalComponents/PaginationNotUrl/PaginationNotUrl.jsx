@@ -19,7 +19,6 @@ Với range = 2 áp dụng cho khoảng cách đầu, cuối và xung quanh curr
 const RANGE = 2
 export default function PaginationNotUrl({ query, pageSize, setQuery }) {
   const page = Number(query.page) ? Number(query.page) : 1
-  console.log('page', page)
 
   const renderPagination = () => {
     let dotAfter = false

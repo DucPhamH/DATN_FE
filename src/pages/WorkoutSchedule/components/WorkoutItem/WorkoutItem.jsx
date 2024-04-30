@@ -1,8 +1,38 @@
+import { useMutation } from '@tanstack/react-query'
 import { cutString } from '../../../../helpers/cutString'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
+import { deleteWorkoutSchedule } from '../../../../apis/workoutScheduleApi'
+import { queryClient } from '../../../../main'
+import { toast } from 'react-toastify'
+import { useState } from 'react'
+import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
 
 export default function WorkoutItem({ workout }) {
+  const [openModalWorkout, setOpenModalWorkout] = useState(false)
+
+  const handleCloseModaldeleteWorkout = () => {
+    setOpenModalWorkout(false)
+  }
+
+  const handleOpenModaldeleteWorkout = () => {
+    setOpenModalWorkout(true)
+  }
+  const deleteWorkOutMutation = useMutation({
+    mutationFn: (id) => deleteWorkoutSchedule(id)
+  })
+
+  const handleDeleteWorkout = () => {
+    deleteWorkOutMutation.mutate(workout._id, {
+      onSuccess: () => {
+        queryClient.invalidateQueries('workout-schedule')
+        toast.success('Xóa lịch trình thành công')
+      },
+      onError: (error) => {
+        console.log(error)
+      }
+    })
+  }
   return (
     <>
       <tr>
@@ -20,7 +50,18 @@ export default function WorkoutItem({ workout }) {
           <Link to={`/schedule/ex-schedule/${workout._id}`} className='text-indigo-600 hover:text-indigo-900'>
             Xem
           </Link>
-          <div className='ml-2 cursor-pointer text-red-600 hover:text-red-900'>Xóa</div>
+          <div onClick={handleOpenModaldeleteWorkout} className='ml-2 cursor-pointer text-red-600 hover:text-red-900'>
+            Xóa
+          </div>
+          {openModalWorkout && (
+            <DeleteConfirmBox
+              handleDelete={handleDeleteWorkout}
+              closeModal={handleCloseModaldeleteWorkout}
+              title='Xác nhận xóa lịch trình'
+              subtitle='Bạn có chắc chắn muốn xóa lịch trình này không?'
+              isPending={deleteWorkOutMutation.isPending}
+            />
+          )}
         </td>
       </tr>
     </>
