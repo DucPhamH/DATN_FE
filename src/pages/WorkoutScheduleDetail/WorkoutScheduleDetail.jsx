@@ -4,7 +4,8 @@ import {
   completeDateWorkoutItem,
   deleteDateWorkoutItem,
   getDateWorkoutItem,
-  getWorkoutSchedule
+  getWorkoutSchedule,
+  syncWeight
 } from '../../apis/workoutScheduleApi'
 import PieChart from './components/PieChart'
 import LineChart from './components/LineChart'
@@ -12,16 +13,45 @@ import { IoMdHome } from 'react-icons/io'
 import CreateItemSchedule from './components/CreateItemSchedule'
 import Loading from '../../components/GlobalComponents/Loading'
 import { useInView } from 'react-intersection-observer'
-import { useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import moment from 'moment'
 import { IoIosCheckmarkCircle } from 'react-icons/io'
 import { MdCancel } from 'react-icons/md'
 import { toast } from 'react-toastify'
 import { queryClient } from '../../main'
+import ModalUpdateWorkout from './components/ModalUpdateWorkout/ModalUpdateWorkout'
+import { AppContext } from '../../contexts/app.context'
 
 export default function WorkoutScheduleDetail() {
   const { id } = useParams()
+  const { profile } = useContext(AppContext)
   const navigate = useNavigate()
+  const [openModalWorkout, setOpenModalWorkout] = useState(false)
+
+  const handleCloseModalUpdateWorkout = () => {
+    setOpenModalWorkout(false)
+  }
+
+  const handleOpenModalUpdateWorkout = () => {
+    setOpenModalWorkout(true)
+  }
+  const syncWeightWorkoutMutation = useMutation({
+    mutationFn: (body) => syncWeight(body)
+  })
+
+  const handleSyncWeightWorkout = () => {
+    syncWeightWorkoutMutation.mutate(
+      {
+        workout_schedule_id: id
+      },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('workout-schedule')
+          toast.success('Đồng bộ cân nặng thành công')
+        }
+      }
+    )
+  }
   const { data, isFetching } = useQuery({
     queryKey: ['workout-info', id],
     queryFn: () => {
@@ -36,6 +66,18 @@ export default function WorkoutScheduleDetail() {
   const { ref, inView } = useInView()
   const fetchDateItems = async ({ pageParam }) => {
     return await getDateWorkoutItem({ page: pageParam, workout_schedule_id: workout?._id })
+  }
+  const checkWeight = () => {
+    if (profile?.weight === null || profile?.weight === undefined) {
+      return false
+    }
+    // check cân nặng của người dùng có bằng schedule weight hay không
+    if (profile?.weight === workout?.weight) {
+      return false
+    }
+    if (profile?.weight !== workout?.weight) {
+      return true
+    }
   }
 
   const {
@@ -54,6 +96,8 @@ export default function WorkoutScheduleDetail() {
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 10
   })
+
+  console.log(dateData)
 
   const completeDateWorkOutItemMutation = useMutation({
     mutationFn: (body) => completeDateWorkoutItem(body)
@@ -287,23 +331,27 @@ export default function WorkoutScheduleDetail() {
                 </p>
               </div>
               <div className='flex gap-2 items-center'>
-                <button className='flex justify-end btn btn-xs text-sm md:inline-block md:w-auto  bg-red-700 hover:bg-red-600 text-white rounded-md font-medium md:order-2'>
+                <button
+                  onClick={handleOpenModalUpdateWorkout}
+                  className='flex justify-end btn btn-xs text-sm md:inline-block md:w-auto  bg-red-700 hover:bg-red-600 text-white rounded-md font-medium md:order-2'
+                >
                   Chỉnh sửa lịch trình
                 </button>
-                <button className='flex justify-end btn btn-xs text-sm md:inline-block md:w-auto bg-gray-700  text-white rounded-md font-medium md:order-2'>
-                  Đồng bộ hóa cân nặng
-                </button>
+                {checkWeight() && (
+                  <button
+                    onClick={handleSyncWeightWorkout}
+                    className='flex justify-end btn btn-xs text-sm md:inline-block md:w-auto bg-gray-700  text-white rounded-md font-medium md:order-2'
+                  >
+                    Đồng bộ hóa cân nặng
+                  </button>
+                )}
               </div>
             </div>
           </div>
 
           <div className='grid w-full grid-cols-1 items-center  xl:grid-cols-3'>
-            <div className='bg-white mx-2 col-span-1 flex justify-center  lg:h-[25rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
-              <PieChart workout={workout} />
-            </div>
-            <div className='bg-white mx-2 col-span-2 flex justify-center lg:h-[25rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
-              <LineChart />
-            </div>
+            <PieChart workout={workout} />
+            <LineChart workout={workout} />
           </div>
 
           <div className='bg-white mx-2 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 max-h-[40rem] overflow-auto  px-10 py-10 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
@@ -334,6 +382,9 @@ export default function WorkoutScheduleDetail() {
 
           <CreateItemSchedule workout={workout} />
         </>
+      )}
+      {openModalWorkout && (
+        <ModalUpdateWorkout workout={workout} handleCloseModalUpdateWorkout={handleCloseModalUpdateWorkout} />
       )}
     </div>
   )

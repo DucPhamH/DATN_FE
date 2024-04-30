@@ -115,6 +115,13 @@ export const schemaCreateWorkout = yup.object({
   end_date: yup.date().required('Ngày kết thúc là bắt buộc')
 })
 
+export const schemaUpdateWorkout = yup.object({
+  name: yup.string().required('Tên là bắt buộc').min(3, 'Độ dài từ 3 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
+  calo_target: yup.number().required('Lượng calo là bắt buộc').min(1, 'Lượng calo phải lớn hơn 0'),
+  // ngày bắt đầu phải nhỏ hơn ngày kết thúc
+  end_date: yup.date().required('Ngày kết thúc là bắt buộc')
+})
+
 export const schemaAddItemWorkout = yup.object({
   activity_name: yup
     .string()

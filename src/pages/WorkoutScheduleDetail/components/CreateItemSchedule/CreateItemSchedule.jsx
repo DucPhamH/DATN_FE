@@ -23,7 +23,7 @@ export default function CreateItemSchedule({ workout }) {
 
   const [query, setQuery] = useState({
     search: '',
-    page: 1
+    page: '1'
   })
 
   const { data: category, isFetching: isFechingCategory } = useQuery({
