@@ -57,6 +57,10 @@ export const schemaCreateBlog = yup.object({
   content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 100 ký tự')
 })
 
+export const schemaCreateReport = yup.object({
+  reason: yup.string().required('Lý do là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự')
+})
+
 export const schemaBMI = yup.object({
   height: yup.number().required('Chiều cao là bắt buộc').min(1, 'Chiều cao phải lớn hơn 0'),
   weight: yup.number().required('Cân nặng là bắt buộc').min(1, 'Cân nặng phải lớn hơn 0')

@@ -241,7 +241,12 @@ function CheckTypeOfPost({
             >
               Xem thêm
             </div>
-            <ThreeDotPost isPending={isPending} userID={data.user._id} handleDeletePost={handleDeletePost} />
+            <ThreeDotPost
+              isPending={isPending}
+              userID={data.user._id}
+              handleDeletePost={handleDeletePost}
+              post={data}
+            />
           </div>
         </div>
         <ShowMoreContent className='px-4 text-sm whitespace-pre-line pb-5 md:px-0'>
@@ -296,7 +301,7 @@ function CheckTypeOfPost({
           >
             Xem thêm
           </div>
-          <ThreeDotPost isPending={isPending} userID={data.user._id} handleDeletePost={handleDeletePost} />
+          <ThreeDotPost isPending={isPending} userID={data.user._id} handleDeletePost={handleDeletePost} post={data} />
         </div>
       </div>
       <ShowMoreContent className='px-4  whitespace-pre-line text-sm pb-5 md:px-0'>
@@ -320,15 +325,6 @@ function CheckTypeOfPost({
               </div>
               <div className='flex gap-2 items-center'>
                 <div className='text-slate-500 dark:text-slate-300'>{moment(data.parent_post.createdAt).fromNow()}</div>
-                {/* {data.parent_post.status === 0 ? (
-                  <div>
-                    <MdPublic />
-                  </div>
-                ) : (
-                  <div>
-                    <RiGitRepositoryPrivateFill />
-                  </div>
-                )} */}
                 {data.parent_post.status === 0 && (
                   <div>
                     <MdPublic />
