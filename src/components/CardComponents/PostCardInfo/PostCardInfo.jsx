@@ -215,7 +215,7 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
               </div>
             </div>
           </div>
-          <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} />
+          <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} post={data} />
         </div>
         <ShowMoreContent className='px-4  text-sm whitespace-pre-line pb-5 md:px-0'>
           <p className=''>{data.content}</p>
@@ -262,7 +262,7 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
             </div>
           </div>
         </div>
-        <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} />
+        <ThreeDotPost userID={data.user._id} handleDeletePost={handleDeletePost} post={data} />
       </div>
       <ShowMoreContent className='px-4 whitespace-pre-line  text-sm pb-5 md:px-0'>
         <p className=''>{data.content}</p>
@@ -285,15 +285,7 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
               </div>
               <div className='flex gap-2 items-center'>
                 <div className='text-slate-500 dark:text-slate-300'>{moment(data.parent_post.createdAt).fromNow()}</div>
-                {/* {data.parent_post.status === 0 ? (
-                  <div>
-                    <MdPublic />
-                  </div>
-                ) : (
-                  <div>
-                    <RiGitRepositoryPrivateFill />
-                  </div>
-                )} */}
+
                 {data.parent_post.status === 0 && (
                   <div>
                     <MdPublic />

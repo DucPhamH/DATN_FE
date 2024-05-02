@@ -2,11 +2,13 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AppContext } from '../../../../contexts/app.context'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
+import ModalReportPost from '../ModalReportPost'
 
-export default function ThreeDotPost({ userID, handleDeletePost, isPending }) {
+export default function ThreeDotPost({ userID, handleDeletePost, isPending, post }) {
   const { profile } = useContext(AppContext)
   const [isMenu, setIsMenu] = useState(false)
   const [openDeleteBox, setOpenDeleteBox] = useState(false)
+  const [openReportBox, setOpenReportBox] = useState(false)
   const ref = useRef()
   const handleClickOutside = (event) => {
     if (ref.current && !ref.current.contains(event.target)) {
@@ -18,6 +20,14 @@ export default function ThreeDotPost({ userID, handleDeletePost, isPending }) {
   }
   const handleCloseDeleteBox = () => {
     setOpenDeleteBox(false)
+  }
+
+  const handleOpenReportBox = () => {
+    setOpenReportBox(true)
+  }
+
+  const handleCloseReportBox = () => {
+    setOpenReportBox(false)
   }
 
   useEffect(() => {
@@ -50,7 +60,7 @@ export default function ThreeDotPost({ userID, handleDeletePost, isPending }) {
                     </div>
                   </div>
                 ) : (
-                  <div>
+                  <div onClick={handleOpenReportBox}>
                     <span className='flex cursor-pointer justify-between items-center px-4 py-2 transition-all duration-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
                       Báo cáo
                     </span>
@@ -70,6 +80,7 @@ export default function ThreeDotPost({ userID, handleDeletePost, isPending }) {
           isPending={isPending}
         />
       )}
+      {openReportBox && <ModalReportPost handleCloseReportPost={handleCloseReportBox} post={post} />}
     </>
   )
 }
