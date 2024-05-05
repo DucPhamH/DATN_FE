@@ -86,10 +86,13 @@ export default function CreateBlog() {
           </div>
           <div className='border-b-[3px] mb-2 w-[50%] border-red-300 '></div>
         </div>
-        <button className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'>
-          <div onClick={() => navigate('/chef/blog-list')} className='flex gap-1 items-center justify-center'>
+        <button
+          onClick={() => navigate('/chef/blog-list')}
+          className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
+        >
+          <div className='flex gap-1 items-center justify-center'>
             <IoMdHome />
-            Trở về trang chủ
+            Trở về trang danh sách blog
           </div>
         </button>
       </div>

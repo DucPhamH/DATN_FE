@@ -57,6 +57,52 @@ export const schemaCreateBlog = yup.object({
   content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 100 ký tự')
 })
 
+export const schemaCreateAlbum = yup.object({
+  title: yup.string().required('Tiêu đề là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự'),
+  image: yup.string().required('Link ảnh là bắt buộc').url('Link ảnh không đúng định dạng'),
+  category_album: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 thể loại album'),
+  description: yup.string().required('Mô tả là bắt buộc').min(10, 'Độ dài từ 10 ký tự')
+})
+
+export const schemaCreateRecipe = yup.object({
+  title: yup.string().required('Tiêu đề là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự'),
+  // image là dạng file , bắt buộc và có định dạng jpg
+  image: yup
+    .mixed()
+    .required('Ảnh là bắt buộc')
+    .test('fileType', 'Ảnh phải có định dạng jpg', (value) => {
+      if (value) {
+        return value && value[0]?.type === 'image/jpeg'
+      }
+      return false
+    }),
+  description: yup.string().required('Mô tả là bắt buộc').min(10, 'Độ dài từ 10 ký tự'),
+  // nếu category_recipe_id = DEFAULT thì sẽ báo lỗi
+  category_recipe_id: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 thể loại món ăn'),
+  content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 100 ký tự'),
+  time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0'),
+  difficult_level: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 mức độ khó'),
+  region: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 khu vực'),
+  processing_food: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 loại thực phẩm'),
+
+  // video là url không bắt buộc phải có định dạng
+  video: yup.string().url('Link video không đúng định dạng')
+})
+
+export const schemaUpdateRecipe = yup.object({
+  title: yup.string().required('Tiêu đề là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự'),
+  description: yup.string().required('Mô tả là bắt buộc').min(10, 'Độ dài từ 10 ký tự'),
+  // nếu category_recipe_id = DEFAULT thì sẽ báo lỗi
+  category_recipe_id: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 thể loại món ăn'),
+  content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 100 ký tự'),
+  time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0'),
+  difficult_level: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 mức độ khó'),
+  region: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 khu vực'),
+  processing_food: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn 1 loại thực phẩm'),
+  // video là url không bắt buộc phải có định dạng
+  video: yup.string().url('Link video không đúng định dạng')
+})
+
 export const schemaCreateReport = yup.object({
   reason: yup.string().required('Lý do là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự')
 })

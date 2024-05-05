@@ -73,7 +73,8 @@ export default function SideBar() {
       name: 'Tạo bài viết',
       icon: FaPenToSquare,
       menus: [
-        { subName: 'Tạo bài viết nấu ăn', subPath: 'food-list' },
+        { subName: 'Tạo bài viết nấu ăn', subPath: 'recipe-list' },
+        { subName: 'Tạo album món ăn', subPath: 'album-list' },
         { subName: 'Tạo blog dinh dưỡng', subPath: 'blog-list' }
       ],
       path: 'chef'

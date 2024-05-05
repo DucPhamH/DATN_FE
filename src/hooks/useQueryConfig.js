@@ -12,7 +12,13 @@ export default function useQueryConfig() {
       sort: queryParams.sort || 'desc',
       status: queryParams.status,
       category_blog_id: queryParams.category_blog_id,
-      activity_category_id: queryParams.activity_category_id
+      category_recipe_id: queryParams.category_recipe_id,
+      difficult_level: queryParams.difficult_level,
+      region: queryParams.region,
+      processing_food: queryParams.processing_food,
+      interval_time: queryParams.interval_time,
+      activity_category_id: queryParams.activity_category_id,
+      category_album: queryParams.category_album
     },
     isUndefined
   )

@@ -21,7 +21,7 @@ export default function TextArea({
         placeholder={placeholder}
         {...register(`${name}`)}
       />
-      <div className='flex min-h-[1rem] font-medium text-orange-300 text-xslg:text-red-600'> {errors?.message}</div>
+      <div className='flex min-h-[1rem] font-medium text-orange-300  text-xs lg:text-red-600'> {errors?.message}</div>
     </div>
   )
 }

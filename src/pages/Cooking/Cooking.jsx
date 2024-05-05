@@ -140,7 +140,7 @@ export default function Cooking() {
                 <div className='border-b-[3px] w-[20%] border-red-300 '></div>
               </div>
               <Link
-                to='/cooking/cooking-food'
+                to='/cooking/recipe'
                 className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
               >
                 Xem thêm ...
@@ -312,7 +312,7 @@ export default function Cooking() {
               <div className='border-b-[3px] mb-2 w-[20%] border-red-300 '></div>
             </div>
             <Link
-              to='/cooking/cooking-food'
+              to='/cooking/recipe'
               className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
             >
               Xem thêm ...

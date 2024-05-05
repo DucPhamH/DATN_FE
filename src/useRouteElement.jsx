@@ -20,7 +20,7 @@ const Home = lazy(() => import('./pages/Home'))
 const Me = lazy(() => import('./pages/Me'))
 const FitnessCalculator = lazy(() => import('./pages/FitnessCalculator'))
 const Cooking = lazy(() => import('./pages/Cooking'))
-const CookingFood = lazy(() => import('./pages/CookingFood'))
+const Recipe = lazy(() => import('./pages/Recipe'))
 const Blog = lazy(() => import('./pages/Blog'))
 const PostInfo = lazy(() => import('./pages/PostInfo'))
 const BlogDetail = lazy(() => import('./pages/BlogDetail'))
@@ -40,6 +40,11 @@ const LoginAdmin = lazy(() => import('./pages/LoginAdmin'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const FitnessCalculatorHistory = lazy(() => import('./pages/FitnessCalculatorHistory'))
 const WorkoutSchedule = lazy(() => import('./pages/WorkoutSchedule'))
+const RecipeList = lazy(() => import('./pages/RecipeList'))
+const CreateRecipe = lazy(() => import('./pages/CreateRecipe'))
+const EditRecipe = lazy(() => import('./pages/EditRecipe'))
+const AlbumList = lazy(() => import('./pages/AlbumList'))
+const CreateAlbum = lazy(() => import('./pages/CreateAlbum'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -157,11 +162,11 @@ export default function useRouteElement() {
           )
         },
         {
-          path: '/cooking/cooking-food',
+          path: '/cooking/recipe',
           element: (
             <MainLayout>
               <Suspense>
-                <CookingFood />
+                <Recipe />
               </Suspense>
             </MainLayout>
           )
@@ -317,13 +322,13 @@ export default function useRouteElement() {
           )
         },
         {
-          path: 'chef/create-food',
+          path: 'chef/create-recipe',
           element: (
-            <MainLayout>
+            <CreateLayout>
               <Suspense>
-                <div>Hello</div>
+                <CreateRecipe />
               </Suspense>
-            </MainLayout>
+            </CreateLayout>
           )
         },
         {
@@ -332,6 +337,16 @@ export default function useRouteElement() {
             <CreateLayout>
               <Suspense>
                 <CreateBlog />
+              </Suspense>
+            </CreateLayout>
+          )
+        },
+        {
+          path: 'chef/create-album',
+          element: (
+            <CreateLayout>
+              <Suspense>
+                <CreateAlbum />
               </Suspense>
             </CreateLayout>
           )
@@ -347,11 +362,41 @@ export default function useRouteElement() {
           )
         },
         {
+          path: 'chef/edit-recipe/:id',
+          element: (
+            <CreateLayout>
+              <Suspense>
+                <EditRecipe />
+              </Suspense>
+            </CreateLayout>
+          )
+        },
+        {
           path: 'chef/blog-list',
           element: (
             <MainLayout>
               <Suspense>
                 <BlogList />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'chef/recipe-list',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <RecipeList />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'chef/album-list',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <AlbumList />
               </Suspense>
             </MainLayout>
           )

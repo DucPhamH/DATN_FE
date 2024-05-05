@@ -7,7 +7,7 @@ import { queryClient } from '../../../../main'
 import { toast } from 'react-toastify'
 import ThreeDotComment from '../ThreeDotComment/ThreeDotComment'
 
-export default function CommentItems({ blog, comment }) {
+export default function CommentItems({ comment }) {
   const deleteCommentMutation = useMutation({
     mutationFn: (body) => deleteCommentBlog(body)
   })

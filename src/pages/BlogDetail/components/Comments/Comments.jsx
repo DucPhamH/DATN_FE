@@ -51,7 +51,7 @@ export default function Comments({ blog }) {
 
   const contentComment = data?.pages?.map((dataComments) =>
     dataComments.data.result.comments.map((comment) => {
-      return <CommentItems blog={blog} comment={comment} key={comment._id} />
+      return <CommentItems comment={comment} key={comment._id} />
     })
   )
 
