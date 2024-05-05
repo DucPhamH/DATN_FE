@@ -151,8 +151,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className='hidden xl:block col-span-2'>
-          <div className='w-full mb-2 shadow bg-white rounded-lg dark:bg-color-primary dark:border-none'>
+        <div className='hidden xl:block  col-span-2'>
+          <div className='w-full mb-2 shadow  bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
               Bạn có thể biết!
             </div>

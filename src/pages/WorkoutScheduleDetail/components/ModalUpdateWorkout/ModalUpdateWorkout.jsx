@@ -126,7 +126,7 @@ export default function ModalUpdateWorkout({ handleCloseModalUpdateWorkout, work
                     <Loading classNameSpin='inline w-5 h-5 text-gray-200 animate-spin dark:text-gray-600 fill-red-600' />
                   </button>
                 ) : (
-                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Tạo lịch mới</button>
+                  <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'>Chỉnh sửa lịch</button>
                 )}
               </div>
             </form>

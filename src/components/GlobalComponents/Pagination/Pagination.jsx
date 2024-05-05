@@ -31,7 +31,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
         return (
           <span
             key={index}
-            className='bg-white dark:shadow-orange-900 dark:bg-gray-900 dark:text-white dark:border-gray-800 rounded  text-black px-3 py-2 shadow-sm mx-2 border'
+            className='bg-white text-sm font-medium dark:shadow-orange-900 dark:bg-gray-900 dark:text-white dark:border-gray-800 rounded  text-black px-3 py-1 shadow-sm mx-2 border'
           >
             ...
           </span>
@@ -45,7 +45,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
         return (
           <span
             key={index}
-            className='bg-white dark:shadow-orange-900 dark:bg-gray-900 dark:text-white dark:border-gray-800  rounded text-black px-3 py-2 shadow-sm mx-2 border'
+            className='bg-white text-sm font-medium dark:shadow-orange-900 dark:bg-gray-900 dark:text-white dark:border-gray-800  rounded text-black px-3 py-1 shadow-sm mx-2 border'
           >
             ...
           </span>
@@ -82,7 +82,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
             }}
             key={index}
             className={classNames(
-              'bg-white rounded border dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 px-3 py-2 hover:text-orange-600 shadow-sm mx-2 cursor-pointer',
+              'bg-white rounded border text-sm font-medium dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800 px-3 py-1 hover:text-orange-600 shadow-sm mx-2 cursor-pointer',
               {
                 'border-orange-600 text-orange-600': pageNumber === page,
                 'border-transparent': pageNumber !== page
@@ -97,7 +97,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
   return (
     <div className='flex flex-wrap gap- mt-6 justify-center'>
       {page === 1 ? (
-        <span className=' cursor-not-allowed rounded border text-gray-500 dark:text-gray-200 dark:bg-gray-800 dark:border-none bg-white/60 px-3 py-2  shadow-sm'>
+        <span className=' cursor-not-allowed text-sm font-medium rounded border text-gray-500 dark:text-gray-200 dark:bg-gray-800 dark:border-none bg-white/60 px-3 py-1  shadow-sm'>
           Prev
         </span>
       ) : (
@@ -109,14 +109,14 @@ export default function Pagination({ queryConfig, pageSize, url }) {
               page: (page - 1).toString()
             }).toString()
           }}
-          className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
+          className=' dark:shadow-orange-900 text-sm font-medium dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-1  shadow-sm'
         >
           Prev
         </Link>
       )}
       {renderPagination()}
       {page === pageSize ? (
-        <span className=' cursor-not-allowed rounded border text-gray-500 dark:text-gray-200 dark:bg-gray-800 dark:border-none bg-white/60 px-3 py-2  shadow-sm'>
+        <span className=' cursor-not-allowed text-sm font-medium rounded border text-gray-500 dark:text-gray-200 dark:bg-gray-800 dark:border-none bg-white/60 px-3 py-1 shadow-sm'>
           Next
         </span>
       ) : (
@@ -128,7 +128,7 @@ export default function Pagination({ queryConfig, pageSize, url }) {
               page: (page + 1).toString()
             }).toString()
           }}
-          className=' dark:shadow-orange-900 dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-2  shadow-sm'
+          className=' dark:shadow-orange-900 text-sm font-medium dark:bg-gray-900 border-gray-300 dark:border-gray-800  cursor-pointer rounded border bg-white px-3 py-1  shadow-sm'
         >
           Next
         </Link>

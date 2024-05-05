@@ -191,7 +191,7 @@ const checkTime = () => {
   }
 }
 
-export default function CookingFood() {
+export default function Recipe() {
   return (
     <div className='h-full text-gray-900 dark:text-white py-4 mx-3'>
       {checkTime()}

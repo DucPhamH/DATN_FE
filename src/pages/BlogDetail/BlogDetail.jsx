@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { LiaEyeSolid } from 'react-icons/lia'
 import { FaRegComment } from 'react-icons/fa'
 import { getBlogForUser } from '../../apis/blogApi'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import Loading from '../../components/GlobalComponents/Loading'
 import moment from 'moment'
 import parse from 'html-react-parser'
@@ -15,7 +15,9 @@ export default function BlogDetail() {
     queryKey: ['blog-info-user', id],
     queryFn: () => {
       return getBlogForUser(id)
-    }
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 20
   })
 
   return (
@@ -52,15 +54,15 @@ export default function BlogDetail() {
                       </div>
                       <div className=' text-xs font-bold flex flex-col justify-end text-black-900 dark:text-gray-300'>
                         <div className='flex items-center justify-end gap-1'>
-                          <div className='text-xl'>
+                          {/* <div className='text-xl'>
                             <LiaEyeSolid />
-                          </div>
+                          </div> */}
                           {data?.data.result[0].user_view} lượt xem
                         </div>
                         <div className='flex items-center justify-end gap-1'>
-                          <div className=''>
+                          {/* <div className=''>
                             <FaRegComment />
-                          </div>
+                          </div> */}
                           {data?.data.result[0].comment_count} bình luận
                         </div>
                       </div>

@@ -305,11 +305,11 @@ export default function WorkoutScheduleDetail() {
             </div>
             <div className=' lg:col-span-1 mb-2  '>
               <div className='flex flex-wrap gap-3 xl:justify-end items-center'>
-                <button className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:order-2'>
-                  <div
-                    onClick={() => navigate('/schedule/ex-schedule')}
-                    className='flex gap-1 items-center justify-center'
-                  >
+                <button
+                  onClick={() => navigate('/schedule/ex-schedule')}
+                  className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:order-2'
+                >
+                  <div className='flex gap-1 items-center justify-center'>
                     <IoMdHome />
                     Trở về trang lập lịch
                   </div>

@@ -9,6 +9,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+/* .custorm-blog {
+  font:
+    16px 'Roboto',
+    sans-serif;
+} */
+
 .custorm-blog li {
   list-style-type: disc;
   margin-left: 2rem;
@@ -26,6 +32,17 @@ body {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #6a7070;
+}
+
+.custorm-blog a {
+  font-style: italic;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .container {

@@ -111,14 +111,14 @@ export default function EditBlog() {
         >
           <div className='flex gap-1 items-center justify-center'>
             <IoMdHome />
-            Trở về trang chính
+            Trở về trang danh sách blog
           </div>
         </button>
       </div>
 
       <div className='grid grid-cols-1 lg:grid-cols-2 px-4 gap-4'>
         <div className='blog-view  max-w-3xl w-full pb-16 p-5 dark:text-gray-400  font-Roboto  bg-white dark:bg-color-primary my-6  border border-gray-200 rounded-lg shadow mx-auto'>
-          <h2 className='text-xl font-bold border-b border-gray-400 pb-2 mb-5 '>Tạo blog</h2>
+          <h2 className='text-xl font-bold border-b border-gray-400 pb-2 mb-5 '>Chỉnh sửa blog</h2>
           <form onSubmit={onSubmit} noValidate>
             <div className='grid gap-4 sm:grid-cols-2 sm:gap-2'>
               <div className='sm:col-span-2'>
