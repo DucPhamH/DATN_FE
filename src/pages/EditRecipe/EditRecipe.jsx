@@ -200,7 +200,7 @@ export default function EditRecipe() {
                 errors={errors.time}
               />
             </div>
-            <div className='sm:col-span-2 flex flex-wrap items-center md:gap-5 pb-2'>
+            <div className='sm:col-span-2 flex flex-wrap items-center gap-2 md:gap-5 pb-2'>
               <div>
                 <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Chọn mức độ khó
@@ -250,7 +250,7 @@ export default function EditRecipe() {
                 </div>
               </div>
             </div>
-            <div className='sm:col-span-2 flex flex-wrap items-center md:gap-5 pb-2'>
+            <div className='sm:col-span-2 flex flex-wrap items-center gap-2 md:gap-5 pb-2'>
               <div>
                 <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Chọn 1 thể loại nấu ăn

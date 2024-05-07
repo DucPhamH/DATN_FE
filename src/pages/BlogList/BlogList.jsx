@@ -14,7 +14,7 @@ export default function BlogList() {
   const navigate = useNavigate()
   const queryConfig = useQueryConfig()
 
-  const { data: category, isFetching: isFechingCategory } = useQuery({
+  const { data: category, isLoading: isLoadingCategory } = useQuery({
     queryKey: ['category-blog'],
     queryFn: () => {
       return getCategoryBlogs()
@@ -23,7 +23,7 @@ export default function BlogList() {
     staleTime: 1000 * 60 * 10
   })
 
-  const { data, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['blogs-list-chef', queryConfig],
     queryFn: () => {
       return getBlogsForChef(queryConfig)
@@ -135,7 +135,7 @@ export default function BlogList() {
                   <option value='1'>Đã duyệt</option>
                   <option value='0'>Chưa duyệt</option>
                 </select>
-                {isFechingCategory ? (
+                {isLoadingCategory ? (
                   <Loading className='flex ml-4' />
                 ) : (
                   <select
@@ -172,7 +172,7 @@ export default function BlogList() {
               </div>
             </div>
           </div>
-          {isFetching ? (
+          {isLoading ? (
             <Loading />
           ) : (
             <>

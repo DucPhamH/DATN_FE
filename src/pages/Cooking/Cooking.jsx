@@ -1,4 +1,4 @@
-import FoodCard from '../../components/CardComponents/FoodCard/FoodCard'
+import RecipeCard from '../../components/CardComponents/RecipeCard'
 import { FaMedal } from 'react-icons/fa'
 import FoodBanner from '../../components/FoodComponents/FoodBanner'
 import { Link } from 'react-router-dom'
@@ -148,9 +148,9 @@ export default function Cooking() {
             </div>
 
             <div className='grid gap-3 md:gap-4 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-5'>
-              {foodItems.map((foodItem) => {
+              {/* {foodItems.map((foodItem) => {
                 return <FoodCard key={foodItem.id} foodItem={foodItem} />
-              })}
+              })} */}
             </div>
           </div>
           <div className='col-span-1'>
@@ -320,9 +320,9 @@ export default function Cooking() {
           </div>
 
           <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
-            {albumItems.map((albumItem) => {
+            {/* {albumItems.map((albumItem) => {
               return <AlbumCard key={albumItem.id} />
-            })}
+            })} */}
           </div>
         </div>
 

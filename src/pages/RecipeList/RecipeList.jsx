@@ -14,7 +14,7 @@ export default function RecipeList() {
   const navigate = useNavigate()
   const queryConfig = useQueryConfig()
 
-  const { data: category, isFetching: isFechingCategory } = useQuery({
+  const { data: category, isLoading: isLoadingCategory } = useQuery({
     queryKey: ['category-recipe'],
     queryFn: () => {
       return getCategoryRecipes()
@@ -23,7 +23,7 @@ export default function RecipeList() {
     staleTime: 1000 * 60 * 10
   })
 
-  const { data, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['recipes-list-chef', queryConfig],
     queryFn: () => {
       return getRecipesForChef(queryConfig)
@@ -285,7 +285,7 @@ export default function RecipeList() {
                   <option value='2'>Khó</option>
                 </select>
 
-                {isFechingCategory ? (
+                {isLoadingCategory ? (
                   <Loading className='flex ml-4' />
                 ) : (
                   <select
@@ -322,7 +322,7 @@ export default function RecipeList() {
               </div>
             </div>
           </div>
-          {isFetching ? (
+          {isLoading ? (
             <Loading />
           ) : (
             <>

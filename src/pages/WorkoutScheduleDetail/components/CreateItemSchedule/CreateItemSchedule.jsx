@@ -2,7 +2,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { omit } from 'lodash'
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
-import { getActivities, getActivitiesCategories } from '../../../../apis/activityApi'
+import { getActivities } from '../../../../apis/activityApi'
 import { useForm } from 'react-hook-form'
 import Loading from '../../../../components/GlobalComponents/Loading'
 import { AiOutlineSearch } from 'react-icons/ai'
@@ -26,16 +26,7 @@ export default function CreateItemSchedule({ workout }) {
     page: '1'
   })
 
-  const { data: category, isFetching: isFechingCategory } = useQuery({
-    queryKey: ['category-activity'],
-    queryFn: () => {
-      return getActivitiesCategories()
-    },
-    placeholderData: keepPreviousData,
-    staleTime: 1000 * 60 * 10
-  })
-
-  const { data, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['list-activity', query],
     queryFn: () => {
       return getActivities(query)
@@ -78,18 +69,18 @@ export default function CreateItemSchedule({ workout }) {
   const handleChangeCategory = (e) => {
     if (e.target.value === 'all-category') {
       setQuery((prev) => {
-        return omit(prev, ['activity_category_id'])
+        return omit(prev, ['activity_category'])
       })
     } else {
       setQuery((prev) => {
-        return { ...prev, activity_category_id: e.target.value }
+        return { ...prev, activity_category: e.target.value }
       })
     }
   }
 
   const onSubmitSearch = handleSubmitActivity((data) => {
     setQuery((prev) => {
-      return omit({ ...prev, search: data.searchActivity }, ['activity_category_id', 'page'])
+      return omit({ ...prev, search: data.searchActivity }, ['activity_category', 'page'])
     })
   })
 
@@ -112,7 +103,6 @@ export default function CreateItemSchedule({ workout }) {
         time: item.time,
         met: item.met,
         workout_schedule_id: workout._id,
-        // cộng thêm 7 tiếng để đồng bộ với giờ việt nam (UTC +7) dùng moment để chuyển đổi
         current_date: timeWorkout
       }
     })
@@ -293,29 +283,25 @@ export default function CreateItemSchedule({ workout }) {
                     </div>
                   </form>
 
-                  {isFechingCategory ? (
-                    <Loading className='flex ml-4' />
-                  ) : (
-                    <select
-                      defaultValue={query.activity_category_id || 'all-category'}
-                      onChange={handleChangeCategory}
-                      id='category'
-                      className='select  select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
-                    >
-                      <option value='all-category'>Tất cả thể loại</option>
-                      {category?.data?.result.map((item) => {
-                        return (
-                          <option key={item._id} value={item._id}>
-                            {item.name}
-                          </option>
-                        )
-                      })}
-                    </select>
-                  )}
+                  <select
+                    defaultValue={query.activity_category || 'all-category'}
+                    onChange={handleChangeCategory}
+                    id='category'
+                    className='select select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
+                  >
+                    <option value='all-category'>Tất cả thể loại</option>
+                    <option value='Đi xe đạp'>Đi xe đạp</option>
+                    <option value='Bài tập thể dục'>Bài tập thể dục</option>
+                    <option value='Múa'>Múa</option>
+                    <option value='Chạy'>Chạy</option>
+                    <option value='Thể thao'>Thể thao</option>
+                    <option value='Đi bộ'>Đi bộ</option>
+                    <option value='Hoạt động dưới nước'>Dưới nước</option>
+                  </select>
                 </div>
               </div>
               <div className='border-[2px] my-3 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 dark:border-gray-500 shadow-sm max-h-[40 rem] xl:h-full overflow-y-auto overflow-x-auto'>
-                {isFetching ? (
+                {isLoading ? (
                   <Loading className='w-full my-3 flex justify-center' />
                 ) : (
                   <table className=' w-full shadow-md  divide-y divide-gray-200'>

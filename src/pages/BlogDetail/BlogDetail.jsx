@@ -1,13 +1,14 @@
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link, useParams } from 'react-router-dom'
-import { LiaEyeSolid } from 'react-icons/lia'
-import { FaRegComment } from 'react-icons/fa'
 import { getBlogForUser } from '../../apis/blogApi'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import Loading from '../../components/GlobalComponents/Loading'
 import moment from 'moment'
 import parse from 'html-react-parser'
 import Comments from './components/Comments'
+import { MdPerson } from 'react-icons/md'
+import { FaEye } from 'react-icons/fa6'
+import { FaComment } from 'react-icons/fa'
 
 export default function BlogDetail() {
   const { id } = useParams()
@@ -22,7 +23,7 @@ export default function BlogDetail() {
 
   return (
     <>
-      <div className='grid xl:mx-4  pt-2 xl:gap-3 xl:grid-cols-6'>
+      <div className='grid xl:mx-4 pt-2 xl:gap-3 xl:grid-cols-6'>
         <div className='col-span-6'>
           <main className='pt-8 xl:mx-12 xl:px-10 pb-16 rounded-lg dark:text-gray-400 shadow-md font-Roboto lg:pb-24 bg-white dark:bg-color-primary '>
             {isFetchingBlog ? (
@@ -31,38 +32,27 @@ export default function BlogDetail() {
               <div className='flex justify-between items-center px-3 xl:px-5 max-w-screen-xl '>
                 <article className='mx-auto w-full '>
                   <header className='mb-3 not-format'>
-                    <h1 className='mb-1 text-2xl xl:text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
-                      {data?.data.result[0].title}
-                    </h1>
+                    <div>
+                      <span className='font-medium text-gray-500'>
+                        {moment(data?.data.result[0].createdAt).format('LLLL')}
+                      </span>
 
-                    <div className='flex mx-3 mt-2 justify-between items-center'>
-                      <div className=''>
-                        <div className='flex font-bold items-center gap-2'>
-                          Người viết:
-                          <div className='mr-4 flex items-center gap-2'>
-                            <div className='font-medium hover:underline cursor-pointer'>
-                              {data?.data.result[0].user.name}
-                            </div>
-                          </div>
+                      <h1 className='mb-1 text-2xl xl:text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
+                        {data?.data.result[0].title}
+                      </h1>
+                      <div className='pt-3 text-sm flex gap-2 flex-wrap'>
+                        <div className='flex font-medium pr-3 text-gray-500  border-r-2 flex-row items-center'>
+                          <MdPerson className='text-lg text-green-500 mr-1' />
+                          {data?.data.result[0].user.name}
                         </div>
-                        <div className='flex font-bold items-center'>
-                          Ngày tạo:{' '}
-                          <span className='ml-2 font-medium'>
-                            {moment(data?.data.result[0].createdAt).format('MM/DD/YYYY')}
-                          </span>
+
+                        <div className='flex flex-row items-center text-gray-500 font-medium pr-3 border-r-2  '>
+                          <FaEye className='text-blue-400 mr-1' />
+                          <span className=''> {data?.data.result[0].user_view} lượt xem</span>
                         </div>
-                      </div>
-                      <div className=' text-xs font-bold flex flex-col justify-end text-black-900 dark:text-gray-300'>
-                        <div className='flex items-center justify-end gap-1'>
-                          {/* <div className='text-xl'>
-                            <LiaEyeSolid />
-                          </div> */}
-                          {data?.data.result[0].user_view} lượt xem
-                        </div>
-                        <div className='flex items-center justify-end gap-1'>
-                          {/* <div className=''>
-                            <FaRegComment />
-                          </div> */}
+
+                        <div className='flex pr-3 flex-row text-gray-500 font-medium items-center'>
+                          <FaComment className='text-blue-400 mr-1' />
                           {data?.data.result[0].comment_count} bình luận
                         </div>
                       </div>

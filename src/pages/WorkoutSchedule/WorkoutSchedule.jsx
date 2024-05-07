@@ -1,6 +1,5 @@
 import React from 'react'
 import { FaPlus } from 'react-icons/fa'
-
 import ModalCreateWorkout from './components/ModalCreateWorkout'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { getListWorkoutSchedules } from '../../apis/workoutScheduleApi'
@@ -20,7 +19,7 @@ export default function WorkoutSchedule() {
     setOpenModalWorkout(true)
   }
 
-  const { data, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['workout-schedule', queryConfig],
     queryFn: () => {
       return getListWorkoutSchedules(queryConfig)
@@ -54,7 +53,7 @@ export default function WorkoutSchedule() {
               </div>
             </div>
           </div>
-          {isFetching ? (
+          {isLoading ? (
             <Loading />
           ) : (
             <>
