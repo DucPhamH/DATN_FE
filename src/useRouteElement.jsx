@@ -45,6 +45,10 @@ const CreateRecipe = lazy(() => import('./pages/CreateRecipe'))
 const EditRecipe = lazy(() => import('./pages/EditRecipe'))
 const AlbumList = lazy(() => import('./pages/AlbumList'))
 const CreateAlbum = lazy(() => import('./pages/CreateAlbum'))
+const EditAlbum = lazy(() => import('./pages/EditAlbum'))
+const Album = lazy(() => import('./pages/Album'))
+const AlbumDetail = lazy(() => import('./pages/AlbumDetail'))
+const RecipeDetail = lazy(() => import('./pages/RecipeDetail'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -172,6 +176,16 @@ export default function useRouteElement() {
           )
         },
         {
+          path: '/cooking/recipe/:id',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <RecipeDetail />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
           path: '/blog',
           element: (
             <MainLayout>
@@ -196,7 +210,17 @@ export default function useRouteElement() {
           element: (
             <MainLayout>
               <Suspense>
-                <div className=' '>Hello</div>
+                <Album />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: '/album/:id',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <AlbumDetail />
               </Suspense>
             </MainLayout>
           )
@@ -367,6 +391,16 @@ export default function useRouteElement() {
             <CreateLayout>
               <Suspense>
                 <EditRecipe />
+              </Suspense>
+            </CreateLayout>
+          )
+        },
+        {
+          path: 'chef/edit-album/:id',
+          element: (
+            <CreateLayout>
+              <Suspense>
+                <EditAlbum />
               </Suspense>
             </CreateLayout>
           )

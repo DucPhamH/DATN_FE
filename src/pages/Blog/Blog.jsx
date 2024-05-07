@@ -33,11 +33,11 @@ export default function Blog() {
   //   staleTime: 1000 * 60 * 5
   // })
 
-  const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isFetching } = useInfiniteQuery({
+  const { data, fetchNextPage, isFetchingNextPage, hasNextPage, isLoading } = useInfiniteQuery({
     queryKey: ['blogs-list-user', queryConfig],
     queryFn: fetchBlog,
     initialPageParam: 1,
-    getNextPageParam: (lastPage, allPages) => {
+    getNextPageParam: (lastPage) => {
       // const nextPage = lastPage.data.result.blogs.length ? allPages.length + 1 : undefined
       const nextPage = lastPage.data.result.page + 1
       if (nextPage > lastPage.data.result.totalPage) return undefined
@@ -187,24 +187,11 @@ export default function Blog() {
             </div>
           </div>
 
-          {isFetching ? (
+          {isLoading ? (
             <Loading />
           ) : (
             <>
               <div className='grid gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
-                {/* {blogData?.data?.result.blogs.map((blog) => {
-                  return (
-                    <BlogCard
-                      key={blog._id}
-                      blogItem={blog}
-                      imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'
-                      dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                      titleClass=' font-bold transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
-                      descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
-                      linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
-                    />
-                  )
-                })} */}
                 {data?.pages?.map((dataBlogs) =>
                   dataBlogs.data.result.blogs.map((blog) => {
                     return (

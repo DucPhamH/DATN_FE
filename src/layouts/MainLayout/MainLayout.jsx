@@ -1,4 +1,3 @@
-import React from 'react'
 import SideBar from '../../components/GlobalComponents/SideBar'
 import Header from '../../components/GlobalComponents/Header'
 import Footer from '../../components/GlobalComponents/Footer'
@@ -10,7 +9,7 @@ export default function MainLayout({ children }) {
       <SideBar />
       <Header />
       <div className='md:ml-64 h-screen bg-gray-100 dark:bg-color-primary-dark w-[100%]'>
-        <div className='mt-20  bg-gray-100 dark:bg-color-primary-dark'>
+        <div className='mt-16 lg:mt-20  bg-gray-100 dark:bg-color-primary-dark'>
           {children}
           <div
             onClick={() => {

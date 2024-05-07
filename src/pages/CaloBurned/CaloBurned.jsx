@@ -1,77 +1,60 @@
 import { IoTimeOutline } from 'react-icons/io5'
 import { FaArrowCircleRight } from 'react-icons/fa'
-import { Link, createSearchParams, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Input from '../../components/InputComponents/Input'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
-import { getActivities, getActivitiesCategories } from '../../apis/activityApi'
+import { getActivities } from '../../apis/activityApi'
 import Loading from '../../components/GlobalComponents/Loading'
-import useQueryConfig from '../../hooks/useQueryConfig'
 import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
-import Pagination from '../../components/GlobalComponents/Pagination'
 import { useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { calculateCaloriesBurned } from '../../apis/calculatorApi'
 import { toast } from 'react-toastify'
 import { schemaCaloriesBurned } from '../../utils/rules'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
+import PaginationNotUrl from '../../components/GlobalComponents/PaginationNotUrl'
 
 export default function CaloBurned() {
-  const navigate = useNavigate()
-  const queryConfig = omit(useQueryConfig(), ['sort', 'status', 'category_blog_id'])
-  const { data: category, isFetching: isFechingCategory } = useQuery({
-    queryKey: ['category-activity'],
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [query, setQuery] = useState({
+    search: '',
+    page: '1'
+  })
+
+  const { data, isLoading } = useQuery({
+    queryKey: ['list-activity', query],
     queryFn: () => {
-      return getActivitiesCategories()
+      return getActivities(query)
     },
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 10
   })
-
-  const { data, isFetching } = useQuery({
-    queryKey: ['list-activity', queryConfig],
-    queryFn: () => {
-      return getActivities(queryConfig)
-    },
-    placeholderData: keepPreviousData,
-    staleTime: 1000 * 60 * 10
+  const { register: registerActivity, handleSubmit: handleSubmitActivity } = useForm({
+    defaultValues: {
+      searchActivity: query.search || ''
+    }
   })
 
   const handleChangeCategory = (e) => {
     if (e.target.value === 'all-category') {
-      navigate({
-        pathname: '/fitness/fitness-calculator/calo-burned',
-        search: createSearchParams({
-          ...omit(queryConfig, ['activity_category_id'])
-        }).toString()
+      setQuery((prev) => {
+        return omit(prev, ['activity_category'])
       })
     } else {
-      navigate({
-        pathname: '/fitness/fitness-calculator/calo-burned',
-        search: createSearchParams({
-          ...queryConfig,
-          activity_category_id: e.target.value
-        }).toString()
+      setQuery((prev) => {
+        return { ...prev, activity_category: e.target.value }
       })
     }
   }
 
-  const { register: registerActivity, handleSubmit: handleSubmitActivity } = useForm({
-    defaultValues: {
-      searchActivity: queryConfig.search || ''
-    }
-  })
   const onSubmitSearch = handleSubmitActivity((data) => {
-    navigate({
-      pathname: '/fitness/fitness-calculator/calo-burned',
-      search: createSearchParams(
-        omit({ ...queryConfig, search: data.searchActivity }, ['activity_category_id', 'page'])
-      ).toString()
+    setQuery((prev) => {
+      return omit({ ...prev, search: data.searchActivity }, ['activity_category', 'page'])
     })
   })
 
-  const [isModalOpen, setIsModalOpen] = useState(false)
   const {
     register,
     handleSubmit,
@@ -152,29 +135,25 @@ export default function CaloBurned() {
                           </button>
                         </div>
                       </form>
-                      {isFechingCategory ? (
-                        <Loading className='flex ml-4' />
-                      ) : (
-                        <select
-                          defaultValue={queryConfig.activity_category_id || 'all-category'}
-                          onChange={handleChangeCategory}
-                          id='category'
-                          className='select  select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
-                        >
-                          <option value='all-category'>Tất cả thể loại</option>
-                          {category?.data?.result.map((item) => {
-                            return (
-                              <option key={item._id} value={item._id}>
-                                {item.name}
-                              </option>
-                            )
-                          })}
-                        </select>
-                      )}
+                      <select
+                        defaultValue={query.activity_category || 'all-category'}
+                        onChange={handleChangeCategory}
+                        id='category'
+                        className='select select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
+                      >
+                        <option value='all-category'>Tất cả thể loại</option>
+                        <option value='Đi xe đạp'>Đi xe đạp</option>
+                        <option value='Bài tập thể dục'>Bài tập thể dục</option>
+                        <option value='Múa'>Múa</option>
+                        <option value='Chạy'>Chạy</option>
+                        <option value='Thể thao'>Thể thao</option>
+                        <option value='Đi bộ'>Đi bộ</option>
+                        <option value='Hoạt động dưới nước'>Dưới nước</option>
+                      </select>
                     </div>
                   </div>
                   <div className='border-[2px] my-3 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 dark:border-gray-500 shadow-sm max-h-[40 rem] xl:h-full overflow-y-auto overflow-x-auto'>
-                    {isFetching ? (
+                    {isLoading ? (
                       <Loading className='w-full my-3 flex justify-center' />
                     ) : (
                       <table className=' w-full shadow-md  divide-y divide-gray-200'>
@@ -211,11 +190,7 @@ export default function CaloBurned() {
                   )}
                   {data?.data.result.totalPage > 1 && (
                     <div className='flex justify-center mb-5 items-center'>
-                      <Pagination
-                        pageSize={data?.data.result.totalPage}
-                        queryConfig={queryConfig}
-                        url='/fitness/fitness-calculator/calo-burned'
-                      />
+                      <PaginationNotUrl pageSize={data?.data.result.totalPage} query={query} setQuery={setQuery} />
                     </div>
                   )}
                 </div>

@@ -14,7 +14,7 @@ export default function AlbumList() {
   const navigate = useNavigate()
   const queryConfig = useQueryConfig()
 
-  const { data, isFetching } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['albums-list-chef', queryConfig],
     queryFn: () => {
       return getListAlbumForChef(queryConfig)
@@ -174,7 +174,7 @@ export default function AlbumList() {
               </div>
             </div>
           </div>
-          {isFetching ? (
+          {isLoading ? (
             <Loading />
           ) : (
             <>

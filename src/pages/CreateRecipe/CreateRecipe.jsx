@@ -98,6 +98,11 @@ export default function CreateRecipe() {
   }
 
   const content = watch('content')
+  const descriptionWatch = watch('description')
+  const titleWatch = watch('title')
+  const imageWatch = watch('image')
+
+  console.log(imageWatch)
 
   const { data: category, isFetching } = useQuery({
     queryKey: ['category-recipe'],
@@ -180,7 +185,7 @@ export default function CreateRecipe() {
                 errors={errors.time}
               />
             </div>
-            <div className='sm:col-span-2 flex flex-wrap items-center md:gap-5 pb-2'>
+            <div className='sm:col-span-2 flex flex-wrap items-center gap-2 md:gap-5 pb-2'>
               <div>
                 <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Chọn mức độ khó
@@ -230,7 +235,7 @@ export default function CreateRecipe() {
                 </div>
               </div>
             </div>
-            <div className='sm:col-span-2 flex flex-wrap items-center md:gap-5 pb-2'>
+            <div className='sm:col-span-2 flex flex-wrap items-center gap-2 md:gap-5 pb-2'>
               <div>
                 <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
                   Chọn 1 thể loại nấu ăn
@@ -346,35 +351,40 @@ export default function CreateRecipe() {
 
         <div className=' blog-view  max-w-3xl w-full pb-16  dark:text-gray-400  font-Roboto lg:pb-24 bg-white dark:bg-color-primary my-6  border border-gray-200 rounded-lg shadow mx-auto'>
           <h2 className='text-xl font-bold border-b m-5 border-gray-400 pb-2 mb-5 '>Xem trước</h2>
-          {/* <div className='grid gap-4 sm:grid-cols-1 sm:gap-6 '>
-            <main className=' '>
-              <div className='flex justify-between items-center px-3 xl:px-5 '>
-                <article className='mx-auto w-full '>
-                  <header className='mb-3 not-format'>
-                    <h1 className='mb-1 text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
-                      {titleWatch === '' ? 'Tiêu đề bài viết' : titleWatch}
-                    </h1>
-                    <div className='border-b-[1px] my-3 border-red-300 '></div>
-                  </header>
 
+          <div className='relative'>
+            <div className='w-full mx-auto'>
+              <div className=' bg-white dark:bg-color-primary rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal'>
+                <div className='bg-white dark:bg-color-primary relative px-5'>
+                  {!imageWatch || imageWatch.length === 0 ? (
+                    <div className=''>Link ảnh bài viết</div>
+                  ) : (
+                    <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
+                      <img
+                        className='object-cover max-h-[15rem] md:max-h-[26rem] rounded-md w-[100%]'
+                        src={URL.createObjectURL(imageWatch[0])}
+                        alt=''
+                      />
+                    </div>
+                  )}
+                  <header className='not-format'>
+                    <div>
+                      <h1 className='mb-1 text-2xl xl:text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
+                        {titleWatch === '' ? 'Tiêu đề bài viết' : titleWatch}
+                      </h1>
+                    </div>
+                  </header>
                   <p className='lead mb-3 whitespace-pre-line font-medium'>
                     {descriptionWatch === '' ? 'Mô tả bài viết' : descriptionWatch}
                   </p>
-                  {imageWatch === '' ? (
-                    <div>Link ảnh bài viết</div>
-                  ) : (
-                    <div className='flex  flex-col items-center my-2 justify-center w-[100%]'>
-                      <img className='object-cover rounded-md w-[100%]' src={imageWatch} alt='' />
-                    </div>
-                  )}
 
-                  <div className='custorm-blog'>
+                  <div className='custorm-blog '>
                     {content === '' ? <div>Nội dung bài viết</div> : <div>{parse(content)}</div>}
                   </div>
-                </article>
+                </div>
               </div>
-            </main>
-          </div> */}
+            </div>
+          </div>
         </div>
       </div>
     </div>
