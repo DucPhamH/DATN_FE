@@ -205,7 +205,7 @@ export default function RecipeList() {
                   onChange={handleChangeSort}
                   defaultValue={queryConfig.sort}
                   id='sort'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='desc'>Mới nhất</option>
                   <option value='asc'>Lâu nhất</option>
@@ -214,7 +214,7 @@ export default function RecipeList() {
                   defaultValue={queryConfig.status || 'all'}
                   onChange={handleChangeStatus}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Tất cả</option>
                   <option value='1'>Đã duyệt</option>
@@ -224,7 +224,7 @@ export default function RecipeList() {
                   defaultValue={queryConfig.processing_food || 'all'}
                   onChange={handleChangeProcessingFood}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Cách làm</option>
                   <option value='Lẩu'>Lẩu</option>
@@ -246,7 +246,7 @@ export default function RecipeList() {
                   defaultValue={queryConfig.region || 'all'}
                   onChange={handleChangeRegion}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Vùng miền</option>
                   <option value='0'>Miền Bắc</option>
@@ -259,13 +259,8 @@ export default function RecipeList() {
                   defaultValue={queryConfig.interval_time || 'all'}
                   onChange={handleChangeIntervalTime}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
-                  {/* lessThan15,
-                  from15To30,
-                  from30To60,
-                  from60To120,
-                  moreThan120 */}
                   <option value='all'>Thời gian</option>
                   <option value='0'>Dưới 15 phút</option>
                   <option value='1'>Từ 15 đến 30 phút</option>
@@ -277,7 +272,7 @@ export default function RecipeList() {
                   defaultValue={queryConfig.difficult_level || 'all'}
                   onChange={handleChangeDifficultLevel}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select  select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Độ khó</option>
                   <option value='0'>Dễ</option>
@@ -292,7 +287,7 @@ export default function RecipeList() {
                     defaultValue={queryConfig.category_recipe_id || 'all-category'}
                     onChange={handleChangeCategory}
                     id='category'
-                    className='select  select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
+                    className='select  select-sm  bg-white dark:bg-slate-800 dark:border-none'
                   >
                     <option value='all-category'>Tất cả thể loại</option>
                     {category?.data?.result.map((item) => {

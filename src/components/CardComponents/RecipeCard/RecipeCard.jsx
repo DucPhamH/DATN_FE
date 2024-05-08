@@ -11,14 +11,15 @@ import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
 export default function RecipeCard({ recipe }) {
   const location = useLocation()
+  console.log(location.pathname)
 
   const checkRefetchApi = () => {
     if (location.pathname === '/cooking/recipe') {
       return queryClient.invalidateQueries('recipes-list-user')
     }
-    // if (location.pathname === '/me') {
-    //   return queryClient.invalidateQueries('mePost')
-    // }
+    if (location.pathname.includes('/album')) {
+      return queryClient.invalidateQueries('recipes-list-album')
+    }
     // return queryClient.invalidateQueries(['userPost', data.user._id])
   }
   const likeMutation = useMutation({

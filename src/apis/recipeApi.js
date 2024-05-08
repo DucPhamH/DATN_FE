@@ -27,6 +27,7 @@ export const unlikeRecipe = (body) => http.post('/recipes/actions/unlike', body)
 
 export const commentRecipe = (body) => http.post('/recipes/actions/comment', body)
 export const deleteComment = (body) => http.post('/recipes/actions/delete-comment', body)
+export const getComments = (params) => http.get('/recipes/actions/comment', { params })
 
 export const bookmarkRecipe = (body) => http.post('/recipes/actions/bookmark', body)
 export const unbookmarkRecipe = (body) => http.post('/recipes/actions/unbookmark', body)

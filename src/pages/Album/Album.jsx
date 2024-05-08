@@ -85,12 +85,12 @@ export default function Album() {
               </div>
               <div className='border-b-[3px] mb-2 w-[20%] border-red-300 '></div>
             </div>
-            <div className='col-span-2 gap-2 mb-2 md:flex xl:justify-end items-center '>
+            <div className='col-span-2 gap-2 mb-2 flex flex-wrap justify-end items-center '>
               <select
                 defaultValue={queryConfig.sort}
                 onChange={handleChangeSort}
                 id='sort_by'
-                className='select my-2 select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                className='select  select-sm border bg-white dark:bg-slate-800 dark:border-none'
               >
                 <option value='desc'>Mới nhất</option>
                 <option value='asc'>Cũ nhất</option>
@@ -99,7 +99,7 @@ export default function Album() {
                 defaultValue={queryConfig.category_album || 'all'}
                 onChange={handleChangeCategoryAlbum}
                 id='category_album'
-                className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                className='select   select-sm border bg-white dark:bg-slate-800 dark:border-none'
               >
                 <option value='all'>Thể loại</option>
                 <option value='Cho bé'>Cho bé</option>

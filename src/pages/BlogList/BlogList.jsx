@@ -120,7 +120,7 @@ export default function BlogList() {
                   onChange={handleChangeSort}
                   defaultValue={queryConfig.sort}
                   id='sort'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select  select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='desc'>Mới nhất</option>
                   <option value='asc'>Lâu nhất</option>
@@ -129,7 +129,7 @@ export default function BlogList() {
                   defaultValue={queryConfig.status || 'all'}
                   onChange={handleChangeStatus}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select  select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Tất cả</option>
                   <option value='1'>Đã duyệt</option>
@@ -142,7 +142,7 @@ export default function BlogList() {
                     defaultValue={queryConfig.category_blog_id || 'all-category'}
                     onChange={handleChangeCategory}
                     id='category'
-                    className='select  select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
+                    className='select  select-sm  bg-white dark:bg-slate-800 dark:border-none'
                   >
                     <option value='all-category'>Tất cả thể loại</option>
                     {category?.data?.result.map((item) => {

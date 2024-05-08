@@ -278,10 +278,18 @@ export default function CreateAlbum() {
           <h2 className='text-xl font-bold border-b m-5 border-gray-400 pb-2 mb-5 '>Chọn bài viết nấu ăn</h2>
           <div className='grid gap-4 sm:grid-cols-1 sm:gap-6 '>
             <main className=' '>
-              <div className='mx-1'>
+              <div className='mx-4'>
                 <div className='font-medium mb-2'></div>
                 <div className='mb-2'>
-                  <div className='flex flex-wrap gap-3  items-center'>
+                  <div className='flex flex-wrap gap-1 justify-end  items-center'>
+                    <button
+                      onClick={() => navigate('/chef/create-recipe')}
+                      className='block btn btn-xs md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-xs md:ml-2 md:order-2'
+                    >
+                      <div className='flex gap-1 items-center justify-center'>
+                        <FaPlus /> Thêm{' '}
+                      </div>
+                    </button>
                     <form
                       id='form-activity'
                       onSubmit={onSubmitSearch}

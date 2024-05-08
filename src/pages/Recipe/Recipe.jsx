@@ -147,6 +147,25 @@ export default function Recipe() {
     }
   }
 
+  const handleChangeType = (e) => {
+    if (e.target.value === 'all') {
+      navigate({
+        pathname: '/cooking/recipe',
+        search: createSearchParams({
+          ...omit(queryConfig, ['type'])
+        }).toString()
+      })
+    } else {
+      navigate({
+        pathname: '/cooking/recipe',
+        search: createSearchParams({
+          ...queryConfig,
+          type: e.target.value
+        }).toString()
+      })
+    }
+  }
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       searchRecipes: queryConfig.search || ''
@@ -163,7 +182,8 @@ export default function Recipe() {
           'difficult_level',
           'region',
           'processing_food',
-          'interval_time'
+          'interval_time',
+          'type'
         ])
       ).toString()
     })
@@ -180,14 +200,33 @@ export default function Recipe() {
               <div className='border-b-[3px] mb-2 w-[10%] border-red-300 '></div>
               {checkTime()}
             </div>
-
-            <div className=' mb-2 flex justify-end '>
-              <div className='flex flex-wrap gap-3 xl:justify-end items-center'>
+            <div className='flex items-center justify-end'>
+              <form onSubmit={onSubmitSearch} className=' w-[100%] max-w-[20rem] min-w-[18rem] relative'>
+                <div className='relative'>
+                  <input
+                    autoComplete='off'
+                    type='search'
+                    id='search_input'
+                    {...register('searchRecipes')}
+                    placeholder='Tìm kiếm bài viết'
+                    className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
+                  />
+                  <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-lg'>
+                    <AiOutlineSearch />
+                  </button>
+                </div>
+              </form>
+              <div className=' hover:text-red-600 h-[34px] w-[34px] flex items-center justify-center ml-2 border bg-white p-1 rounded-lg dark:bg-slate-800 dark:border-none cursor-pointer'>
+                <AiOutlineCamera size={30} />
+              </div>
+            </div>
+            <div className='flex mt-2 justify-end '>
+              <div className='flex flex-wrap gap-2 md:gap-3 xl:justify-end items-center'>
                 <select
                   onChange={handleChangeSort}
                   defaultValue={queryConfig.sort}
                   id='sort'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select  select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='desc'>Mới nhất</option>
                   <option value='asc'>Lâu nhất</option>
@@ -196,7 +235,7 @@ export default function Recipe() {
                   defaultValue={queryConfig.processing_food || 'all'}
                   onChange={handleChangeProcessingFood}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Cách làm</option>
                   <option value='Lẩu'>Lẩu</option>
@@ -218,7 +257,7 @@ export default function Recipe() {
                   defaultValue={queryConfig.region || 'all'}
                   onChange={handleChangeRegion}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select  select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Vùng miền</option>
                   <option value='0'>Miền Bắc</option>
@@ -231,7 +270,7 @@ export default function Recipe() {
                   defaultValue={queryConfig.interval_time || 'all'}
                   onChange={handleChangeIntervalTime}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select  select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Thời gian</option>
                   <option value='0'>Dưới 15 phút</option>
@@ -244,12 +283,22 @@ export default function Recipe() {
                   defaultValue={queryConfig.difficult_level || 'all'}
                   onChange={handleChangeDifficultLevel}
                   id='status'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='all'>Độ khó</option>
                   <option value='0'>Dễ</option>
                   <option value='1'>Trung bình</option>
                   <option value='2'>Khó</option>
+                </select>
+                <select
+                  defaultValue={queryConfig.type || 'all'}
+                  onChange={handleChangeType}
+                  id='status'
+                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                >
+                  <option value='all'>Bài viết</option>
+                  <option value='0'>Đầu bếp</option>
+                  <option value='1'>CookHealthy</option>
                 </select>
 
                 {isLoadingCategory ? (
@@ -259,7 +308,7 @@ export default function Recipe() {
                     defaultValue={queryConfig.category_recipe_id || 'all-category'}
                     onChange={handleChangeCategory}
                     id='category'
-                    className='select  select-sm my-2  bg-white dark:bg-slate-800 dark:border-none'
+                    className='select select-sm bg-white dark:bg-slate-800 dark:border-none'
                   >
                     <option value='all-category'>Tất cả thể loại</option>
                     {category?.data?.result.map((item) => {
@@ -271,26 +320,6 @@ export default function Recipe() {
                     })}
                   </select>
                 )}
-                <div className='flex items-center'>
-                  <form onSubmit={onSubmitSearch} className=' w-[100%] max-w-[20rem] min-w-[18rem] relative'>
-                    <div className='relative'>
-                      <input
-                        autoComplete='off'
-                        type='search'
-                        id='search_input'
-                        {...register('searchRecipes')}
-                        placeholder='Tìm kiếm bài viết'
-                        className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
-                      />
-                      <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-lg'>
-                        <AiOutlineSearch />
-                      </button>
-                    </div>
-                  </form>
-                  <div className=' hover:text-red-600 h-[34px] w-[34px] flex items-center justify-center ml-2 border bg-white p-1 rounded-lg dark:bg-slate-800 dark:border-none cursor-pointer'>
-                    <AiOutlineCamera size={30} />
-                  </div>
-                </div>
               </div>
             </div>
           </div>
