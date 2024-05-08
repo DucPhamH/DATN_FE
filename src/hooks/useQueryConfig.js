@@ -18,7 +18,8 @@ export default function useQueryConfig() {
       processing_food: queryParams.processing_food,
       interval_time: queryParams.interval_time,
       activity_category_id: queryParams.activity_category_id,
-      category_album: queryParams.category_album
+      category_album: queryParams.category_album,
+      type: queryParams.type
     },
     isUndefined
   )

@@ -112,7 +112,7 @@ export default function AlbumList() {
                   onChange={handleChangeSort}
                   defaultValue={queryConfig.sort}
                   id='sort'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
                   <option value='desc'>Mới nhất</option>
                   <option value='asc'>Lâu nhất</option>
@@ -131,19 +131,8 @@ export default function AlbumList() {
                   defaultValue={queryConfig.category_album || 'all'}
                   onChange={handleChangeCategoryAlbum}
                   id='category_album'
-                  className='select my-2  select-sm border bg-white dark:bg-slate-800 dark:border-none'
+                  className='select select-sm border bg-white dark:bg-slate-800 dark:border-none'
                 >
-                  {/* CategoryAlbum = {
-                    forBaby: 'Cho bé',
-                    forPregnant: 'Cho bà bầu',
-                    forOldPeople: 'Cho người già',
-                    forWeightLoss: 'Giảm cân',
-                    forWeightGain: 'Tăng cân',
-                    forDisease: 'Cho người bệnh',
-                    forSport: 'Thể thao',
-                    forBeauty: 'Sắc đẹp',
-                    forVegetarian: 'Cho người ăn chay'
-                    } */}
                   <option value='all'>Thể loại</option>
                   <option value='Cho bé'>Cho bé</option>
                   <option value='Cho bà bầu'>Cho bà bầu</option>

@@ -1,15 +1,17 @@
 import { Link, useParams } from 'react-router-dom'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
 import Loading from '../../components/GlobalComponents/Loading'
 import { FaArrowCircleRight, FaComment, FaEye } from 'react-icons/fa'
 import moment from 'moment'
 import parse from 'html-react-parser'
-import { getRecipeForUser } from '../../apis/recipeApi'
+import { bookmarkRecipe, getRecipeForUser, likeRecipe, unbookmarkRecipe, unlikeRecipe } from '../../apis/recipeApi'
 import { MdPerson } from 'react-icons/md'
 import { AiFillHeart, AiOutlineClockCircle } from 'react-icons/ai'
 import { BsFillBookmarkFill, BsFillLightningChargeFill } from 'react-icons/bs'
-
 import { FaCheckCircle } from 'react-icons/fa'
+import Comments from './components/Comments/Comments'
+import { queryClient } from '../../main'
+import { toast } from 'react-toastify'
 
 export default function RecipeDetail() {
   const { id } = useParams()
@@ -21,6 +23,67 @@ export default function RecipeDetail() {
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 20
   })
+  const likeMutation = useMutation({
+    mutationFn: (body) => likeRecipe(body)
+  })
+
+  const unlikeMutation = useMutation({
+    mutationFn: (body) => unlikeRecipe(body)
+  })
+
+  const bookmarkMutation = useMutation({
+    mutationFn: (body) => bookmarkRecipe(body)
+  })
+
+  const unbookmarkMutation = useMutation({
+    mutationFn: (body) => unbookmarkRecipe(body)
+  })
+
+  const handleLike = () => {
+    if (data?.data.result[0].is_liked) {
+      unlikeMutation.mutate(
+        { recipe_id: data?.data.result[0]._id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('recipe-info-user')
+          }
+        }
+      )
+    } else {
+      likeMutation.mutate(
+        { recipe_id: data?.data.result[0]._id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('recipe-info-user')
+          }
+        }
+      )
+    }
+  }
+
+  const handleBookmark = () => {
+    if (data?.data.result[0].is_bookmarked) {
+      unbookmarkMutation.mutate(
+        { recipe_id: data?.data.result[0]._id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('recipe-info-user')
+            toast.success('Bỏ lưu thành công')
+          }
+        }
+      )
+    } else {
+      bookmarkMutation.mutate(
+        { recipe_id: data?.data.result[0]._id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('recipe-info-user')
+            toast.success('Lưu vào mục yêu thích thành công')
+          }
+        }
+      )
+    }
+  }
 
   return (
     <div className=''>
@@ -45,7 +108,7 @@ export default function RecipeDetail() {
             <div className='max-w-6xl mx-auto'>
               <div className=' bg-white dark:bg-color-primary rounded-b lg:rounded-b-none lg:rounded-r flex flex-col justify-between leading-normal'>
                 <div className='bg-white dark:bg-color-primary relative top-0 lg:-mt-32 py-5 px-3 md:p-5 sm:px-10'>
-                  <span className='absolute top-[-6px] right-0'>
+                  <span onClick={handleBookmark} className='absolute top-[-6px] right-0'>
                     {data?.data.result[0].is_bookmarked ? (
                       <div className='hover:text-yellow-600 cursor-pointer transition-all text-yellow-500'>
                         <BsFillBookmarkFill className='' size={40} />
@@ -128,7 +191,7 @@ export default function RecipeDetail() {
                             {data?.data.result[0].total_comments} bình luận
                           </div>
                         </div>
-                        <span>
+                        <span onClick={handleLike}>
                           {!data?.data.result[0].is_liked ? (
                             <button className='block btn btn-xs  md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm  md:order-2'>
                               <div className='flex text-xs justify-center gap-1 items-center'>
@@ -166,13 +229,12 @@ export default function RecipeDetail() {
                   </div>
                   <div className='custorm-blog '>{parse(data?.data?.result[0]?.content)}</div>
                 </div>
+                <Comments recipe={data?.data.result[0]} />
               </div>
             </div>
           </div>
         )}
-
-        {/* <Comments blog={data?.data.result[0]} /> */}
-        {/* </main> */}
+        \
       </div>
     </div>
   )
