@@ -234,7 +234,6 @@ export default function RecipeDetail() {
             </div>
           </div>
         )}
-        \
       </div>
     </div>
   )

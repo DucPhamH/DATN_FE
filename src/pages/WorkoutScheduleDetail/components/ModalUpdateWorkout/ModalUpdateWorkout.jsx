@@ -74,7 +74,7 @@ export default function ModalUpdateWorkout({ handleCloseModalUpdateWorkout, work
           <div className='flex justify-between'>
             <div className='px-3 py-1'></div>
             <h3 className=' mb-2 font-medium text-lg md:text-xl text-black dark:text-gray-200'>
-              Tạo lịch tập luyện mới
+              Chỉnh sửa lịch tập luyện
             </h3>
             <div className='text-2xl font-semibold'>
               <span
@@ -99,13 +99,13 @@ export default function ModalUpdateWorkout({ handleCloseModalUpdateWorkout, work
                 placeholder='Nhập tên lịch tập của bạn'
               />
               <Input
-                title='Nhập lượng calo dự kiến tiêu thụ (cal)'
+                title='Nhập lượng calo muốn đốt cháy (cal)'
                 type='number'
                 name='calo_target'
                 id='calo_target'
                 register={register}
                 errors={errors.calo_target}
-                placeholder='Nhập lượng calo dự kiến tiêu thụ của bạn'
+                placeholder='Nhập lượng calo muốn đốt cháy của bạn'
               />
               <div className='flex flex-wrap items-center justify-between gap-1 mb-3'>
                 <div className='w-full  flex flex-col'>

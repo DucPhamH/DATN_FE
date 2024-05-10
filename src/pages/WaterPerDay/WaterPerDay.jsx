@@ -5,15 +5,17 @@ import Input from '../../components/InputComponents/Input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import { schemaWaterPerDay } from '../../utils/rules'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { calculateWaterIntake } from '../../apis/calculatorApi'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
+import { AppContext } from '../../contexts/app.context'
 
 export default function WaterPerDay() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const { profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -21,7 +23,7 @@ export default function WaterPerDay() {
   } = useForm({
     resolver: yupResolver(schemaWaterPerDay),
     defaultValues: {
-      weight: '',
+      weight: profile?.weight || '',
       time: ''
     }
   })
@@ -282,7 +284,7 @@ export default function WaterPerDay() {
           <CalculatorModal
             closeModal={handleCloseModal}
             title='Lượng nước cần uống mỗi ngày'
-            helptext=''
+            helptext='Lưu ý: Đây chỉ là một con số ước lượng, bạn cần tư vấn thêm từ chuyên gia dinh dưỡng để có lượng nước cần uống chính xác.'
             isPending={calculateWaterMutation.isLoading}
             data={calculateWaterMutation.data}
             unit='lít'

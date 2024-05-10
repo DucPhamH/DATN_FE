@@ -43,8 +43,8 @@ export default function CalculatorModal({
           </div>
         </div>
         <div className='text-center md:text-right mt-4 md:flex md:justify-end'>
-          {location.pathname === '/fitness/fitness-caculator/water-need' ||
-          location.pathname === '/fitness/fitness-caculator/calo-burned' ? null : (
+          {location.pathname === '/fitness/fitness-calculator/water-need' ||
+          location.pathname === '/fitness/fitness-calculator/calo-burned' ? null : (
             <>
               {isPending ? (
                 <button

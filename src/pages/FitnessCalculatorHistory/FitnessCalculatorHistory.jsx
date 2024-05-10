@@ -214,7 +214,17 @@ export default function FitnessCalculatorHistory() {
                       <div className=' text-gray-400 text-sm'>
                         <div className='flex space-x-2'>
                           <span className='text-black dark:text-gray-300 font-medium'>Mức độ hoạt động:</span>
-                          <p>{user.activity_level}</p>
+                          <p>
+                            {user.activity_level === 1.2
+                              ? 'Không có hoặc ít vận động'
+                              : user.activity_level === 1.375
+                              ? 'Nhẹ: 1-3 ngày/tuần'
+                              : user.activity_level === 1.55
+                              ? 'Vừa phải: 3-5 ngày/tuần'
+                              : user.activity_level === 1.725
+                              ? 'Năng động: 6-7 ngày/tuần'
+                              : 'Cực kỳ năng động, thể dục 2 lần/ngày'}
+                          </p>
                         </div>
                       </div>
                     </div>

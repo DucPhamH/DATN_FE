@@ -8,16 +8,18 @@ import { getActivities } from '../../apis/activityApi'
 import Loading from '../../components/GlobalComponents/Loading'
 import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { calculateCaloriesBurned } from '../../apis/calculatorApi'
 import { toast } from 'react-toastify'
 import { schemaCaloriesBurned } from '../../utils/rules'
 import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import PaginationNotUrl from '../../components/GlobalComponents/PaginationNotUrl'
+import { AppContext } from '../../contexts/app.context'
 
 export default function CaloBurned() {
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const { profile } = useContext(AppContext)
   const [query, setQuery] = useState({
     search: '',
     page: '1'
@@ -62,7 +64,7 @@ export default function CaloBurned() {
   } = useForm({
     resolver: yupResolver(schemaCaloriesBurned),
     defaultValues: {
-      weight: '',
+      weight: profile?.weight || '',
       time: '',
       met: ''
     }
@@ -409,7 +411,7 @@ export default function CaloBurned() {
         <CalculatorModal
           closeModal={handleCloseModal}
           title='Lượng calo đốt cháy'
-          helptext=''
+          helptext='Lượng calo mà cơ thể đốt cháy trong các hoạt động thường ngày hoặc tập thể dục phụ thuộc vào nhiều yếu tố khác nhau nên đây là 1 phép tính để tham khảo thôi bạn nhé!'
           isPending={calculateCaloriesBurnedMutation.isLoading}
           data={calculateCaloriesBurnedMutation.data}
           unit='calo'

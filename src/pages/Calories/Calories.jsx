@@ -17,7 +17,7 @@ import { setProfileToLS } from '../../utils/auth'
 export default function Calories() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [dataTDEE, setDataTDEE] = useState({})
-  const { setProfile } = useContext(AppContext)
+  const { setProfile, profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -25,11 +25,11 @@ export default function Calories() {
   } = useForm({
     resolver: yupResolver(schemaTDEE),
     defaultValues: {
-      weight: '',
-      height: '',
-      age: '',
-      gender: 'male',
-      activity: 'DEFAULT'
+      weight: profile?.weight || '',
+      height: profile?.height || '',
+      age: profile?.age || '',
+      gender: profile?.gender || 'male',
+      activity: profile?.activity_level || 'DEFAULT'
     }
   })
   const handleOpenModal = () => {
@@ -286,7 +286,6 @@ export default function Calories() {
                   <div className='flex items-center'>
                     <input
                       type='radio'
-                      defaultChecked
                       name='default-radio'
                       value='male'
                       {...register('gender')}

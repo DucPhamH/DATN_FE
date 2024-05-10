@@ -9,24 +9,22 @@ import {
   LineElement,
   Title
 } from 'chart.js'
+import { useContext } from 'react'
 import { Pie } from 'react-chartjs-2'
+import { AppContext } from '../../../../contexts/app.context'
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title)
 
-export default function PieChart({ workout }) {
-  const checkDataCalo = () => {
-    if (workout?.calo_target - workout?.total_calo_burn < 0) {
-      return workout?.calo_target
-    }
-    return workout?.calo_target - workout?.total_calo_burn
-  }
+export default function PieChart({ meal }) {
+  const { profile } = useContext(AppContext)
+  console.log(meal)
 
   const data = {
     labels: ['Lượng calo mục tiêu', 'Lượng calo đã hoàn thành'],
     datasets: [
       {
         label: 'Biểu đồ lượng calo',
-        data: [checkDataCalo(), workout?.total_calo_burn],
+        data: [],
         backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
         borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
         borderWidth: 1

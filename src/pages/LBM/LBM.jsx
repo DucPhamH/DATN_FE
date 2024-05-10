@@ -17,7 +17,7 @@ import { setProfileToLS } from '../../utils/auth'
 export default function LBM() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [dataLBM, setDataLBM] = useState({})
-  const { setProfile } = useContext(AppContext)
+  const { setProfile, profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -25,9 +25,9 @@ export default function LBM() {
   } = useForm({
     resolver: yupResolver(schemaLBM),
     defaultValues: {
-      weight: '',
-      height: '',
-      gender: 'male'
+      weight: profile?.weight || '',
+      height: profile?.height || '',
+      gender: profile?.gender || 'male'
     }
   })
   const handleOpenModal = () => {

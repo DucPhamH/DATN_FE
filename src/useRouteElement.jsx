@@ -49,6 +49,8 @@ const EditAlbum = lazy(() => import('./pages/EditAlbum'))
 const Album = lazy(() => import('./pages/Album'))
 const AlbumDetail = lazy(() => import('./pages/AlbumDetail'))
 const RecipeDetail = lazy(() => import('./pages/RecipeDetail'))
+const MealSchedule = lazy(() => import('./pages/MealSchedule'))
+const MealScheduleDetail = lazy(() => import('./pages/MealScheduleDetail'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -321,6 +323,26 @@ export default function useRouteElement() {
             <MainLayout>
               <Suspense>
                 <FitnessCalculatorHistory />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'schedule/eat-schedule',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <MealSchedule />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'schedule/eat-schedule/:id',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <MealScheduleDetail />
               </Suspense>
             </MainLayout>
           )
