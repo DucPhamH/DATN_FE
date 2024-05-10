@@ -13,6 +13,7 @@ import CalculatorModal from '../../components/GlobalComponents/CalculatorModal'
 import Loading from '../../components/GlobalComponents/Loading'
 import { AppContext } from '../../contexts/app.context'
 import { setProfileToLS } from '../../utils/auth'
+import { convertCentimeterToMeter } from '../../utils/helper'
 
 export default function BMI() {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -25,8 +26,8 @@ export default function BMI() {
   } = useForm({
     resolver: yupResolver(schemaBMI),
     defaultValues: {
-      weight: '',
-      height: ''
+      weight: profile?.weight || '',
+      height: convertCentimeterToMeter(profile?.height) || ''
     }
   })
 

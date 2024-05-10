@@ -12,23 +12,24 @@ import {
 import { Line } from 'react-chartjs-2'
 import PaginationMini from '../../../../components/GlobalComponents/PaginationMini/PaginationMini'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
-import { getDateWorkoutItem } from '../../../../apis/workoutScheduleApi'
+
 import { useState } from 'react'
 import moment from 'moment'
+import { getDateMealItem } from '../../../../apis/mealScheduleApi'
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title)
-export default function LineChart({ workout }) {
-  const [query, setQuery] = useState({ page: '1', limit: '7', workout_schedule_id: workout?._id })
+export default function LineChart({ meal }) {
+  const [query, setQuery] = useState({ page: '1', limit: '7', meal_schedule_id: meal?._id })
 
   const { data: lineData } = useQuery({
-    queryKey: ['line-data', query],
+    queryKey: ['line-data-meal', query],
     queryFn: () => {
-      return getDateWorkoutItem(query)
+      return getDateMealItem(query)
     },
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 10
   })
 
-  const dataCalo = lineData?.data.result.workoutDate
+  const dataCalo = lineData?.data.result.mealDate
   console.log(dataCalo)
   const options = {
     responsive: true,
@@ -39,7 +40,7 @@ export default function LineChart({ workout }) {
       },
       title: {
         display: true,
-        text: 'Biểu đồ lượng calo đã, đang và dự kiến đốt cháy'
+        text: 'Biểu đồ lượng dinh dưỡng đã, đang và dự kiến tiêu thụ'
       }
     }
   }
@@ -52,6 +53,24 @@ export default function LineChart({ workout }) {
         data: dataCalo?.map((item) => item.total_calories),
         borderColor: 'rgb(255, 99, 132)',
         backgroundColor: 'rgba(255, 99, 132, 0.5)'
+      },
+      {
+        label: 'Lượng protein',
+        data: dataCalo?.map((item) => item.total_protein),
+        borderColor: 'rgb(54, 162, 235)',
+        backgroundColor: 'rgba(54, 162, 235, 0.5)'
+      },
+      {
+        label: 'Lượng carb',
+        data: dataCalo?.map((item) => item.total_carb),
+        borderColor: 'rgb(255, 205, 86)',
+        backgroundColor: 'rgba(255, 205, 86, 0.5)'
+      },
+      {
+        label: 'Lượng fat',
+        data: dataCalo?.map((item) => item.total_fat),
+        borderColor: 'rgb(75, 192, 192)',
+        backgroundColor: 'rgba(75, 192, 192, 0.5)'
       }
     ]
   }

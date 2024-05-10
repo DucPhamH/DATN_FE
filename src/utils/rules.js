@@ -165,6 +165,26 @@ export const schemaCreateWorkout = yup.object({
   end_date: yup.date().required('Ngày kết thúc là bắt buộc')
 })
 
+export const schemaCreateMeal = yup.object({
+  name: yup.string().required('Tên là bắt buộc').min(3, 'Độ dài từ 3 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
+  // nếu không nhập weight_target thì cho giá trị mặc định là 0
+  // ngày bắt đầu phải nhỏ hơn ngày kết thúc
+  start_date: yup
+    .date()
+    .required('Ngày bắt đầu là bắt buộc')
+    .max(yup.ref('end_date'), 'Ngày bắt đầu phải nhỏ hơn ngày kết thúc'),
+  end_date: yup.date().required('Ngày kết thúc là bắt buộc'),
+  // purpose là giá trị của select nếu = DEFAULT thì sẽ báo lỗi
+  purpose: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn mục đích')
+})
+
+export const schemaUpdateMeal = yup.object({
+  name: yup.string().required('Tên là bắt buộc').min(3, 'Độ dài từ 3 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
+  end_date: yup.date().required('Ngày kết thúc là bắt buộc'),
+  // purpose là giá trị của select nếu = DEFAULT thì sẽ báo lỗi
+  purpose: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn mục đích')
+})
+
 export const schemaUpdateWorkout = yup.object({
   name: yup.string().required('Tên là bắt buộc').min(3, 'Độ dài từ 3 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
   calo_target: yup.number().required('Lượng calo là bắt buộc').min(1, 'Lượng calo phải lớn hơn 0'),
@@ -182,6 +202,25 @@ export const schemaAddItemWorkout = yup.object({
   met: yup.number().required('MET là bắt buộc').min(1, 'MET phải lớn hơn 0')
 })
 
+export const schemaAddItemMeal = yup.object({
+  meal_name: yup
+    .string()
+    .required('Tên món ăn là bắt buộc')
+    .min(3, 'Độ dài từ 3 - 160 ký tự')
+    .max(160, 'Độ dài từ 3 - 160 ký tự'),
+  quantity: yup.number().required('Số lượng là bắt buộc').min(1, 'Số lượng phải lớn hơn 0'),
+  // unit là giá trị của select nếu = DEFAULT thì sẽ báo lỗi
+  unit: yup.string().notOneOf(['DEFAULT'], 'Hãy chọn đơn vị'),
+  energy: yup.number().required('Năng lượng là bắt buộc').min(1, 'Năng lượng phải lớn hơn 0'),
+  protein: yup.number().required('Protein là bắt buộc').min(1, 'Protein phải lớn hơn 0'),
+  fat: yup.number().required('Fat là bắt buộc').min(1, 'Fat phải lớn hơn 0'),
+  carb: yup.number().required('Carb là bắt buộc').min(1, 'Carb phải lớn hơn 0')
+})
+
 export const schemaAddTimeWorkout = yup.object({
   time: yup.number().required('Thời gian là bắt buộc').min(1, 'Thời gian phải lớn hơn 0')
+})
+
+export const schemaAddQuantityMeal = yup.object({
+  quantity: yup.number().required('Số lượng là bắt buộc').min(1, 'Số lượng phải lớn hơn 0')
 })

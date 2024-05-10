@@ -17,7 +17,7 @@ import { setProfileToLS } from '../../utils/auth'
 export default function IBW() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [dataIBW, setDataIBW] = useState({})
-  const { setProfile } = useContext(AppContext)
+  const { setProfile, profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -25,8 +25,8 @@ export default function IBW() {
   } = useForm({
     resolver: yupResolver(schemaIBW),
     defaultValues: {
-      height: '',
-      gender: 'male'
+      height: profile?.height || '',
+      gender: profile?.gender || 'male'
     }
   })
   const handleOpenModal = () => {
@@ -217,7 +217,6 @@ export default function IBW() {
                   <div className='flex items-center'>
                     <input
                       type='radio'
-                      defaultChecked
                       name='default-radio'
                       value='male'
                       {...register('gender')}

@@ -17,7 +17,7 @@ import { setProfileToLS } from '../../utils/auth'
 export default function BodyFat() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [dataBodyFat, setDataBodyFat] = useState({})
-  const { setProfile } = useContext(AppContext)
+  const { setProfile, profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -25,11 +25,11 @@ export default function BodyFat() {
   } = useForm({
     resolver: yupResolver(schemaBodyFat),
     defaultValues: {
-      height: '',
-      gender: 'male',
-      waist: '',
-      neck: '',
-      hip: ''
+      height: profile?.height || '',
+      gender: profile?.gender || 'male',
+      waist: profile?.waist || '',
+      neck: profile?.neck || '',
+      hip: profile?.hip || ''
     }
   })
 
@@ -303,7 +303,6 @@ export default function BodyFat() {
                   <div className='flex items-center'>
                     <input
                       type='radio'
-                      defaultChecked
                       name='default-radio'
                       value='male'
                       {...register('gender')}

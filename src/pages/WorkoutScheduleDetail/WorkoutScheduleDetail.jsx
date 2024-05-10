@@ -19,7 +19,7 @@ import { IoIosCheckmarkCircle } from 'react-icons/io'
 import { MdCancel } from 'react-icons/md'
 import { toast } from 'react-toastify'
 import { queryClient } from '../../main'
-import ModalUpdateWorkout from './components/ModalUpdateWorkout/ModalUpdateWorkout'
+import ModalUpdateWorkout from './components/ModalUpdateWorkout'
 import { AppContext } from '../../contexts/app.context'
 
 export default function WorkoutScheduleDetail() {
@@ -327,7 +327,7 @@ export default function WorkoutScheduleDetail() {
             <div className='flex gap-2 flex-wrap lg:justify-between items-center'>
               <div className=''>
                 <p className='font-medium text-lg'>
-                  Mục tiêu: {workout?.total_calo_burn} / {workout?.calo_target} cal
+                  Đã hoàn thành: {workout?.total_calo_burn} / {workout?.calo_target} calories
                 </p>
               </div>
               <div className='flex gap-2 items-center'>

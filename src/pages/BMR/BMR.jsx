@@ -25,13 +25,13 @@ export default function BMR() {
   } = useForm({
     resolver: yupResolver(schemaBMR),
     defaultValues: {
-      weight: '',
-      height: '',
-      age: '',
-      gender: 'male'
+      weight: profile?.weight || '',
+      height: profile?.height || '',
+      age: profile?.age || '',
+      gender: profile?.gender || 'male'
     }
   })
-  console.log(profile)
+
   const handleOpenModal = () => {
     setIsModalOpen(true)
   }
@@ -303,7 +303,6 @@ export default function BMR() {
                   <div className='flex items-center'>
                     <input
                       type='radio'
-                      defaultChecked
                       name='default-radio'
                       value='male'
                       {...register('gender')}
