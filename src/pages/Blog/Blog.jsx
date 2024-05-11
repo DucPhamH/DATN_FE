@@ -85,6 +85,15 @@ export default function Blog() {
     }
   })
   const onSubmitSearch = handleSubmit((data) => {
+    if (data.searchBlogs === '') {
+      navigate({
+        pathname: '/blog',
+        search: createSearchParams(
+          omit({ ...queryConfig }, ['status', 'category_blog_id', 'page', 'search', 'limit'])
+        ).toString()
+      })
+      return
+    }
     navigate({
       pathname: '/blog',
       search: createSearchParams(
@@ -93,19 +102,7 @@ export default function Blog() {
     })
   })
 
-  // const handleSeeMore = () => {
-  //   if (!queryConfig.limit) {
-  //     queryConfig.limit = 8
-  //     console.log('hello')
-  //   }
-  //   navigate({
-  //     pathname: '/blog',
-  //     search: createSearchParams({
-  //       ...queryConfig,
-  //       limit: (parseInt(queryConfig.limit) + 8).toString()
-  //     }).toString()
-  //   })
-  // }
+  console.log(queryConfig)
 
   return (
     <div className='h-full mb-[30rem] text-gray-900 dark:text-white py-4 mx-3'>

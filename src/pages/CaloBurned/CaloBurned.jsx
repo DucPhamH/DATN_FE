@@ -21,7 +21,6 @@ export default function CaloBurned() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const { profile } = useContext(AppContext)
   const [query, setQuery] = useState({
-    search: '',
     page: '1'
   })
 
@@ -52,10 +51,16 @@ export default function CaloBurned() {
   }
 
   const onSubmitSearch = handleSubmitActivity((data) => {
+    console.log(data)
+    if (data.searchActivity === '') {
+      return setQuery((prev) => omit(prev, ['activity_category', 'page', 'search']))
+    }
     setQuery((prev) => {
       return omit({ ...prev, search: data.searchActivity }, ['activity_category', 'page'])
     })
   })
+
+  console.log(query)
 
   const {
     register,

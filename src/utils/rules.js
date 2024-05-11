@@ -224,3 +224,39 @@ export const schemaAddTimeWorkout = yup.object({
 export const schemaAddQuantityMeal = yup.object({
   quantity: yup.number().required('Số lượng là bắt buộc').min(1, 'Số lượng phải lớn hơn 0')
 })
+
+export const schemaUpdateProfile = yup.object({
+  name: yup.string().required('Tên là bắt buộc').min(6, 'Độ dài từ 6 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
+  birthday: yup.date().required('Ngày sinh là bắt buộc'),
+  //user_name là chuỗi liền không có khoảng trắng
+  user_name: yup
+    .string()
+    .required('Tên tài khoản là bắt buộc')
+    .min(5, 'Độ dài từ 5 - 160 ký tự')
+    .max(160, 'Độ dài từ 5 - 160 ký tự')
+    .matches(/^\S*$/, 'Tên tài khoản không được chứa khoảng trắng'),
+  address: yup
+    .string()
+    .required('Địa chỉ là bắt buộc')
+    .min(5, 'Độ dài từ 5 - 160 ký tự')
+    .max(160, 'Độ dài từ 5 - 160 ký tự')
+})
+
+export const schemaChangePassword = yup.object({
+  old_password: yup
+    .string()
+    .required('Mật khẩu cũ là bắt buộc')
+    .min(6, 'Độ dài từ 6 - 160 ký tự')
+    .max(160, 'Độ dài từ 6 - 160 ký tự'),
+  new_password: yup
+    .string()
+    .required('Mật khẩu mới là bắt buộc')
+    .min(6, 'Độ dài từ 6 - 160 ký tự')
+    .max(160, 'Độ dài từ 6 - 160 ký tự'),
+  confirm_password: yup
+    .string()
+    .required('Mật khẩu là bắt buộc')
+    .min(6, 'Độ dài từ 6 - 160 ký tự')
+    .max(160, 'Độ dài từ 6 - 160 ký tự')
+    .oneOf([yup.ref('new_password'), null], 'Mật khẩu không khớp')
+})

@@ -93,6 +93,7 @@ export default function WorkoutScheduleDetail() {
       const nextPage = lastPage.data.result.workoutDate.length ? allPages.length + 1 : undefined
       return nextPage
     },
+    enabled: !!workout?._id,
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 10
   })

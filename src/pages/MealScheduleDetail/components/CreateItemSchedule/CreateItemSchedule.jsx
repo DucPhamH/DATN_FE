@@ -22,7 +22,6 @@ export default function CreateItemSchedule({ meal }) {
   const [timeMeal, setTimeMeal] = useState(meal?.start_date ? new Date(meal?.start_date) : new Date())
 
   const [query, setQuery] = useState({
-    search: '',
     page: '1'
   })
 
@@ -100,7 +99,9 @@ export default function CreateItemSchedule({ meal }) {
   }
 
   const onSubmitSearch = handleSubmitIngredients((data) => {
-    console.log(data)
+    if (data.searchIngredients === '') {
+      return setQuery((prev) => omit(prev, ['ingredient_category_ID', 'page', 'search']))
+    }
     setQuery((prev) => {
       return omit({ ...prev, search: data.searchIngredients }, ['ingredient_category_ID', 'page'])
     })

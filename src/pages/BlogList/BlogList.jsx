@@ -30,7 +30,6 @@ export default function BlogList() {
     },
     placeholderData: keepPreviousData
   })
-  console.log(data)
 
   const handleChangeSort = (e) => {
     navigate({
@@ -87,6 +86,16 @@ export default function BlogList() {
     }
   })
   const onSubmitSearch = handleSubmit((data) => {
+    if (data.searchBlogs === '') {
+      navigate({
+        pathname: '/chef/blog-list',
+        search: createSearchParams(
+          omit({ ...queryConfig }, ['status', 'category_blog_id', 'page', 'search'])
+        ).toString()
+      })
+      return
+    }
+
     navigate({
       pathname: '/chef/blog-list',
       search: createSearchParams(
@@ -94,6 +103,8 @@ export default function BlogList() {
       ).toString()
     })
   })
+
+  console.log(queryConfig)
 
   return (
     <div className='h-screen mb-[30rem] text-gray-900 dark:text-white py-4 mx-3'>
