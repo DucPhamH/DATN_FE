@@ -4,8 +4,9 @@ import { useInView } from 'react-intersection-observer'
 import { getMePosts } from '../../../../apis/postApi'
 import PostCard from '../../../../components/CardComponents/PostCard'
 import Loading from '../../../../components/GlobalComponents/Loading'
+import moment from 'moment'
 
-export default function MePost() {
+export default function MePost({ user }) {
   const { ref, inView } = useInView()
   const fetchMePost = async ({ pageParam }) => {
     return await getMePosts({ page: pageParam })
@@ -68,30 +69,31 @@ export default function MePost() {
             <div className='border-t border-gray-200'>
               <dl>
                 <div className='bg-gray-50 dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-                  <dt className='text-sm font-medium text-gray-500'>Full name</dt>
+                  <dt className='text-sm font-medium text-gray-500'>Họ và tên</dt>
+                  <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>{user?.name}</dd>
+                </div>
+                <div className='bg-white dark:bg-color-primary px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+                  <dt className='text-sm font-medium  text-gray-500'> Ngày sinh </dt>
                   <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>
-                    Mickael Poulaz
+                    {user?.birthday ? moment(user?.birthday).format('MMM Do YY') : 'Chưa cập nhật'}
+                  </dd>
+                </div>
+                <div className='bg-gray-50 dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+                  <dt className='text-sm font-medium text-gray-500'>Giới tính</dt>
+                  <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>
+                    {user?.gender}
+                  </dd>
+                </div>
+                <div className='bg-gray-50 dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
+                  <dt className='text-sm font-medium text-gray-500'>Địa chỉ email</dt>
+                  <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>
+                    {user?.email ? user?.email : 'Chưa cập nhật'}
                   </dd>
                 </div>
                 <div className='bg-white dark:bg-color-primary px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-                  <dt className='text-sm font-medium  text-gray-500'>Best techno</dt>
-                  <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>React JS</dd>
-                </div>
-                <div className='bg-gray-50 dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-                  <dt className='text-sm font-medium text-gray-500'>Email address</dt>
+                  <dt className='text-sm font-medium text-gray-500'>Địa chỉ</dt>
                   <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>
-                    m.poul@example.com
-                  </dd>
-                </div>
-                <div className='bg-white dark:bg-color-primary px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-                  <dt className='text-sm font-medium text-gray-500'>Salary</dt>
-                  <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>$10,000</dd>
-                </div>
-                <div className='bg-gray-50 dark:bg-gray-800 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6'>
-                  <dt className='text-sm font-medium text-gray-500'>About</dt>
-                  <dd className='mt-1 text-sm text-gray-900 dark:text-gray-300 sm:mt-0 sm:col-span-2'>
-                    To get social media testimonials like these, keep your customers engaged with your social media
-                    accounts by posting regularly yourself
+                    {user?.address ? user?.address : 'Chưa cập nhật'}
                   </dd>
                 </div>
               </dl>

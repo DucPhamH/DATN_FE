@@ -62,6 +62,20 @@ export default function useRouteElement() {
     const { isAuthenticated } = useContext(AppContext)
     return !isAuthenticated ? <Outlet /> : <Navigate to='/home' />
   }
+
+  function RoleProtectedRouterChef() {
+    const { profile } = useContext(AppContext)
+    const check = Boolean(profile.role === 1)
+    //  console.log(check)
+    return check ? <Outlet /> : <Navigate to='/home' />
+  }
+
+  // function RoleProtectedRouter2() {
+  //   const { profile } = useContext(AppContext)
+  //   const check = Boolean(info.roles === 2)
+  //   // console.log(check)
+  //   return check ? <Outlet /> : <Navigate to='/' />
+  // }
   const routeElement = useRoutes([
     {
       path: '/',
@@ -366,96 +380,111 @@ export default function useRouteElement() {
               </Suspense>
             </MainLayout>
           )
-        },
+        }
+
+        /////////////////////////////////////////////
+      ]
+    },
+
+    {
+      path: '',
+      element: <ProtectedRoute />,
+      children: [
         {
-          path: 'chef/create-recipe',
-          element: (
-            <CreateLayout>
-              <Suspense>
-                <CreateRecipe />
-              </Suspense>
-            </CreateLayout>
-          )
-        },
-        {
-          path: 'chef/create-blog',
-          element: (
-            <CreateLayout>
-              <Suspense>
-                <CreateBlog />
-              </Suspense>
-            </CreateLayout>
-          )
-        },
-        {
-          path: 'chef/create-album',
-          element: (
-            <CreateLayout>
-              <Suspense>
-                <CreateAlbum />
-              </Suspense>
-            </CreateLayout>
-          )
-        },
-        {
-          path: 'chef/edit-blog/:id',
-          element: (
-            <CreateLayout>
-              <Suspense>
-                <EditBlog />
-              </Suspense>
-            </CreateLayout>
-          )
-        },
-        {
-          path: 'chef/edit-recipe/:id',
-          element: (
-            <CreateLayout>
-              <Suspense>
-                <EditRecipe />
-              </Suspense>
-            </CreateLayout>
-          )
-        },
-        {
-          path: 'chef/edit-album/:id',
-          element: (
-            <CreateLayout>
-              <Suspense>
-                <EditAlbum />
-              </Suspense>
-            </CreateLayout>
-          )
-        },
-        {
-          path: 'chef/blog-list',
-          element: (
-            <MainLayout>
-              <Suspense>
-                <BlogList />
-              </Suspense>
-            </MainLayout>
-          )
-        },
-        {
-          path: 'chef/recipe-list',
-          element: (
-            <MainLayout>
-              <Suspense>
-                <RecipeList />
-              </Suspense>
-            </MainLayout>
-          )
-        },
-        {
-          path: 'chef/album-list',
-          element: (
-            <MainLayout>
-              <Suspense>
-                <AlbumList />
-              </Suspense>
-            </MainLayout>
-          )
+          path: '',
+          element: <RoleProtectedRouterChef />,
+          children: [
+            {
+              path: 'chef/create-recipe',
+              element: (
+                <CreateLayout>
+                  <Suspense>
+                    <CreateRecipe />
+                  </Suspense>
+                </CreateLayout>
+              )
+            },
+            {
+              path: 'chef/create-blog',
+              element: (
+                <CreateLayout>
+                  <Suspense>
+                    <CreateBlog />
+                  </Suspense>
+                </CreateLayout>
+              )
+            },
+            {
+              path: 'chef/create-album',
+              element: (
+                <CreateLayout>
+                  <Suspense>
+                    <CreateAlbum />
+                  </Suspense>
+                </CreateLayout>
+              )
+            },
+            {
+              path: 'chef/edit-blog/:id',
+              element: (
+                <CreateLayout>
+                  <Suspense>
+                    <EditBlog />
+                  </Suspense>
+                </CreateLayout>
+              )
+            },
+            {
+              path: 'chef/edit-recipe/:id',
+              element: (
+                <CreateLayout>
+                  <Suspense>
+                    <EditRecipe />
+                  </Suspense>
+                </CreateLayout>
+              )
+            },
+            {
+              path: 'chef/edit-album/:id',
+              element: (
+                <CreateLayout>
+                  <Suspense>
+                    <EditAlbum />
+                  </Suspense>
+                </CreateLayout>
+              )
+            },
+            {
+              path: 'chef/blog-list',
+              element: (
+                <MainLayout>
+                  <Suspense>
+                    <BlogList />
+                  </Suspense>
+                </MainLayout>
+              )
+            },
+            {
+              path: 'chef/recipe-list',
+              element: (
+                <MainLayout>
+                  <Suspense>
+                    <RecipeList />
+                  </Suspense>
+                </MainLayout>
+              )
+            },
+            {
+              path: 'chef/album-list',
+              element: (
+                <MainLayout>
+                  <Suspense>
+                    <AlbumList />
+                  </Suspense>
+                </MainLayout>
+              )
+            }
+          ]
         }
       ]
     },

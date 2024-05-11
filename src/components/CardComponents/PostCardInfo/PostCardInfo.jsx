@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react'
 import useravatar from '../../../assets/images/useravatar.jpg'
-import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import { AiFillHeart } from 'react-icons/ai'
 import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'

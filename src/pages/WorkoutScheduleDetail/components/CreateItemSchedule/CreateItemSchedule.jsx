@@ -22,7 +22,6 @@ export default function CreateItemSchedule({ workout }) {
   const [timeWorkout, setTimeWorkout] = useState(workout?.start_date ? new Date(workout?.start_date) : new Date())
 
   const [query, setQuery] = useState({
-    search: '',
     page: '1'
   })
 
@@ -79,10 +78,15 @@ export default function CreateItemSchedule({ workout }) {
   }
 
   const onSubmitSearch = handleSubmitActivity((data) => {
+    if (data.searchActivity === '') {
+      return setQuery((prev) => omit(prev, ['activity_category', 'page', 'search']))
+    }
     setQuery((prev) => {
       return omit({ ...prev, search: data.searchActivity }, ['activity_category', 'page'])
     })
   })
+
+  console.log(query)
 
   const createWorkOutItemMutation = useMutation({
     mutationFn: (body) => createWorkoutItem(body)

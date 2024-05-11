@@ -48,25 +48,6 @@ export default function MealScheduleDetail() {
     return await getDateMealItem({ page: pageParam, meal_schedule_id: meal?._id })
   }
 
-  //   Phân loại chỉ số BMI ở nam giới
-
-  // BMI < 18.5: Cân nặng thấp, gầy. Lúc này cần phải chú ý bổ sung chất dinh dưỡng và kết hợp vận động thể lực một cách khoa học.
-  // 18.5 < BMI < 24.9: Thể trạng bình thường, nhưng cũng cần phải chú ý tới chế độ ăn uống và vận động tránh để bị thiếu chất hay thừa cân.
-  // BMI >= 25: Thừa cân, nên có chế độ vận động phù hợp để kịp thời khắc phục tình trạng của bản thân.
-  // 25 < BMI < 29.9: Tiền béo phì
-  // 30 < BMI < 34.9: Béo phì cấp độ I
-  // 35 < BMI < 39.9: Béo phì cấp độ II
-  // BMI >= 40: Béo phì cấp độ III
-
-  // Phân loại chỉ số BMI ở nữ giới
-
-  // BMI < 18.5: Cân nặng thấp, gầy. Cơ thể phụ nữ đang thiếu dinh dưỡng, thiếu cân cần phải bổ sung dinh dưỡng và tập luyện phù hợp.
-  // 18.5 < BMI < 22.9: Thể trạng bình thường, nên duy trì lối sống lành mạnh và bảo trì cân nặng.
-  // BMI >= 23: Thừa cân, nên vận động để giảm cân.
-  // 23 < BMI < 24.9: Tiền béo phì
-  // 25 < BMI < 29.9: Béo phì cấp độ I
-  // 30 < BMI < 39.9: Béo phì cấp độ II
-  // BMI >= 40: Béo phì cấp độ III
   const checkNoteBMI = () => {
     if (profile.gender === 'male') {
       if (profile.BMI < 18.5) {
@@ -129,11 +110,10 @@ export default function MealScheduleDetail() {
       const nextPage = lastPage.data.result.mealDate.length ? allPages.length + 1 : undefined
       return nextPage
     },
+    enabled: !!meal?._id,
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 10
   })
-
-  console.log(dateData)
 
   const completeDateMealItemMutation = useMutation({
     mutationFn: (body) => completeDateMealItem(body)
@@ -626,7 +606,7 @@ export default function MealScheduleDetail() {
           </div>
 
           <div className='grid w-full grid-cols-1 items-center  xl:grid-cols-3'>
-            <PieChart meal={meal} />
+            <PieChart meal={meal} profile={profile} />
             <LineChart meal={meal} />
           </div>
 

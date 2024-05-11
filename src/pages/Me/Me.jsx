@@ -3,14 +3,19 @@ import { BsFillCameraFill } from 'react-icons/bs'
 import useravatar from '../../assets/images/useravatar.jpg'
 import avatarbg from '../../assets/images/avatarbg.jpg'
 import { useState } from 'react'
-import ModalUploadAvatar from '../../components/ProfileComponents/ModalUploadAvatar'
 import { currentAccount } from '../../apis/userApi'
 import { useQuery } from '@tanstack/react-query'
 import MePost from './components/MePost'
 import TabsProfile from '../../components/GlobalComponents/TabsProfile'
+import ModalUploadAvatar from './components/ModalUploadAvatar'
+import ModalUploadCoverAvatar from './components/ModalUploadCoverAvatar'
+import ThreeDots from './components/ThreeDots'
+import ModalUpdateProfile from './components/ModalUpdateProfile'
 
 export default function Me() {
   const [modalAvatar, setModalAvatar] = useState(false)
+  const [modalCoverAvatar, setModalCoverAvatar] = useState(false)
+  const [modalUpdateProfile, setModalUpdateProfile] = useState(false)
   const [toggleState, setToggleState] = useState(0)
 
   const toggleTab = (index) => {
@@ -25,13 +30,29 @@ export default function Me() {
   const closeModalAvatar = () => {
     setModalAvatar(false)
   }
+
+  const openModalCoverAvatar = () => {
+    setModalCoverAvatar(true)
+  }
+
+  const closeModalCoverAvatar = () => {
+    setModalCoverAvatar(false)
+  }
+
+  const openModalUpdateProfile = () => {
+    setModalUpdateProfile(true)
+  }
+
+  const closeModalUpdateProfile = () => {
+    setModalUpdateProfile(false)
+  }
   const { data: userData } = useQuery({
     queryKey: ['me'],
     queryFn: () => {
       return currentAccount()
     }
   })
-  console.log(userData)
+  console.log(userData?.data.result[0])
 
   return (
     <div>
@@ -41,16 +62,19 @@ export default function Me() {
             <div className='relative'>
               <img
                 alt='avatar bg'
-                src={avatarbg}
+                src={userData?.data.result[0].cover_avatar ? userData?.data.result[0].cover_avatar : avatarbg}
                 className='w-full shadow-md rounded-lg h-[18rem] relative object-cover'
               />
-              <div className='absolute top-2 left-2 text-3xl cursor-pointer text-gray-600 hover:text-gray-700 dark:text-red-900 dark:hover:text-red-950'>
+              <div
+                className='absolute top-2 left-2 text-3xl cursor-pointer text-gray-600 hover:text-gray-700 dark:text-red-900 dark:hover:text-red-950'
+                onClick={openModalCoverAvatar}
+              >
                 <BsFillCameraFill />
               </div>
               <div className='px-2 w-full md:flex md:flex-row gap-2 top-60 pb-5 absolute'>
                 <img
                   className='h-40 w-40 ml-2 border border-red-200 rounded-full  object-cover relative'
-                  src={useravatar}
+                  src={userData?.data.result[0].avatar ? userData?.data.result[0].avatar : useravatar}
                   alt='avatar'
                 />
                 <div
@@ -63,37 +87,36 @@ export default function Me() {
                   <div className='md:mt-16 flex-col flex justify-end'>
                     <div className='px-2'>
                       <div className='text-3xl whitespace-nowrap text-gray-800 dark:text-white font-semibold'>
-                        UserName
+                        {userData?.data.result[0].name}
                       </div>
-                      <div className='text-lg whitespace-nowrap text-gray-600 dark:text-gray-400'>@UserName</div>
+                      <div className='text-lg whitespace-nowrap text-gray-600 dark:text-gray-400'>
+                        @{userData?.data.result[0].user_name}
+                      </div>
                     </div>
 
                     <div className='py-4 flex divide-x divide-gray-400 divide-solid'>
                       <span className='text-center px-2'>
-                        <span className='font-bold text-red-700'>56</span>
-                        <span className='text-gray-600 dark:text-white'> followers</span>
+                        <span className='font-bold text-red-700'>{userData?.data.result[0].followers_count}</span>
+                        <span className='text-gray-600 dark:text-white'> Người theo dõi</span>
                       </span>
                       <span className='text-center px-2'>
-                        <span className='font-bold text-red-700'>112</span>
-                        <span className='text-gray-600 dark:text-white'> following</span>
-                      </span>
-                      <span className='text-center px-2'>
-                        <span className='font-bold text-red-700'>27</span>
-                        <span className='text-gray-600 dark:text-white'> repos</span>
+                        <span className='font-bold text-red-700'>{userData?.data.result[0].posts_count}</span>
+                        <span className='text-gray-600 dark:text-white'> Bài đăng</span>
                       </span>
                     </div>
                   </div>
                   <div className='flex justify-between items-center'>
                     <button
                       type='button'
-                      className='rounded-lg btn-sm btn flex mx-2 items-center justify-center hover:bg-red-600 bg-red-700 text-sm text-white font-medium transition-all duration-300 ease-in-out '
+                      onClick={openModalUpdateProfile}
+                      className='rounded-lg btn-sm btn flex items-center justify-center hover:bg-red-600 bg-red-700 text-sm text-white font-medium transition-all duration-300 ease-in-out '
                     >
-                      <BiSolidPencil className='mr-2' />
-                      Chỉnh sửa thông tin cá nhân
+                      <BiSolidPencil className='' />
+                      Chỉnh sửa thông tin
                     </button>
-                    {/* <div className='px-3 text-2xl hover:text-red-600 cursor-pointer transition-all duration-300'>
-                      <ThreeDots />
-                    </div> */}
+                    <div className='px-3 text-2xl hover:text-red-600 cursor-pointer transition-all duration-300'>
+                      <ThreeDots user={userData?.data.result[0]} />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -104,11 +127,15 @@ export default function Me() {
           {/* <NavBarProfile /> */}
           <TabsProfile toggleTab={toggleTab} getActiveClass={getActiveClass} />
         </div>
-        {toggleState === 0 && <MePost />}
+        {toggleState === 0 && <MePost user={userData?.data.result[0]} />}
         {toggleState === 1 && <div>Tab 2</div>}
         {toggleState === 2 && <div>Tab 3</div>}
       </div>
       {modalAvatar && <ModalUploadAvatar closeModalAvatar={closeModalAvatar} />}
+      {modalCoverAvatar && <ModalUploadCoverAvatar closeModalCoverAvatar={closeModalCoverAvatar} />}
+      {modalUpdateProfile && (
+        <ModalUpdateProfile handleCloseModalUpdateProfile={closeModalUpdateProfile} user={userData?.data.result[0]} />
+      )}
     </div>
   )
 }

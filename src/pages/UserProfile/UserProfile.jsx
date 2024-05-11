@@ -5,7 +5,9 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import TabsProfile from '../../components/GlobalComponents/TabsProfile'
 import UserPost from './components/UserPost'
 import { useParams } from 'react-router-dom'
-import { followUser } from '../../apis/userApi'
+import { followUser, getProfile, unfollowUser } from '../../apis/userApi'
+import { queryClient } from '../../main'
+import { FaCheckCircle } from 'react-icons/fa'
 
 export default function UserProfile() {
   const { id } = useParams()
@@ -16,22 +18,40 @@ export default function UserProfile() {
 
   const getActiveClass = (index, className) => (toggleState === index ? className : '')
 
-  //   const { data: userData } = useQuery({
-  //     queryKey: ['me'],
-  //     queryFn: () => {
-  //       return currentAccount()
-  //     }
-  //   })
-  //   console.log(userData)
+  const { data: userData } = useQuery({
+    queryKey: ['user-profile', id],
+    queryFn: () => {
+      return getProfile(id)
+    }
+  })
+  console.log(userData)
   const followMutation = useMutation({
     mutationFn: (body) => followUser(body)
   })
 
+  const unfollowMutation = useMutation({
+    mutationFn: (body) => unfollowUser(body)
+  })
   const handleFollow = () => {
-    followMutation.mutate({ follow_id: id })
-  }
-  const handleUnfollow = () => {
-    followMutation.mutate({ follow_id: id })
+    if (userData?.data.result[0].is_following) {
+      unfollowMutation.mutate(
+        { follow_id: id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('user-profile')
+          }
+        }
+      )
+    } else {
+      followMutation.mutate(
+        { follow_id: id },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries('user-profile')
+          }
+        }
+      )
+    }
   }
   return (
     <div>
@@ -41,13 +61,13 @@ export default function UserProfile() {
             <div className='relative'>
               <img
                 alt='avatar bg'
-                src={avatarbg}
+                src={userData?.data.result[0].cover_avatar ? userData?.data.result[0].cover_avatar : avatarbg}
                 className='w-full shadow-md rounded-lg h-[18rem] relative object-cover'
               />
               <div className='px-2 w-full md:flex md:flex-row gap-2 top-60 pb-5 absolute'>
                 <img
                   className='h-40 w-40 ml-2 border border-red-200 rounded-full  object-cover relative'
-                  src={useravatar}
+                  src={userData?.data.result[0].avatar ? userData?.data.result[0].avatar : useravatar}
                   alt='avatar'
                 />
 
@@ -55,33 +75,39 @@ export default function UserProfile() {
                   <div className='md:mt-16 flex-col flex justify-end'>
                     <div className='px-2'>
                       <div className='text-3xl whitespace-nowrap text-gray-800 dark:text-white font-semibold'>
-                        UserName
+                        {userData?.data.result[0].name}
                       </div>
-                      <div className='text-lg whitespace-nowrap text-gray-600 dark:text-gray-400'>@UserName</div>
+                      <div className='text-lg whitespace-nowrap text-gray-600 dark:text-gray-400'>
+                        @{userData?.data.result[0].user_name}
+                      </div>
                     </div>
 
                     <div className='py-4 flex divide-x divide-gray-400 divide-solid'>
                       <span className='text-center px-2'>
-                        <span className='font-bold text-red-700'>56</span>
-                        <span className='text-gray-600 dark:text-white'> followers</span>
+                        <span className='font-bold text-red-700'>{userData?.data.result[0].followers_count}</span>
+                        <span className='text-gray-600 dark:text-white'> Người theo dõi</span>
                       </span>
                       <span className='text-center px-2'>
-                        <span className='font-bold text-red-700'>112</span>
-                        <span className='text-gray-600 dark:text-white'> following</span>
-                      </span>
-                      <span className='text-center px-2'>
-                        <span className='font-bold text-red-700'>27</span>
-                        <span className='text-gray-600 dark:text-white'> repos</span>
+                        <span className='font-bold text-red-700'>{userData?.data.result[0].posts_count}</span>
+                        <span className='text-gray-600 dark:text-white'> Bài đăng</span>
                       </span>
                     </div>
                   </div>
                   <div className='flex justify-between items-center'>
-                    <button
-                      type='button'
-                      className='rounded-lg btn-sm btn flex mx-2 items-center justify-center hover:bg-red-600 bg-red-700 text-sm text-white font-medium transition-all duration-300 ease-in-out '
-                    >
-                      + Follow
-                    </button>
+                    <div onClick={handleFollow}>
+                      {!userData?.data.result[0].is_following ? (
+                        <button className='block btn btn-xs  md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm  md:order-2'>
+                          <div className='flex text-xs justify-center gap-1 items-center'>+ Theo dõi</div>
+                        </button>
+                      ) : (
+                        <button className='block btn btn-xs  md:inline-block md:w-auto  bg-blue-400 hover:bg-blue-500 border-none text-white rounded-lg font-semibold text-sm  md:order-2'>
+                          <div className='flex text-xs justify-center gap-1 items-center'>
+                            <FaCheckCircle /> <div>Đã theo dõi</div>
+                          </div>
+                        </button>
+                      )}
+                    </div>
+
                     {/* <div className='px-3 text-2xl hover:text-red-600 cursor-pointer transition-all duration-300'>
                       <ThreeDots />
                     </div> */}
@@ -95,7 +121,7 @@ export default function UserProfile() {
           {/* <NavBarProfile /> */}
           <TabsProfile toggleTab={toggleTab} getActiveClass={getActiveClass} />
         </div>
-        {toggleState === 0 && <UserPost user_id={id} />}
+        {toggleState === 0 && <UserPost user_id={id} user={userData?.data.result[0]} />}
         {toggleState === 1 && <div>Tab 2</div>}
         {toggleState === 2 && <div>Tab 3</div>}
       </div>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 // * React icons
@@ -12,12 +12,21 @@ import { FaPenToSquare } from 'react-icons/fa6'
 import { IoMdAlbums } from 'react-icons/io'
 import { MdBook } from 'react-icons/md'
 import Logo from '../Logo'
+import { AppContext } from '../../../contexts/app.context'
 
 export default function SideBar() {
   let isTabletMid = useMediaQuery({ query: '(max-width: 767px)' })
   const [open, setOpen] = useState(isTabletMid ? false : true)
   const sidebarRef = useRef()
   const { pathname } = useLocation()
+  const { profile } = useContext(AppContext)
+
+  const checkSubmenu = () => {
+    if (profile?.role === 1) {
+      return true
+    }
+    return false
+  }
 
   useEffect(() => {
     if (isTabletMid) {
@@ -50,36 +59,57 @@ export default function SideBar() {
     }
   }
 
-  const subMenusList = [
-    {
-      name: 'Sức khoẻ',
-      icon: BsFillHeartFill,
-      menus: [
-        { subName: 'Công cụ tính toán', subPath: 'fitness-calculator' },
-        { subName: 'Lịch sử tính toán', subPath: 'fitness-history' }
-      ],
-      path: 'fitness'
-    },
-    {
-      name: 'Lịch trình',
-      icon: BsFillCalendarHeartFill,
-      menus: [
-        { subName: 'Lịch trình ăn uống', subPath: 'eat-schedule' },
-        { subName: 'Lịch trình tập luyện', subPath: 'ex-schedule' }
-      ],
-      path: 'schedule'
-    },
-    {
-      name: 'Tạo bài viết',
-      icon: FaPenToSquare,
-      menus: [
-        { subName: 'Tạo bài viết nấu ăn', subPath: 'recipe-list' },
-        { subName: 'Tạo album món ăn', subPath: 'album-list' },
-        { subName: 'Tạo blog dinh dưỡng', subPath: 'blog-list' }
-      ],
-      path: 'chef'
-    }
-  ]
+  const subMenusList = checkSubmenu()
+    ? [
+        {
+          name: 'Sức khoẻ',
+          icon: BsFillHeartFill,
+          menus: [
+            { subName: 'Công cụ tính toán', subPath: 'fitness-calculator' },
+            { subName: 'Lịch sử tính toán', subPath: 'fitness-history' }
+          ],
+          path: 'fitness'
+        },
+        {
+          name: 'Lịch trình',
+          icon: BsFillCalendarHeartFill,
+          menus: [
+            { subName: 'Lịch trình ăn uống', subPath: 'eat-schedule' },
+            { subName: 'Lịch trình tập luyện', subPath: 'ex-schedule' }
+          ],
+          path: 'schedule'
+        },
+        {
+          name: 'Tạo bài viết',
+          icon: FaPenToSquare,
+          menus: [
+            { subName: 'Tạo bài viết nấu ăn', subPath: 'recipe-list' },
+            { subName: 'Tạo album món ăn', subPath: 'album-list' },
+            { subName: 'Tạo blog dinh dưỡng', subPath: 'blog-list' }
+          ],
+          path: 'chef'
+        }
+      ]
+    : [
+        {
+          name: 'Sức khoẻ',
+          icon: BsFillHeartFill,
+          menus: [
+            { subName: 'Công cụ tính toán', subPath: 'fitness-calculator' },
+            { subName: 'Lịch sử tính toán', subPath: 'fitness-history' }
+          ],
+          path: 'fitness'
+        },
+        {
+          name: 'Lịch trình',
+          icon: BsFillCalendarHeartFill,
+          menus: [
+            { subName: 'Lịch trình ăn uống', subPath: 'eat-schedule' },
+            { subName: 'Lịch trình tập luyện', subPath: 'ex-schedule' }
+          ],
+          path: 'schedule'
+        }
+      ]
 
   return (
     <div className='fixed z-[100]'>
@@ -97,7 +127,13 @@ export default function SideBar() {
         <Logo />
 
         <div className='flex flex-col h-full'>
-          <ul className='whitespace-pre  px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 md:h-[72%] h-[70%]'>
+          <ul
+            className={
+              profile?.role === 1
+                ? 'whitespace-pre  px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 h-full '
+                : 'whitespace-pre  px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 md:h-[72%] h-[70%]  '
+            }
+          >
             <li>
               <NavLink to={'/home'} className='link-custom '>
                 <BsPeopleFill size={25} className='min-w-max' />
@@ -142,15 +178,17 @@ export default function SideBar() {
           </ul>
           {open && (
             <div className='flex-1 text-sm z-50 max-h-48 my-auto whitespace-pre w-full  font-medium  '>
-              <div className='flex border-y border-slate-300 p-4 items-center justify-between'>
-                <div>
-                  <p className='text-red-500 pb-1'>Bạn có phải đầu bếp ?</p>
-                  <small>Hãy liên hệ với chúng tôi !</small>
+              {profile?.role === 1 ? null : (
+                <div className='flex border-y border-slate-300 p-4 items-center justify-between'>
+                  <div>
+                    <p className='text-red-500 pb-1'>Bạn có phải đầu bếp ?</p>
+                    <small>Hãy liên hệ với chúng tôi !</small>
+                  </div>
+                  <p className='text-red-800 cursor-pointer hover:text-red-400 py-1.5 px-3 text-xs bg-teal-50 dark:bg-teal-100 rounded-xl'>
+                    Liên hệ
+                  </p>
                 </div>
-                <p className='text-red-800 cursor-pointer hover:text-red-400 py-1.5 px-3 text-xs bg-teal-50 dark:bg-teal-100 rounded-xl'>
-                  Liên hệ
-                </p>
-              </div>
+              )}
             </div>
           )}
         </div>
