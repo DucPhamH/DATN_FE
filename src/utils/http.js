@@ -13,7 +13,7 @@ import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'
 
 const URL = {
   BASE_URL: 'http://localhost:4000/api',
-  DEPLOY_URL: 'https://datn-be-kwjk.onrender.com/api'
+  DEPLOY_URL: ''
 }
 class Http {
   constructor() {
@@ -21,7 +21,7 @@ class Http {
     this.refreshToken = getRefreshTokenFromLS()
     this.refreshTokenRequest = null
     this.instance = axios.create({
-      baseURL: `${URL.DEPLOY_URL}`,
+      baseURL: `${URL.BASE_URL}`,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
