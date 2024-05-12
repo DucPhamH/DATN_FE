@@ -1,9 +1,52 @@
 import { Link, useNavigate } from 'react-router-dom'
 import Input from '../../../../components/InputComponents/Input'
 import MotionWrapper from '../../../../layouts/MotionWrapper'
+import { useForm } from 'react-hook-form'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { sendOtp } from '../../../../apis/authApi'
+
+import { useMutation } from '@tanstack/react-query'
+import { schemaSendOtp } from '../../../../utils/rules'
+import { toast } from 'react-toastify'
+import Loading from '../../../../components/GlobalComponents/Loading'
 
 export default function SendEmail() {
   const navigate = useNavigate()
+
+  const {
+    register,
+    handleSubmit,
+    setError,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(schemaSendOtp)
+  })
+  const sendOtpMutation = useMutation({
+    mutationFn: (body) => sendOtp(body)
+  })
+  const onSubmit = handleSubmit(
+    (data) => {
+      console.log(data)
+      sendOtpMutation.mutate(data, {
+        onError: (errors) => {
+          console.log(errors)
+          setError('email', {
+            type: 'manual',
+            message: errors?.response?.data?.message || 'Có lỗi xảy ra, vui lòng thử lại'
+          })
+        },
+        onSuccess: (data) => {
+          console.log(data)
+          toast.success('Gửi mã OTP thành công')
+          navigate(`/forgot-password/confirm-otp?email=${data.data.result}`)
+        }
+      })
+    },
+    (errors) => {
+      console.log(errors)
+    }
+  )
+
   return (
     <MotionWrapper
       variants={{
@@ -30,7 +73,7 @@ export default function SendEmail() {
               </p>
             </div>
             <div className='mt-5'>
-              <form>
+              <form onSubmit={onSubmit}>
                 <div className='grid gap-y-4'>
                   <div>
                     <Input
@@ -38,18 +81,31 @@ export default function SendEmail() {
                       type='email'
                       name='email'
                       id='email'
+                      register={register}
+                      errors={errors?.email}
                       placeholder='Nhập email của bạn'
                       className='block bg-white  w-full placeholder:text-sm px-3 py-2  text-black  text-lg border border-gray-300 rounded-lg'
                       classNameLabel='text-gray-400 lg:text-red-900 text-sm font-medium mb-1  text-left'
                     />
                   </div>
-                  <button
-                    onClick={() => navigate('/forgot-password/confirm-otp')}
-                    type='submit'
-                    className='uppercase text-white block w-full p-2 transition-all duration-500 text-lg rounded-full bg-orange-700 hover:bg-orange-600 focus:outline-none'
-                  >
-                    Gửi email
-                  </button>
+                  {sendOtpMutation.isPending ? (
+                    <div className='uppercase text-white block w-full p-2 transition-all duration-500 text-lg rounded-full  focus:outline-none  bg-gray-500 first-letter:focus:outline-none'>
+                      <div className='flex justify-center items-center'>
+                        <Loading
+                          className='w-10 mx-1 flex justify-center items-center'
+                          classNameSpin='inline w-6 h-6 text-gray-200 animate-spin dark:text-gray-600 fill-red-600'
+                        />
+                        Loading...
+                      </div>
+                    </div>
+                  ) : (
+                    <button
+                      type='submit'
+                      className='uppercase text-white block w-full p-2 transition-all duration-500 text-lg rounded-full bg-orange-700 hover:bg-orange-600 focus:outline-none'
+                    >
+                      Gửi email
+                    </button>
+                  )}
                 </div>
               </form>
             </div>

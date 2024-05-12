@@ -56,6 +56,10 @@ export default function ModalUpdateMeal({ handleCloseModalUpdateProfile, user })
   const onSubmit = handleSubmit((data) => {
     console.log(data)
 
+    if (data.user_name === user.user_name) {
+      delete data.user_name
+    }
+
     updateProfileMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
