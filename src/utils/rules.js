@@ -48,6 +48,20 @@ export const schemaRegister = yup.object({
     .oneOf([yup.ref('password'), null], 'Mật khẩu không khớp')
 })
 
+export const schemaResetPassword = yup.object({
+  new_password: yup
+    .string()
+    .required('Mật khẩu mới là bắt buộc')
+    .min(6, 'Độ dài từ 6 - 160 ký tự')
+    .max(160, 'Độ dài từ 6 - 160 ký tự'),
+  confirm_password: yup
+    .string()
+    .required('Mật khẩu là bắt buộc')
+    .min(6, 'Độ dài từ 6 - 160 ký tự')
+    .max(160, 'Độ dài từ 6 - 160 ký tự')
+    .oneOf([yup.ref('new_password'), null], 'Mật khẩu không khớp')
+})
+
 export const schemaCreateBlog = yup.object({
   title: yup.string().required('Tiêu đề là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự'),
   image: yup.string().required('Link ảnh là bắt buộc').url('Link ảnh không đúng định dạng'),
@@ -259,4 +273,13 @@ export const schemaChangePassword = yup.object({
     .min(6, 'Độ dài từ 6 - 160 ký tự')
     .max(160, 'Độ dài từ 6 - 160 ký tự')
     .oneOf([yup.ref('new_password'), null], 'Mật khẩu không khớp')
+})
+
+export const schemaSendOtp = yup.object({
+  email: yup
+    .string()
+    .required('Email là bắt buộc')
+    .email('Email không đúng định dạng')
+    .min(5, 'Độ dài từ 5 - 160 ký tự')
+    .max(160, 'Độ dài từ 5 - 160 ký tự')
 })

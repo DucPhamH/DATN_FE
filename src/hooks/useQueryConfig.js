@@ -19,7 +19,9 @@ export default function useQueryConfig() {
       interval_time: queryParams.interval_time,
       activity_category_id: queryParams.activity_category_id,
       category_album: queryParams.category_album,
-      type: queryParams.type
+      type: queryParams.type,
+      email: queryParams.email,
+      otp_code: queryParams.otp_code
     },
     isUndefined
   )
