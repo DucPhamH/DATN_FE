@@ -224,7 +224,9 @@ export default function CreateItemSchedule({ meal }) {
                             </td>
                             <td className='px-6 py-2 '>
                               <span className='text-sm  font-medium text-gray-900 dark:text-gray-300'>
-                                {item.quantity} {item.unit}
+                                {item.unit === 'gram'
+                                  ? parseFloat(item.quantity * 100).toFixed(1) + ' gram'
+                                  : item.quantity + ' ' + item.unit}
                               </span>
                             </td>
                             <td className='px-6 py-2 '>

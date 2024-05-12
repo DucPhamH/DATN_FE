@@ -42,11 +42,11 @@ export default function PieChart({ meal, profile }) {
   console.log(item)
 
   const data = {
-    labels: ['Lượng calo đã nạp', 'Chỉ số TDEE'],
+    labels: ['Lượng calo đã nạp', 'Lượng calo còn lại'],
     datasets: [
       {
         label: 'Biểu đồ lượng calo',
-        data: [item, profile?.TDEE],
+        data: [item, profile?.TDEE - item],
         backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)'],
         borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)'],
         borderWidth: 1
@@ -63,7 +63,7 @@ export default function PieChart({ meal, profile }) {
       },
       title: {
         display: true,
-        text: 'Biểu đồ lượng calo đã nạp hôm nay'
+        text: 'Biểu đồ lượng calo đã nạp hôm nay/TDEE'
       }
     }
   }
