@@ -13,7 +13,7 @@ import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'
 
 const URL = {
   BASE_URL: 'http://localhost:4000/api',
-  DEPLOY_URL: ''
+  DEPLOY_URL: 'https://datn-be-kwjk.onrender.com/api'
 }
 class Http {
   constructor() {
