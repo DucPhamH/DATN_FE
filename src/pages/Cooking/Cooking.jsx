@@ -5,120 +5,38 @@ import { Link } from 'react-router-dom'
 import AlbumCard from '../../components/CardComponents/AlbumCard'
 
 import BlogCard from '../../components/CardComponents/BlogCard'
+import { getBlogsForUser } from '../../apis/blogApi'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { getListRecipesForUser } from '../../apis/recipeApi'
+import { getListAlbumForUser } from '../../apis/albumApi'
 
-const foodItems = [
-  {
-    id: 1,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
-  },
-  {
-    id: 2,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
-  },
-  {
-    id: 3,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
-  },
-  {
-    id: 4,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
-  },
-  {
-    id: 5,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
-  },
-  {
-    id: 6,
-    title: 'Phở bò bát đá',
-    time: '25 phút',
-    date: '23/10/2023',
-    like: '13k lượt thích',
-    img: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    author: 'Godon Ramsey'
-  }
-]
-
-const albumItems = [
-  {
-    id: 1
-  },
-  {
-    id: 2
-  },
-  {
-    id: 3
-  },
-  {
-    id: 4
-  }
-]
-
-const blogItems = [
-  {
-    id: 1,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  },
-
-  {
-    id: 2,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  },
-
-  {
-    id: 3,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  },
-  {
-    id: 4,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  }
-]
 export default function Cooking() {
+  const { data: blogData } = useQuery({
+    queryKey: ['blogs-list-user', { limit: 4 }],
+    queryFn: () => {
+      return getBlogsForUser({ limit: 4 })
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5
+  })
+
+  const { data: recipesData } = useQuery({
+    queryKey: ['recipes-list-user', { limit: 6 }],
+    queryFn: () => {
+      return getListRecipesForUser({ limit: 6 })
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5
+  })
+
+  const { data: albumsData } = useQuery({
+    queryKey: ['albums-list-user', { limit: 4 }],
+    queryFn: () => {
+      return getListAlbumForUser({ limit: 4 })
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5
+  })
   return (
     <>
       <div className='text-gray-900 dark:text-white lg:mx-3'>
@@ -133,24 +51,35 @@ export default function Cooking() {
             <div className='grid xl:grid-cols-3 items-center'>
               <div className='col-span-2 mb-2'>
                 <div className='text-xl font-medium mb-2'>
-                  <span>Tổng </span>
-                  <span className='text-red-600'>1000 </span>
-                  <span>công thức nấu ăn</span>
+                  <span>Công thức nấu ăn mới nhất</span>
                 </div>
                 <div className='border-b-[3px] w-[20%] border-red-300 '></div>
               </div>
               <Link
                 to='/cooking/recipe'
-                className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
+                className='col-span-1 xl:flex xl:justify-end dark:text-gray-300  font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
               >
-                Xem thêm ...
+                <div className='flex gap-2 max-w-[14rem] border bg-gray-200 dark:bg-slate-800 dark:border-none px-2 py-1 rounded-lg text-base'>
+                  Đi đến trang công thức
+                  <svg
+                    className='w-4'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    viewBox='0 0 24 24'
+                  >
+                    <path d='M14 5l7 7m0 0l-7 7m7-7H3' />
+                  </svg>
+                </div>
               </Link>
             </div>
 
             <div className='grid gap-3 md:gap-4 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-5'>
-              {/* {foodItems.map((foodItem) => {
-                return <FoodCard key={foodItem.id} foodItem={foodItem} />
-              })} */}
+              {recipesData?.data?.result.recipes.map((recipe) => {
+                return <RecipeCard key={recipe._id} recipe={recipe} />
+              })}
             </div>
           </div>
           <div className='col-span-1'>
@@ -312,17 +241,30 @@ export default function Cooking() {
               <div className='border-b-[3px] mb-2 w-[20%] border-red-300 '></div>
             </div>
             <Link
-              to='/cooking/recipe'
-              className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
+              to='/album'
+              className='col-span-1 xl:flex xl:justify-end dark:text-gray-300  font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
             >
-              Xem thêm ...
+              <div className='flex gap-2 max-w-[14rem] border bg-gray-200 dark:bg-slate-800 dark:border-none px-2 py-1 rounded-lg text-base'>
+                Đi đến trang album
+                <svg
+                  className='w-4'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  viewBox='0 0 24 24'
+                >
+                  <path d='M14 5l7 7m0 0l-7 7m7-7H3' />
+                </svg>
+              </div>
             </Link>
           </div>
 
           <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
-            {/* {albumItems.map((albumItem) => {
-              return <AlbumCard key={albumItem.id} />
-            })} */}
+            {albumsData?.data?.result.albums.map((album) => {
+              return <AlbumCard key={album._id} album={album} />
+            })}
           </div>
         </div>
 
@@ -334,23 +276,37 @@ export default function Cooking() {
               </div>
               <div className='border-b-[3px] mb-2 w-[20%] border-red-300 '></div>
             </div>
+
             <Link
               to='/blog'
-              className='col-span-1 xl:flex xl:justify-end dark:text-gray-300 text-lg font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
+              className='col-span-1 xl:flex xl:justify-end dark:text-gray-300  font-medium text-gray-600 hover:text-blue-700 cursor-pointer transition-all duration-100'
             >
-              Xem thêm ...
+              <div className='flex gap-2 max-w-[14rem] border bg-gray-200 dark:bg-slate-800 dark:border-none px-2 py-1 rounded-lg text-base'>
+                Đi đến trang blogs
+                <svg
+                  className='w-4'
+                  fill='none'
+                  stroke='currentColor'
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  viewBox='0 0 24 24'
+                >
+                  <path d='M14 5l7 7m0 0l-7 7m7-7H3' />
+                </svg>
+              </div>
             </Link>
           </div>
 
           <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
-            {blogItems.map((blogItem) => {
+            {blogData?.data?.result.blogs.map((blog) => {
               return (
                 <BlogCard
-                  key={blogItem.id}
-                  blogItem={blogItem}
+                  key={blog._id}
+                  blogItem={blog}
                   imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'
                   dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                  titleClass=' font-bold hover:text-color-secondary'
+                  titleClass=' font-bold transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
                   descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
                   linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
                 />

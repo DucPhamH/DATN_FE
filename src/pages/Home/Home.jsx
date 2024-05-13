@@ -8,52 +8,16 @@ import BlogCard from '../../components/CardComponents/BlogCard'
 import { useContext, useEffect, useState } from 'react'
 import ModalUploadPost from './components/ModalUploadPost'
 import { getNewsFeed } from '../../apis/postApi'
-import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery, useMutation, useQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 import LoadingHome from './components/LoadingHome'
 import { AppContext } from '../../contexts/app.context'
 import Loading from '../../components/GlobalComponents/Loading'
+import { getBlogsForUser } from '../../apis/blogApi'
+import { followUser, recommendUser } from '../../apis/userApi'
+import { queryClient } from '../../main'
+import { useNavigate } from 'react-router-dom'
 
-const blogItems = [
-  {
-    id: 1,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  },
-
-  {
-    id: 2,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  },
-
-  {
-    id: 3,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  },
-  {
-    id: 4,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  }
-]
 export default function Home() {
   const { profile } = useContext(AppContext)
   const [modalPost, setModalPost] = useState(false)
@@ -93,6 +57,26 @@ export default function Home() {
       fetchNextPage()
     }
   }, [inView, hasNextPage, fetchNextPage])
+
+  const { data: blogData } = useQuery({
+    queryKey: ['blogs-list-user', { limit: 4 }],
+    queryFn: () => {
+      return getBlogsForUser({ limit: 4 })
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 10
+  })
+
+  const { data: userData } = useQuery({
+    queryKey: ['recommed-list-user'],
+    queryFn: () => {
+      return recommendUser()
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 2
+  })
+
+  console.log(userData)
 
   if (status === 'pending') {
     return <LoadingHome />
@@ -152,127 +136,37 @@ export default function Home() {
           </div>
         </div>
         <div className='hidden xl:block  col-span-2'>
-          <div className='w-full mb-2 shadow  bg-white rounded-lg dark:bg-color-primary dark:border-none'>
-            <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-              Bạn có thể biết!
-            </div>
-            <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
-            <div className='p-3'>
-              <div className='flex justify-between items-center'>
-                <div className='flex items-center mb-4 mt-2 gap-3'>
-                  <div className='avatar'>
-                    <div className='mask mask-squircle w-12 h-12'>
-                      <img
-                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                        alt='Avatar Tailwind CSS Component'
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-bold'>Hart Hagerty</div>
-                    <div className=''>
-                      <span className='text-sm opacity-50'>@Hart</span>
-                    </div>
-                  </div>
-                </div>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
+          {userData?.data?.result.length === 0 ? null : (
+            <div className='w-full mb-2 shadow  bg-white rounded-lg dark:bg-color-primary dark:border-none'>
+              <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
+                Bạn có thể biết!
               </div>
-              <div className='flex justify-between items-center'>
-                <div className='flex items-center mb-4 mt-2 gap-3'>
-                  <div className='avatar'>
-                    <div className='mask mask-squircle w-12 h-12'>
-                      <img
-                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                        alt='Avatar Tailwind CSS Component'
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-bold'>Hart Hagerty</div>
-                    <div className=''>
-                      <span className='text-sm opacity-50'>@Hart</span>
-                    </div>
-                  </div>
-                </div>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-              </div>
-              <div className='flex justify-between items-center'>
-                <div className='flex items-center mb-4 mt-2 gap-3'>
-                  <div className='avatar'>
-                    <div className='mask mask-squircle w-12 h-12'>
-                      <img
-                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                        alt='Avatar Tailwind CSS Component'
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-bold'>Hart Hagerty</div>
-                    <div className=''>
-                      <span className='text-sm opacity-50'>@Hart</span>
-                    </div>
-                  </div>
-                </div>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-              </div>
-              <div className='flex justify-between items-center'>
-                <div className='flex items-center mb-4 mt-2 gap-3'>
-                  <div className='avatar'>
-                    <div className='mask mask-squircle w-12 h-12'>
-                      <img
-                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                        alt='Avatar Tailwind CSS Component'
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-bold'>Hart Hagerty</div>
-                    <div className=''>
-                      <span className='text-sm opacity-50'>@Hart</span>
-                    </div>
-                  </div>
-                </div>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
-              </div>
-              <div className='flex justify-between items-center'>
-                <div className='flex items-center mb-4 mt-2 gap-3'>
-                  <div className='avatar'>
-                    <div className='mask mask-squircle w-12 h-12'>
-                      <img
-                        src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                        alt='Avatar Tailwind CSS Component'
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <div className='font-bold'>Hart Hagerty</div>
-                    <div className=''>
-                      <span className='text-sm opacity-50'>@Hart</span>
-                    </div>
-                  </div>
-                </div>
-                <button className='btn btn-sm text-white hover:bg-red-900 bg-red-800'> Theo dõi</button>
+              <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
+              <div className='p-3'>
+                {userData?.data?.result.map((user) => {
+                  return <ItemUser key={user._id} user={user} />
+                })}
               </div>
             </div>
-          </div>
+          )}
+
           <div className='w-full shadow bg-white rounded-lg dark:bg-color-primary dark:border-none'>
             <div className='flex dark:text-gray-300 justify-center items-center pt-4 text-xl font-semibold text-red-700'>
-              Tin tức mới nhất
+              Blog mới nhất
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
             <div className='p-3'>
-              {blogItems.map((blogItem) => {
+              {blogData?.data?.result.blogs.map((blog) => {
                 return (
-                  <div className='mb-2 mx-5' key={blogItem.id}>
-                    <BlogCard
-                      blogItem={blogItem}
-                      imgClass='lg:h-[32vh] rounded-t-xl scale-100 overflow-hidden'
-                      dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                      titleClass=' font-bold hover:text-color-secondary'
-                      descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
-                      linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
-                    />
-                  </div>
+                  <BlogCard
+                    key={blog._id}
+                    blogItem={blog}
+                    imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'
+                    dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
+                    titleClass=' font-bold transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
+                    descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
+                    linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                  />
                 )
               })}
               <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
@@ -335,4 +229,48 @@ const checkTime = (profile) => {
       </>
     )
   }
+}
+
+const ItemUser = ({ user }) => {
+  const navigate = useNavigate()
+  const followMutation = useMutation({
+    mutationFn: (body) => followUser(body)
+  })
+  const handleFollow = () => {
+    followMutation.mutate(
+      { follow_id: user._id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('recommed-list-user')
+        }
+      }
+    )
+  }
+  return (
+    <div className='flex justify-between items-center'>
+      <div className='flex items-center mb-4 mt-2 gap-3'>
+        <div className='avatar'>
+          <div className=' rounded-full w-12 h-12'>
+            <img
+              className='object-cover w-12 h-12 rounded-full'
+              src={user.avatar === '' ? useravatar : user.avatar}
+              alt='Avatar Tailwind CSS Component'
+            />
+          </div>
+        </div>
+        <div>
+          <div onClick={() => navigate(`/user/${user._id}`)} className='font-bold cursor-pointer hover:underline'>
+            {user.name}
+          </div>
+          <div className=''>
+            <span className='text-sm opacity-50'>@{user.user_name}</span>
+          </div>
+        </div>
+      </div>
+      <button onClick={handleFollow} className='btn btn-sm text-white hover:bg-red-900 bg-red-800'>
+        {' '}
+        Theo dõi
+      </button>
+    </div>
+  )
 }

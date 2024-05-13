@@ -22,3 +22,7 @@ export const updateCoverAvatar = (body) =>
 export const updateProfile = (body) => http.put('/users/update-profile', body)
 
 export const changePassword = (body) => http.put('/users/update-password', body)
+
+export const recommendUser = () => http.get('/users/recommed')
+
+export const bookmarkUser = () => http.get('/users/bookmarks')

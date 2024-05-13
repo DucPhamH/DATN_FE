@@ -172,6 +172,25 @@ export default function Recipe() {
     }
   })
   const onSubmitSearch = handleSubmit((data) => {
+    if (data.searchRecipes === '') {
+      navigate({
+        pathname: '/cooking/recipe',
+        search: createSearchParams(
+          omit({ ...queryConfig }, [
+            'status',
+            'category_recipe_id',
+            'page',
+            'difficult_level',
+            'region',
+            'processing_food',
+            'interval_time',
+            'search',
+            'type'
+          ])
+        ).toString()
+      })
+      return
+    }
     navigate({
       pathname: '/cooking/recipe',
       search: createSearchParams(
@@ -216,7 +235,10 @@ export default function Recipe() {
                   </button>
                 </div>
               </form>
-              <div className=' hover:text-red-600 h-[34px] w-[34px] flex items-center justify-center ml-2 border bg-white p-1 rounded-lg dark:bg-slate-800 dark:border-none cursor-pointer'>
+              <div
+                onClick={() => navigate('/search-image')}
+                className=' hover:text-red-600 h-[34px] w-[34px] flex items-center justify-center ml-2 border bg-white p-1 rounded-lg dark:bg-slate-800 dark:border-none cursor-pointer'
+              >
                 <AiOutlineCamera size={30} />
               </div>
             </div>

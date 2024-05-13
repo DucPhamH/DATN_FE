@@ -20,6 +20,9 @@ export default function RecipeCard({ recipe }) {
     if (location.pathname.includes('/album')) {
       return queryClient.invalidateQueries('recipes-list-album')
     }
+    if (location.pathname.includes('/cooking')) {
+      return queryClient.invalidateQueries('recipes-list-user')
+    }
     // return queryClient.invalidateQueries(['userPost', data.user._id])
   }
   const likeMutation = useMutation({

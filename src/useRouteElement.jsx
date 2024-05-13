@@ -51,6 +51,7 @@ const AlbumDetail = lazy(() => import('./pages/AlbumDetail'))
 const RecipeDetail = lazy(() => import('./pages/RecipeDetail'))
 const MealSchedule = lazy(() => import('./pages/MealSchedule'))
 const MealScheduleDetail = lazy(() => import('./pages/MealScheduleDetail'))
+const SearchImage = lazy(() => import('./pages/SearchImage'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -70,12 +71,6 @@ export default function useRouteElement() {
     return check ? <Outlet /> : <Navigate to='/home' />
   }
 
-  // function RoleProtectedRouter2() {
-  //   const { profile } = useContext(AppContext)
-  //   const check = Boolean(info.roles === 2)
-  //   // console.log(check)
-  //   return check ? <Outlet /> : <Navigate to='/' />
-  // }
   const routeElement = useRoutes([
     {
       path: '/',
@@ -380,12 +375,21 @@ export default function useRouteElement() {
               </Suspense>
             </MainLayout>
           )
+        },
+        {
+          path: 'search-image',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <SearchImage />
+              </Suspense>
+            </MainLayout>
+          )
         }
 
         /////////////////////////////////////////////
       ]
     },
-
     {
       path: '',
       element: <ProtectedRoute />,

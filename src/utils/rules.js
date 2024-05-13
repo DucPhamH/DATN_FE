@@ -103,6 +103,18 @@ export const schemaCreateRecipe = yup.object({
   video: yup.string().url('Link video không đúng định dạng')
 })
 
+export const schemaSearchImage = yup.object({
+  image: yup
+    .mixed()
+    .required('Ảnh là bắt buộc')
+    .test('fileType', 'Ảnh phải có định dạng jpg', (value) => {
+      if (value) {
+        return value && value[0]?.type === 'image/jpeg'
+      }
+      return false
+    })
+})
+
 export const schemaUpdateRecipe = yup.object({
   title: yup.string().required('Tiêu đề là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự'),
   description: yup.string().required('Mô tả là bắt buộc').min(10, 'Độ dài từ 10 ký tự'),

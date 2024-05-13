@@ -205,22 +205,6 @@ export default function Blog() {
                   })
                 )}
               </div>
-
-              {/* {blogData?.data.result.blogs.length === 0 && (
-                <div className='flex justify-center items-center'>
-                  <div className='text-gray-500 dark:text-gray-300'>Không có bài viết nào</div>
-                </div>
-              )}
-              {blogData?.data.result.totalPage > 1 && (
-                <div className='flex justify-center items-center'>
-                  <button
-                    onClick={handleSeeMore}
-                    className='btn w-full hover:bg-red-800 mb-6 text-xl bg-red-900 text-gray-200'
-                  >
-                    Xem thêm kết quả khác
-                  </button>
-                </div>
-              )} */}
             </>
           )}
           <div className='w-full'>

@@ -164,6 +164,24 @@ export default function RecipeList() {
     }
   })
   const onSubmitSearch = handleSubmit((data) => {
+    if (data.searchRecipes === '') {
+      navigate({
+        pathname: '/chef/recipe-list',
+        search: createSearchParams(
+          omit({ ...queryConfig }, [
+            'status',
+            'category_recipe_id',
+            'page',
+            'difficult_level',
+            'region',
+            'processing_food',
+            'interval_time',
+            'search'
+          ])
+        ).toString()
+      })
+      return
+    }
     navigate({
       pathname: '/chef/recipe-list',
       search: createSearchParams(
