@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { cutString } from '../../../helpers/cutString'
+import { cutString } from '../../../utils/helper'
 
 export default function SearchImageCard({ recipe }) {
   return (
