@@ -52,6 +52,8 @@ const RecipeDetail = lazy(() => import('./pages/RecipeDetail'))
 const MealSchedule = lazy(() => import('./pages/MealSchedule'))
 const MealScheduleDetail = lazy(() => import('./pages/MealScheduleDetail'))
 const SearchImage = lazy(() => import('./pages/SearchImage'))
+const Bookmark = lazy(() => import('./pages/Bookmark'))
+const Search = lazy(() => import('./pages/Search'))
 
 export default function useRouteElement() {
   function ProtectedRoute() {
@@ -382,6 +384,26 @@ export default function useRouteElement() {
             <MainLayout>
               <Suspense>
                 <SearchImage />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'bookmark',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Bookmark />
+              </Suspense>
+            </MainLayout>
+          )
+        },
+        {
+          path: 'search',
+          element: (
+            <MainLayout>
+              <Suspense>
+                <Search />
               </Suspense>
             </MainLayout>
           )

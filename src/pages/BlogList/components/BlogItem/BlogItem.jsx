@@ -1,5 +1,4 @@
 import moment from 'moment'
-import { cutString } from '../../../../helpers/cutString'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
 import { deleteBlogForChef } from '../../../../apis/blogApi'
@@ -7,6 +6,7 @@ import { toast } from 'react-toastify'
 import { useState } from 'react'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
 import { queryClient } from '../../../../main'
+import { cutString } from '../../../../utils/helper'
 export default function BlogItem({ blog }) {
   const [openDelete, setOpenDelete] = useState(false)
 

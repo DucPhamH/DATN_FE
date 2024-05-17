@@ -86,8 +86,6 @@ export default function CreateItemSchedule({ workout }) {
     })
   })
 
-  console.log(query)
-
   const createWorkOutItemMutation = useMutation({
     mutationFn: (body) => createWorkoutItem(body)
   })

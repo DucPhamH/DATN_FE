@@ -8,7 +8,9 @@ const initialAppContext = {
   setIsAuthenticated: () => null,
   profile: getProfileFromLS(),
   setProfile: () => null,
-  reset: () => null
+  reset: () => null,
+  searchQuery: {},
+  setSearchQuery: () => null
 }
 
 export const AppContext = createContext(initialAppContext)
@@ -17,6 +19,7 @@ export const AppProvider = ({ children }) => {
   const [theme, setTheme] = useState(initialAppContext.theme)
   const [isAuthenticated, setIsAuthenticated] = useState(initialAppContext.isAuthenticated)
   const [profile, setProfile] = useState(initialAppContext.profile)
+  const [searchQuery, setSearchQuery] = useState(initialAppContext.searchQuery)
 
   const reset = () => {
     setIsAuthenticated(false)
@@ -31,7 +34,9 @@ export const AppProvider = ({ children }) => {
         setIsAuthenticated,
         profile,
         setProfile,
-        reset
+        reset,
+        searchQuery,
+        setSearchQuery
       }}
     >
       {children}

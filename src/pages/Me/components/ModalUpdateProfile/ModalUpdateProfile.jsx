@@ -13,6 +13,7 @@ import { toast } from 'react-toastify'
 import { updateProfile } from '../../../../apis/userApi'
 import { AppContext } from '../../../../contexts/app.context'
 import { setProfileToLS } from '../../../../utils/auth'
+import { isAxiosUnprocessableEntityError } from '../../../../utils/utils'
 
 export default function ModalUpdateMeal({ handleCloseModalUpdateProfile, user }) {
   // const [openWeightTarget, setOpenWeightTarget] = useState(false)
@@ -60,6 +61,10 @@ export default function ModalUpdateMeal({ handleCloseModalUpdateProfile, user })
       delete data.user_name
     }
 
+    if (data.address === user.address || data.address === '') {
+      delete data.address
+    }
+
     updateProfileMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
@@ -70,11 +75,22 @@ export default function ModalUpdateMeal({ handleCloseModalUpdateProfile, user })
         handleCloseModalUpdateProfile()
       },
       onError: (error) => {
-        console.log(error)
-        setError('user_name', {
-          type: 'manual',
-          message: error?.response.data.errors.user_name.msg
-        })
+        if (isAxiosUnprocessableEntityError(error)) {
+          const formError = error.response?.data.errors
+          console.log(formError)
+          if (formError?.address) {
+            setError('address', {
+              message: formError.address.msg,
+              type: 'Server'
+            })
+          }
+          if (formError?.user_name) {
+            setError('user_name', {
+              message: formError.user_name.msg,
+              type: 'Server'
+            })
+          }
+        }
       }
     })
   })

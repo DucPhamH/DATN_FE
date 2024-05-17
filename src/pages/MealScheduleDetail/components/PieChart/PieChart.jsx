@@ -42,7 +42,7 @@ export default function PieChart({ meal, profile }) {
   console.log(item)
 
   const data = {
-    labels: ['Lượng calo đã nạp', 'Lượng calo còn lại'],
+    labels: ['Lượng calo đã nạp trong ngày', 'Lượng calo còn lại trong ngày'],
     datasets: [
       {
         label: 'Biểu đồ lượng calo',
@@ -63,13 +63,18 @@ export default function PieChart({ meal, profile }) {
       },
       title: {
         display: true,
-        text: 'Biểu đồ lượng calo đã nạp hôm nay/TDEE'
+        text: `Biểu đồ lượng calo đã nạp và còn lại trong ngày ${moment(new Date()).format('DD/MM')}`
       }
     }
   }
   return (
-    <div className='bg-white mx-2 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 col-span-1 flex justify-center  lg:h-[27rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
+    <div className='bg-white mx-2 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 col-span-1 flex flex-col justify-center  lg:h-[27rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
       <Pie options={options} data={data} />
+      <div>
+        <h1 className='text-center text-gray-500 mt-5 font-semibold'>
+          {item === 0 ? 'Bạn chưa nạp calo trong hôm nay' : `Lượng calo đã nạp: ${item}/${profile?.TDEE} calories`}
+        </h1>
+      </div>
     </div>
   )
 }

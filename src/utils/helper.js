@@ -15,3 +15,10 @@ export const calculateDayExpected = (weight_target, weight, purpose) => {
     return Math.ceil(day_expected)
   }
 }
+
+export const cutString = (str, length) => {
+  if (str.length > length) {
+    return str.slice(0, length) + '...'
+  }
+  return str
+}

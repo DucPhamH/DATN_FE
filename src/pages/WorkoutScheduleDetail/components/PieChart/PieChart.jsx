@@ -22,7 +22,7 @@ export default function PieChart({ workout }) {
   }
 
   const data = {
-    labels: ['Lượng calo mục tiêu', 'Lượng calo đã hoàn thành'],
+    labels: ['Lượng calo còn lại của mục tiêu', 'Lượng calo đã hoàn thành'],
     datasets: [
       {
         label: 'Biểu đồ lượng calo',
@@ -43,13 +43,20 @@ export default function PieChart({ workout }) {
       },
       title: {
         display: true,
-        text: 'Biểu đồ lượng calo hoàn thành / mục tiêu'
+        text: 'Biểu đồ lượng calo đã đốt cháy / lượng calo còn lại của mục tiêu'
       }
     }
   }
   return (
-    <div className='bg-white mx-2 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 col-span-1 flex justify-center  lg:h-[27rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
+    <div className='bg-white mx-2 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 col-span-1 flex flex-col justify-center  lg:h-[27rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
       <Pie options={options} data={data} />
+      <div>
+        <h1 className='text-center text-gray-500 mt-5 font-semibold'>
+          {workout?.total_calo_burn === 0
+            ? 'Bạn chưa thực hiện bài tập nào'
+            : `Lượng calo đã đốt cháy: ${workout?.total_calo_burn}/${workout?.calo_target} calories`}
+        </h1>
+      </div>
     </div>
   )
 }

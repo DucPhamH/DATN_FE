@@ -29,7 +29,7 @@ export default function LineChart({ workout }) {
   })
 
   const dataCalo = lineData?.data.result.workoutDate
-  console.log(dataCalo)
+
   const options = {
     responsive: true,
     maintainAspectRatio: true,

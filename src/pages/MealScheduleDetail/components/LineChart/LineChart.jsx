@@ -12,15 +12,13 @@ import {
 import { Line } from 'react-chartjs-2'
 import PaginationMini from '../../../../components/GlobalComponents/PaginationMini/PaginationMini'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
-
-import { useContext, useState } from 'react'
 import moment from 'moment'
 import { getDateMealItem } from '../../../../apis/mealScheduleApi'
-import { AppContext } from '../../../../contexts/app.context'
+import { useState } from 'react'
+
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title)
 export default function LineChart({ meal }) {
   const [query, setQuery] = useState({ page: '1', limit: '7', meal_schedule_id: meal?._id })
-  const { profile } = useContext(AppContext)
 
   const { data: lineData } = useQuery({
     queryKey: ['line-data-meal', query],
@@ -73,12 +71,6 @@ export default function LineChart({ meal }) {
         data: dataCalo?.map((item) => item.total_fat),
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.5)'
-      },
-      {
-        label: 'Lượng TDEE',
-        data: dataCalo?.map(() => profile?.TDEE),
-        borderColor: 'rgb(153, 102, 255)',
-        backgroundColor: 'rgba(153, 102, 255, 0.5)'
       }
     ]
   }

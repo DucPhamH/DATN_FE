@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom'
 
 export default function BlogCard({ blogItem, imgClass, dateClass, titleClass, descriptionClass, linkClass }) {
   return (
-    <div className='border border-gray-300 dark:border-gray-800  rounded-xl'>
+    <div className='border my-1 border-gray-300 dark:border-gray-800  rounded-xl'>
       <div className={imgClass}>
         <img
           src={blogItem.image}
           alt='blog'
-          className='lg:h-full w-full object-cover hover:scale-125 transition duration-300 ease-in-out'
+          className=' w-full h-full object-cover hover:scale-125 transition duration-300 ease-in-out'
         />
       </div>
       <div className='mx-3 mb-8'>

@@ -17,8 +17,8 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { omit } from 'lodash'
 import { FaPlus } from 'react-icons/fa'
 import PaginationNotUrl from '../../components/GlobalComponents/PaginationNotUrl'
-import { cutString } from '../../helpers/cutString'
 import { queryClient } from '../../main'
+import { cutString } from '../../utils/helper'
 
 export default function CreateAlbum() {
   const navigate = useNavigate()
@@ -26,7 +26,6 @@ export default function CreateAlbum() {
   const [arrayRecipes, setArrayRecipes] = useState([])
   const [query, setQuery] = useState({
     page: 1,
-    search: '',
     status: 0
   })
 
@@ -95,6 +94,9 @@ export default function CreateAlbum() {
     }
   })
   const onSubmitSearch = handleSubmitRecipe((data) => {
+    if (data.searchRecipe === '') {
+      return setQuery((prev) => omit(prev, ['page', 'search']))
+    }
     setQuery((prev) => {
       return omit({ ...prev, search: data.searchRecipe }, ['page'])
     })
@@ -395,7 +397,7 @@ const RecipeItem = ({ recipe, arrayRecipes, setArrayRecipes }) => {
   return (
     <tr>
       <td className='px-6 py-4 '>
-        <span className='text-sm  font-medium text-gray-900 dark:text-gray-300'>{cutString(recipe.title, 12)}</span>
+        <span className='text-sm  font-medium text-gray-900 dark:text-gray-300'>{cutString(recipe.title, 20)}</span>
       </td>
       <td className='px-6 py-4 '>
         <span className='text-sm  font-medium text-gray-900 dark:text-gray-300'>{recipe.category_recipe.name}</span>

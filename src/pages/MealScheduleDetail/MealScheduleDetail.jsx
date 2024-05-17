@@ -487,6 +487,9 @@ export default function MealScheduleDetail() {
                     ? 'Mục tiêu: Giảm cân'
                     : 'Mục tiêu: Duy trì cân nặng'}
                 </p>
+                <span className='text-sm text-gray-400 dark:text-gray-500'>
+                  {moment(meal?.start_date).format('MMM Do YY')} - {moment(meal?.end_date).format('MMM Do YY')}
+                </span>
               </div>
               <div className='flex gap-2 items-center'>
                 <button

@@ -1,7 +1,6 @@
 export default function PaginationMini({ query, pageSize, setQuery, title }) {
   const page = Number(query.page) ? Number(query.page) : 1
-  console.log(page)
-  console.log(pageSize)
+
   return (
     <div className='flex mx-3 justify-end '>
       <div className='flex gap-5 justify-center items-center'>

@@ -2,13 +2,13 @@ import moment from 'moment'
 import { AiFillHeart, AiOutlineClockCircle } from 'react-icons/ai'
 import { BsFillBookmarkFill } from 'react-icons/bs'
 import { BsFillLightningChargeFill } from 'react-icons/bs'
-import { cutString } from '../../../helpers/cutString'
 import { CiHeart } from 'react-icons/ci'
 import { bookmarkRecipe, likeRecipe, unbookmarkRecipe, unlikeRecipe } from '../../../apis/recipeApi'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../main'
 import { Link, useLocation } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { cutString } from '../../../utils/helper'
 export default function RecipeCard({ recipe }) {
   const location = useLocation()
   console.log(location.pathname)
@@ -22,6 +22,9 @@ export default function RecipeCard({ recipe }) {
     }
     if (location.pathname.includes('/cooking')) {
       return queryClient.invalidateQueries('recipes-list-user')
+    }
+    if (location.pathname.includes('/bookmark')) {
+      return queryClient.invalidateQueries('bookmark')
     }
     // return queryClient.invalidateQueries(['userPost', data.user._id])
   }
