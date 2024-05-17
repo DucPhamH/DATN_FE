@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-import { cutString } from '../../../../helpers/cutString'
 import moment from 'moment'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -7,6 +6,7 @@ import { deleteMealSchedule } from '../../../../apis/mealScheduleApi'
 import { queryClient } from '../../../../main'
 import { toast } from 'react-toastify'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
+import { cutString } from '../../../../utils/helper'
 
 export default function MealItem({ meal }) {
   const [openModalMeal, setOpenModalMeal] = useState(false)

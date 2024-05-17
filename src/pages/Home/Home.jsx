@@ -76,8 +76,6 @@ export default function Home() {
     staleTime: 1000 * 60 * 2
   })
 
-  console.log(userData)
-
   if (status === 'pending') {
     return <LoadingHome />
   }
@@ -161,9 +159,9 @@ export default function Home() {
                   <BlogCard
                     key={blog._id}
                     blogItem={blog}
-                    imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'
+                    imgClass='w-full max-h-[20rem] object-cover rounded-t-xl scale-100 overflow-hidden'
                     dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                    titleClass=' font-bold transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
+                    titleClass=' font-bold  transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
                     descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
                     linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
                   />

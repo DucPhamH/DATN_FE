@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-import { cutString } from '../../../../helpers/cutString'
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { deleteWorkoutSchedule } from '../../../../apis/workoutScheduleApi'
@@ -7,6 +6,7 @@ import { queryClient } from '../../../../main'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
+import { cutString } from '../../../../utils/helper'
 
 export default function WorkoutItem({ workout }) {
   const [openModalWorkout, setOpenModalWorkout] = useState(false)

@@ -252,20 +252,14 @@ export const schemaAddQuantityMeal = yup.object({
 })
 
 export const schemaUpdateProfile = yup.object({
-  name: yup.string().required('Tên là bắt buộc').min(6, 'Độ dài từ 6 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
+  name: yup.string().min(6, 'Độ dài từ 6 - 160 ký tự').max(160, 'Độ dài từ 3 - 160 ký tự'),
   birthday: yup.date().required('Ngày sinh là bắt buộc'),
   //user_name là chuỗi liền không có khoảng trắng
   user_name: yup
     .string()
-    .required('Tên tài khoản là bắt buộc')
     .min(5, 'Độ dài từ 5 - 160 ký tự')
     .max(160, 'Độ dài từ 5 - 160 ký tự')
-    .matches(/^\S*$/, 'Tên tài khoản không được chứa khoảng trắng'),
-  address: yup
-    .string()
-    .required('Địa chỉ là bắt buộc')
-    .min(5, 'Độ dài từ 5 - 160 ký tự')
-    .max(160, 'Độ dài từ 5 - 160 ký tự')
+    .matches(/^\S*$/, 'Tên tài khoản không được chứa khoảng trắng')
 })
 
 export const schemaChangePassword = yup.object({

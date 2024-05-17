@@ -98,8 +98,6 @@ export default function WorkoutScheduleDetail() {
     staleTime: 1000 * 60 * 10
   })
 
-  console.log(dateData)
-
   const completeDateWorkOutItemMutation = useMutation({
     mutationFn: (body) => completeDateWorkoutItem(body)
   })
@@ -112,7 +110,6 @@ export default function WorkoutScheduleDetail() {
     // dùng moment fomat date thành string với định dạng yyyy-MM-DD
 
     const newDate = moment(date).format('YYYY-MM-DD')
-    console.log(newDate)
 
     completeDateWorkOutItemMutation.mutate(
       {
@@ -330,6 +327,9 @@ export default function WorkoutScheduleDetail() {
                 <p className='font-medium text-lg'>
                   Đã hoàn thành: {workout?.total_calo_burn} / {workout?.calo_target} calories
                 </p>
+                <span className='text-sm text-gray-400 dark:text-gray-500'>
+                  {moment(workout?.start_date).format('MMM Do YY')} - {moment(workout?.end_date).format('MMM Do YY')}
+                </span>
               </div>
               <div className='flex gap-2 items-center'>
                 <button

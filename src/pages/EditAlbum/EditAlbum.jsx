@@ -13,13 +13,13 @@ import { useEffect, useState } from 'react'
 import { queryClient } from '../../main'
 import EditConfirmBox from '../../components/GlobalComponents/EditConfirmBox'
 import { deleteRecipeInAlbumForChef, getAlbumForChef, updateAlbumForChef } from '../../apis/albumApi'
-import { cutString } from '../../helpers/cutString'
 import { omit } from 'lodash'
 import { getRecipesForChef } from '../../apis/recipeApi'
 import PaginationNotUrl from '../../components/GlobalComponents/PaginationNotUrl'
 import { FaPlus } from 'react-icons/fa'
 import { AiOutlineSearch } from 'react-icons/ai'
 import DeleteConfirmBox from '../../components/GlobalComponents/DeleteConfirmBox'
+import { cutString } from '../../utils/helper'
 
 export default function EditAlbum() {
   const [openEdit, setOpenEdit] = useState(false)
@@ -33,7 +33,6 @@ export default function EditAlbum() {
   }
   const [query, setQuery] = useState({
     page: 1,
-    search: '',
     status: 0
   })
 
@@ -116,6 +115,9 @@ export default function EditAlbum() {
     }
   })
   const onSubmitSearch = handleSubmitRecipe((data) => {
+    if (data.searchRecipe === '') {
+      return setQuery((prev) => omit(prev, ['page', 'search']))
+    }
     setQuery((prev) => {
       return omit({ ...prev, search: data.searchRecipe }, ['page'])
     })
@@ -261,7 +263,7 @@ export default function EditAlbum() {
                           <tr key={item._id}>
                             <td className='px-6 py-2 '>
                               <span className='text-sm  font-medium text-gray-900 dark:text-gray-300'>
-                                {cutString(item.title, 12)}
+                                {cutString(item.title, 20)}
                               </span>
                             </td>
                             <td className='px-6 py-2 '>

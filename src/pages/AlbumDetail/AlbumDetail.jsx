@@ -113,7 +113,7 @@ export default function AlbumDetail() {
                     <button className='block btn btn-xs  md:inline-block md:w-auto  bg-blue-400 hover:bg-blue-500 border-none text-white rounded-lg font-semibold text-sm  md:order-2'>
                       <div className='flex text-xs justify-center gap-1 items-center'>
                         <FaCheckCircle />
-                        <div>Đã lưu</div>
+                        <div>Bỏ lưu</div>
                       </div>
                     </button>
                   )}

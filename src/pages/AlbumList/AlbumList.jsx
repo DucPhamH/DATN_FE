@@ -79,6 +79,13 @@ export default function AlbumList() {
     }
   })
   const onSubmitSearch = handleSubmit((data) => {
+    if (data.searchAlbums === '') {
+      navigate({
+        pathname: '/chef/album-list',
+        search: createSearchParams(omit({ ...queryConfig }, ['status', 'category_album', 'page', 'search'])).toString()
+      })
+      return
+    }
     navigate({
       pathname: '/chef/album-list',
       search: createSearchParams(

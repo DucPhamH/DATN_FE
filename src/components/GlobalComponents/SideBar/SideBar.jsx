@@ -130,7 +130,7 @@ export default function SideBar() {
           <ul
             className={
               profile?.role === 1
-                ? 'whitespace-pre  px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 h-full '
+                ? 'whitespace-pre  px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 md:h-[80%] h-[70%] '
                 : 'whitespace-pre  px-2.5 pt-4 pb-4 flex flex-col gap-3 font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 md:h-[72%] h-[70%]  '
             }
           >
@@ -170,7 +170,7 @@ export default function SideBar() {
               </div>
             )}
             <li>
-              <NavLink to={'/settings'} className='link-custom '>
+              <NavLink to={'/bookmark'} className='link-custom '>
                 <MdBook size={25} className='min-w-max' />
                 Mục đã lưu
               </NavLink>

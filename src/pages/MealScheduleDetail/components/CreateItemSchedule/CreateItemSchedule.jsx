@@ -84,8 +84,6 @@ export default function CreateItemSchedule({ meal }) {
     reset()
   })
 
-  console.log(mealState)
-
   const handleChangeCategory = (e) => {
     if (e.target.value === 'all-category') {
       setQuery((prev) => {
@@ -132,8 +130,6 @@ export default function CreateItemSchedule({ meal }) {
         current_date: timeMeal
       }
     })
-
-    console.log(arrayMealItems)
 
     // call api add activity
 

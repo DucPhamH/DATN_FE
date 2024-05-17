@@ -62,14 +62,21 @@ export default function Album() {
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      searchBlogs: queryConfig.search || ''
+      searchAlbums: queryConfig.search || ''
     }
   })
   const onSubmitSearch = handleSubmit((data) => {
+    if (data.searchAlbums === '') {
+      navigate({
+        pathname: '/album',
+        search: createSearchParams(omit({ ...queryConfig }, ['category_album', 'limit', 'page', 'search'])).toString()
+      })
+      return
+    }
     navigate({
       pathname: '/album',
       search: createSearchParams(
-        omit({ ...queryConfig, search: data.searchBlogs }, ['category_album', 'limit'])
+        omit({ ...queryConfig, search: data.searchAlbums }, ['category_album', 'limit'])
       ).toString()
     })
   })
@@ -117,7 +124,7 @@ export default function Album() {
                   <input
                     type='search'
                     id='search_input'
-                    {...register('searchBlogs')}
+                    {...register('searchAlbums')}
                     placeholder='Tìm kiếm chuyên đề'
                     className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
                   />
