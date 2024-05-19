@@ -6,6 +6,7 @@ import ModalRequest from '../ModalRequest'
 import { updateRequest } from '../../../../apis/userApi'
 import { useMutation } from '@tanstack/react-query'
 import { toast } from 'react-toastify'
+import { queryClient } from '../../../../main'
 export default function ThreeDots({ user }) {
   const [isMenu, setIsMenu] = useState(false)
   const [openModalChangePass, setOpenModalChangePass] = useState(false)
@@ -30,6 +31,7 @@ export default function ThreeDots({ user }) {
           onSuccess: (data) => {
             console.log(data)
             toast.success('Yêu cầu nâng cấp lên đầu bếp thành công, hãy đợi email phản hồi từ chúng tôi')
+            queryClient.invalidateQueries('me')
             setIsMenu(false)
           },
           onError: (error) => {

@@ -24,6 +24,10 @@ export default function InputConfirm() {
   })
 
   const onConfirm = () => {
+    if (otp.length !== 4) {
+      toast.error('Bạn cần nhập đúng 4 ký tự')
+      return
+    }
     confirmOtpMutation.mutate(
       {
         email: queryConfig.email,

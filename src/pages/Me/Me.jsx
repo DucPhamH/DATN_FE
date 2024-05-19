@@ -4,7 +4,7 @@ import useravatar from '../../assets/images/useravatar.jpg'
 import avatarbg from '../../assets/images/avatarbg.jpg'
 import { useState } from 'react'
 import { currentAccount } from '../../apis/userApi'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import MePost from './components/MePost'
 import TabsProfile from '../../components/GlobalComponents/TabsProfile'
 import ModalUploadAvatar from './components/ModalUploadAvatar'
@@ -50,7 +50,9 @@ export default function Me() {
     queryKey: ['me'],
     queryFn: () => {
       return currentAccount()
-    }
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5
   })
   console.log(userData?.data.result[0])
 
@@ -93,13 +95,30 @@ export default function Me() {
                       <div className='text-lg whitespace-nowrap text-gray-600 dark:text-gray-400'>
                         @{userData?.data.result[0].user_name}
                       </div>
-
-                      {userData?.data.result[0].followers_count >= 3 && (
-                        <div>
-                          <span className='text-sm font-semibold'>
-                            Lưu ý: Bạn đã đạt đủ điều kiện để nâng cấp lên đầu bếp, hãy nâng cấp ngay !
-                          </span>
-                        </div>
+                      {userData?.data.result[0].role === 0 && (
+                        <>
+                          {userData?.data.result[0].followers_count >= 3 ? (
+                            <div>
+                              {userData?.data.result[0].upgrade_request?.type === 0 ? (
+                                <span className='text-sm font-semibold'>
+                                  Lưu ý: Bạn đã gửi yêu cầu nâng cấp lên đầu bếp, vui lòng chờ xác nhận từ admin !
+                                </span>
+                              ) : (
+                                <span className='text-sm font-semibold'>
+                                  Lưu ý: Bạn đã đạt đủ điều kiện để nâng cấp lên đầu bếp, hãy nâng cấp ngay !
+                                </span>
+                              )}
+                            </div>
+                          ) : (
+                            <div>
+                              {userData?.data.result[0].upgrade_request?.type === 1 && (
+                                <span className='text-sm font-semibold'>
+                                  Lưu ý: Bạn đã gửi yêu cầu nâng cấp lên đầu bếp, vui lòng chờ xác nhận từ admin !
+                                </span>
+                              )}
+                            </div>
+                          )}
+                        </>
                       )}
                     </div>
 

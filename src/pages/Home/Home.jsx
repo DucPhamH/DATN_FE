@@ -73,7 +73,7 @@ export default function Home() {
       return recommendUser()
     },
     placeholderData: keepPreviousData,
-    staleTime: 1000 * 60 * 2
+    staleTime: 1000 * 60 * 10
   })
 
   if (status === 'pending') {
