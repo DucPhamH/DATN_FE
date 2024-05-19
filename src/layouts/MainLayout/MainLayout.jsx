@@ -2,8 +2,9 @@ import SideBar from '../../components/GlobalComponents/SideBar'
 import Header from '../../components/GlobalComponents/Header'
 import Footer from '../../components/GlobalComponents/Footer'
 import { AiOutlineArrowUp } from 'react-icons/ai'
+import { memo } from 'react'
 
-export default function MainLayout({ children }) {
+function MainLayoutInner({ children }) {
   return (
     <div className='flex justify-between text-gray-800 w-full bg-gray-100 h-full dark:text-gray-300 dark:bg-color-primary-dark'>
       <SideBar />
@@ -29,3 +30,6 @@ export default function MainLayout({ children }) {
     </div>
   )
 }
+
+const MainLayout = memo(MainLayoutInner)
+export default MainLayout

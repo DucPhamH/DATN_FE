@@ -1,8 +1,8 @@
-import React from 'react'
+import { memo } from 'react'
 import { Link } from 'react-router-dom'
 import MotionWrapper from '../MotionWrapper'
 
-export default function AuthLayout({ children }) {
+function AuthLayoutInner({ children }) {
   return (
     <section className='min-h-screen flex items-stretch text-white '>
       <div className='lg:flex w-1/2 hidden bg-no-repeat bg-cover relative items-center bg-dark_bg'>
@@ -35,3 +35,7 @@ export default function AuthLayout({ children }) {
     </section>
   )
 }
+
+const AuthLayout = memo(AuthLayoutInner)
+
+export default AuthLayout

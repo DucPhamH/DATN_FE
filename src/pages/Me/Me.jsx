@@ -89,12 +89,21 @@ export default function Me() {
                       <div className='text-3xl whitespace-nowrap text-gray-800 dark:text-white font-semibold'>
                         {userData?.data.result[0].name}
                       </div>
+
                       <div className='text-lg whitespace-nowrap text-gray-600 dark:text-gray-400'>
                         @{userData?.data.result[0].user_name}
                       </div>
+
+                      {userData?.data.result[0].followers_count >= 3 && (
+                        <div>
+                          <span className='text-sm font-semibold'>
+                            Lưu ý: Bạn đã đạt đủ điều kiện để nâng cấp lên đầu bếp, hãy nâng cấp ngay !
+                          </span>
+                        </div>
+                      )}
                     </div>
 
-                    <div className='py-4 flex divide-x divide-gray-400 divide-solid'>
+                    <div className='py-2 flex divide-x divide-gray-400 divide-solid'>
                       <span className='text-center px-2'>
                         <span className='font-bold text-red-700'>{userData?.data.result[0].followers_count}</span>
                         <span className='text-gray-600 dark:text-white'> Người theo dõi</span>

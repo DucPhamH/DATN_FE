@@ -2,9 +2,14 @@ import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { BiDotsHorizontalRounded } from 'react-icons/bi'
 import ModalChangePass from '../ModalChangePass'
+import ModalRequest from '../ModalRequest'
+import { updateRequest } from '../../../../apis/userApi'
+import { useMutation } from '@tanstack/react-query'
+import { toast } from 'react-toastify'
 export default function ThreeDots({ user }) {
   const [isMenu, setIsMenu] = useState(false)
   const [openModalChangePass, setOpenModalChangePass] = useState(false)
+  const [openModalRequest, setOpenModalRequest] = useState(false)
 
   const handleOpenModalChangePass = () => {
     setOpenModalChangePass(true)
@@ -12,6 +17,34 @@ export default function ThreeDots({ user }) {
 
   const handleCloseModalChangePass = () => {
     setOpenModalChangePass(false)
+  }
+  const updateRequestMutation = useMutation({
+    mutationFn: (body) => updateRequest(body)
+  })
+
+  const handleOpenModalRequest = () => {
+    if (user?.followers_count >= 3) {
+      updateRequestMutation.mutate(
+        {},
+        {
+          onSuccess: (data) => {
+            console.log(data)
+            toast.success('Yêu cầu nâng cấp lên đầu bếp thành công, hãy đợi email phản hồi từ chúng tôi')
+            setIsMenu(false)
+          },
+          onError: (error) => {
+            console.log(error)
+            toast.error('Yêu cầu nâng cấp tài khoản thất bại')
+          }
+        }
+      )
+      return
+    }
+    setOpenModalRequest(true)
+  }
+
+  const handleCloseModalRequest = () => {
+    setOpenModalRequest(false)
   }
 
   const ref = useRef()
@@ -55,7 +88,7 @@ export default function ThreeDots({ user }) {
                     </span>
                   </li>
                   {user?.role === 1 ? null : (
-                    <li>
+                    <li onClick={handleOpenModalRequest}>
                       <span className='flex font-medium text-sm justify-between items-center  px-4 py-2 transition-all duration-400 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white'>
                         Nâng cấp tài khoản
                       </span>
@@ -68,6 +101,9 @@ export default function ThreeDots({ user }) {
         </AnimatePresence>
       </div>
       {openModalChangePass && <ModalChangePass handleCloseModalUpdatePass={handleCloseModalChangePass} />}
+      {openModalRequest && (
+        <ModalRequest handleCloseModalRequest={handleCloseModalRequest} updateRequest={updateRequestMutation} />
+      )}
     </>
   )
 }

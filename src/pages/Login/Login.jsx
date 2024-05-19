@@ -11,6 +11,7 @@ import { isAxiosUnprocessableEntityError } from '../../utils/utils'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context'
 import Loading from '../../components/GlobalComponents/Loading'
+import { queryClient } from '../../main'
 
 export default function Login() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)
@@ -33,6 +34,7 @@ export default function Login() {
         setProfile(data.data.result.user)
         navigate('/home')
         toast.success(data.data.message)
+        queryClient.invalidateQueries('me')
       },
       onError: (error) => {
         if (isAxiosUnprocessableEntityError(error)) {
