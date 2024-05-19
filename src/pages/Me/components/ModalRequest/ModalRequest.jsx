@@ -8,6 +8,7 @@ import Input from '../../../../components/InputComponents/Input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaRequestUpgrade } from '../../../../utils/rules'
 import { toast } from 'react-toastify'
+import { queryClient } from '../../../../main'
 
 export default function ModalRequest({ handleCloseModalRequest, updateRequest }) {
   const {
@@ -40,6 +41,7 @@ export default function ModalRequest({ handleCloseModalRequest, updateRequest })
       onSuccess: (data) => {
         console.log(data)
         toast.success('Yêu cầu nâng cấp lên đầu bếp thành công, hãy đợi email phản hồi từ chúng tôi')
+        queryClient.invalidateQueries('me')
         handleCloseModalRequest()
       },
       onError: (error) => {

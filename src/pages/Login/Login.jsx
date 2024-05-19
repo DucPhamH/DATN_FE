@@ -103,10 +103,10 @@ export default function Login() {
           name='password'
         />
         <div className='flex justify-end text-sm'>
-          <Link className='text-red-600 font-medium hover:underline hover:text-red-700' to='/login/admin'>
+          {/* <Link className='text-red-600 font-medium hover:underline hover:text-red-700' to='/login/admin'>
             Đăng nhập admin
           </Link>
-          <span className='font-medium text-black mx-1'>|</span>
+          <span className='font-medium text-black mx-1'>|</span> */}
           <Link className='text-blue-400 font-medium hover:underline hover:text-red-700' to='/forgot-password'>
             Quên mật khẩu ?
           </Link>

@@ -203,7 +203,7 @@ function CheckTypeOfPost({
             <div className='flex items-center'>
               <div onClick={checkNavigateProfileUser} className='inline-block mr-4'>
                 <img
-                  className='rounded-full max-w-none w-12 h-12 md:w-14 md:h-14'
+                  className='rounded-full object-cover max-w-none w-12 h-12 md:w-14 md:h-14'
                   src={data.user.avatar === '' ? useravatar : data.user.avatar}
                 />
               </div>
@@ -263,7 +263,7 @@ function CheckTypeOfPost({
           <div className='flex items-center'>
             <div onClick={checkNavigateProfileUser} className='inline-block mr-4'>
               <img
-                className='rounded-full max-w-none w-12 h-12 md:w-14 md:h-14'
+                className='rounded-full object-cover max-w-none w-12 h-12 md:w-14 md:h-14'
                 src={data.user.avatar === '' ? useravatar : data.user.avatar}
               />
             </div>
@@ -313,7 +313,7 @@ function CheckTypeOfPost({
           <div className='flex mx-3 items-center'>
             <div onClick={checkNavigateProfileParentUser} className='inline-block mr-4'>
               <img
-                className='rounded-full max-w-none w-10 h-10 md:w-12 md:h-12'
+                className='rounded-full object-cover max-w-none w-10 h-10 md:w-12 md:h-12'
                 src={data.parent_user.avatar === '' ? useravatar : data.parent_user.avatar}
               />
             </div>

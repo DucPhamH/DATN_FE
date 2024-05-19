@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useInfiniteQuery } from '@tanstack/react-query'
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 import { getUserPosts } from '../../../../apis/postApi'
 import PostCard from '../../../../components/CardComponents/PostCard'
@@ -19,7 +19,9 @@ export default function UserPost({ user_id, user }) {
     getNextPageParam: (lastPage, allPages) => {
       const nextPage = lastPage.data.result.posts.length ? allPages.length + 1 : undefined
       return nextPage
-    }
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 5
   })
 
   const content = data?.pages.map((dataMePost) =>

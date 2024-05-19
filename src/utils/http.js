@@ -42,7 +42,7 @@ class Http {
     this.instance.interceptors.response.use(
       (response) => {
         const { url } = response.config
-        if (url === '/auth/users/login' || url === '/auth/users/login/admin') {
+        if (url === '/auth/users/login') {
           // console.log(response.data)
           this.accessToken = response.data.result.access_token
           this.refreshToken = response.data.result.refresh_token

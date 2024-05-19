@@ -36,7 +36,6 @@ const UserProfile = lazy(() => import('./pages/UserProfile'))
 const CreateBlog = lazy(() => import('./pages/CreateBlog'))
 const BlogList = lazy(() => import('./pages/BlogList'))
 const EditBlog = lazy(() => import('./pages/EditBlog'))
-const LoginAdmin = lazy(() => import('./pages/LoginAdmin'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const FitnessCalculatorHistory = lazy(() => import('./pages/FitnessCalculatorHistory'))
 const WorkoutSchedule = lazy(() => import('./pages/WorkoutSchedule'))
@@ -93,16 +92,6 @@ export default function useRouteElement() {
             <AuthLayout>
               <Suspense>
                 <Login />
-              </Suspense>
-            </AuthLayout>
-          )
-        },
-        {
-          path: '/login/admin',
-          element: (
-            <AuthLayout>
-              <Suspense>
-                <LoginAdmin />
               </Suspense>
             </AuthLayout>
           )
