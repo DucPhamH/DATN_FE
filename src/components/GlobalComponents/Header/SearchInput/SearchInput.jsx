@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { BsArrowUpRight } from 'react-icons/bs'
 import useQueryConfig from '../../../../hooks/useQueryConfig'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { searchAll } from '../../../../apis/searchApi'
 import useDebounce from '../../../../hooks/useDebounce'
 import { useForm } from 'react-hook-form'
@@ -70,8 +70,6 @@ export default function SearchInput() {
   const searchWatch = watch('search')
 
   const debouncedSearch = useDebounce(searchWatch, 500)
-  // console.log(searchWatch)
-  // console.log(debouncedSearch)
 
   const { data } = useQuery({
     queryKey: [
@@ -84,7 +82,10 @@ export default function SearchInput() {
       return searchAll({
         search: debouncedSearch
       })
-    }
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 60,
+    enabled: searchWatch !== ''
   })
 
   // console.log(data)

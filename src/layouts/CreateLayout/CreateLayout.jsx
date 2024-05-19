@@ -2,8 +2,9 @@ import Header from '../../components/GlobalComponents/Header'
 import Footer from '../../components/GlobalComponents/Footer'
 import { AiOutlineArrowUp } from 'react-icons/ai'
 import SideBar from '../../components/GlobalComponents/SideBar'
+import { memo } from 'react'
 
-export default function CreateLayout({ children }) {
+function CreateLayoutInner({ children }) {
   return (
     <div className='flex justify-between text-gray-800 w-full bg-gray-100 h-full dark:text-gray-300 dark:bg-color-primary-dark'>
       <div className='block sm:hidden'>
@@ -32,3 +33,7 @@ export default function CreateLayout({ children }) {
     </div>
   )
 }
+
+const CreateLayout = memo(CreateLayoutInner)
+
+export default CreateLayout

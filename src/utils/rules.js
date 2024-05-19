@@ -71,6 +71,11 @@ export const schemaCreateBlog = yup.object({
   content: yup.string().required('Nội dung là bắt buộc').min(10, 'Độ dài từ 100 ký tự')
 })
 
+export const schemaRequestUpgrade = yup.object({
+  proof: yup.string().required('Link minh chứng là bắt buộc').url('Link minh chứng không đúng định dạng'),
+  reason: yup.string().required('Lý do là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự')
+})
+
 export const schemaCreateAlbum = yup.object({
   title: yup.string().required('Tiêu đề là bắt buộc').min(10, 'Độ dài từ 10 ký tự').max(160, 'Độ dài tối đa 160 ký tự'),
   image: yup.string().required('Link ảnh là bắt buộc').url('Link ảnh không đúng định dạng'),
