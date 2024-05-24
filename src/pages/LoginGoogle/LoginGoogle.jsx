@@ -10,8 +10,9 @@ export default function LoginGoogle() {
   useEffect(() => {
     const access_token = params.get('access_token')
     const refresh_token = params.get('refresh_token')
+    console.log(params.get('user'))
     const user = JSON.parse(params.get('user'))
-
+    console.log(user)
     console.log(access_token, refresh_token, user)
     if (access_token !== null && refresh_token !== null && user !== null) {
       setAccessTokenToLS(access_token)
