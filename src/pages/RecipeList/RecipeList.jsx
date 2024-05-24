@@ -237,6 +237,7 @@ export default function RecipeList() {
                   <option value='all'>Tất cả</option>
                   <option value='1'>Đã duyệt</option>
                   <option value='0'>Chưa duyệt</option>
+                  <option value='3'>Bị từ chối</option>
                 </select>
                 <select
                   defaultValue={queryConfig.processing_food || 'all'}

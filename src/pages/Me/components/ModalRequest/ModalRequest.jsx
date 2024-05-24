@@ -1,21 +1,17 @@
 import { useForm } from 'react-hook-form'
 import ModalLayout from '../../../../layouts/ModalLayout'
 import Loading from '../../../../components/GlobalComponents/Loading'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
-import { formats, modules } from '../../../../services/editorToolbar'
 import Input from '../../../../components/InputComponents/Input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaRequestUpgrade } from '../../../../utils/rules'
 import { toast } from 'react-toastify'
 import { queryClient } from '../../../../main'
+import TextArea from '../../../../components/InputComponents/TextArea'
 
 export default function ModalRequest({ handleCloseModalRequest, updateRequest }) {
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
     formState: { errors }
   } = useForm({
     resolver: yupResolver(schemaRequestUpgrade),
@@ -24,18 +20,9 @@ export default function ModalRequest({ handleCloseModalRequest, updateRequest })
       proof: ''
     }
   })
-  const onEditorStateChange = (editorState) => {
-    setValue('reason', editorState)
-  }
-
-  const reason = watch('reason')
-
-  console.log(reason)
 
   const onSubmit = handleSubmit((data) => {
     console.log(data)
-
-    // bỏ đi confirm_password
 
     updateRequest.mutate(data, {
       onSuccess: (data) => {
@@ -53,7 +40,7 @@ export default function ModalRequest({ handleCloseModalRequest, updateRequest })
   return (
     <ModalLayout
       closeModal={handleCloseModalRequest}
-      className='modal-content overflow-y-auto max-h-[90%] min-w-[360px] md:min-w-[450px] dark:bg-gray-900 bg-white'
+      className='modal-content overflow-y-auto scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 max-h-[90%] min-w-[360px] md:min-w-[450px] dark:bg-gray-900 bg-white'
     >
       <div className='relative w-full max-w-md max-h-full'>
         <div className=''>
@@ -85,20 +72,14 @@ export default function ModalRequest({ handleCloseModalRequest, updateRequest })
                 />
               </div>
               <div className='sm:col-span-2 pb-2'>
-                <div className='text-gray-400 lg:text-red-900 text-sm font-medium mb-1 dark:text-pink-300 text-left'>
-                  Hãy viết lý do bạn muốn nâng cấp lên đầu bếp
-                </div>
-                <ReactQuill
-                  className='text-black dark:text-gray-200'
-                  theme='snow'
-                  value={reason}
-                  onChange={onEditorStateChange}
-                  modules={modules}
-                  formats={formats}
+                <TextArea
+                  title='Lý do bạn muốn nâng cấp lên đầu bếp'
+                  name='reason'
+                  id='reason'
+                  placeholder='Nhập lý do của bạn'
+                  register={register}
+                  errors={errors.reason}
                 />
-                <div className='flex min-h-[1rem] font-medium text-orange-300  text-xs lg:text-red-600'>
-                  {errors.reason?.message}
-                </div>
               </div>
 
               <div className='flex justify-center'>
