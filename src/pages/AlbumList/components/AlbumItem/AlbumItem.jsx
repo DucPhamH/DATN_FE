@@ -39,9 +39,13 @@ export default function AlbumItem({ album }) {
             <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-300 text-black dark:bg-pink-200'>
               Chưa duyệt
             </span>
-          ) : (
+          ) : album.status === 1 ? (
             <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 dark:text-black dark:bg-sky-400'>
               Đã duyệt
+            </span>
+          ) : (
+            <span className='px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-black'>
+              Bị từ chối
             </span>
           )}
         </td>
