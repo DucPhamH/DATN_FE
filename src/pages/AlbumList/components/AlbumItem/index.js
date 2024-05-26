@@ -1,2 +1,2 @@
-import BlogItem from './BlogItem'
-export default BlogItem
+import AlbumItem from './AlbumItem'
+export default AlbumItem

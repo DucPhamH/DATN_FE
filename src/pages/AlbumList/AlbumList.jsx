@@ -8,7 +8,7 @@ import useQueryConfig from '../../hooks/useQueryConfig'
 import { omit } from 'lodash'
 import { useForm } from 'react-hook-form'
 import { getListAlbumForChef } from '../../apis/albumApi'
-import AlbumItem from './components/AlbumItem/AlbumItem'
+import AlbumItem from './components/AlbumItem'
 
 export default function AlbumList() {
   const navigate = useNavigate()
