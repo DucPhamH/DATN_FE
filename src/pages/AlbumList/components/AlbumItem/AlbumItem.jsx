@@ -1,12 +1,12 @@
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { deleteBlogForChef } from '../../../../apis/blogApi'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
 import { queryClient } from '../../../../main'
 import { cutString } from '../../../../utils/helper'
+import { deleteAlbumForChef } from '../../../../apis/albumApi'
 export default function AlbumItem({ album }) {
   const [openDelete, setOpenDelete] = useState(false)
 
@@ -16,17 +16,17 @@ export default function AlbumItem({ album }) {
   const handleCloseDelete = () => {
     setOpenDelete(false)
   }
-  // const deleteBlogMutation = useMutation({
-  //   mutationFn: () => deleteBlogForChef(blog._id),
-  //   onSuccess: () => {
-  //     toast.success('Xóa bài viết thành công')
-  //     queryClient.invalidateQueries('blogs-list-chef')
-  //     handleCloseDelete()
-  //   }
-  // })
-  // const handleDelete = () => {
-  //   deleteBlogMutation.mutate()
-  // }
+  const deleteAlbumMutation = useMutation({
+    mutationFn: () => deleteAlbumForChef(album._id),
+    onSuccess: () => {
+      toast.success('Xóa bài viết thành công')
+      queryClient.invalidateQueries('albums-list-chef')
+      handleCloseDelete()
+    }
+  })
+  const handleDelete = () => {
+    deleteAlbumMutation.mutate()
+  }
 
   return (
     <>
@@ -57,7 +57,7 @@ export default function AlbumItem({ album }) {
           <Link to={`/chef/edit-album/${album._id}`} className='text-indigo-600 hover:text-indigo-900'>
             Sửa
           </Link>
-          {/* <div onClick={handleOpenDelete} className='ml-2 cursor-pointer text-red-600 hover:text-red-900'>
+          <div onClick={handleOpenDelete} className='ml-2 cursor-pointer text-red-600 hover:text-red-900'>
             Xóa
           </div>
           <span>
@@ -65,12 +65,12 @@ export default function AlbumItem({ album }) {
               <DeleteConfirmBox
                 closeModal={handleCloseDelete}
                 handleDelete={handleDelete}
-                isPending={deleteBlogMutation.isPending}
+                isPending={deleteAlbumMutation.isPending}
                 title={'Xác nhận xóa'}
-                subtitle={'Bạn có chắc chắn muốn xóa bài viết này'}
+                subtitle={'Bạn có chắc chắn muốn xóa album này'}
               />
             )}
-          </span> */}
+          </span>
         </td>
       </tr>
     </>

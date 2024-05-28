@@ -28,6 +28,18 @@ export default function Search() {
     }
   })
 
+  if (
+    data?.data?.result.recipes.length === 0 &&
+    data?.data?.result.users.length === 0 &&
+    data?.data?.result.posts.length === 0
+  ) {
+    return (
+      <div className='w-full p-10 text-center font-bold text-red-600 dark:text-pink-700 h-[100rem]'>
+        Không tìm thấy kết quả nào phù hợp
+      </div>
+    )
+  }
+
   console.log(data)
   return (
     <div className='h-full text-gray-900 dark:text-white py-4'>

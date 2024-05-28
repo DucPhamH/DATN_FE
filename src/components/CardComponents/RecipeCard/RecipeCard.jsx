@@ -104,7 +104,14 @@ export default function RecipeCard({ recipe }) {
           <Link to={`/cooking/recipe/${recipe._id}`} className='font-bold block h-12 text-base '>
             {cutString(recipe.title, 40)}
           </Link>
-          <span className='block text-gray-400 text-xs'>Người viết: {recipe.user.name}</span>
+          {recipe.type === 0 ? (
+            <span className='block text-gray-400 text-xs'>Người viết: {recipe.user.name}</span>
+          ) : (
+            <span className=' block text-xs text-gray-400'>
+              Người viết: <span className='text-red-500'>Cook</span>Healthy
+            </span>
+          )}
+
           <span className='block text-gray-400 text-xs'>
             Ngày viết: {moment(recipe.createdAt).format('MM/DD/YYYY')}
           </span>

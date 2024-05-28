@@ -7,9 +7,9 @@ import IBW from '../../assets/images/IBW.png'
 import LBM from '../../assets/images/LBM.png'
 import caloBurned from '../../assets/images/caloBurned.png'
 import waterNeed from '../../assets/images/waterNeed.png'
-import FinessCard from '../../components/CardComponents/FinessCard'
+import FitnessCard from '../../components/CardComponents/FitnessCard'
 
-const finessItems = [
+const fitnessItems = [
   {
     id: 1,
     name: 'Tính chỉ số BMI',
@@ -104,8 +104,8 @@ export default function FitnessCaculator() {
         </div>
       </div>
       <div className='grid gap-3 md:gap-6 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-10 mx-2'>
-        {finessItems.map((finessItem) => (
-          <FinessCard key={finessItem.id} finessItem={finessItem} />
+        {fitnessItems.map((fitnessItem) => (
+          <FitnessCard key={fitnessItem.id} fitnessItem={fitnessItem} />
         ))}
       </div>
     </div>

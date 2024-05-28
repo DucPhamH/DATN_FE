@@ -10,3 +10,4 @@ export const updateAlbumForChef = (id, body) => http.put(`/albums/chef/update-al
 export const getRecipesInAlbum = (params) => http.get('/albums/user/get-recipes-in-album', { params })
 export const bookmarkAlbum = (body) => http.post('/albums/actions/bookmark', body)
 export const unbookmarkAlbum = (body) => http.post('/albums/actions/unbookmark', body)
+export const deleteAlbumForChef = (id) => http.delete(`/albums/chef/delete-album/${id}`)

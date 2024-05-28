@@ -11,9 +11,12 @@ import { queryClient } from '../../../../main'
 import { useMutation } from '@tanstack/react-query'
 import Loading from '../../../../components/GlobalComponents/Loading'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from '../../../../contexts/app.context'
 
 export default function ModalCreateWorkout({ handleCloseModalCreateWorkout }) {
   const navigate = useNavigate()
+  const { profile } = useContext(AppContext)
   const {
     register,
     handleSubmit,
@@ -24,7 +27,7 @@ export default function ModalCreateWorkout({ handleCloseModalCreateWorkout }) {
     resolver: yupResolver(schemaCreateWorkout),
     defaultValues: {
       name: '',
-      weight: '',
+      weight: profile?.weight || '',
       calo_target: '',
       start_date: new Date(),
       end_date: new Date()

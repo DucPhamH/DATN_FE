@@ -31,3 +31,7 @@ export const getComments = (params) => http.get('/recipes/actions/comment', { pa
 
 export const bookmarkRecipe = (body) => http.post('/recipes/actions/bookmark', body)
 export const unbookmarkRecipe = (body) => http.post('/recipes/actions/unbookmark', body)
+
+export const deleteRecipeForChef = (id) => http.delete(`/recipes/chef/delete-recipe/${id}`)
+
+export const getTopRecipes = () => http.get('/recipes/user/get-top-recipes')
