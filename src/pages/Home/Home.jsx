@@ -17,6 +17,7 @@ import { getBlogsForUser } from '../../apis/blogApi'
 import { followUser, recommendUser } from '../../apis/userApi'
 import { queryClient } from '../../main'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function Home() {
   const { profile } = useContext(AppContext)
@@ -167,9 +168,12 @@ export default function Home() {
                   />
                 )
               })}
-              <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
+              <Link
+                to={`/blog`}
+                className='w-full flex justify-center text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'
+              >
                 Xem thêm bài viết...
-              </div>
+              </Link>
             </div>
           </div>
         </div>

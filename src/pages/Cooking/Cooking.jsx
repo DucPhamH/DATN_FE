@@ -1,41 +1,52 @@
 import RecipeCard from '../../components/CardComponents/RecipeCard'
-import { FaMedal } from 'react-icons/fa'
-import FoodBanner from '../../components/FoodComponents/FoodBanner'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import AlbumCard from '../../components/CardComponents/AlbumCard'
-
+import useravatar from '../../assets/images/useravatar.jpg'
 import BlogCard from '../../components/CardComponents/BlogCard'
 import { getBlogsForUser } from '../../apis/blogApi'
-import { keepPreviousData, useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
 import { getListRecipesForUser } from '../../apis/recipeApi'
 import { getListAlbumForUser } from '../../apis/albumApi'
+import FoodBanner from './components/FoodBanner'
+import { followUser, recommendUser } from '../../apis/userApi'
+import { queryClient } from '../../main'
+import Loading from '../../components/GlobalComponents/Loading'
 
 export default function Cooking() {
-  const { data: blogData } = useQuery({
+  const { data: blogData, isLoading: isLoadingBlog } = useQuery({
     queryKey: ['blogs-list-user', { limit: 4 }],
     queryFn: () => {
       return getBlogsForUser({ limit: 4 })
     },
     placeholderData: keepPreviousData,
-    staleTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 10
   })
 
-  const { data: recipesData } = useQuery({
+  const { data: recipesData, isLoading: isLoadingRecipe } = useQuery({
     queryKey: ['recipes-list-user', { limit: 6 }],
     queryFn: () => {
       return getListRecipesForUser({ limit: 6 })
     },
     placeholderData: keepPreviousData,
-    staleTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 10
   })
 
-  const { data: albumsData } = useQuery({
+  const { data: albumsData, isLoading: isLoadingAlbum } = useQuery({
     queryKey: ['albums-list-user', { limit: 4 }],
     queryFn: () => {
       return getListAlbumForUser({ limit: 4 })
     },
     placeholderData: keepPreviousData,
-    staleTime: 1000 * 60 * 5
+    staleTime: 1000 * 60 * 10
+  })
+
+  const { data: userData } = useQuery({
+    queryKey: ['recommed-list-user'],
+    queryFn: () => {
+      return recommendUser()
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 10
   })
   return (
     <>
@@ -76,158 +87,33 @@ export default function Cooking() {
               </Link>
             </div>
 
-            <div className='grid gap-3 md:gap-4 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-5'>
-              {recipesData?.data?.result.recipes.map((recipe) => {
-                return <RecipeCard key={recipe._id} recipe={recipe} />
-              })}
-            </div>
+            {isLoadingRecipe ? (
+              <Loading />
+            ) : (
+              <div className='grid gap-3 md:gap-4 mb-8 md:grid-cols-2 xl:grid-cols-3 pt-5'>
+                {recipesData?.data?.result.recipes.map((recipe) => {
+                  return <RecipeCard key={recipe._id} recipe={recipe} />
+                })}
+              </div>
+            )}
           </div>
           <div className='col-span-1'>
             <div className=''>
               <div className='text-xl flex items-center font-medium mb-2'>
-                <span className='mr-2'>Top BXH thành viên</span>
-                <FaMedal className='text-yellow-500' />
+                <span className='mr-2'>Bạn có thể biết</span>
               </div>
               <div className='border-b-[3px] w-[20%] border-red-300 '></div>
             </div>
-            <div className='mt-5 mb-10 w-full border shadow-sm shadow-red-200 bg-white rounded-lg dark:bg-color-primary dark:border-none'>
-              <div className='p-3'>
-                <div className='flex justify-between items-center'>
-                  <div className='flex items-center mb-4 mt-2 gap-3'>
-                    <div className='avatar'>
-                      <div className='mask mask-squircle w-12 h-12'>
-                        <img
-                          src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                          alt='Avatar Tailwind CSS Component'
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className='font-bold'>Hart Hagerty</div>
-                      <div className=''>
-                        <span className='text-sm opacity-50'>100 bài viết | </span>
-                        <span className='text-sm opacity-50'>100 người follow</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='border h-8 w-8 rounded-lg shadow-md bg-yellow-200 dark:text-black font-bold flex justify-center items-center'>
-                    1
+            <div className='mt-5 mb-10 w-full'>
+              {userData?.data?.result.length === 0 ? null : (
+                <div className='w-full mb-2 shadow  bg-white rounded-lg dark:bg-color-primary dark:border-none'>
+                  <div className='p-3'>
+                    {userData?.data?.result.map((user) => {
+                      return <ItemUser key={user._id} user={user} />
+                    })}
                   </div>
                 </div>
-                <div className='flex justify-between items-center'>
-                  <div className='flex items-center mb-4 mt-2 gap-3'>
-                    <div className='avatar'>
-                      <div className='mask mask-squircle w-12 h-12'>
-                        <img
-                          src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                          alt='Avatar Tailwind CSS Component'
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className='font-bold'>Hart Hagerty</div>
-                      <div className=''>
-                        <span className='text-sm opacity-50'>100 bài viết | </span>
-                        <span className='text-sm opacity-50'>100 người follow</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='border h-8 w-8 rounded-lg shadow-md bg-red-500 dark:text-black font-bold flex justify-center items-center'>
-                    2
-                  </div>
-                </div>
-                <div className='flex justify-between items-center'>
-                  <div className='flex items-center mb-4 mt-2 gap-3'>
-                    <div className='avatar'>
-                      <div className='mask mask-squircle w-12 h-12'>
-                        <img
-                          src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                          alt='Avatar Tailwind CSS Component'
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className='font-bold'>Hart Hagerty</div>
-                      <div className=''>
-                        <span className='text-sm opacity-50'>100 bài viết | </span>
-                        <span className='text-sm opacity-50'>100 người follow</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='border h-8 w-8 rounded-lg shadow-md bg-blue-400 dark:text-black font-bold flex justify-center items-center'>
-                    3
-                  </div>
-                </div>
-                <div className='flex justify-between items-center'>
-                  <div className='flex items-center mb-4 mt-2 gap-3'>
-                    <div className='avatar'>
-                      <div className='mask mask-squircle w-12 h-12'>
-                        <img
-                          src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                          alt='Avatar Tailwind CSS Component'
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className='font-bold'>Hart Hagerty</div>
-                      <div className=''>
-                        <span className='text-sm opacity-50'>100 bài viết | </span>
-                        <span className='text-sm opacity-50'>100 người follow</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='border h-8 w-8 rounded-lg shadow-md bg-green-500 dark:text-black font-bold flex justify-center items-center'>
-                    4
-                  </div>
-                </div>
-                <div className='flex justify-between items-center'>
-                  <div className='flex items-center mb-4 mt-2 gap-3'>
-                    <div className='avatar'>
-                      <div className='mask mask-squircle w-12 h-12'>
-                        <img
-                          src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                          alt='Avatar Tailwind CSS Component'
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className='font-bold'>Hart Hagerty</div>
-                      <div className=''>
-                        <span className='text-sm opacity-50'>100 bài viết | </span>
-                        <span className='text-sm opacity-50'>100 người follow</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='border h-8 w-8 rounded-lg shadow-md bg-green-500 dark:text-black font-bold flex justify-center items-center'>
-                    5
-                  </div>
-                </div>
-                <div className='flex justify-between items-center'>
-                  <div className='flex items-center mb-4 mt-2 gap-3'>
-                    <div className='avatar'>
-                      <div className='mask mask-squircle w-12 h-12'>
-                        <img
-                          src='https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg'
-                          alt='Avatar Tailwind CSS Component'
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div className='font-bold'>Hart Hagerty</div>
-                      <div className=''>
-                        <span className='text-sm opacity-50'>100 bài viết | </span>
-                        <span className='text-sm opacity-50'>100 người follow</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className='border h-8 w-8 rounded-lg shadow-md bg-green-500 dark:text-black font-bold flex justify-center items-center'>
-                    6
-                  </div>
-                </div>
-              </div>
-              <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
-                Top thành viên ...
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -261,11 +147,15 @@ export default function Cooking() {
             </Link>
           </div>
 
-          <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
-            {albumsData?.data?.result.albums.map((album) => {
-              return <AlbumCard key={album._id} album={album} />
-            })}
-          </div>
+          {isLoadingAlbum ? (
+            <Loading />
+          ) : (
+            <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
+              {albumsData?.data?.result.albums.map((album) => {
+                return <AlbumCard key={album._id} album={album} />
+              })}
+            </div>
+          )}
         </div>
 
         <div className='mx-2'>
@@ -298,23 +188,71 @@ export default function Cooking() {
             </Link>
           </div>
 
-          <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
-            {blogData?.data?.result.blogs.map((blog) => {
-              return (
-                <BlogCard
-                  key={blog._id}
-                  blogItem={blog}
-                  imgClass='lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'
-                  dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                  titleClass=' font-bold transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
-                  descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
-                  linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
-                />
-              )
-            })}
-          </div>
+          {isLoadingBlog ? (
+            <Loading />
+          ) : (
+            <div className='grid gap-3 md:gap-3 mb-8 md:grid-cols-2 xl:grid-cols-4 pt-5'>
+              {blogData?.data?.result.blogs.map((blog) => {
+                return (
+                  <BlogCard
+                    key={blog._id}
+                    blogItem={blog}
+                    imgClass=' h-[30vh] lg:h-[25vh] rounded-t-xl scale-100 overflow-hidden'
+                    dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
+                    titleClass=' font-bold transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
+                    descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
+                    linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                  />
+                )
+              })}
+            </div>
+          )}
         </div>
       </div>
     </>
+  )
+}
+
+const ItemUser = ({ user }) => {
+  const navigate = useNavigate()
+  const followMutation = useMutation({
+    mutationFn: (body) => followUser(body)
+  })
+  const handleFollow = () => {
+    followMutation.mutate(
+      { follow_id: user._id },
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries('recommed-list-user')
+        }
+      }
+    )
+  }
+  return (
+    <div className='flex justify-between items-center'>
+      <div className='flex items-center mb-4 mt-2 gap-3'>
+        <div className='avatar'>
+          <div className=' rounded-full w-12 h-12'>
+            <img
+              className='object-cover w-12 h-12 rounded-full'
+              src={user.avatar === '' ? useravatar : user.avatar}
+              alt='Avatar Tailwind CSS Component'
+            />
+          </div>
+        </div>
+        <div>
+          <div onClick={() => navigate(`/user/${user._id}`)} className='font-bold cursor-pointer hover:underline'>
+            {user.name}
+          </div>
+          <div className=''>
+            <span className='text-sm opacity-50'>@{user.user_name}</span>
+          </div>
+        </div>
+      </div>
+      <button onClick={handleFollow} className='btn btn-sm text-white hover:bg-red-900 bg-red-800'>
+        {' '}
+        Theo dõi
+      </button>
+    </div>
   )
 }

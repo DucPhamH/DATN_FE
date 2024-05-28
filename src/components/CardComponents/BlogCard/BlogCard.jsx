@@ -15,7 +15,9 @@ export default function BlogCard({ blogItem, imgClass, dateClass, titleClass, de
         <div className={dateClass}>
           <p>{moment(blogItem.createdAt).format('MM/DD/YYYY')}</p>
         </div>
-        <div className={titleClass}>{blogItem.title}</div>
+        <Link to={`/blog/${blogItem._id}`} className={titleClass}>
+          {blogItem.title}
+        </Link>
         <p className={descriptionClass}>{blogItem.description}</p>
         <Link to={`/blog/${blogItem._id}`} className={linkClass}>
           <span className='tracking-wider capitalize underline hover:no-underline'>Xem thêm</span>

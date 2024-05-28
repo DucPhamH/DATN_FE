@@ -1,32 +1,32 @@
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { deleteBlogForChef } from '../../../../apis/blogApi'
 import { toast } from 'react-toastify'
 import { useState } from 'react'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
 import { queryClient } from '../../../../main'
 import { cutString } from '../../../../utils/helper'
+import { deleteRecipeForChef } from '../../../../apis/recipeApi'
 export default function RecipeItem({ recipe }) {
-  // const [openDelete, setOpenDelete] = useState(false)
+  const [openDelete, setOpenDelete] = useState(false)
 
-  // const handleOpenDelete = () => {
-  //   setOpenDelete(true)
-  // }
-  // const handleCloseDelete = () => {
-  //   setOpenDelete(false)
-  // }
-  // const deleteBlogMutation = useMutation({
-  //   mutationFn: () => deleteBlogForChef(blog._id),
-  //   onSuccess: () => {
-  //     toast.success('Xóa bài viết thành công')
-  //     queryClient.invalidateQueries('blogs-list-chef')
-  //     handleCloseDelete()
-  //   }
-  // })
-  // const handleDelete = () => {
-  //   deleteBlogMutation.mutate()
-  // }
+  const handleOpenDelete = () => {
+    setOpenDelete(true)
+  }
+  const handleCloseDelete = () => {
+    setOpenDelete(false)
+  }
+  const deleteRecipeMutation = useMutation({
+    mutationFn: () => deleteRecipeForChef(recipe._id),
+    onSuccess: () => {
+      toast.success('Xóa bài viết thành công')
+      queryClient.invalidateQueries('recipes-list-chef')
+      handleCloseDelete()
+    }
+  })
+  const handleDelete = () => {
+    deleteRecipeMutation.mutate()
+  }
 
   return (
     <>
@@ -53,11 +53,11 @@ export default function RecipeItem({ recipe }) {
         <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
           {moment(recipe.createdAt).format('MM/DD/YYYY')}
         </td>
-        <td className='px-6 py-4 flex item-center whitespace-nowrap  text-sm font-medium'>
+        <td className='px-6 py-4 mt-2 flex item-center whitespace-nowrap  text-sm font-medium'>
           <Link to={`/chef/edit-recipe/${recipe._id}`} className='text-indigo-600 hover:text-indigo-900'>
             Sửa
           </Link>
-          {/* <div onClick={handleOpenDelete} className='ml-2 cursor-pointer text-red-600 hover:text-red-900'>
+          <div onClick={handleOpenDelete} className='ml-2 cursor-pointer text-red-600 hover:text-red-900'>
             Xóa
           </div>
           <span>
@@ -65,12 +65,12 @@ export default function RecipeItem({ recipe }) {
               <DeleteConfirmBox
                 closeModal={handleCloseDelete}
                 handleDelete={handleDelete}
-                isPending={deleteBlogMutation.isPending}
+                isPending={deleteRecipeMutation.isPending}
                 title={'Xác nhận xóa'}
                 subtitle={'Bạn có chắc chắn muốn xóa bài viết này'}
               />
             )}
-          </span> */}
+          </span>
         </td>
       </tr>
     </>

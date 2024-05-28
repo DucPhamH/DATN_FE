@@ -222,7 +222,7 @@ export default function AlbumList() {
           )}
           {data?.data.result.albums.length === 0 && (
             <div className='flex justify-center items-center py-4'>
-              <div className='text-gray-500 dark:text-gray-300'>Không có bài viết nào</div>
+              <div className='text-gray-500 dark:text-gray-300'>Không có album nào</div>
             </div>
           )}
           {data?.data.result.totalPage > 1 && (

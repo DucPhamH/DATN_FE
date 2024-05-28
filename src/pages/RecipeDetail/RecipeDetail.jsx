@@ -12,6 +12,7 @@ import { FaCheckCircle } from 'react-icons/fa'
 import Comments from './components/Comments/Comments'
 import { queryClient } from '../../main'
 import { toast } from 'react-toastify'
+import IngerdientItem from './components/IngerdientItem/IngerdientItem'
 
 export default function RecipeDetail() {
   const { id } = useParams()
@@ -158,11 +159,17 @@ export default function RecipeDetail() {
                       <h1 className='mb-1 text-2xl xl:text-3xl font-extrabold dark:text-gray-300 leading-tight text-red-700 '>
                         {data?.data.result[0].title}
                       </h1>
-                      <div className='flex flex-wrap items-center pb-10  gap-2 justify-between'>
+                      <div className='flex flex-wrap items-center pb-5  gap-2 justify-between'>
                         <div className='pt-3 text-sm flex gap-2 flex-wrap'>
                           <div className='flex font-medium pr-3 text-gray-500  border-r-2 flex-row items-center'>
                             <MdPerson className='text-lg text-green-500 mr-1' />
-                            {data?.data.result[0].user.name}
+                            {data?.data.result[0].type === 0 ? (
+                              <span className=''>{data?.data.result[0].user.name}</span>
+                            ) : (
+                              <span className=' block text-gray-500'>
+                                <span className='text-red-500'>Cook</span>Healthy
+                              </span>
+                            )}
                           </div>
                           <div className='flex flex-row items-center text-gray-500 font-medium pr-3 border-r-2  '>
                             <BsFillLightningChargeFill className=' text-yellow-500 mr-1' />
@@ -209,8 +216,28 @@ export default function RecipeDetail() {
                       </div>
                     </div>
                   </header>
+                  {data?.data.result[0].unit === '' ? null : (
+                    <div className='flex gap-2 flex-wrap mb-10 items-center'>
+                      <div className='bg-yellow-50 flex font-medium justify-center items-center text-gray-600  p-1.5 text-sm rounded-full'>
+                        <span className='ml-1'>
+                          {data?.data.result[0].energy} calories trên {data?.data.result[0].quantity}{' '}
+                          {data?.data.result[0].unit}
+                        </span>
+                      </div>
+                      <div className='bg-yellow-50 flex font-medium justify-center items-center text-gray-600  p-1.5 text-sm rounded-full'>
+                        <span className='ml-1'>{data?.data.result[0].protein} gram protein</span>
+                      </div>
+                      <div className='bg-yellow-50 flex font-medium justify-center items-center text-gray-600  p-1.5 text-sm rounded-full'>
+                        <span className='ml-1'>{data?.data.result[0].fat} gram chất béo</span>
+                      </div>
+                      <div className='bg-yellow-50 flex font-medium justify-center items-center text-gray-600  p-1.5 text-sm rounded-full'>
+                        <span className='ml-1'>{data?.data.result[0].carbohydrate} gram carbohydrate</span>
+                      </div>
+                    </div>
+                  )}
+
                   <p className='lead mb-3 whitespace-pre-line font-medium'>{data?.data.result[0].description}</p>
-                  <div className='border rounded-md shadow-md mb-4 bg-[#fef8f8] dark:bg-gray-900 dark:border-none to-gray-300 p-3'>
+                  <div className='border rounded-md w-full shadow-md mb-4 bg-[#fef8f8] dark:bg-gray-900 dark:border-none to-gray-300 p-3'>
                     <div className='font-medium'>Xem thêm các bài viết khác:</div>
                     <ul>
                       <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
@@ -227,6 +254,77 @@ export default function RecipeDetail() {
                       </li>
                     </ul>
                   </div>
+                  {data?.data.result[0].video === '' ? null : (
+                    <div className=''>
+                      <div className='w-full mb-4 lg:h-[30rem]'>
+                        <iframe
+                          className='w-full  rounded-md lg:h-[30rem] shadow-md border '
+                          src={
+                            data?.data.result[0].video.includes('watch?v=')
+                              ? data?.data.result[0].video.replace('watch?v=', 'embed/')
+                              : data?.data.result[0].video
+                          }
+                          title='YouTube video player'
+                          frameBorder='0'
+                          allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    </div>
+                  )}
+                  {/* nếu có mảng ingredients thì hiển thị nếu ko có mảng hoặc mảng rỗng thì ẩn */}
+                  {data?.data.result[0]?.ingredients?.length === 0 ||
+                  data?.data.result[0]?.ingredients === undefined ? null : (
+                    <>
+                      <div className=' border-[2px] mb-2 mt-4 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 dark:border-gray-500 shadow-sm max-h-[40 rem] xl:h-full overflow-y-auto overflow-x-auto'>
+                        <table className=' w-full shadow-md  divide-y divide-gray-200'>
+                          <thead className='bg-gray-50 dark:bg-slate-800 '>
+                            <tr>
+                              <th
+                                scope='col'
+                                className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+                              >
+                                Tên nguyên liệu
+                              </th>
+                              <th
+                                scope='col'
+                                className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+                              >
+                                Năng lượng
+                              </th>
+                              <th
+                                scope='col'
+                                className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+                              >
+                                Protein
+                              </th>
+
+                              <th
+                                scope='col'
+                                className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+                              >
+                                Chất béo
+                              </th>
+                              <th
+                                scope='col'
+                                className='px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider'
+                              >
+                                Carbohydrate
+                              </th>
+                            </tr>
+                          </thead>
+                          <tbody className='bg-white dark:bg-color-primary dark:divide-gray-700 divide-y divide-gray-200'>
+                            {data?.data?.result[0]?.ingredients.map((ingerdient) => {
+                              return <IngerdientItem key={ingerdient._id} ingredient={ingerdient} />
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+                      <span className='w-full text-gray-400 mb-6 text-sm leading-4 font-medium flex items-center justify-center'>
+                        Bảng giá trị dinh dưỡng trên 100g nguyên liệu tạo nên món ăn
+                      </span>
+                    </>
+                  )}
                   <div className='custorm-blog '>{parse(data?.data?.result[0]?.content)}</div>
                 </div>
                 <Comments recipe={data?.data.result[0]} />

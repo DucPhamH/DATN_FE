@@ -46,11 +46,11 @@ export default function WorkoutItem({ workout }) {
         <td className='px-6 py-4 whitespace-nowrap text-sm text-gray-500'>
           {moment(workout.end_date).format('MM/DD/YYYY')}
         </td>
-        <td className='px-6 py-4 flex item-center whitespace-nowrap  text-sm font-medium'>
+        <td className='px-6 py-4 flex gap-2 item-center whitespace-nowrap  text-sm font-medium'>
           <Link to={`/schedule/ex-schedule/${workout._id}`} className='text-indigo-600 hover:text-indigo-900'>
             Xem
           </Link>
-          <div onClick={handleOpenModaldeleteWorkout} className='ml-2 cursor-pointer text-red-600 hover:text-red-900'>
+          <div onClick={handleOpenModaldeleteWorkout} className=' cursor-pointer text-red-600 hover:text-red-900'>
             Xóa
           </div>
           {openModalWorkout && (
