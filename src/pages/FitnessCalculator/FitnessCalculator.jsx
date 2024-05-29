@@ -20,7 +20,7 @@ const fitnessItems = [
   },
   {
     id: 2,
-    name: 'Tính chỉ số Calo',
+    name: 'Tính chỉ số TDEE',
     image: calo,
     description: 'TDEE Calculator',
     link: '/fitness/fitness-calculator/calories',

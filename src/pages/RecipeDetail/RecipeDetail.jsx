@@ -258,7 +258,7 @@ export default function RecipeDetail() {
                     <div className=''>
                       <div className='w-full mb-4 lg:h-[30rem]'>
                         <iframe
-                          className='w-full  rounded-md lg:h-[30rem] shadow-md border '
+                          className='w-full h-[20rem]  rounded-md lg:h-[30rem] shadow-md border '
                           src={
                             data?.data.result[0].video.includes('watch?v=')
                               ? data?.data.result[0].video.replace('watch?v=', 'embed/')

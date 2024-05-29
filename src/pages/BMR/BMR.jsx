@@ -55,7 +55,6 @@ export default function BMR() {
         console.log(data)
         setDataBMR((prev) => ({ ...prev, BMR: data.data.result }))
         handleOpenModal()
-        toast.success('Tính toán chỉ số BMR thành công')
       },
       onError: () => {
         console.log('error')
@@ -102,15 +101,21 @@ export default function BMR() {
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số IBW </Link>
+                    <Link to='/fitness/fitness-calculator/IBW' className=' hover:underline'>
+                      Tính toán chỉ số IBW
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số LBM</Link>
+                    <Link to='/fitness/fitness-calculator/LBM' className=' hover:underline'>
+                      Tính toán chỉ số LBM
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
+                    <Link to='/fitness/fitness-calculator/body-fat' className=' hover:underline'>
+                      Tính toán lượng chất béo trong cơ thể
+                    </Link>
                   </li>
                 </ul>
 
@@ -338,6 +343,21 @@ export default function BMR() {
                 )}
               </div>
             </form>
+            <div>
+              {(profile?.BMR || dataBMR.BMR) && (
+                <div className='flex mx-4 justify-center '>
+                  <div className='mt-5 w-full pb-10'>
+                    <div className=' text-gray-700 flex justify-center dark:text-gray-300 font-semibold '>
+                      Chỉ số BMR của bạn là: {profile?.BMR || dataBMR.BMR} calories
+                    </div>
+                    <div className='text-red-700 flex justify-center dark:text-red-300 font-medium text-xs'>
+                      Lưu ý: Nếu bạn ăn uống dưới BMR, tức là không nạp đủ năng lượng mỗi ngày có thể cản trở các quá
+                      trình hoạt động cơ bản của cơ thể.
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {isModalOpen && (

@@ -8,6 +8,8 @@ import { currentAccount } from '../../apis/userApi'
 import { useQuery } from '@tanstack/react-query'
 import Counup from '../../components/GlobalComponents/Countup'
 import Loading from '../../components/GlobalComponents/Loading'
+import { Link } from 'react-router-dom'
+import LineChart from './components/LineChart/LineChart'
 
 export default function FitnessCalculatorHistory() {
   const { data: userData, isFetching } = useQuery({
@@ -87,6 +89,9 @@ export default function FitnessCalculatorHistory() {
         <Loading />
       ) : (
         <div className='my-10'>
+          <div>
+            <LineChart profile={userData?.data.result[0]} />
+          </div>
           <div className='flex w-full items-center justify-center'>
             <div className='grid w-full grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-2'>
               {user.BMI !== null && (
@@ -94,9 +99,12 @@ export default function FitnessCalculatorHistory() {
                   <div className=' text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-orange-500 left-4 -top-6'>
                     <img src={BMI} className='h-8 w-8' alt='BMI' />
                   </div>
-                  <span className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'>
+                  <Link
+                    to='/fitness/fitness-calculator/BMI'
+                    className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'
+                  >
                     Cập nhật
-                  </span>
+                  </Link>
                   <div className='mt-8'>
                     <p className='text-2xl font-semibold my-2'>
                       BMI <span className='text-base'>(Body Mass Index)</span>
@@ -131,9 +139,12 @@ export default function FitnessCalculatorHistory() {
                   <div className=' text-white flex items-center bg-teal-500 absolute rounded-full py-4 px-4 shadow-xl  left-4 -top-6'>
                     <img src={BMR} className='h-8 w-8' alt='BMR' />
                   </div>
-                  <span className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'>
+                  <Link
+                    to='/fitness/fitness-calculator/BMR'
+                    className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'
+                  >
                     Cập nhật
-                  </span>
+                  </Link>
                   <div className='mt-8'>
                     <p className='text-2xl font-semibold my-2'>
                       BMR <span className='text-base'>(Basal Metabolic Rate)</span>
@@ -183,9 +194,12 @@ export default function FitnessCalculatorHistory() {
                   <div className=' text-white flex items-center bg-green-500 absolute rounded-full py-4 px-4 shadow-xl  left-4 -top-6'>
                     <img src={calo} className='h-8 w-8' alt='TDEE' />
                   </div>
-                  <span className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'>
+                  <Link
+                    to='/fitness/fitness-calculator/calories'
+                    className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'
+                  >
                     Cập nhật
-                  </span>
+                  </Link>
                   <div className='mt-8'>
                     <p className='text-2xl font-semibold my-2'>
                       TDEE <span className='text-base'>(Total Daily Energy Expenditure)</span>
@@ -250,9 +264,12 @@ export default function FitnessCalculatorHistory() {
                   <div className=' text-white flex items-center bg-blue-500 absolute rounded-full py-4 px-4 shadow-xl  left-4 -top-6'>
                     <img src={bodyFat} className='h-8 w-8' alt='body_fat' />
                   </div>
-                  <span className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'>
+                  <Link
+                    to='/fitness/fitness-calculator/body-fat'
+                    className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'
+                  >
                     Cập nhật
-                  </span>
+                  </Link>
                   <div className='mt-8'>
                     <p className='text-2xl font-semibold my-2'>
                       Body Fat <span className='text-base'></span>
@@ -306,9 +323,12 @@ export default function FitnessCalculatorHistory() {
                   <div className=' text-white flex items-center bg-blue-300 absolute rounded-full py-4 px-4 shadow-xl  left-4 -top-6'>
                     <img src={LBM} className='h-8 w-8' alt='LBM' />
                   </div>
-                  <span className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'>
+                  <Link
+                    to='/fitness/fitness-calculator/LBM'
+                    className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'
+                  >
                     Cập nhật
-                  </span>
+                  </Link>
                   <div className='mt-8'>
                     <p className='text-2xl font-semibold my-2'>
                       LBM <span className='text-base'>(Lean Body Mass)</span>
@@ -351,9 +371,12 @@ export default function FitnessCalculatorHistory() {
                   <div className=' text-white flex items-center bg-red-700 absolute rounded-full py-4 px-4 shadow-xl  left-4 -top-6'>
                     <img src={IBW} className='h-8 w-8' alt='IBW' />
                   </div>
-                  <span className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'>
+                  <Link
+                    to='/fitness/fitness-calculator/IBW'
+                    className='flex items-center absolute right-4 top-4 text-sm font-bold text-blue-400 hover:text-blue-300 cursor-pointer transition-all'
+                  >
                     Cập nhật
-                  </span>
+                  </Link>
                   <div className='mt-8'>
                     <p className='text-2xl font-semibold my-2'>
                       IBW <span className='text-base'>(Idea Body Weight)</span>

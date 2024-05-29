@@ -56,7 +56,6 @@ export default function BodyFat() {
         console.log(data)
         setDataBodyFat((prev) => ({ ...prev, body_fat: data.data.result }))
         handleOpenModal()
-        toast.success('Tính toán chỉ số body fat thành công')
       },
       onError: () => {
         console.log('error')
@@ -103,15 +102,24 @@ export default function BodyFat() {
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số IBW </Link>
+                    <Link to='/fitness/fitness-calculator/IBW' className=' hover:underline'>
+                      {' '}
+                      Tính toán chỉ số IBW{' '}
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số LBM</Link>
+                    <Link to='/fitness/fitness-calculator/LBM' className=' hover:underline'>
+                      {' '}
+                      Tính toán chỉ số LBM
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính lượng nước uống cần thiết trong 1 ngày</Link>
+                    <Link to='/fitness/fitness-calculator/water-need' className=' hover:underline'>
+                      {' '}
+                      Tính lượng nước uống cần thiết trong 1 ngày
+                    </Link>
                   </li>
                 </ul>
 
@@ -338,6 +346,18 @@ export default function BodyFat() {
                 )}
               </div>
             </form>
+            {(profile?.body_fat || dataBodyFat.body_fat) && (
+              <div className='flex mx-4 justify-center '>
+                <div className='mt-5 w-full pb-10'>
+                  <div className=' text-gray-700 flex justify-center dark:text-gray-300 font-semibold '>
+                    Chỉ số body fat của bạn là: {profile?.body_fat || dataBodyFat.body_fat} %
+                  </div>
+                  <div className='text-red-700 flex justify-center dark:text-red-300 font-medium text-xs'>
+                    Lưu ý: chỉ số body fat được tính dựa trên công thức chuẩn, chỉ mang tính chất tham khảo
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
         {isModalOpen && (

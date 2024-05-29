@@ -38,12 +38,16 @@ export default function WaterPerDay() {
   const calculateWaterMutation = useMutation({
     mutationFn: (body) => calculateWaterIntake(body)
   })
+
+  const [dataWater, setDataWater] = useState({})
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    setDataWater(data)
     calculateWaterMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
         handleOpenModal()
+        setDataWater((prev) => ({ ...prev, water: data.data.result }))
         toast.success('Tính toán lượng nước cần uống thành công')
       },
       onError: () => {
@@ -78,15 +82,24 @@ export default function WaterPerDay() {
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số IBW </Link>
+                    <Link to='/fitness/fitness-calculator/IBW' className=' hover:underline'>
+                      {' '}
+                      Tính toán chỉ số IBW{' '}
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số LBM</Link>
+                    <Link to='/fitness/fitness-calculator/LBM' className=' hover:underline'>
+                      {' '}
+                      Tính toán chỉ số LBM
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
+                    <Link to='/fitness/fitness-calculator/body-fat' className=' hover:underline'>
+                      {' '}
+                      Tính toán lượng chất béo trong cơ thể
+                    </Link>
                   </li>
                 </ul>
 
@@ -278,6 +291,21 @@ export default function WaterPerDay() {
                 )}
               </div>
             </form>
+            <div>
+              {dataWater.water && (
+                <div className='flex mx-4 justify-center '>
+                  <div className='mt-5 w-full pb-10'>
+                    <div className=' text-gray-700 flex justify-center dark:text-gray-300 font-semibold '>
+                      Bạn cần tiêu thụ: {dataWater.water} lít nước mỗi ngày
+                    </div>
+                    <div className='text-red-700 flex justify-center dark:text-red-300 font-medium text-xs'>
+                      Lưu ý: Đây chỉ là một con số ước lượng, bạn cần tư vấn thêm từ chuyên gia dinh dưỡng để có lượng
+                      nước cần uống chính xác.
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {isModalOpen && (
