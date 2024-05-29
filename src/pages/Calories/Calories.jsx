@@ -56,7 +56,6 @@ export default function Calories() {
         console.log(data)
         setDataTDEE((prev) => ({ ...prev, TDEE: data.data.result }))
         handleOpenModal()
-        toast.success('Tính toán chỉ số TDEE thành công')
       },
       onError: () => {
         console.log('error')
@@ -97,15 +96,21 @@ export default function Calories() {
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số BMR </Link>
+                    <Link to='/fitness/fitness-calculator/BMR' className=' hover:underline'>
+                      Tính toán chỉ số BMR{' '}
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số LBM</Link>
+                    <Link to='/fitness/fitness-calculator/LBM' className=' hover:underline'>
+                      Tính toán chỉ số LBM
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
+                    <Link to='/fitness/fitness-calculator/body-fat' className=' hover:underline'>
+                      Tính toán lượng chất béo trong cơ thể
+                    </Link>
                   </li>
                 </ul>
                 <p className='lead font-medium'>
@@ -344,6 +349,20 @@ export default function Calories() {
                 )}
               </div>
             </form>
+            <div>
+              {(profile?.TDEE || dataTDEE.TDEE) && (
+                <div className='flex mx-4 justify-center '>
+                  <div className='mt-5 w-full pb-10'>
+                    <div className=' text-gray-700 flex justify-center dark:text-gray-300 font-semibold '>
+                      Chỉ số BMR của bạn là: {profile?.TDEE || dataTDEE.TDEE} calories
+                    </div>
+                    <div className='text-red-700 flex justify-center dark:text-red-300 font-medium text-xs'>
+                      Lưu ý: Bạn muốn giảm cân, hãy ăn ít calo hơn TDEE, bạn muốn tăng cân, hãy ăn nhiều calo hơn TDEE.
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {isModalOpen && (

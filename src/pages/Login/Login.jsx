@@ -111,7 +111,7 @@ export default function Login() {
             Quên mật khẩu ?
           </Link>
         </div>
-        <div className='px-4 rounded-full pt-4'>
+        <div className='px-4 rounded-full pt-2'>
           {loginAccountMutation.isPending ? (
             <div className='block w-full p-2 transition-all duration-500 mt-3 text-lg rounded-full bg-gray-500 first-letter:focus:outline-none'>
               <div className='flex justify-center items-center'>

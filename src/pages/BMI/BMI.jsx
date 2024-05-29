@@ -19,6 +19,7 @@ export default function BMI() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [dataBMI, setDataBMI] = useState({})
   const { setProfile, profile } = useContext(AppContext)
+
   const {
     register,
     handleSubmit,
@@ -27,11 +28,9 @@ export default function BMI() {
     resolver: yupResolver(schemaBMI),
     defaultValues: {
       weight: profile?.weight || '',
-      height: convertCentimeterToMeter(profile?.height) || ''
+      height: profile?.height || ''
     }
   })
-
-  console.log(profile)
 
   const handleOpenModal = () => {
     setIsModalOpen(true)
@@ -51,13 +50,18 @@ export default function BMI() {
 
   const onSubmit = handleSubmit((data) => {
     // data dạng object chứa các giá trị height, weight
-    setDataBMI(data)
-    calculateBMIMutation.mutate(data, {
+    console.log(data)
+    const newData = {
+      ...data,
+      height: convertCentimeterToMeter(data.height)
+    }
+    setDataBMI(newData)
+    console.log(newData)
+    calculateBMIMutation.mutate(newData, {
       onSuccess: (data) => {
         // set tiếp giá trị BMI vào dataBMI
         setDataBMI((prev) => ({ ...prev, BMI: data.data.result }))
         handleOpenModal()
-        toast.success('Tính toán chỉ số BMI thành công')
       },
       onError: () => {
         console.log('error')
@@ -81,6 +85,17 @@ export default function BMI() {
       }
     })
   }
+  const checkNoteBMI = () => {
+    if ((profile?.BMI || dataBMI.BMI) < 18.5) {
+      return 'Bạn đang quá gầy, hãy ăn uống điều độ nhé !'
+    } else if ((profile?.BMI || dataBMI.BMI) >= 18.5 && (profile?.BMI || dataBMI.BMI) < 24.9) {
+      return 'Bạn đang ở mức cân đối, hãy duy trì nhé !'
+    } else if ((profile?.BMI || dataBMI.BMI) >= 25 && (profile?.BMI || dataBMI.BMI) < 29.9) {
+      return 'Bạn đang thừa cân, hãy giảm cân nhé !'
+    } else {
+      return 'Bạn đang béo phì, hãy giảm cân nhé !'
+    }
+  }
 
   return (
     <>
@@ -103,15 +118,21 @@ export default function BMI() {
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính chỉ số BMR </Link>
+                    <Link to='/fitness/fitness-calculator/BMR' className=' hover:underline'>
+                      Tính chỉ số BMR
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tìm hiểu và tính toán chỉ số Calo</Link>
+                    <Link to='/fitness/fitness-calculator/calories' className=' hover:underline'>
+                      Tìm hiểu và tính toán chỉ số Calo
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
+                    <Link to='/fitness/fitness-calculator/body-fat' className=' hover:underline'>
+                      Tính toán lượng chất béo trong cơ thể
+                    </Link>
                   </li>
                 </ul>
                 <p className='lead mb-3 font-medium'>
@@ -311,7 +332,7 @@ export default function BMI() {
                 placeholder='Nhập cân nặng của bạn'
               />
               <Input
-                title='Nhập chiều cao (m)'
+                title='Nhập chiều cao (cm)'
                 type='number'
                 name='height'
                 errors={errors.height}
@@ -329,6 +350,20 @@ export default function BMI() {
                 )}
               </div>
             </form>
+            <div>
+              {(profile?.BMI || dataBMI.BMI) && (
+                <div className='flex justify-center'>
+                  <div className='mt-5 pb-10'>
+                    <div className=' text-gray-700 flex justify-center dark:text-gray-300 font-semibold '>
+                      Chỉ số BMI của bạn là: {profile?.BMI || dataBMI.BMI} kg/m2
+                    </div>
+                    <div className='text-red-700 dark:text-red-300 flex justify-center font-medium text-xs'>
+                      Lưu ý: {checkNoteBMI()}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {isModalOpen && (

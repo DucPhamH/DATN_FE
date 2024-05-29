@@ -87,12 +87,15 @@ export default function CaloBurned() {
     mutationFn: (body) => calculateCaloriesBurned(body)
   })
 
+  const [dataCaloBurned, setDataCaloBurned] = useState({})
   const onSubmit = handleSubmit((data) => {
     console.log(data)
+    setDataCaloBurned(data)
     calculateCaloriesBurnedMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
         handleOpenModal()
+        setDataCaloBurned((prev) => ({ ...prev, calo_burned: data.data.result }))
         toast.success('Tính toán chỉ số calo đốt cháy thành công')
       },
       onError: () => {
@@ -213,15 +216,24 @@ export default function CaloBurned() {
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số IBW </Link>
+                    <Link to='/fitness/fitness-calculator/IBW' className=' hover:underline'>
+                      {' '}
+                      Tính toán chỉ số IBW{' '}
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số LBM</Link>
+                    <Link to='/fitness/fitness-calculator/LBM' className=' hover:underline'>
+                      {' '}
+                      Tính toán chỉ số LBM
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
+                    <Link to='/fitness/fitness-calculator/body-fat' className=' hover:underline'>
+                      {' '}
+                      Tính toán lượng chất béo trong cơ thể
+                    </Link>
                   </li>
                 </ul>
 
@@ -409,6 +421,20 @@ export default function CaloBurned() {
                 )}
               </div>
             </form>
+            <div>
+              {dataCaloBurned.calo_burned && (
+                <div className='flex mx-4 justify-center '>
+                  <div className='mt-5 w-full pb-10'>
+                    <div className=' text-gray-700 flex justify-center dark:text-gray-300 font-semibold '>
+                      Bạn đã tiêu thụ: {dataCaloBurned.calo_burned} calories
+                    </div>
+                    <div className='text-red-700 flex justify-center dark:text-red-300 font-medium text-xs'>
+                      Lưu ý: Đây chỉ là ước lượng, không phải là con số chính xác
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

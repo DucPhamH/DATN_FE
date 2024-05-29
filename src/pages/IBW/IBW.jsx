@@ -53,7 +53,6 @@ export default function IBW() {
         console.log(data)
         setDataIBW((prev) => ({ ...prev, IBW: data.data.result }))
         handleOpenModal()
-        toast.success('Tính toán chỉ số IBW thành công')
       },
       onError: () => {
         console.log('error')
@@ -94,15 +93,24 @@ export default function IBW() {
                 <ul>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng nước uống hàng ngày </Link>
+                    <Link to='/fitness/fitness-calculator/water-need' className=' hover:underline'>
+                      {' '}
+                      Tính toán lượng nước uống hàng ngày{' '}
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán chỉ số LBM</Link>
+                    <Link to='/fitness/fitness-calculator/LBM' className=' hover:underline'>
+                      {' '}
+                      Tính toán chỉ số LBM
+                    </Link>
                   </li>
                   <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
                     <FaArrowCircleRight className='text-xl' />
-                    <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
+                    <Link to='/fitness/fitness-calculator/body-fat' className=' hover:underline'>
+                      {' '}
+                      Tính toán lượng chất béo trong cơ thể
+                    </Link>
                   </li>
                 </ul>
 
@@ -253,6 +261,20 @@ export default function IBW() {
                 )}
               </div>
             </form>
+            <div>
+              {(profile?.IBW || dataIBW.IBW) && (
+                <div className='flex mx-4 justify-center '>
+                  <div className='mt-5 w-full pb-10'>
+                    <div className=' text-gray-700 flex justify-center dark:text-gray-300 font-semibold '>
+                      Chỉ số IBW của bạn là: {profile?.IBW || dataIBW.IBW} kg
+                    </div>
+                    <div className='text-red-700 flex justify-center dark:text-red-300 font-medium text-xs'>
+                      Lưu ý: chỉ số IBW của bạn chỉ mang tính chất tham khảo
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {isModalOpen && (
