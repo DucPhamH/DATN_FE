@@ -19,7 +19,7 @@ export default function Comments({ recipe }) {
       content: ''
     }
   })
-  const onSubmitSearch = handleSubmit((data) => {
+  const onSubmitComment = handleSubmit((data) => {
     if (data.content === '') return
     commentMutation.mutate(
       {
@@ -64,7 +64,7 @@ export default function Comments({ recipe }) {
           <h2 className='text-lg lg:text-2xl font-bold text-gray-900 dark:text-white'>Bình luận của cộng đồng</h2>
         </div>
         <div className='border-b-[1px]  my-3 border-red-300 '></div>
-        <form onSubmit={onSubmitSearch} className='mb-6'>
+        <form onSubmit={onSubmitComment} className='mb-6'>
           <TextArea
             className='block bg-white dark:bg-slate-800 dark:border-none w-full placeholder:text-sm px-3 py-2  text-black dark:text-gray-400 text-lg border border-gray-300 rounded-lg'
             id='content'

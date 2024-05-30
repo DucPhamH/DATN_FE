@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import useravatar from '../../../../assets/images/useravatar.jpg'
 import { BsFillImageFill } from 'react-icons/bs'
 import { MdEmojiEmotions } from 'react-icons/md'

@@ -1,8 +1,9 @@
 import { IoIosWarning } from 'react-icons/io'
 import ModalLayout from '../../../../layouts/ModalLayout'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function CalculatorBox({ closeModal }) {
+  const navigate = useNavigate()
   return (
     <ModalLayout
       closeModal={closeModal}
@@ -38,7 +39,7 @@ export default function CalculatorBox({ closeModal }) {
       </div>
       <div className='text-center md:text-right mt-4 md:flex md:justify-end'>
         <button
-          onClick={closeModal}
+          onClick={() => navigate('/fitness/fitness-calculator')}
           className='block btn btn-sm w-full md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
         >
           Đồng ý

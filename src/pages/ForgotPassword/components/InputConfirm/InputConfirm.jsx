@@ -6,7 +6,7 @@ import OtpInput from 'react-otp-input'
 import { useState } from 'react'
 import { sendOtp, verifyOtp } from '../../../../apis/authApi'
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import Loading from '../../../../components/GlobalComponents/Loading'
 
 export default function InputConfirm() {

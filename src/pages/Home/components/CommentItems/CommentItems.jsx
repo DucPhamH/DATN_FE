@@ -9,7 +9,7 @@ import { queryClient } from '../../../../main'
 import { AppContext } from '../../../../contexts/app.context'
 import { useNavigate } from 'react-router-dom'
 import ThreeDotComment from '../ThreeDotComment'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 export default function CommentItems({ comment, post }) {
   const [showReply, setShowReply] = useState(false)

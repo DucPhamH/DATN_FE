@@ -11,7 +11,7 @@ import { BsFillBookmarkFill, BsFillLightningChargeFill } from 'react-icons/bs'
 import { FaCheckCircle } from 'react-icons/fa'
 import Comments from './components/Comments/Comments'
 import { queryClient } from '../../main'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import IngerdientItem from './components/IngerdientItem/IngerdientItem'
 
 export default function RecipeDetail() {

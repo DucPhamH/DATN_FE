@@ -7,7 +7,7 @@ import { bookmarkRecipe, likeRecipe, unbookmarkRecipe, unlikeRecipe } from '../.
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../main'
 import { Link, useLocation } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { cutString } from '../../../utils/helper'
 export default function RecipeCard({ recipe }) {
   const location = useLocation()
@@ -94,6 +94,7 @@ export default function RecipeCard({ recipe }) {
     <div className='border bg-white shadow-md dark:shadow-orange-900 dark:bg-color-primary border-gray-300 dark:border-gray-800 rounded-xl relative'>
       <div className='md:h-[18vh] xl:h-[22vh] rounded-t-xl scale-100 overflow-hidden'>
         <img
+          loading='lazy'
           src={recipe.image}
           alt='recipe'
           className='md:h-full w-full object-cover hover:scale-125 transition duration-300 ease-in-out'

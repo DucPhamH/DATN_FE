@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query'
 import Loading from '../../../../components/GlobalComponents/Loading'
 import { schemaChangePassword } from '../../../../utils/rules'
 import { queryClient } from '../../../../main'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { changePassword } from '../../../../apis/userApi'
 
 import InputPass from '../../../../components/InputComponents/InputPass'

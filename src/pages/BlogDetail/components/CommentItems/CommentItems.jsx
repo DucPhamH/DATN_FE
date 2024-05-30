@@ -4,7 +4,7 @@ import useravatar from '../../../../assets/images/useravatar.jpg'
 import { deleteCommentBlog } from '../../../../apis/blogApi'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../../main'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import ThreeDotComment from '../ThreeDotComment/ThreeDotComment'
 
 export default function CommentItems({ comment }) {

@@ -6,12 +6,13 @@ import { schemaLogin } from '../../utils/rules'
 import Input from '../../components/InputComponents/Input'
 import { useMutation } from '@tanstack/react-query'
 import { loginAccount } from '../../apis/authApi'
-import { toast } from 'react-toastify'
+// import toast from 'react-hot-toast'
 import { isAxiosUnprocessableEntityError } from '../../utils/utils'
 import { useContext } from 'react'
 import { AppContext } from '../../contexts/app.context'
 import Loading from '../../components/GlobalComponents/Loading'
 import { queryClient } from '../../main'
+import toast from 'react-hot-toast'
 
 export default function Login() {
   const { setIsAuthenticated, setProfile } = useContext(AppContext)

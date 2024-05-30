@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query'
 import { logoutAccount } from '../../../../apis/authApi'
 import { getRefreshTokenFromLS } from '../../../../utils/auth'
 import { AppContext } from '../../../../contexts/app.context'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 export default function UserAvatar() {
   const [isMenu, setIsMenu] = useState(false)
   const ref = useRef()

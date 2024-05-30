@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
-import { navBars } from '../../../../services/objectUi'
 import ButtonLanding from '../ButtonLanding'
-import UserAvatarLanding from '../UserAvatarLanding'
 import DarkMode from '../../../../components/GlobalComponents/DarkMode'
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { useMediaQuery } from 'react-responsive'
+import { navBars } from '../../../../constants/objectUi'
 
 export default function HeaderLanding() {
   const [navBar, setNavBar] = useState(false)

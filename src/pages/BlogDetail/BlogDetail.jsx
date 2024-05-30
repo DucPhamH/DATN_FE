@@ -12,7 +12,7 @@ import { FaComment } from 'react-icons/fa'
 
 export default function BlogDetail() {
   const { id } = useParams()
-  const { data, isFetching: isFetchingBlog } = useQuery({
+  const { data, isLoading: isLoadingBlog } = useQuery({
     queryKey: ['blog-info-user', id],
     queryFn: () => {
       return getBlogForUser(id)
@@ -26,7 +26,7 @@ export default function BlogDetail() {
       <div className='grid xl:mx-4 pt-2 xl:gap-3 xl:grid-cols-6'>
         <div className='col-span-6'>
           <main className='pt-8 xl:mx-12 xl:px-10 pb-16 rounded-lg dark:text-gray-400 shadow-md font-Roboto lg:pb-24 bg-white dark:bg-color-primary '>
-            {isFetchingBlog ? (
+            {isLoadingBlog ? (
               <Loading />
             ) : (
               <div className='flex justify-between items-center px-3 xl:px-5 max-w-screen-xl '>

@@ -4,7 +4,7 @@ import Loading from '../../../../components/GlobalComponents/Loading'
 import Input from '../../../../components/InputComponents/Input'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { schemaRequestUpgrade } from '../../../../utils/rules'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { queryClient } from '../../../../main'
 import TextArea from '../../../../components/InputComponents/TextArea'
 

@@ -8,7 +8,7 @@ import { useMutation } from '@tanstack/react-query'
 import { registerAccount } from '../../apis/authApi'
 import { omit } from 'lodash'
 import { isAxiosUnprocessableEntityError } from '../../utils/utils'
-import { toast } from 'react-toastify'
+import { toast } from 'react-hot-toast'
 import Loading from '../../components/GlobalComponents/Loading'
 
 export default function Register() {
