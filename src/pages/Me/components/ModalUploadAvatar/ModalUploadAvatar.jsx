@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import ModalLayout from '../../../../layouts/ModalLayout'
 import { updateAvatar } from '../../../../apis/userApi'
 import { useMutation } from '@tanstack/react-query'

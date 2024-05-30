@@ -5,7 +5,7 @@ export default function AlbumCard({ album }) {
   return (
     <div className='card dark:shadow-orange-900 bg-base-100 shadow-md image-full'>
       <figure className='h-[22rem]'>
-        <img src={album.image} alt='card' />
+        <img loading='lazy' src={album.image} alt='card' />
       </figure>
       <div className='card-body'>
         <h2 className='card-title mt-10 line-clamp-2 text-white hover:underline cursor-pointer'>{album.title}</h2>

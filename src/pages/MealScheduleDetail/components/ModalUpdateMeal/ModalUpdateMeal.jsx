@@ -10,7 +10,7 @@ import { updateMealSchedule } from '../../../../apis/mealScheduleApi'
 import Loading from '../../../../components/GlobalComponents/Loading'
 import { schemaUpdateMeal } from '../../../../utils/rules'
 import { queryClient } from '../../../../main'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 export default function ModalUpdateMeal({ handleCloseModalUpdateMeal, meal }) {
   const [openWeightTarget, setOpenWeightTarget] = useState(false)

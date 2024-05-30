@@ -5,7 +5,7 @@ import ModalChangePass from '../ModalChangePass'
 import ModalRequest from '../ModalRequest'
 import { updateRequest } from '../../../../apis/userApi'
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { queryClient } from '../../../../main'
 export default function ThreeDots({ user }) {
   const [isMenu, setIsMenu] = useState(false)

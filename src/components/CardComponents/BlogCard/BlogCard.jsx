@@ -6,6 +6,7 @@ export default function BlogCard({ blogItem, imgClass, dateClass, titleClass, de
     <div className='border my-1 border-gray-300 dark:border-gray-800  rounded-xl'>
       <div className={imgClass}>
         <img
+          loading='lazy'
           src={blogItem.image}
           alt='blog'
           className=' w-full h-full object-cover hover:scale-125 transition duration-300 ease-in-out'

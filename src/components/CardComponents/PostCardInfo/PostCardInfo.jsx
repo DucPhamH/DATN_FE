@@ -14,7 +14,7 @@ import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreCont
 import 'photoswipe/dist/photoswipe.css'
 import { Gallery, Item } from 'react-photoswipe-gallery'
 import ThreeDotPost from '../../../pages/Home/components/ThreeDotPost'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { MdPublic } from 'react-icons/md'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'

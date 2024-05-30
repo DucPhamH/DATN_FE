@@ -1,7 +1,7 @@
 import moment from 'moment'
 import { Link } from 'react-router-dom'
 import { useMutation } from '@tanstack/react-query'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { useState } from 'react'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
 import { queryClient } from '../../../../main'

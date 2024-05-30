@@ -1,5 +1,5 @@
 import { useContext, useRef, useState } from 'react'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import ModalLayout from '../../../../layouts/ModalLayout'
 import { updateCoverAvatar } from '../../../../apis/userApi'
 import { useMutation } from '@tanstack/react-query'
@@ -30,7 +30,7 @@ export default function ModalUploadCoverAvatar({ closeModalCoverAvatar }) {
     console.log(formData)
     updateCoverAvatarMutation.mutate(formData, {
       onSuccess: (data) => {
-        toast.success('Cập nhật ảnh đại diện thành công')
+        toast.success('Cập nhật ảnh bìa thành công')
         console.log(data?.data.result)
         queryClient.invalidateQueries('me')
         setProfile(data?.data.result)
@@ -38,7 +38,7 @@ export default function ModalUploadCoverAvatar({ closeModalCoverAvatar }) {
         closeModalCoverAvatar()
       },
       onError: () => {
-        toast.error('Cập nhật ảnh đại diện thất bại')
+        toast.error('Cập nhật ảnh bìa thất bại')
       }
     })
     //ghep api o day

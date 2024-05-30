@@ -1,4 +1,4 @@
-import { navBarsProfile } from '../../../services/objectUi'
+import { navBarsProfile } from '../../../constants/objectUi'
 
 export default function TabsProfile({ toggleTab, getActiveClass }) {
   return (

@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom'
 import { followUser, getProfile, unfollowUser } from '../../apis/userApi'
 import { queryClient } from '../../main'
 import { FaCheckCircle } from 'react-icons/fa'
+import toast from 'react-hot-toast'
 
 export default function UserProfile() {
   const { id } = useParams()
@@ -41,6 +42,7 @@ export default function UserProfile() {
         {
           onSuccess: () => {
             queryClient.invalidateQueries('user-profile')
+            toast.success('Đã hủy theo dõi')
           }
         }
       )
@@ -50,6 +52,7 @@ export default function UserProfile() {
         {
           onSuccess: () => {
             queryClient.invalidateQueries('user-profile')
+            toast.success('Theo dõi thành công')
           }
         }
       )

@@ -6,7 +6,7 @@ import Picker from '@emoji-mart/react'
 import moment from 'moment'
 import { useMutation } from '@tanstack/react-query'
 import { sharePost } from '../../../../apis/postApi'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 import { AppContext } from '../../../../contexts/app.context'
 import ModalLayout from '../../../../layouts/ModalLayout'

@@ -6,7 +6,7 @@ import { FaCheckCircle } from 'react-icons/fa'
 import RecipeCard from '../../components/CardComponents/RecipeCard'
 import { BsFillBookmarkFill } from 'react-icons/bs'
 import { queryClient } from '../../main'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 export default function AlbumDetail() {
   const { id } = useParams()

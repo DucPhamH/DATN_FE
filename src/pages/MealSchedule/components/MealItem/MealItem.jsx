@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { deleteMealSchedule } from '../../../../apis/mealScheduleApi'
 import { queryClient } from '../../../../main'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import DeleteConfirmBox from '../../../../components/GlobalComponents/DeleteConfirmBox'
 import { cutString } from '../../../../utils/helper'
 

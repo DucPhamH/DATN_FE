@@ -16,7 +16,7 @@ import Logo from '../Logo'
 import { keepPreviousData, useMutation, useQuery } from '@tanstack/react-query'
 import { currentAccount, updateRequest } from '../../../apis/userApi'
 import ModalRequest from '../../../pages/Me/components/ModalRequest'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 export default function SideBar() {
   let isTabletMid = useMediaQuery({ query: '(max-width: 767px)' })

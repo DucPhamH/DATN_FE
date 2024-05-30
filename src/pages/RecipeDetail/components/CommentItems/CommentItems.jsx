@@ -3,7 +3,7 @@ import ShowMoreContent from '../../../../components/GlobalComponents/ShowMoreCon
 import useravatar from '../../../../assets/images/useravatar.jpg'
 import { useMutation } from '@tanstack/react-query'
 import { queryClient } from '../../../../main'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import ThreeDotComment from '../ThreeDotComment/ThreeDotComment'
 import { deleteComment } from '../../../../apis/recipeApi'
 

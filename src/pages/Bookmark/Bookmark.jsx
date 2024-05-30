@@ -3,7 +3,7 @@ import { bookmarkUser } from '../../apis/userApi'
 import RecipeCard from '../../components/CardComponents/RecipeCard'
 import Loading from '../../components/GlobalComponents/Loading'
 import AlbumCard from '../../components/CardComponents/AlbumCard'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { queryClient } from '../../main'
 import { unbookmarkAlbum } from '../../apis/albumApi'
 

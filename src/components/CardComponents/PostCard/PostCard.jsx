@@ -15,7 +15,7 @@ import ModalSharePost from '../../../pages/Home/components/ModalSharePost'
 import ShowMoreContent from '../../GlobalComponents/ShowMoreContent/ShowMoreContent'
 import { useNavigate } from 'react-router-dom'
 import ThreeDotPost from '../../../pages/Home/components/ThreeDotPost'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import { MdPublic } from 'react-icons/md'
 import { useLocation } from 'react-router-dom'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
@@ -361,7 +361,7 @@ function CheckLengthOfImages({ images, navigate, data }) {
     return (
       <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
         <div className='flex'>
-          <img className='max-w-full rounded-lg' src={images[0]} />
+          <img loading='lazy' className='max-w-full rounded-lg' src={images[0]} />
         </div>
       </div>
     )
@@ -371,10 +371,10 @@ function CheckLengthOfImages({ images, navigate, data }) {
       <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
         <div className='flex justify-between gap-1'>
           <div className='flex'>
-            <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
+            <img loading='lazy' className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
           </div>
           <div className='flex'>
-            <img className='max-w-full object-cover rounded-tr-lg' src={images[1]} />
+            <img loading='lazy' className='max-w-full object-cover rounded-tr-lg' src={images[1]} />
           </div>
         </div>
       </div>
@@ -385,13 +385,13 @@ function CheckLengthOfImages({ images, navigate, data }) {
       <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
         <div className='flex justify-between gap-1 mb-1'>
           <div className='flex'>
-            <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
+            <img loading='lazy' className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
           </div>
           <div className='flex'>
-            <img className='max-w-full object-cover' src={images[1]} />
+            <img loading='lazy' className='max-w-full object-cover' src={images[1]} />
           </div>
           <div className='flex'>
-            <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
+            <img loading='lazy' className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
           </div>
         </div>
       </div>
@@ -402,16 +402,16 @@ function CheckLengthOfImages({ images, navigate, data }) {
       <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
         <div className='flex justify-between gap-1'>
           <div className='flex'>
-            <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
+            <img loading='lazy' className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
           </div>
           <div className='flex'>
-            <img className='max-w-full object-cover' src={images[1]} />
+            <img loading='lazy' className='max-w-full object-cover' src={images[1]} />
           </div>
           <div className='flex'>
-            <img className='max-w-full object-cover rounded-br-lg' src={images[3]} />
+            <img loading='lazy' className='max-w-full object-cover rounded-br-lg' src={images[3]} />
           </div>
           <div className='flex'>
-            <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
+            <img loading='lazy' className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
           </div>
         </div>
         <div className='flex justify-between gap-1'></div>
@@ -422,21 +422,21 @@ function CheckLengthOfImages({ images, navigate, data }) {
     <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
       <div className='flex justify-between gap-1 mb-1'>
         <div className='flex'>
-          <img className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
+          <img loading='lazy' className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
         </div>
         <div className='flex'>
-          <img className='max-w-full object-cover' src={images[1]} />
+          <img loading='lazy' className='max-w-full object-cover' src={images[1]} />
         </div>
         <div className='flex'>
-          <img className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
+          <img loading='lazy' className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
         </div>
       </div>
       <div className='flex justify-between gap-1'>
         <div className='flex'>
-          <img className='max-w-full object-cover rounded-bl-lg' src={images[3]} />
+          <img loading='lazy' className='max-w-full object-cover rounded-bl-lg' src={images[3]} />
         </div>
         <div className='flex'>
-          <img className='max-w-full object-cover rounded-br-lg' src={images[4]} />
+          <img loading='lazy' className='max-w-full object-cover rounded-br-lg' src={images[4]} />
         </div>
       </div>
     </div>

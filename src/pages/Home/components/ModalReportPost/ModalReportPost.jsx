@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query'
 import { reportPost } from '../../../../apis/postApi'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 import ModalLayout from '../../../../layouts/ModalLayout'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
