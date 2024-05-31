@@ -134,11 +134,18 @@ export default function CreateItemSchedule({ meal }) {
     // call api add activity
 
     createMealItemMutation.mutate(arrayMealItems, {
-      onSuccess: (data) => {
+      onSuccess: async (data) => {
         console.log(data)
         toast.success('Thêm hoạt động thành công')
         setMealState([])
-        queryClient.invalidateQueries('date-meal-items')
+        await Promise.all([
+          queryClient.invalidateQueries({
+            queryKey: ['date-meal-items']
+          }),
+          queryClient.invalidateQueries({
+            queryKey: ['line-data-meal']
+          })
+        ])
       },
       onError: () => {
         console.log('error')

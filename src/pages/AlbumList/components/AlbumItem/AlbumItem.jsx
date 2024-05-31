@@ -19,8 +19,10 @@ export default function AlbumItem({ album }) {
   const deleteAlbumMutation = useMutation({
     mutationFn: () => deleteAlbumForChef(album._id),
     onSuccess: () => {
-      toast.success('Xóa bài viết thành công')
-      queryClient.invalidateQueries('albums-list-chef')
+      toast.success('Xóa album thành công')
+      queryClient.invalidateQueries({
+        queryKey: ['albums-list-chef']
+      })
       handleCloseDelete()
     }
   })

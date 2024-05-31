@@ -43,7 +43,6 @@ export default function ModalSharePost({ handleCloseSharePost, post }) {
     uploadMutation.mutate(body, {
       onSuccess: () => {
         toast.success('Chia sẻ bài viết thành công')
-        // queryClient.invalidateQueries('newsFeed')
         setContent('')
         handleCloseSharePost()
       },

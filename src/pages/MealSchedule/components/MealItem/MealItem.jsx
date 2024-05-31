@@ -25,7 +25,9 @@ export default function MealItem({ meal }) {
   const handleDeleteMeal = () => {
     deleteMealMutation.mutate(meal._id, {
       onSuccess: () => {
-        queryClient.invalidateQueries('meal-schedule')
+        queryClient.invalidateQueries({
+          queryKey: ['meal-schedule']
+        })
         toast.success('Xóa lịch trình thành công')
       },
       onError: (error) => {

@@ -84,10 +84,11 @@ export default function ModalUpdateMeal({ handleCloseModalUpdateMeal, meal }) {
     updateMealMutation.mutate(newData, {
       onSuccess: (data) => {
         console.log(data)
-        queryClient.invalidateQueries('meal-info')
+        queryClient.invalidateQueries({
+          queryKey: ['meal-info']
+        })
         toast.success('Chỉnh sửa lịch ăn thành công')
         handleCloseModalUpdateMeal()
-        // navigate(`/schedule/eat-schedule/${data?.data.result._id}`)
       },
       onError: (error) => {
         console.log(error)

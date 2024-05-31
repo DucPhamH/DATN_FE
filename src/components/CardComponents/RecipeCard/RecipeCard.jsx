@@ -15,16 +15,24 @@ export default function RecipeCard({ recipe }) {
 
   const checkRefetchApi = () => {
     if (location.pathname === '/cooking/recipe') {
-      return queryClient.invalidateQueries('recipes-list-user')
+      return queryClient.invalidateQueries({
+        queryKey: ['recipes-list-user']
+      })
     }
     if (location.pathname.includes('/album')) {
-      return queryClient.invalidateQueries('recipes-list-album')
+      return queryClient.invalidateQueries({
+        queryKey: ['recipes-list-album']
+      })
     }
     if (location.pathname.includes('/cooking')) {
-      return queryClient.invalidateQueries('recipes-list-user')
+      return queryClient.invalidateQueries({
+        queryKey: ['recipes-list-user']
+      })
     }
     if (location.pathname.includes('/bookmark')) {
-      return queryClient.invalidateQueries('bookmark')
+      return queryClient.invalidateQueries({
+        queryKey: ['bookmark']
+      })
     }
     // return queryClient.invalidateQueries(['userPost', data.user._id])
   }

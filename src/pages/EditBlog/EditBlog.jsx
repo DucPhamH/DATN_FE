@@ -64,7 +64,9 @@ export default function EditBlog() {
         console.log(data)
         toast.success('Chỉnh sửa bài viết thành công')
         handleCloseEdit()
-        queryClient.invalidateQueries('blog-info')
+        queryClient.invalidateQueries({
+          queryKey: ['blog-info']
+        })
       },
       onError: (error) => {
         console.log(error)

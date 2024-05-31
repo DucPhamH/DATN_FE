@@ -90,7 +90,9 @@ export default function EditRecipe() {
         console.log(data)
         toast.success('Chỉnh sửa bài viết thành công')
         handleCloseEdit()
-        queryClient.invalidateQueries('recipe-info')
+        queryClient.invalidateQueries({
+          queryKey: ['recipe-info']
+        })
       },
       onError: (error) => {
         console.log(error)

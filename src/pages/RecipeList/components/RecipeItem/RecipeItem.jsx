@@ -20,7 +20,9 @@ export default function RecipeItem({ recipe }) {
     mutationFn: () => deleteRecipeForChef(recipe._id),
     onSuccess: () => {
       toast.success('Xóa bài viết thành công')
-      queryClient.invalidateQueries('recipes-list-chef')
+      queryClient.invalidateQueries({
+        queryKey: ['recipes-list-chef']
+      })
       handleCloseDelete()
     }
   })

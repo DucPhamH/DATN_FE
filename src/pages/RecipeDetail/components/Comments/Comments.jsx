@@ -28,7 +28,9 @@ export default function Comments({ recipe }) {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries('comments-recipes')
+          queryClient.invalidateQueries({
+            queryKey: ['comments-recipes']
+          })
           reset()
         },
         onError: () => {

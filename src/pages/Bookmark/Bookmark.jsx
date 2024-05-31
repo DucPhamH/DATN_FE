@@ -90,7 +90,9 @@ const AlbumItem = ({ album }) => {
         { album_id: album?._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('bookmark')
+            queryClient.invalidateQueries({
+              queryKey: ['bookmark']
+            })
             toast.success('Bỏ lưu thành công')
           }
         }

@@ -19,7 +19,9 @@ export default function CommentItems({ comment }) {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries('comments-recipes')
+          queryClient.invalidateQueries({
+            queryKey: ['comments-recipes']
+          })
           toast.success('Xóa bình luận thành công')
         },
         onError: () => {

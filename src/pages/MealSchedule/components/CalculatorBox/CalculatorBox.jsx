@@ -42,7 +42,7 @@ export default function CalculatorBox({ closeModal }) {
           onClick={() => navigate('/fitness/fitness-calculator')}
           className='block btn btn-sm w-full md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
         >
-          Đồng ý
+          Đi đến trang tính toán
         </button>
       </div>
     </ModalLayout>

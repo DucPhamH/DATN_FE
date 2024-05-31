@@ -112,11 +112,22 @@ export default function CreateItemSchedule({ workout }) {
     // call api add activity
 
     createWorkOutItemMutation.mutate(arrayWorkoutItems, {
-      onSuccess: (data) => {
+      onSuccess: async (data) => {
         console.log(data)
         toast.success('Thêm hoạt động thành công')
         setWorkoutState([])
-        queryClient.invalidateQueries('date-items')
+        // queryClient.invalidateQueries('date-items')
+        await Promise.all([
+          queryClient.invalidateQueries({
+            queryKey: ['date-items']
+          }),
+          queryClient.invalidateQueries({
+            queryKey: ['line-data']
+          }),
+          queryClient.invalidateQueries({
+            queryKey: ['workout-info']
+          })
+        ])
       },
       onError: () => {
         console.log('error')

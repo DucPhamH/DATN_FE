@@ -52,9 +52,19 @@ export default function ModalUpdateWorkout({ handleCloseModalUpdateWorkout, work
     }
 
     updateWorkoutMutation.mutate(newData, {
-      onSuccess: (data) => {
+      onSuccess: async (data) => {
         console.log(data)
-        queryClient.invalidateQueries('workout-schedule')
+        await Promise.all([
+          queryClient.invalidateQueries({
+            queryKey: ['date-items']
+          }),
+          queryClient.invalidateQueries({
+            queryKey: ['line-data']
+          }),
+          queryClient.invalidateQueries({
+            queryKey: ['workout-info']
+          })
+        ])
         toast.success('Cập nhật lịch trình thành công')
         handleCloseModalUpdateWorkout()
       },

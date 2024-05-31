@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function LoadingHome() {
   return (
     <div className='w-full h-[100rem] flex flex-col items-center'>
