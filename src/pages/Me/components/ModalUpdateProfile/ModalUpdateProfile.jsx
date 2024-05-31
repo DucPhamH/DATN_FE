@@ -68,7 +68,9 @@ export default function ModalUpdateMeal({ handleCloseModalUpdateProfile, user })
     updateProfileMutation.mutate(data, {
       onSuccess: (data) => {
         console.log(data)
-        queryClient.invalidateQueries('me')
+        queryClient.invalidateQueries({
+          queryKey: ['me']
+        })
         setProfile(data?.data.result)
         setProfileToLS(data?.data.result)
         toast.success('Cập nhật thông tin cá nhân thành công')

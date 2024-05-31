@@ -25,10 +25,15 @@ export default function Comments({ post }) {
         content: content
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ['comments']
-          })
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['comments']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['newFeeds']
+            })
+          ])
           setContent('')
         },
         onError: () => {

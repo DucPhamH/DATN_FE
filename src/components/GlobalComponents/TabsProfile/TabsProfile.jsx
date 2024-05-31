@@ -1,11 +1,9 @@
-import { navBarsProfile } from '../../../constants/objectUi'
-
-export default function TabsProfile({ toggleTab, getActiveClass }) {
+export default function TabsProfile({ toggleTab, getActiveClass, navBarsProfile }) {
   return (
     <div className={`flex justify-center md:justify-start items-center my-2 `}>
-      <div className='flex items-center space-x-14 bg-transparent'>
+      <div className='flex items-center space-x-10 bg-transparent'>
         {navBarsProfile.map((item, index) => (
-          <div key={item.id} className='text-lg group font-medium'>
+          <div key={item.id} className=' group font-medium'>
             <div
               onClick={() => toggleTab(index)}
               className={`cursor-pointer ${getActiveClass(index, 'text-yellow-700')}`}

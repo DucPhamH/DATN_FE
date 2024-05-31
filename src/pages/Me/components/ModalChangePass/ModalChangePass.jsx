@@ -4,7 +4,6 @@ import ModalLayout from '../../../../layouts/ModalLayout'
 import { useMutation } from '@tanstack/react-query'
 import Loading from '../../../../components/GlobalComponents/Loading'
 import { schemaChangePassword } from '../../../../utils/rules'
-import { queryClient } from '../../../../main'
 import toast from 'react-hot-toast'
 import { changePassword } from '../../../../apis/userApi'
 
@@ -42,7 +41,6 @@ export default function ModalChangePass({ handleCloseModalUpdatePass }) {
     updatePassMutation.mutate(newData, {
       onSuccess: (data) => {
         console.log(data)
-        queryClient.invalidateQueries('me')
         toast.success('Cập nhật thông tin cá nhân thành công')
         handleCloseModalUpdatePass()
       },

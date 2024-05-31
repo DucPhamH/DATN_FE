@@ -6,7 +6,6 @@ import { Toaster } from 'react-hot-toast'
 import { useContext, useEffect } from 'react'
 import { LocalStorageEventTarget } from './utils/auth'
 import { AppContext } from './contexts/app.context'
-import ErrorBoundary from './components/GlobalComponents/ErrorBoundary'
 
 if (typeof window !== 'undefined') {
   injectStyle()
@@ -35,7 +34,7 @@ function App() {
   }, [reset])
 
   return (
-    <ErrorBoundary>
+    <div>
       {routeElement}
       <Toaster
         position='top-center'
@@ -49,7 +48,7 @@ function App() {
           }
         }}
       />
-    </ErrorBoundary>
+    </div>
   )
 }
 

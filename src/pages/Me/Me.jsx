@@ -11,6 +11,10 @@ import ModalUploadAvatar from './components/ModalUploadAvatar'
 import ModalUploadCoverAvatar from './components/ModalUploadCoverAvatar'
 import ThreeDots from './components/ThreeDots'
 import ModalUpdateProfile from './components/ModalUpdateProfile'
+import { navBarsProfileChef, navBarsProfileUser } from '../../constants/objectUi'
+import MeBlog from './components/MeBlog'
+import MeAlbum from './components/MeAlbum'
+import MeRecipe from './components/MeRecipe'
 
 export default function Me() {
   const [modalAvatar, setModalAvatar] = useState(false)
@@ -153,11 +157,22 @@ export default function Me() {
         </div>
         <div className='mt-[20rem] md:mt-64 lg:mt-48 dark:shadow-sm shadow-md dark:shadow-red-600 py-3 px-4'>
           {/* <NavBarProfile /> */}
-          <TabsProfile toggleTab={toggleTab} getActiveClass={getActiveClass} />
+          <TabsProfile
+            toggleTab={toggleTab}
+            getActiveClass={getActiveClass}
+            navBarsProfile={userData?.data.result[0].role === 0 ? navBarsProfileUser : navBarsProfileChef}
+          />
         </div>
-        {toggleState === 0 && <MePost user={userData?.data.result[0]} />}
-        {toggleState === 1 && <div>Tab 2</div>}
-        {toggleState === 2 && <div>Tab 3</div>}
+        {userData?.data.result[0].role === 0 ? (
+          <>{toggleState === 0 && <MePost user={userData?.data.result[0]} />}</>
+        ) : (
+          <>
+            {toggleState === 0 && <MePost user={userData?.data.result[0]} />}
+            {toggleState === 1 && <MeRecipe />}
+            {toggleState === 2 && <MeAlbum />}
+            {toggleState === 3 && <MeBlog />}
+          </>
+        )}
       </div>
       {modalAvatar && <ModalUploadAvatar closeModalAvatar={closeModalAvatar} />}
       {modalCoverAvatar && <ModalUploadCoverAvatar closeModalCoverAvatar={closeModalCoverAvatar} />}

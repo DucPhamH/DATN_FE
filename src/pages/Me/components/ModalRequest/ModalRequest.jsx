@@ -28,7 +28,9 @@ export default function ModalRequest({ handleCloseModalRequest, updateRequest })
       onSuccess: (data) => {
         console.log(data)
         toast.success('Yêu cầu nâng cấp lên đầu bếp thành công, hãy đợi email phản hồi từ chúng tôi')
-        queryClient.invalidateQueries('me')
+        queryClient.invalidateQueries({
+          queryKey: ['me']
+        })
         handleCloseModalRequest()
       },
       onError: (error) => {
