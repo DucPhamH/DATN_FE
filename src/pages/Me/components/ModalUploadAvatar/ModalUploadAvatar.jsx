@@ -32,7 +32,9 @@ export default function ModalUploadAvatar({ closeModalAvatar }) {
       onSuccess: (data) => {
         toast.success('Cập nhật ảnh đại diện thành công')
         console.log(data?.data.result)
-        queryClient.invalidateQueries('me')
+        queryClient.invalidateQueries({
+          queryKey: ['me']
+        })
         setProfile(data?.data.result)
         setProfileToLS(data?.data.result)
         closeModalAvatar()

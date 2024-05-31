@@ -6,14 +6,29 @@ export const navBars = [
   { id: 4, name: 'Liên hệ', path: '#contact' }
 ]
 
-export const navBarsProfile = [
+export const navBarsProfileChef = [
   {
     id: 0,
-    title: 'Bài viết diễn đàn'
+    title: 'Diễn đàn'
   },
   {
     id: 1,
-    title: 'Bài viết đầu bếp'
+    title: 'Nấu ăn'
+  },
+  {
+    id: 2,
+    title: 'Album'
+  },
+  {
+    id: 3,
+    title: 'Blog'
+  }
+]
+
+export const navBarsProfileUser = [
+  {
+    id: 0,
+    title: 'Diễn đàn'
   }
 ]
 

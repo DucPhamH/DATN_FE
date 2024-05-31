@@ -34,6 +34,16 @@ export default function RecipeCard({ recipe }) {
         queryKey: ['bookmark']
       })
     }
+    if (location.pathname.includes('/me')) {
+      return queryClient.invalidateQueries({
+        queryKey: ['me-recipe']
+      })
+    }
+    if (location.pathname.includes('/user')) {
+      return queryClient.invalidateQueries({
+        queryKey: ['user-recipe']
+      })
+    }
     // return queryClient.invalidateQueries(['userPost', data.user._id])
   }
   const likeMutation = useMutation({

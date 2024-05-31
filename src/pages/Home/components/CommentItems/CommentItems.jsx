@@ -59,10 +59,18 @@ export default function CommentItems({ comment, post }) {
         parent_comment_id: comment._id
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ['child-comments']
-          })
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['comments']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['newFeeds']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['child-comments']
+            })
+          ])
           setContent('')
         },
         onError: () => {
@@ -95,10 +103,15 @@ export default function CommentItems({ comment, post }) {
         comment_id: comment._id
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ['comments']
-          })
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['comments']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['newFeeds']
+            })
+          ])
           toast.success('Xóa bình luận thành công')
         },
         onError: () => {
@@ -124,7 +137,9 @@ export default function CommentItems({ comment, post }) {
           >
             {comment.user.name}
           </div>
-          <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).fromNow()}</span>
+          <span className='text-slate-500 text-xs lg:text-sm dark:text-slate-300'>
+            {moment(comment.createdAt).fromNow()}
+          </span>
         </div>
         <ShowMoreContent className='text-sm' lines={2}>
           <p className=''>{comment.content}</p>
@@ -164,6 +179,7 @@ export default function CommentItems({ comment, post }) {
         <ThreeDotComment
           isPending={deleteCommentMutation.isPending}
           userID={comment.user._id}
+          post={post}
           handleDeletePost={handleDeleteComment}
         />
       </div>
@@ -189,10 +205,18 @@ function CommentChildItems({ comment, profile, navigate, post }) {
         comment_id: comment._id
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ['child-comments']
-          })
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['comments']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['newFeeds']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['child-comments']
+            })
+          ])
           toast.success('Xóa bình luận thành công')
         },
         onError: () => {
@@ -220,7 +244,9 @@ function CommentChildItems({ comment, profile, navigate, post }) {
               >
                 {comment.user.name}
               </div>
-              <span className='text-slate-500 dark:text-slate-300'>{moment(comment.createdAt).fromNow()}</span>
+              <span className='text-slate-500 text-xs lg:text-sm dark:text-slate-300'>
+                {moment(comment.createdAt).fromNow()}
+              </span>
             </div>
             <ShowMoreContent className='text-sm' lines={2}>
               <p className='text-sm'>{comment.content}</p>

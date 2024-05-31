@@ -35,3 +35,6 @@ export const unbookmarkRecipe = (body) => http.post('/recipes/actions/unbookmark
 export const deleteRecipeForChef = (id) => http.delete(`/recipes/chef/delete-recipe/${id}`)
 
 export const getTopRecipes = () => http.get('/recipes/user/get-top-recipes')
+
+export const getMeRecipe = (params) => http.get('/recipes/me/get-list-recipe', { params })
+export const getUserRecipe = (id, params) => http.get(`/recipes/user/get-list-recipe/${id}`, { params })

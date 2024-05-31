@@ -9,6 +9,10 @@ import { followUser, getProfile, unfollowUser } from '../../apis/userApi'
 import { queryClient } from '../../main'
 import { FaCheckCircle } from 'react-icons/fa'
 import toast from 'react-hot-toast'
+import { navBarsProfileChef, navBarsProfileUser } from '../../constants/objectUi'
+import UserBlog from './components/UserBlog'
+import UserAlbum from './components/UserAlbum'
+import UserRecipe from './components/UserRecipe'
 
 export default function UserProfile() {
   const { id } = useParams()
@@ -41,7 +45,9 @@ export default function UserProfile() {
         { follow_id: id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('user-profile')
+            queryClient.invalidateQueries({
+              queryKey: ['user-profile']
+            })
             toast.success('Đã hủy theo dõi')
           }
         }
@@ -51,7 +57,9 @@ export default function UserProfile() {
         { follow_id: id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('user-profile')
+            queryClient.invalidateQueries({
+              queryKey: ['user-profile']
+            })
             toast.success('Theo dõi thành công')
           }
         }
@@ -124,11 +132,25 @@ export default function UserProfile() {
         </div>
         <div className='mt-[20rem] md:mt-64 lg:mt-48 dark:shadow-sm shadow-md dark:shadow-red-600 py-3 px-4'>
           {/* <NavBarProfile /> */}
-          <TabsProfile toggleTab={toggleTab} getActiveClass={getActiveClass} />
+          <TabsProfile
+            toggleTab={toggleTab}
+            getActiveClass={getActiveClass}
+            navBarsProfile={userData?.data.result[0].role === 0 ? navBarsProfileUser : navBarsProfileChef}
+          />
         </div>
-        {toggleState === 0 && <UserPost user_id={id} user={userData?.data.result[0]} />}
+        {/* {toggleState === 0 && <UserPost user_id={id} user={userData?.data.result[0]} />}
         {toggleState === 1 && <div>Tab 2</div>}
-        {toggleState === 2 && <div>Tab 3</div>}
+        {toggleState === 2 && <div>Tab 3</div>} */}
+        {userData?.data.result[0].role === 0 ? (
+          <>{toggleState === 0 && <UserPost user_id={id} user={userData?.data.result[0]} />}</>
+        ) : (
+          <>
+            {toggleState === 0 && <UserPost user_id={id} user={userData?.data.result[0]} />}
+            {toggleState === 1 && <UserRecipe user_id={id} />}
+            {toggleState === 2 && <UserAlbum user_id={id} />}
+            {toggleState === 3 && <UserBlog user_id={id} />}
+          </>
+        )}
       </div>
     </div>
   )

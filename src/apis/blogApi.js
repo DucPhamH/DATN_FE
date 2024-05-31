@@ -11,3 +11,9 @@ export const deleteBlogForChef = (id) => http.delete(`/blogs/chef/delete-blog/${
 export const createCommentBlog = (body) => http.post('/blogs/actions/comment', body)
 export const getCommentBlog = (params) => http.get('/blogs/actions/comment', { params })
 export const deleteCommentBlog = (body) => http.post('/blogs/actions/delete-comment', body)
+export const getMeBlog = (params) => http.get('/blogs/me/get-list-blog', { params })
+export const getUserBlog = (id, params) => http.get(`/blogs/user/get-list-blog/${id}`, { params })
+
+// blogsRouter.get('/me/get-list-blog', accessTokenValidator, wrapRequestHandler(getListMeBlogController))
+
+// blogsRouter.get('/user/get-list-blog/:id', accessTokenValidator, wrapRequestHandler(getListUserBlogController))
