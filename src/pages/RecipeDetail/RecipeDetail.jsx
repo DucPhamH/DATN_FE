@@ -46,7 +46,9 @@ export default function RecipeDetail() {
         { recipe_id: data?.data.result[0]._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('recipe-info-user')
+            queryClient.invalidateQueries({
+              queryKey: ['recipe-info-user']
+            })
           }
         }
       )
@@ -55,7 +57,9 @@ export default function RecipeDetail() {
         { recipe_id: data?.data.result[0]._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('recipe-info-user')
+            queryClient.invalidateQueries({
+              queryKey: ['recipe-info-user']
+            })
           }
         }
       )
@@ -68,7 +72,9 @@ export default function RecipeDetail() {
         { recipe_id: data?.data.result[0]._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('recipe-info-user')
+            queryClient.invalidateQueries({
+              queryKey: ['recipe-info-user']
+            })
             toast.success('Bỏ lưu thành công')
           }
         }
@@ -78,7 +84,9 @@ export default function RecipeDetail() {
         { recipe_id: data?.data.result[0]._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('recipe-info-user')
+            queryClient.invalidateQueries({
+              queryKey: ['recipe-info-user']
+            })
             toast.success('Lưu vào mục yêu thích thành công')
           }
         }

@@ -60,7 +60,9 @@ export default function CommentItems({ comment, post }) {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries('child-comments')
+          queryClient.invalidateQueries({
+            queryKey: ['child-comments']
+          })
           setContent('')
         },
         onError: () => {
@@ -94,7 +96,9 @@ export default function CommentItems({ comment, post }) {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries('comments')
+          queryClient.invalidateQueries({
+            queryKey: ['comments']
+          })
           toast.success('Xóa bình luận thành công')
         },
         onError: () => {
@@ -186,7 +190,9 @@ function CommentChildItems({ comment, profile, navigate, post }) {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries('child-comments')
+          queryClient.invalidateQueries({
+            queryKey: ['child-comments']
+          })
           toast.success('Xóa bình luận thành công')
         },
         onError: () => {

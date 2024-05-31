@@ -59,7 +59,9 @@ export default function AlbumDetail() {
         { album_id: album?._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('album-info-user')
+            queryClient.invalidateQueries({
+              queryKey: ['album-info-user']
+            })
             toast.success('Bỏ lưu thành công')
           }
         }
@@ -69,7 +71,9 @@ export default function AlbumDetail() {
         { album_id: album?._id },
         {
           onSuccess: () => {
-            queryClient.invalidateQueries('album-info-user')
+            queryClient.invalidateQueries({
+              queryKey: ['album-info-user']
+            })
             toast.success('Lưu vào mục yêu thích thành công')
           }
         }

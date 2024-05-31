@@ -45,8 +45,18 @@ export default function WorkoutScheduleDetail() {
         workout_schedule_id: id
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries('workout-schedule')
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['date-items']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['line-data']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['workout-info']
+            })
+          ])
           toast.success('Đồng bộ cân nặng thành công')
         }
       }
@@ -117,8 +127,18 @@ export default function WorkoutScheduleDetail() {
         date: newDate
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries(['date-items'])
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['date-items']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['line-data']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['workout-info']
+            })
+          ])
           toast.success('Hoàn thành bài tập thành công')
         }
       }
@@ -134,8 +154,18 @@ export default function WorkoutScheduleDetail() {
         is_completed: is_completed
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries(['date-items'])
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['date-items']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['line-data']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['workout-info']
+            })
+          ])
           toast.success('Xóa bài tập thành công')
         }
       }

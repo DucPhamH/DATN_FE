@@ -20,7 +20,9 @@ export default function BlogItem({ blog }) {
     mutationFn: () => deleteBlogForChef(blog._id),
     onSuccess: () => {
       toast.success('Xóa bài viết thành công')
-      queryClient.invalidateQueries('blogs-list-chef')
+      queryClient.invalidateQueries({
+        queryKey: ['blogs-list-chef']
+      })
       handleCloseDelete()
     }
   })

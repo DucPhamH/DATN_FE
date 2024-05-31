@@ -124,8 +124,6 @@ export default function MealScheduleDetail() {
   })
 
   const handleCompleteDateMealItem = (date) => {
-    // dùng moment fomat date thành string với định dạng yyyy-MM-DD
-
     const newDate = moment(date).format('YYYY-MM-DD')
     console.log(newDate)
 
@@ -135,8 +133,18 @@ export default function MealScheduleDetail() {
         date: newDate
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries(['date-meal-items'])
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['date-meal-items']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['line-data-meal']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['meal-item']
+            })
+          ])
           toast.success('Nạp dinh dưỡng thành công')
         }
       }
@@ -152,8 +160,18 @@ export default function MealScheduleDetail() {
         is_completed: is_completed
       },
       {
-        onSuccess: () => {
-          queryClient.invalidateQueries(['date-meal-items'])
+        onSuccess: async () => {
+          await Promise.all([
+            queryClient.invalidateQueries({
+              queryKey: ['date-meal-items']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['line-data-meal']
+            }),
+            queryClient.invalidateQueries({
+              queryKey: ['meal-item']
+            })
+          ])
           toast.success('Xóa lịch trình thành công')
         }
       }

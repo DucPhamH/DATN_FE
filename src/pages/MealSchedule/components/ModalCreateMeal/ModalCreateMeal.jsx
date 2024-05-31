@@ -88,7 +88,9 @@ export default function ModalCreateMeal({ handleCloseModalCreateMeal }) {
     createMealMutation.mutate(newData, {
       onSuccess: (data) => {
         console.log(data)
-        queryClient.invalidateQueries('meal-schedules')
+        queryClient.invalidateQueries({
+          queryKey: ['meal-schedule']
+        })
         toast.success('Tạo lịch ăn thành công')
         handleCloseModalCreateMeal()
         navigate(`/schedule/eat-schedule/${data?.data.result._id}`)

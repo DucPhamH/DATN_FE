@@ -29,12 +29,16 @@ export default function PostCard({ data }) {
 
   const checkRefetchApi = () => {
     if (location.pathname === '/home') {
-      return queryClient.invalidateQueries('newsFeed')
+      return queryClient.invalidateQueries({
+        queryKey: ['newFeeds']
+      })
     }
     if (location.pathname === '/me') {
-      return queryClient.invalidateQueries('mePost')
+      return queryClient.invalidateQueries({
+        queryKey: ['mePost']
+      })
     }
-    return queryClient.invalidateQueries(['userPost', data.user._id])
+    return queryClient.invalidateQueries({ queryKey: ['userPost', data.user._id] })
   }
 
   const checkNavigateProfileUser = () => {

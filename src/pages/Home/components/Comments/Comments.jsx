@@ -26,7 +26,9 @@ export default function Comments({ post }) {
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries('comments')
+          queryClient.invalidateQueries({
+            queryKey: ['comments']
+          })
           setContent('')
         },
         onError: () => {

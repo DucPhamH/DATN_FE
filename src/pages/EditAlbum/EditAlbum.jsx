@@ -81,7 +81,9 @@ export default function EditAlbum() {
         console.log(data)
         toast.success('Chỉnh sửa album thành công')
         handleCloseEdit()
-        queryClient.invalidateQueries('album-info')
+        queryClient.invalidateQueries({
+          queryKey: ['album-info']
+        })
       },
       onError: (error) => {
         console.log(error)

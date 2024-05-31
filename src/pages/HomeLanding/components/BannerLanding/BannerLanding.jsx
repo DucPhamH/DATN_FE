@@ -1,5 +1,4 @@
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { useContext } from 'react'
 import MotionWrapper from '../../../../layouts/MotionWrapper'
 import { useTypewriter, Cursor } from 'react-simple-typewriter'
 import chef from '../../../../assets/images/chef.png'

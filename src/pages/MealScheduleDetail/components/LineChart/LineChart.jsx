@@ -75,7 +75,7 @@ export default function LineChart({ meal }) {
     ]
   }
   return (
-    <div className='bg-white mx-2 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 col-span-2 flex flex-col items-center gap-2 justify-center lg:h-[27rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
+    <div className='bg-white  mx-2 scrollbar-thin scrollbar-track-white dark:scrollbar-track-[#010410] dark:scrollbar-thumb-[#171c3d] scrollbar-thumb-slate-100 col-span-2 flex flex-col items-center gap-2 justify-center lg:h-[27rem] overflow-x-auto overflow-y-auto px-10 py-5 my-4 dark:border-none rounded-md dark:bg-color-primary border border-gray-300'>
       <Line options={options} data={data} />
       <div>
         <PaginationMini query={query} pageSize={lineData?.data.result.totalPage} setQuery={setQuery} title='Tuần' />
