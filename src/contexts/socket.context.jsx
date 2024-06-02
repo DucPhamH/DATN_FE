@@ -19,7 +19,7 @@ export const SocketProvider = ({ children }) => {
     console.log('isAuthenticated', isAuthenticated)
     const token = getAccessTokenFromLS()
     if (isAuthenticated && token) {
-      const socket = io('http://localhost:4000', {
+      const socket = io('https://datn-be-kwjk.onrender.com', {
         transports: ['websocket'],
         auth: {
           token: token
