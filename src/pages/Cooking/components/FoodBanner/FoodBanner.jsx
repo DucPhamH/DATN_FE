@@ -4,7 +4,6 @@ import 'slick-carousel/slick/slick-theme.css'
 import medal from '../../../../assets/images/medal.png'
 import medal2 from '../../../../assets/images/medal2.png'
 import medal3 from '../../../../assets/images/medal3.png'
-import { FaMedal } from 'react-icons/fa'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { getTopRecipes } from '../../../../apis/recipeApi'
 import { useNavigate } from 'react-router-dom'
@@ -74,8 +73,8 @@ export default function FoodBanner() {
               <p className='lg:text-4xl mb-2 md:text-2xl text-2xl font-semibold leading-9 text-white'>
                 Top 3 công thức hot ở <span className='text-red-500'>Cook</span>Healthy
               </p>
-              <p className='lg:text-2xl flex items-center mb-2 md:text-2xl text-2xl pt-5 font-normal leading-9 text-white'>
-                <FaMedal className='text-yellow-500 mr-3' /> {data?.data.result[0].title}
+              <p className='lg:text-2xl flex items-center mb-2  pt-5 font-normal lg:leading-9 text-white'>
+                {data?.data.result[0].title}
               </p>
               <button
                 onClick={() => navigate(`/cooking/recipe/${data?.data.result[0]._id}`)}
@@ -97,8 +96,8 @@ export default function FoodBanner() {
               <p className='lg:text-4xl mb-2 md:text-2xl text-2xl font-semibold leading-9 text-white'>
                 Top 3 công thức hot ở <span className='text-red-500'>Cook</span>Healthy
               </p>
-              <p className='lg:text-2xl flex items-center mb-2 md:text-2xl text-2xl pt-5 font-normal leading-9 text-white'>
-                <FaMedal className='text-yellow-500 mr-3' /> {data?.data.result[1].title}
+              <p className='lg:text-2xl flex items-center mb-2  pt-5 font-normal lg:leading-9 text-white'>
+                {data?.data.result[1].title}
               </p>
               <button
                 onClick={() => navigate(`/cooking/recipe/${data?.data.result[1]._id}`)}
@@ -120,8 +119,8 @@ export default function FoodBanner() {
               <p className='lg:text-4xl mb-2 md:text-2xl text-2xl font-semibold leading-9 text-white'>
                 Top 3 công thức hot ở <span className='text-red-500'>Cook</span>Healthy
               </p>
-              <p className='lg:text-2xl flex items-center mb-2 md:text-2xl text-2xl pt-5 font-normal leading-9 text-white'>
-                <FaMedal className='text-yellow-500 mr-3' /> {data?.data.result[2].title}
+              <p className='lg:text-2xl flex items-center mb-2  pt-5 font-normal lg:leading-9 text-white'>
+                {data?.data.result[2].title}
               </p>
               <button
                 onClick={() => navigate(`/cooking/recipe/${data?.data.result[2]._id}`)}

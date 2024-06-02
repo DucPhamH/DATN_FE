@@ -20,10 +20,13 @@ import { MdPublic } from 'react-icons/md'
 import { useLocation } from 'react-router-dom'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { AppContext } from '../../../contexts/app.context'
+import { SocketContext } from '../../../contexts/socket.context'
+
 export default function PostCard({ data }) {
   const [openComment, setOpenComment] = useState(false)
   const [openSharePost, setOpenSharePost] = useState(false)
   const { profile } = useContext(AppContext)
+  const { newSocket } = useContext(SocketContext)
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -84,6 +87,12 @@ export default function PostCard({ data }) {
         }
       )
     } else {
+      newSocket.emit('like post', {
+        content: 'Đã thích 1 bài viết của bạn',
+        to: data.user._id,
+        name: profile.name,
+        avatar: profile.avatar
+      })
       likeMutation.mutate(
         { post_id: data._id },
         {
