@@ -20,6 +20,7 @@ export const SocketProvider = ({ children }) => {
     const token = getAccessTokenFromLS()
     if (isAuthenticated && token) {
       const socket = io('http://localhost:4000', {
+        transports: ['websocket'],
         auth: {
           token: token
         }
