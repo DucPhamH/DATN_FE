@@ -10,7 +10,9 @@ const initialAppContext = {
   setProfile: () => null,
   reset: () => null,
   searchQuery: {},
-  setSearchQuery: () => null
+  setSearchQuery: () => null,
+  newSocket: null,
+  setNewSocket: () => null
 }
 
 export const AppContext = createContext(initialAppContext)
@@ -20,6 +22,7 @@ export const AppProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(initialAppContext.isAuthenticated)
   const [profile, setProfile] = useState(initialAppContext.profile)
   const [searchQuery, setSearchQuery] = useState(initialAppContext.searchQuery)
+  const [newSocket, setNewSocket] = useState(initialAppContext.newSocket)
 
   const reset = () => {
     setIsAuthenticated(false)
@@ -36,7 +39,9 @@ export const AppProvider = ({ children }) => {
         setProfile,
         reset,
         searchQuery,
-        setSearchQuery
+        setSearchQuery,
+        newSocket,
+        setNewSocket
       }}
     >
       {children}

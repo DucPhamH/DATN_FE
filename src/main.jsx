@@ -7,6 +7,7 @@ import { AppProvider } from './contexts/app.context.jsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import ErrorBoundary from './components/GlobalComponents/ErrorBoundary'
+import { SocketProvider } from './contexts/socket.context.jsx'
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,10 +23,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
         <AppProvider>
-          <ErrorBoundary>
-            <App />
-          </ErrorBoundary>
-          <ReactQueryDevtools initialIsOpen={false} />
+          <SocketProvider>
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </SocketProvider>
         </AppProvider>
       </QueryClientProvider>
     </BrowserRouter>

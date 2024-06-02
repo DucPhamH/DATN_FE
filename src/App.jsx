@@ -10,22 +10,13 @@ import { AppContext } from './contexts/app.context'
 if (typeof window !== 'undefined') {
   injectStyle()
 }
-// {
-//   /* <ToastContainer
-//         toastClassName={({ type }) =>
-//           contextClass[type || 'default'] +
-//           ' relative flex p-3 border font-gray-300 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
-//         }
-//         bodyClassName={() => 'text-sm text-black font-white font-med flex p-3'}
-//         position='bottom-right'
-//         autoClose={2000}
-//       /> */
-// }
 
 function App() {
   const routeElement = useRouteElement()
-
   const { reset } = useContext(AppContext)
+
+  // console.log(isAuthenticated)
+
   useEffect(() => {
     LocalStorageEventTarget.addEventListener('clearLS', reset)
     return () => {
@@ -53,3 +44,34 @@ function App() {
 }
 
 export default App
+
+// {
+//   /* <ToastContainer
+//         toastClassName={({ type }) =>
+//           contextClass[type || 'default'] +
+//           ' relative flex p-3 border font-gray-300 min-h-10 rounded-md justify-between overflow-hidden cursor-pointer'
+//         }
+//         bodyClassName={() => 'text-sm text-black font-white font-med flex p-3'}
+//         position='bottom-right'
+//         autoClose={2000}
+//       /> */
+// }
+
+// useEffect(() => {
+//   console.log('isAuthenticated', isAuthenticated)
+//   if (isAuthenticated) {
+//     const socket = io('http://localhost:4000', {
+//       auth: {
+//         token: getAccessTokenFromLS()
+//       }
+//     })
+//     setNewSocket(socket)
+//     socket.on('toast like', (data) => {
+//       console.log('toast like', data)
+//       toast.success(data.content)
+//     })
+//     return () => {
+//       socket.disconnect()
+//     }
+//   }
+// }, [setNewSocket, isAuthenticated])
