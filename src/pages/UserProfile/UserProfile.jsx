@@ -1,6 +1,6 @@
 import useravatar from '../../assets/images/useravatar.jpg'
 import avatarbg from '../../assets/images/avatarbg.jpg'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useQuery, useMutation, keepPreviousData } from '@tanstack/react-query'
 import TabsProfile from '../../components/GlobalComponents/TabsProfile'
 import UserPost from './components/UserPost'
@@ -13,9 +13,13 @@ import { navBarsProfileChef, navBarsProfileUser } from '../../constants/objectUi
 import UserBlog from './components/UserBlog'
 import UserAlbum from './components/UserAlbum'
 import UserRecipe from './components/UserRecipe'
+import { AppContext } from '../../contexts/app.context'
+import { SocketContext } from '../../contexts/socket.context'
 
 export default function UserProfile() {
   const { id } = useParams()
+  const { profile } = useContext(AppContext)
+  const { newSocket } = useContext(SocketContext)
   const [toggleState, setToggleState] = useState(0)
   const toggleTab = (index) => {
     setToggleState(index)
@@ -57,6 +61,12 @@ export default function UserProfile() {
         { follow_id: id },
         {
           onSuccess: () => {
+            newSocket.emit('follow', {
+              content: 'Đã theo dõi bạn',
+              to: id,
+              name: profile.name,
+              avatar: profile.avatar
+            })
             queryClient.invalidateQueries({
               queryKey: ['user-profile']
             })

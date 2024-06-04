@@ -2,12 +2,16 @@ import { createComment, getComments } from '../../../../apis/postApi'
 import { keepPreviousData, useInfiniteQuery, useMutation } from '@tanstack/react-query'
 import CommentItems from '../CommentItems'
 import Loading from '../../../../components/GlobalComponents/Loading'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import InputEmoji from '../../../../components/InputComponents/InputEmoji'
 import { queryClient } from '../../../../main'
+import { AppContext } from '../../../../contexts/app.context'
+import { SocketContext } from '../../../../contexts/socket.context'
 
 export default function Comments({ post }) {
   const [content, setContent] = useState('')
+  const { profile } = useContext(AppContext)
+  const { newSocket } = useContext(SocketContext)
 
   const fetchComment = async ({ pageParam }) => {
     return await getComments({ page: pageParam, post_id: post._id })
@@ -26,6 +30,12 @@ export default function Comments({ post }) {
       },
       {
         onSuccess: async () => {
+          newSocket.emit('comment post', {
+            content: 'Đã bình luận về bài viết của bạn',
+            to: post.user._id,
+            name: profile.name,
+            avatar: profile.avatar
+          })
           await Promise.all([
             queryClient.invalidateQueries({
               queryKey: ['comments']

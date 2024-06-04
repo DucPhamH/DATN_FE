@@ -13,9 +13,12 @@ import Comments from './components/Comments/Comments'
 import { queryClient } from '../../main'
 import toast from 'react-hot-toast'
 import IngerdientItem from './components/IngerdientItem/IngerdientItem'
+import useSound from 'use-sound'
+import like from '../../assets/sounds/like.mp3'
 
 export default function RecipeDetail() {
   const { id } = useParams()
+  const [play] = useSound(like)
   const { data, isLoading } = useQuery({
     queryKey: ['recipe-info-user', id],
     queryFn: () => {
@@ -57,6 +60,7 @@ export default function RecipeDetail() {
         { recipe_id: data?.data.result[0]._id },
         {
           onSuccess: () => {
+            play()
             queryClient.invalidateQueries({
               queryKey: ['recipe-info-user']
             })

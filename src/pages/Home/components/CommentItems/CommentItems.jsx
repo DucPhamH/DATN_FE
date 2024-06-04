@@ -10,11 +10,13 @@ import { AppContext } from '../../../../contexts/app.context'
 import { useNavigate } from 'react-router-dom'
 import ThreeDotComment from '../ThreeDotComment'
 import toast from 'react-hot-toast'
+import { SocketContext } from '../../../../contexts/socket.context'
 
 export default function CommentItems({ comment, post }) {
   const [showReply, setShowReply] = useState(false)
   const [content, setContent] = useState('')
   const { profile } = useContext(AppContext)
+  const { newSocket } = useContext(SocketContext)
   const navigate = useNavigate()
 
   const checkNavigateUser = () => {
@@ -60,6 +62,12 @@ export default function CommentItems({ comment, post }) {
       },
       {
         onSuccess: async () => {
+          newSocket.emit('comment child post', {
+            content: 'Đã trả lời bình luận của bạn',
+            to: comment.user._id,
+            name: profile.name,
+            avatar: profile.avatar
+          })
           await Promise.all([
             queryClient.invalidateQueries({
               queryKey: ['comments']

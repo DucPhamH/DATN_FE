@@ -7,12 +7,16 @@ import moment from 'moment'
 import { useMutation } from '@tanstack/react-query'
 import { sharePost } from '../../../../apis/postApi'
 import toast from 'react-hot-toast'
-
+import postSound from '../../../../assets/sounds/post.mp3'
 import { AppContext } from '../../../../contexts/app.context'
 import ModalLayout from '../../../../layouts/ModalLayout'
+import { SocketContext } from '../../../../contexts/socket.context'
+import useSound from 'use-sound'
 
 export default function ModalSharePost({ handleCloseSharePost, post }) {
   const { profile } = useContext(AppContext)
+  const { newSocket } = useContext(SocketContext)
+  const [play] = useSound(postSound)
   const [showEmoji, setShowEmoji] = useState(false)
   const [selectedValue, setSelectedValue] = useState('0')
   const [content, setContent] = useState('')
@@ -43,6 +47,13 @@ export default function ModalSharePost({ handleCloseSharePost, post }) {
     uploadMutation.mutate(body, {
       onSuccess: () => {
         toast.success('Chia sẻ bài viết thành công')
+        newSocket.emit('share post', {
+          content: 'Đã chia sẻ bài viết của bạn',
+          to: post.user._id,
+          name: profile.name,
+          avatar: profile.avatar
+        })
+        play()
         setContent('')
         handleCloseSharePost()
       },
