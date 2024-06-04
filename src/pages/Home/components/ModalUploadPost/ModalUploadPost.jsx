@@ -8,10 +8,13 @@ import Picker from '@emoji-mart/react'
 import { useMutation } from '@tanstack/react-query'
 import { createPost } from '../../../../apis/postApi'
 import ModalLayout from '../../../../layouts/ModalLayout'
+import useSound from 'use-sound'
+import post from '../../../../assets/sounds/post.mp3'
 
 export default function ModalUploadPost({ closeModalPost, profile }) {
   const theme = localStorage.getItem('theme')
   const inputRef = useRef(null)
+  const [play] = useSound(post)
   const [image, setImage] = useState([])
   const [selectedValue, setSelectedValue] = useState(0)
   const [showImagePopup, setShowImagePopup] = useState(false)
@@ -67,6 +70,7 @@ export default function ModalUploadPost({ closeModalPost, profile }) {
         toast.success('Upload bài viết thành công')
         setContent('')
         setImage([])
+        play()
         // queryClient.invalidateQueries({ queryKey: ['newFeeds'] })
         closeModalPost()
       },

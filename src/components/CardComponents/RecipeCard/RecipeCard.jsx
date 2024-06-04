@@ -9,9 +9,12 @@ import { queryClient } from '../../../main'
 import { Link, useLocation } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { cutString } from '../../../utils/helper'
+import useSound from 'use-sound'
+import like from '../../../assets/sounds/like.mp3'
 export default function RecipeCard({ recipe }) {
   const location = useLocation()
   console.log(location.pathname)
+  const [play] = useSound(like)
 
   const checkRefetchApi = () => {
     if (location.pathname === '/cooking/recipe') {
@@ -77,6 +80,7 @@ export default function RecipeCard({ recipe }) {
         { recipe_id: recipe._id },
         {
           onSuccess: () => {
+            play()
             checkRefetchApi()
           }
         }

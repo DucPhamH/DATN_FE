@@ -21,11 +21,14 @@ import { useLocation } from 'react-router-dom'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { AppContext } from '../../../contexts/app.context'
 import { SocketContext } from '../../../contexts/socket.context'
+import useSound from 'use-sound'
+import like from '../../../assets/sounds/like.mp3'
 
 export default function PostCard({ data }) {
   const [openComment, setOpenComment] = useState(false)
   const [openSharePost, setOpenSharePost] = useState(false)
   const { profile } = useContext(AppContext)
+  const [play] = useSound(like)
   const { newSocket } = useContext(SocketContext)
   const navigate = useNavigate()
   const location = useLocation()
@@ -87,16 +90,17 @@ export default function PostCard({ data }) {
         }
       )
     } else {
-      newSocket.emit('like post', {
-        content: 'Đã thích 1 bài viết của bạn',
-        to: data.user._id,
-        name: profile.name,
-        avatar: profile.avatar
-      })
       likeMutation.mutate(
         { post_id: data._id },
         {
           onSuccess: () => {
+            newSocket.emit('like post', {
+              content: 'Đã thích 1 bài viết của bạn',
+              to: data.user._id,
+              name: profile.name,
+              avatar: profile.avatar
+            })
+            play()
             checkRefetchApi()
           }
         }
