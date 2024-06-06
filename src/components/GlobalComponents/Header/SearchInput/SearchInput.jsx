@@ -17,40 +17,18 @@ export default function SearchInput() {
   const queryConfig = omit(useQueryConfig(), ['page', 'sort'])
   const { setSearchQuery } = useContext(AppContext)
 
-  // const { data } = useQuery({
-  //   queryKey: [
-  //     'search-all',
-  //     {
-  //       search: debouncedSearch
-  //     }
-  //   ],
-  //   queryFn: () => {
-  //     return searchAll({
-  //       search: debouncedSearch
-  //     })
-  //   }
-  // })
-  // console.log(data)
-
-  // const handleSearch = (e) => {
-  //   if (e.target.value == '') {
-  //     setActiveSearch([])
-  //     return false
-  //   }
-  //   setActiveSearch(words.filter((w) => w.includes(e.target.value)).slice(0, 8))
-  // }
   const navigate = useNavigate()
 
   const { register, handleSubmit, watch, reset } = useForm({
     defaultValues: {
-      search: queryConfig.search || ''
+      searchAll: queryConfig.searchAll || ''
     }
   })
   const onSubmitSearch = handleSubmit((data) => {
-    if (data.search === '') {
+    if (data.searchAll === '') {
       navigate({
         pathname: '/home',
-        search: createSearchParams(omit({ ...queryConfig }, ['page', 'sort', 'search'])).toString()
+        search: createSearchParams(omit({ ...queryConfig }, ['page', 'sort', 'search', 'searchAll'])).toString()
       })
       return
     }
@@ -60,14 +38,14 @@ export default function SearchInput() {
     // })
 
     setSearchQuery({
-      search: data.search
+      search: data.searchAll
     })
     navigate(`/search`)
     // reset lại form sau khi navigate sang trang search
     reset()
   })
 
-  const searchWatch = watch('search')
+  const searchWatch = watch('searchAll')
 
   const debouncedSearch = useDebounce(searchWatch, 500)
 
@@ -118,10 +96,11 @@ export default function SearchInput() {
         <input
           type='search'
           id='search_input'
+          name='search_input'
           placeholder='Tìm kiếm'
           autoComplete='off'
           className='w-full py-2 px-3  placeholder:text-sm rounded-full border border-red-600 bg-white dark:border-none dark:bg-slate-800'
-          {...register('search')}
+          {...register('searchAll')}
         />
         <button className='absolute right-1 top-1/2 -translate-y-1/2 py-2 px-3 bg-yellow-700 text-white dark:bg-slate-600 rounded-full'>
           <AiOutlineSearch />

@@ -129,7 +129,8 @@ export default function Blog() {
                 <div className='relative'>
                   <input
                     type='search'
-                    id='search_input'
+                    id='search_blog'
+                    name='search_blog'
                     {...register('searchBlogs')}
                     placeholder='Tìm kiếm chuyên đề'
                     className='w-full py-2 px-3 placeholder:text-sm rounded-lg border border-red-200 bg-white dark:border-none dark:bg-slate-800'
