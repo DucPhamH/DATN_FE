@@ -1,5 +1,4 @@
 import omitBy from 'lodash/omitBy'
-
 import { isUndefined } from 'lodash'
 import useQueryParams from './useQueryParam'
 export default function useQueryConfig() {
@@ -21,7 +20,8 @@ export default function useQueryConfig() {
       category_album: queryParams.category_album,
       type: queryParams.type,
       email: queryParams.email,
-      otp_code: queryParams.otp_code
+      otp_code: queryParams.otp_code,
+      searchAll: queryParams.searchAll
     },
     isUndefined
   )
