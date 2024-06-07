@@ -25,7 +25,7 @@ export const SocketProvider = ({ children }) => {
     console.log('isAuthenticated', isAuthenticated)
     const token = getAccessTokenFromLS()
     if (isAuthenticated && token) {
-      const socket = io('https://datn-be-kwjk.onrender.com', {
+      const socket = io('https://cookhealthydatn.io.vn', {
         transports: ['websocket'],
         auth: {
           token: token

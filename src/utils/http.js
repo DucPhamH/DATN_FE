@@ -14,7 +14,7 @@ import { isAxiosExpiredTokenError, isAxiosUnauthorizedError } from './utils'
 const URL = {
   BASE_URL: 'http://localhost:4000/api',
   DEPLOY_URL: 'https://datn-be-kwjk.onrender.com/api',
-  VPS_URL: 'http://103.75.76.145:4000/api'
+  VPS_URL: 'https://cookhealthydatn.io.vn/api'
 }
 class Http {
   constructor() {
@@ -22,7 +22,7 @@ class Http {
     this.refreshToken = getRefreshTokenFromLS()
     this.refreshTokenRequest = null
     this.instance = axios.create({
-      baseURL: `${URL.DEPLOY_URL}`,
+      baseURL: `${URL.VPS_URL}`,
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
