@@ -29,7 +29,7 @@ export default function SearchImage() {
 
   const searchImageMutation = useMutation({
     mutationFn: (body) =>
-      axios.post('http://103.75.76.145:5000/search', body, {
+      axios.post('https://cookhealthyimage.io.vn/search', body, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
