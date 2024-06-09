@@ -47,6 +47,12 @@ export default function RecipeCard({ recipe }) {
         queryKey: ['user-recipe']
       })
     }
+    if (location.pathname.includes('/search')) {
+      return queryClient.invalidateQueries({
+        queryKey: ['search-all']
+      })
+    }
+
     // return queryClient.invalidateQueries(['userPost', data.user._id])
   }
   const likeMutation = useMutation({
