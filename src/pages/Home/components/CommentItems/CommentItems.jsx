@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import ThreeDotComment from '../ThreeDotComment'
 import toast from 'react-hot-toast'
 import { SocketContext } from '../../../../contexts/socket.context'
+import { FaCheckCircle } from 'react-icons/fa'
 
 export default function CommentItems({ comment, post }) {
   const [showReply, setShowReply] = useState(false)
@@ -139,15 +140,15 @@ export default function CommentItems({ comment, post }) {
       </div>
       <div className='w-full'>
         <div>
-          <div
-            onClick={checkNavigateUser}
-            className='inline-block hover:underline cursor-pointer text-base font-bold mr-2'
-          >
-            {comment.user.name}
+          <div onClick={checkNavigateUser} className='flex items-center gap-1  mr-2'>
+            <span className='hover:underline cursor-pointer text-base font-bold'> {comment.user.name}</span>
+            {comment.user.role === 1 && (
+              <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                <FaCheckCircle size={12} />
+              </div>
+            )}
+            <span className='text-slate-500 text-xs dark:text-slate-300'>{moment(comment.createdAt).fromNow()}</span>
           </div>
-          <span className='text-slate-500 text-xs lg:text-sm dark:text-slate-300'>
-            {moment(comment.createdAt).fromNow()}
-          </span>
         </div>
         <ShowMoreContent className='text-sm' lines={2}>
           <p className=''>{comment.content}</p>
@@ -246,15 +247,20 @@ function CommentChildItems({ comment, profile, navigate, post }) {
           </div>
           <div className='media-body'>
             <div>
-              <div
-                onClick={checkNavigateUser}
-                className='inline-block hover:underline cursor-pointer text-base font-bold mr-2'
-              >
-                {comment.user.name}
+              <div onClick={checkNavigateUser} className='flex items-center gap-1 flex-wrap mr-2'>
+                <span className='hover:underline cursor-pointer text-base font-bold'> {comment.user.name}</span>
+                {comment.user.role === 1 && (
+                  <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                    <FaCheckCircle size={12} />
+                  </div>
+                )}
+                <span className='text-slate-500 text-xs dark:text-slate-300'>
+                  {moment(comment.createdAt).fromNow()}
+                </span>
               </div>
-              <span className='text-slate-500 text-xs lg:text-sm dark:text-slate-300'>
+              {/* <span className='text-slate-500 text-xs lg:text-sm dark:text-slate-300'>
                 {moment(comment.createdAt).fromNow()}
-              </span>
+              </span> */}
             </div>
             <ShowMoreContent className='text-sm' lines={2}>
               <p className='text-sm'>{comment.content}</p>

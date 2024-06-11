@@ -97,8 +97,13 @@ export default function UserProfile() {
                 <div className='w-full lg:flex mr-10 mb-8 items-end justify-between '>
                   <div className='md:mt-16 flex-col flex justify-end'>
                     <div className='px-2'>
-                      <div className='text-3xl whitespace-nowrap text-gray-800 dark:text-white font-semibold'>
+                      <div className='text-3xl flex items-center gap-2 whitespace-nowrap text-gray-800 dark:text-white font-semibold'>
                         {userData?.data.result[0].name}
+                        {userData?.data.result[0].role === 1 && (
+                          <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                            <FaCheckCircle size={20} />
+                          </div>
+                        )}
                       </div>
                       <div className='text-lg whitespace-nowrap text-gray-600 dark:text-gray-400'>
                         @{userData?.data.result[0].user_name}
