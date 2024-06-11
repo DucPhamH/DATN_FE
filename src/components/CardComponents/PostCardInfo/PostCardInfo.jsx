@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom'
 import { MdPublic } from 'react-icons/md'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { AppContext } from '../../../contexts/app.context'
-import { FaUserFriends } from 'react-icons/fa'
+import { FaCheckCircle, FaUserFriends } from 'react-icons/fa'
 import { SocketContext } from '../../../contexts/socket.context'
 import useSound from 'use-sound'
 import like from '../../../assets/sounds/like.mp3'
@@ -201,8 +201,13 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
               </div>
               <div className='flex flex-col'>
                 <div onClick={checkNavigateProfileUser} className='flex items-center'>
-                  <div className='inline-block cursor-pointer hover:underline text-lg font-bold mr-2'>
+                  <div className='flex items-center gap-2 hover:underline cursor-pointer  text-lg font-bold mr-2'>
                     {data.user.name}
+                    {data.user.role === 1 && (
+                      <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                        <FaCheckCircle size={15} />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className='flex gap-2 items-center'>
@@ -248,8 +253,13 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
             </div>
             <div className='flex flex-col'>
               <div onClick={checkNavigateProfileUser} className='flex items-center'>
-                <div className='inline-block cursor-pointer hover:underline text-lg font-bold mr-2'>
+                <div className='flex items-center gap-2 hover:underline cursor-pointer  text-lg font-bold mr-2'>
                   {data.user.name}
+                  {data.user.role === 1 && (
+                    <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                      <FaCheckCircle size={15} />
+                    </div>
+                  )}
                 </div>
               </div>{' '}
               <div className='flex gap-2 items-center'>
@@ -290,8 +300,13 @@ function CheckTypeOfPost({ data, handleDeletePost, checkNavigateProfileParentUse
             </div>
             <div className='flex flex-col'>
               <div onClick={checkNavigateProfileParentUser} className='flex items-center'>
-                <div className='inline-block cursor-pointer hover:underline font-bold mr-2'>
+                <div className='flex items-center gap-2 hover:underline cursor-pointer  text-lg font-bold mr-2'>
                   {data.parent_user.name}
+                  {data.parent_user.role === 1 && (
+                    <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                      <FaCheckCircle size={15} />
+                    </div>
+                  )}
                 </div>
               </div>
               <div className='flex gap-2 items-center'>

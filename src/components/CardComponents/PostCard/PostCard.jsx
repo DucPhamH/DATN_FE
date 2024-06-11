@@ -5,7 +5,7 @@ import { CiHeart } from 'react-icons/ci'
 import { PiShareFatLight } from 'react-icons/pi'
 import { LiaComments } from 'react-icons/lia'
 import moment from 'moment'
-import { FaUserFriends } from 'react-icons/fa'
+import { FaCheckCircle, FaUserFriends } from 'react-icons/fa'
 import 'moment/locale/vi'
 import { deletePostForEachUser, likePost, unlikePost } from '../../../apis/postApi'
 import { useMutation } from '@tanstack/react-query'
@@ -226,8 +226,13 @@ function CheckTypeOfPost({
               </div>
               <div className='flex flex-col'>
                 <div onClick={checkNavigateProfileUser} className='flex items-center'>
-                  <div className='inline-block hover:underline cursor-pointer  text-lg font-bold mr-2'>
+                  <div className='flex items-center gap-2 hover:underline cursor-pointer  text-lg font-bold mr-2'>
                     {data.user.name}
+                    {data.user.role === 1 && (
+                      <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                        <FaCheckCircle size={15} />
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className='flex gap-2 items-center'>
@@ -286,8 +291,13 @@ function CheckTypeOfPost({
             </div>
             <div className='flex flex-col'>
               <div onClick={checkNavigateProfileUser} className='flex items-center'>
-                <div className='inline-block hover:underline cursor-pointer  text-lg font-bold mr-2'>
+                <div className='flex items-center gap-2 hover:underline cursor-pointer  text-lg font-bold mr-2'>
                   {data.user.name}
+                  {data.user.role === 1 && (
+                    <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                      <FaCheckCircle size={15} />
+                    </div>
+                  )}
                 </div>
               </div>
               <div className='flex gap-2 items-center'>
@@ -336,8 +346,13 @@ function CheckTypeOfPost({
             </div>
             <div className='flex flex-col'>
               <div onClick={checkNavigateProfileParentUser} className='flex items-center'>
-                <div className='inline-block hover:underline cursor-pointer font-bold mr-2'>
+                <div className='flex items-center gap-2 hover:underline cursor-pointer  text-lg font-bold mr-2'>
                   {data.parent_user.name}
+                  {data.parent_user.role === 1 && (
+                    <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                      <FaCheckCircle size={15} />
+                    </div>
+                  )}
                 </div>
               </div>
               <div className='flex gap-2 items-center'>

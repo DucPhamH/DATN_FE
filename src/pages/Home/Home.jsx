@@ -1,7 +1,7 @@
 import { BsFillImageFill, BsFillSunFill } from 'react-icons/bs'
 import useravatar from '../../assets/images/useravatar.jpg'
 import { MdNightlight } from 'react-icons/md'
-import { FaCloudSun } from 'react-icons/fa'
+import { FaCheckCircle, FaCloudSun } from 'react-icons/fa'
 import { PiClockAfternoonFill } from 'react-icons/pi'
 import PostCard from '../../components/CardComponents/PostCard'
 import BlogCard from '../../components/CardComponents/BlogCard'
@@ -261,8 +261,16 @@ const ItemUser = ({ user }) => {
           </div>
         </div>
         <div>
-          <div onClick={() => navigate(`/user/${user._id}`)} className='font-bold cursor-pointer hover:underline'>
+          <div
+            onClick={() => navigate(`/user/${user._id}`)}
+            className='font-bold flex items-center gap-2 cursor-pointer hover:underline'
+          >
             {user.name}
+            {user.role === 1 && (
+              <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                <FaCheckCircle size={13} />
+              </div>
+            )}
           </div>
           <div className=''>
             <span className='text-sm opacity-50'>@{user.user_name}</span>

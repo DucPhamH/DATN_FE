@@ -11,6 +11,7 @@ import FoodBanner from './components/FoodBanner'
 import { followUser, recommendUser } from '../../apis/userApi'
 import { queryClient } from '../../main'
 import Loading from '../../components/GlobalComponents/Loading'
+import { FaCheckCircle } from 'react-icons/fa'
 
 export default function Cooking() {
   const { data: blogData, isLoading: isLoadingBlog } = useQuery({
@@ -241,8 +242,16 @@ const ItemUser = ({ user }) => {
           </div>
         </div>
         <div>
-          <div onClick={() => navigate(`/user/${user._id}`)} className='font-bold cursor-pointer hover:underline'>
+          <div
+            onClick={() => navigate(`/user/${user._id}`)}
+            className='font-bold flex items-center gap-2 cursor-pointer hover:underline'
+          >
             {user.name}
+            {user.role === 1 && (
+              <div className='text-blue-400 rounded-full flex justify-center items-center '>
+                <FaCheckCircle size={13} />
+              </div>
+            )}
           </div>
           <div className=''>
             <span className='text-sm opacity-50'>@{user.user_name}</span>
