@@ -11,6 +11,8 @@ import ModalLayout from '../../../../layouts/ModalLayout'
 import useSound from 'use-sound'
 import post from '../../../../assets/sounds/post.mp3'
 
+import * as nsfwjs from 'nsfwjs'
+
 export default function ModalUploadPost({ closeModalPost, profile }) {
   const theme = localStorage.getItem('theme')
   const inputRef = useRef(null)
@@ -51,19 +53,82 @@ export default function ModalUploadPost({ closeModalPost, profile }) {
     }
   }, [image])
 
-  const handleUpload = () => {
+  const processImage = async (image) => {
+    const reader = new FileReader()
+    const img = await new Promise((resolve, reject) => {
+      reader.onload = () => {
+        resolve(reader.result)
+      }
+      reader.onerror = reject
+      reader.readAsDataURL(image)
+    })
+    const imageElement = new Image()
+    imageElement.src = img
+
+    return new Promise((resolve, reject) => {
+      imageElement.onload = async () => {
+        try {
+          const model = await nsfwjs.load('/model/')
+          const predictions = await model.classify(imageElement)
+          resolve(predictions)
+        } catch (error) {
+          reject(error)
+        }
+      }
+      imageElement.onerror = (error) => {
+        reject(error)
+      }
+    })
+  }
+
+  const classifyImages = async (images) => {
+    try {
+      const results = await Promise.all(images.map((image) => processImage(image)))
+      return results
+    } catch (error) {
+      console.error('Error processing images:', error)
+    }
+  }
+
+  const handleUpload = async () => {
+    if (image.length > 0) {
+      const result = await classifyImages(image)
+
+      console.log(result)
+
+      // result có dạng [ [{}], [{}], [{}] ]
+
+      // check xem có ảnh nào bị flagged không
+      // nếu có thì return
+      const flagged = result
+        ?.map((predictions) =>
+          predictions.some(
+            (prediction) =>
+              (prediction.className === 'Sexy' ||
+                prediction.className === 'Porn' ||
+                prediction.className === 'Hentai') &&
+              prediction.probability > 0.6
+          )
+        )
+        .some((isFlagged) => isFlagged)
+
+      console.log(flagged)
+
+      if (flagged) {
+        return toast.error('Ảnh của bạn có chứa nội dung nhạy cảm')
+      }
+    }
+
     var formData = new FormData()
     if (content === '' && image.length === 0) {
       return toast.error('Nội dung hoặc ảnh không được để trống')
     }
-
     for (let i = 0; i < image.length; i++) {
       const file = image[i]
       formData.append('image', file)
     }
     formData.append('content', content)
     formData.append('privacy', selectedValue)
-
     uploadMutation.mutate(formData, {
       onSuccess: (data) => {
         console.log(data)
