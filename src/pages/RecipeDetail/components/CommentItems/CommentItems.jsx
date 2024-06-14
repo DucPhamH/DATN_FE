@@ -37,7 +37,7 @@ export default function CommentItems({ comment }) {
     <article className='p-6 mb-3 text-base bg-white border-t border-gray-200 dark:border-gray-700 dark:bg-gray-900'>
       <footer className='flex justify-between items-center mb-2'>
         <div className='flex items-center'>
-          <p className='inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white'>
+          <div className='inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white'>
             <img
               className='mr-2 w-6 h-6 rounded-full'
               src={comment?.user.avatar === '' ? useravatar : comment.user.avatar}
@@ -55,7 +55,7 @@ export default function CommentItems({ comment }) {
               )}
               <span className='text-slate-500 text-xs dark:text-slate-300'>{moment(comment?.createdAt).fromNow()}</span>
             </div>
-          </p>
+          </div>
           {/* <p className='text-sm text-gray-600 dark:text-gray-400'>{moment(comment?.createdAt).fromNow()}</p> */}
         </div>
         <ThreeDotComment

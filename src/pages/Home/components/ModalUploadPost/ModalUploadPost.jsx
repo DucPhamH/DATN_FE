@@ -83,7 +83,11 @@ export default function ModalUploadPost({ closeModalPost, profile }) {
 
   const classifyImages = async (images) => {
     try {
+      // const results = await Promise.all(images.map((image) => processImage(image)))
+      // khi đang check ảnh thì  toasts đang xử lý ảnh
+      toast.loading('Đang xử lý ảnh...')
       const results = await Promise.all(images.map((image) => processImage(image)))
+      toast.dismiss()
       return results
     } catch (error) {
       console.error('Error processing images:', error)
@@ -93,13 +97,8 @@ export default function ModalUploadPost({ closeModalPost, profile }) {
   const handleUpload = async () => {
     if (image.length > 0) {
       const result = await classifyImages(image)
-
       console.log(result)
 
-      // result có dạng [ [{}], [{}], [{}] ]
-
-      // check xem có ảnh nào bị flagged không
-      // nếu có thì return
       const flagged = result
         ?.map((predictions) =>
           predictions.some(
