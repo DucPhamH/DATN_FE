@@ -21,7 +21,7 @@ body {
   margin-top: 2px;
 }
 .custorm-blog img {
-  @apply object-cover rounded-md w-[100%] mt-4 mb-2 max-h-[70%];
+  @apply object-contain overflow-hidden rounded-md w-[100%] mt-4 mb-2  max-h-[20rem];
 }
 
 .custorm-blog h2 h3 h4 h5 h6 {

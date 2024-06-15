@@ -255,7 +255,10 @@ export default function RecipeDetail() {
                       {data?.data.result.arrayRecipes.map((recipe) => {
                         return (
                           <li key={recipe._id} className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
-                            <FaArrowCircleRight className='text-xl' />
+                            <div>
+                              <FaArrowCircleRight size={18} className='text-xl' />
+                            </div>
+
                             <Link to={`/cooking/recipe/${recipe._id}`} className=' hover:underline'>
                               {recipe.title}
                             </Link>

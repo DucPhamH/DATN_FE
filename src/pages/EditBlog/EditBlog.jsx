@@ -76,11 +76,11 @@ export default function EditBlog() {
 
   useEffect(() => {
     if (blog) {
-      setValue('title', blog.title)
-      setValue('image', blog.image)
-      setValue('description', blog.description)
-      setValue('content', blog.content)
-      setValue('category_blog_id', blog.category_blog._id)
+      setValue('title', blog?.title)
+      setValue('image', blog?.image)
+      setValue('description', blog?.description)
+      setValue('content', blog?.content)
+      setValue('category_blog_id', blog?.category_blog._id)
     }
   }, [blog, setValue])
   const onEditorStateChange = (editorState) => {
