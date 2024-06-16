@@ -1,6 +1,6 @@
 import { FaArrowCircleRight } from 'react-icons/fa'
 import { Link, useParams } from 'react-router-dom'
-import { getBlogForUser } from '../../apis/blogApi'
+import { getBlogForUser, getBlogsForUser } from '../../apis/blogApi'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import Loading from '../../components/GlobalComponents/Loading'
 import moment from 'moment'
@@ -20,6 +20,28 @@ export default function BlogDetail() {
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 20
   })
+
+  const { data: recommendBlog } = useQuery({
+    queryKey: [
+      'recommend-blog',
+      {
+        category_blog_id: data?.data.result[0]?.category_blog_id
+      }
+    ],
+    queryFn: () => {
+      return getBlogsForUser({
+        category_blog_id: data?.data.result[0]?.category_blog_id
+      })
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 20
+  })
+
+  //bỏ blog hiện tại ra khỏi danh sách recommend và limted 4 bài
+
+  const filterRecommendBlog = recommendBlog?.data.result.blogs
+    .filter((item) => item._id !== data?.data.result[0]._id)
+    .slice(0, 4)
 
   return (
     <>
@@ -61,19 +83,21 @@ export default function BlogDetail() {
 
                   <div className='border rounded-md shadow-md mb-4 bg-[#fef8f8] dark:bg-gray-900 dark:border-none to-gray-300 p-3'>
                     <div className='font-medium'>Xem thêm các bài viết khác:</div>
+
                     <ul>
-                      <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
-                        <FaArrowCircleRight className='text-xl' />
-                        <Link className=' hover:underline'> Tính chỉ số BMR </Link>
-                      </li>
-                      <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
-                        <FaArrowCircleRight className='text-xl' />
-                        <Link className=' hover:underline'> Tìm hiểu và tính toán chỉ số Calo</Link>
-                      </li>
-                      <li className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
-                        <FaArrowCircleRight className='text-xl' />
-                        <Link className=' hover:underline'> Tính toán lượng chất béo trong cơ thể</Link>
-                      </li>
+                      {filterRecommendBlog?.map((blog) => {
+                        return (
+                          <li key={blog._id} className='flex text-blue-600 dark:text-sky-200 gap-3 m-2 items-center'>
+                            <div>
+                              <FaArrowCircleRight size={18} className='text-xl' />
+                            </div>
+
+                            <Link to={`/blog/${blog._id}`} className=' hover:underline'>
+                              {blog.title}
+                            </Link>
+                          </li>
+                        )
+                      })}
                     </ul>
                   </div>
 

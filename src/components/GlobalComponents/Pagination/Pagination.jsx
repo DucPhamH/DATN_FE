@@ -20,7 +20,6 @@ Với range = 2 áp dụng cho khoảng cách đầu, cuối và xung quanh curr
 const RANGE = 2
 export default function Pagination({ queryConfig, pageSize, url }) {
   const page = Number(queryConfig.page)
-  console.log('page', page)
 
   const renderPagination = () => {
     let dotAfter = false

@@ -29,7 +29,6 @@ export default function Album() {
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 5
   })
-  console.log(data)
 
   const handleChangeSort = (e) => {
     navigate({

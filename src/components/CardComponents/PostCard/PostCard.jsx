@@ -417,13 +417,21 @@ function CheckLengthOfImages({ images, navigate, data }) {
       <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
         <div className='flex justify-between gap-1 mb-1'>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
+            <img
+              loading='lazy'
+              className='max-w-full lg:min-w-[10rem] object-cover rounded-tl-lg rounded-bl-lg'
+              src={images[0]}
+            />
           </div>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full object-cover' src={images[1]} />
+            <img loading='lazy' className='max-w-full lg:min-w-[10rem] object-cover' src={images[1]} />
           </div>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
+            <img
+              loading='lazy'
+              className='max-w-full lg:min-w-[10rem] object-cover rounded-tr-lg rounded-br-lg'
+              src={images[2]}
+            />
           </div>
         </div>
       </div>
@@ -434,16 +442,24 @@ function CheckLengthOfImages({ images, navigate, data }) {
       <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
         <div className='flex justify-between gap-1'>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
+            <img
+              loading='lazy'
+              className='max-w-full lg:min-w-[10rem] object-cover rounded-tl-lg rounded-bl-lg'
+              src={images[0]}
+            />
           </div>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full object-cover' src={images[1]} />
+            <img loading='lazy' className='max-w-full lg:min-w-[10rem] object-cover' src={images[1]} />
           </div>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full object-cover rounded-br-lg' src={images[3]} />
+            <img loading='lazy' className='max-w-full lg:min-w-[10rem] object-cover ' src={images[2]} />
           </div>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
+            <img
+              loading='lazy'
+              className='max-w-full lg:min-w-[10rem] object-cover rounded-tr-lg rounded-br-lg'
+              src={images[3]}
+            />
           </div>
         </div>
         <div className='flex justify-between gap-1'></div>
@@ -454,21 +470,21 @@ function CheckLengthOfImages({ images, navigate, data }) {
     <div className='py-4' onClick={() => navigate(`/post/${data._id}`)}>
       <div className='flex justify-between gap-1 mb-1'>
         <div className='flex'>
-          <img loading='lazy' className='max-w-full object-cover rounded-tl-lg' src={images[0]} />
+          <img loading='lazy' className='max-w-full lg:min-w-[10rem]  object-cover rounded-tl-lg' src={images[0]} />
         </div>
         <div className='flex'>
-          <img loading='lazy' className='max-w-full object-cover' src={images[1]} />
+          <img loading='lazy' className='max-w-full lg:min-w-[10rem]  object-cover' src={images[1]} />
         </div>
         <div className='flex'>
-          <img loading='lazy' className='max-w-full object-cover rounded-tr-lg' src={images[2]} />
+          <img loading='lazy' className='max-w-full lg:min-w-[10rem]  object-cover rounded-tr-lg' src={images[2]} />
         </div>
       </div>
       <div className='flex justify-between gap-1'>
         <div className='flex'>
-          <img loading='lazy' className='max-w-full object-cover rounded-bl-lg' src={images[3]} />
+          <img loading='lazy' className='max-w-full lg:min-w-[10rem]  object-cover rounded-bl-lg' src={images[3]} />
         </div>
         <div className='flex'>
-          <img loading='lazy' className='max-w-full object-cover rounded-br-lg' src={images[4]} />
+          <img loading='lazy' className='max-w-full lg:min-w-[10rem]  object-cover rounded-br-lg' src={images[4]} />
         </div>
       </div>
     </div>

@@ -46,7 +46,6 @@ export default function Blog() {
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 5
   })
-  // console.log(data)
 
   const handleChangeSort = (e) => {
     navigate({
@@ -101,8 +100,6 @@ export default function Blog() {
       ).toString()
     })
   })
-
-  console.log(queryConfig)
 
   return (
     <div className='h-full mb-[30rem] text-gray-900 dark:text-white py-4 mx-3'>

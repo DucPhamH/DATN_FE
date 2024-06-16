@@ -39,8 +39,6 @@ export default function NotificationPopUp() {
     staleTime: 1000 * 60 * 5
   })
 
-  console.log(dataCheck)
-
   useEffect(() => {
     if (dataCheck?.data.result === true) {
       setNotification(true)
@@ -75,7 +73,6 @@ export default function NotificationPopUp() {
     enabled: isMenu
   })
 
-  console.log(data)
   return (
     <div ref={ref}>
       <div

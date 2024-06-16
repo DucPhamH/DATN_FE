@@ -66,8 +66,6 @@ export default function EditAlbum() {
   })
 
   const onSubmit = handleSubmit((data) => {
-    console.log(data)
-
     const arrayRecipeId = arrayRecipes.map((item) => item._id)
     console.log(arrayRecipeId)
 
@@ -99,8 +97,6 @@ export default function EditAlbum() {
       setValue('category_album', album.category_album)
     }
   }, [album, setValue])
-
-  console.log(arrayRecipes)
 
   const { data, isLoading } = useQuery({
     queryKey: ['recipes-list-chef', query],

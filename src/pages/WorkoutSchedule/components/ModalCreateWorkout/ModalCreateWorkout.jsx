@@ -61,7 +61,6 @@ export default function ModalCreateWorkout({ handleCloseModalCreateWorkout }) {
 
     createWorkoutMutation.mutate(newData, {
       onSuccess: (data) => {
-        console.log(data?.data.result)
         handleCloseModalCreateWorkout()
         navigate(`/schedule/ex-schedule/${data?.data.result._id}`)
         queryClient.invalidateQueries('workout-schedule')

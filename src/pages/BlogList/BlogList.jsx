@@ -104,8 +104,6 @@ export default function BlogList() {
     })
   })
 
-  console.log(queryConfig)
-
   return (
     <div className='h-screen mb-[30rem] text-gray-900 dark:text-white py-4 mx-3'>
       <div className='mx-2'>
