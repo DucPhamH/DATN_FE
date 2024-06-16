@@ -52,7 +52,6 @@ export default function EditBlog() {
       content: ''
     }
   })
-  console.log(id)
 
   const editBlogMutation = useMutation({
     mutationFn: (body) => updateBlogForChef(id, body)

@@ -30,7 +30,7 @@ export default function LineChart({ meal }) {
   })
 
   const dataCalo = lineData?.data.result.mealDate
-  console.log(dataCalo)
+
   const options = {
     responsive: true,
     maintainAspectRatio: true,

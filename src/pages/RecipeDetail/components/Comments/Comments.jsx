@@ -51,8 +51,6 @@ export default function Comments({ recipe }) {
     placeholderData: keepPreviousData
   })
 
-  console.log(data)
-
   const contentComment = data?.pages?.map((dataComments) =>
     dataComments.data.result.comments.map((comment) => {
       return <CommentItems comment={comment} key={comment._id} />

@@ -22,7 +22,6 @@ export const SocketProvider = ({ children }) => {
   const [notification, setNotification] = useState(initialSocketContext.notification)
 
   useEffect(() => {
-    console.log('isAuthenticated', isAuthenticated)
     const token = getAccessTokenFromLS()
     if (isAuthenticated && token) {
       const socket = io('https://cookhealthydatn.io.vn', {

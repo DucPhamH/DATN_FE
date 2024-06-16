@@ -17,7 +17,6 @@ import { getMealItem } from '../../../../apis/mealScheduleApi'
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, PointElement, LineElement, Title)
 
 export default function PieChart({ meal, profile }) {
-  console.log(meal)
   const { data: mealItem } = useQuery({
     queryKey: [
       'meal-item',
@@ -36,10 +35,7 @@ export default function PieChart({ meal, profile }) {
     staleTime: 1000 * 60 * 10
   })
 
-  console.log(mealItem?.data.result)
-
   const item = mealItem?.data.result[0] ? mealItem?.data.result[0].total_calories : 0
-  console.log(item)
 
   const data = {
     labels: ['Lượng calo đã nạp trong ngày', 'Lượng calo còn lại trong ngày'],

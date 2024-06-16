@@ -40,8 +40,6 @@ export default function Recipe() {
     staleTime: 1000 * 60 * 5
   })
 
-  console.log(data)
-
   const handleChangeSort = (e) => {
     navigate({
       pathname: '/cooking/recipe',

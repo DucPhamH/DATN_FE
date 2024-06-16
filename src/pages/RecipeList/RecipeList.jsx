@@ -31,7 +31,6 @@ export default function RecipeList() {
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 10
   })
-  console.log(data)
 
   const handleChangeSort = (e) => {
     navigate({

@@ -13,7 +13,7 @@ import useSound from 'use-sound'
 import like from '../../../assets/sounds/like.mp3'
 export default function RecipeCard({ recipe }) {
   const location = useLocation()
-  console.log(location.pathname)
+
   const [play] = useSound(like)
 
   const checkRefetchApi = () => {

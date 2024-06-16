@@ -61,7 +61,6 @@ export default function FoodBanner() {
   })
   const navigate = useNavigate()
 
-  console.log(data)
   return (
     <div className='bg-gray'>
       <Slider {...settings}>

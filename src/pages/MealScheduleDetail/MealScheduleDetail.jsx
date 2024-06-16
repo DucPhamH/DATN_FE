@@ -125,7 +125,6 @@ export default function MealScheduleDetail() {
 
   const handleCompleteDateMealItem = (date) => {
     const newDate = moment(date).format('YYYY-MM-DD')
-    console.log(newDate)
 
     completeDateMealItemMutation.mutate(
       {
