@@ -290,8 +290,8 @@ export default function EditAlbum() {
 
             {openEdit && (
               <EditConfirmBox
-                title='Chỉnh sửa bài viết'
-                subtitle='Bạn có chắc chắn muốn chỉnh sửa bài viết này không?'
+                title='Chỉnh sửa album'
+                subtitle='Bạn có chắc chắn muốn chỉnh sửa album này không?'
                 handleCreate={onSubmit}
                 closeModal={handleCloseEdit}
                 isPending={updateAlbumMutation.isPending}
@@ -302,7 +302,7 @@ export default function EditAlbum() {
             onClick={handleOpenEdit}
             className='block btn btn-sm md:inline-block md:w-auto  bg-red-800 hover:bg-red-700 text-white rounded-lg font-semibold text-sm md:ml-2 md:order-2'
           >
-            <div className='flex gap-1 items-center justify-center'>Chỉnh sửa bài viết</div>
+            <div className='flex gap-1 items-center justify-center'>Chỉnh sửa album</div>
           </button>
           <div className='sm:col-span-2 mt-10'>
             <div className='w-full flex flex-col'>
