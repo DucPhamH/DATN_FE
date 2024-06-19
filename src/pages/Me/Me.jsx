@@ -15,7 +15,6 @@ import { navBarsProfileChef, navBarsProfileUser } from '../../constants/objectUi
 import MeBlog from './components/MeBlog'
 import MeAlbum from './components/MeAlbum'
 import MeRecipe from './components/MeRecipe'
-import { GiCook } from 'react-icons/gi'
 import { FaCheckCircle } from 'react-icons/fa'
 
 export default function Me() {

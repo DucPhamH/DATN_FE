@@ -1,6 +1,6 @@
 export default function TabsProfile({ toggleTab, getActiveClass, navBarsProfile }) {
   return (
-    <div className={`flex justify-center md:justify-start items-center my-2 `}>
+    <div className={`flex justify-start items-center my-2 `}>
       <div className='flex items-center space-x-10 bg-transparent'>
         {navBarsProfile.map((item, index) => (
           <div key={item.id} className=' group font-medium'>
