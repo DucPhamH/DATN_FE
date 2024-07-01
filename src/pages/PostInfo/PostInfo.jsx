@@ -1,31 +1,11 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import BlogCard from '../../components/CardComponents/BlogCard'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { getPost } from '../../apis/postApi'
 import LoadingHome from '../Home/components/LoadingHome'
 import PostCardInfo from '../../components/CardComponents/PostCardInfo'
+import { getBlogsForUser } from '../../apis/blogApi'
 
-const blogItems = [
-  {
-    id: 1,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  },
-
-  {
-    id: 2,
-    title: '21 mẹo vặt nấu ăn ngon từ đầu bếp, nên biết để áp dụng',
-    image: 'https://dominofilm.vn/uploads/albums/2019/01/photo_5c495cf04fcea.jpg',
-    description:
-      'Không phải món ăn nào chúng ta cũng cho trực tiếp muối vào ngay từ khi nấu. Đối với các món ăn có các loại củ nên cho muối vào sớm hơn để muối ngấm đều vào củ còn đối với món rau luộc thì chỉ nên nêm muối trước khi bắc nồi xuống tránh cho việc các chất dinh dưỡng trong rau mất đi.',
-    date: '31/10/2023',
-    link: '#blog'
-  }
-]
 export default function PostInfo() {
   const { id } = useParams()
   const { data, status } = useQuery({
@@ -33,6 +13,14 @@ export default function PostInfo() {
     queryFn: () => {
       return getPost(id)
     }
+  })
+  const { data: blogData } = useQuery({
+    queryKey: ['blogs-list-user', { limit: 2 }],
+    queryFn: () => {
+      return getBlogsForUser({ limit: 2 })
+    },
+    placeholderData: keepPreviousData,
+    staleTime: 1000 * 60 * 10
   })
   const post = data?.data.result[0]
 
@@ -62,23 +50,25 @@ export default function PostInfo() {
             </div>
             <div className='border mt-2 mx-5 dark:border-gray-700 border-red-200 '></div>
             <div className='p-3'>
-              {blogItems.map((blogItem) => {
+              {blogData?.data?.result.blogs.map((blog) => {
                 return (
-                  <div className='mb-2 mx-5' key={blogItem.id}>
-                    <BlogCard
-                      blogItem={blogItem}
-                      imgClass='lg:h-[32vh] rounded-t-xl scale-100 overflow-hidden'
-                      dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
-                      titleClass=' font-bold hover:text-color-secondary'
-                      descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
-                      linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
-                    />
-                  </div>
+                  <BlogCard
+                    key={blog._id}
+                    blogItem={blog}
+                    imgClass='w-full max-h-[20rem] object-cover rounded-t-xl scale-100 overflow-hidden'
+                    dateClass='flex text-xs items-center gap-4 pt-2 pb-1'
+                    titleClass=' font-bold  transition-all cursor-pointer line-clamp-2 hover:text-color-secondary'
+                    descriptionClass='leading-relaxed text-sm line-clamp-2 mt-2 mb-3'
+                    linkClass='inline-block font-bold hover:text-color-secondary transition-all duration-300 ease-in-out'
+                  />
                 )
               })}
-              <div className='w-full text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'>
+              <Link
+                to={`/blog`}
+                className='w-full flex justify-center text-center pb-4 font-medium dark:text-gray-300 text-gray-600 hover:text-blue-600 cursor-pointer transition-all duration-300'
+              >
                 Xem thêm bài viết...
-              </div>
+              </Link>
             </div>
           </div>
         </div>
