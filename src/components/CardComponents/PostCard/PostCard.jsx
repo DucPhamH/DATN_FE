@@ -444,20 +444,20 @@ function CheckLengthOfImages({ images, navigate, data }) {
           <div className='flex'>
             <img
               loading='lazy'
-              className='max-w-full lg:min-w-[10rem] object-cover rounded-tl-lg rounded-bl-lg'
+              className='max-w-full min-w-[5rem]  lg:min-w-[10rem] object-cover rounded-tl-lg rounded-bl-lg'
               src={images[0]}
             />
           </div>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full lg:min-w-[10rem] object-cover' src={images[1]} />
+            <img loading='lazy' className='max-w-full min-w-[5rem] lg:min-w-[10rem] object-cover' src={images[1]} />
           </div>
           <div className='flex'>
-            <img loading='lazy' className='max-w-full lg:min-w-[10rem] object-cover ' src={images[2]} />
+            <img loading='lazy' className='max-w-full min-w-[5rem] lg:min-w-[10rem] object-cover ' src={images[2]} />
           </div>
           <div className='flex'>
             <img
               loading='lazy'
-              className='max-w-full lg:min-w-[10rem] object-cover rounded-tr-lg rounded-br-lg'
+              className='max-w-full min-w-[5rem] lg:min-w-[10rem] object-cover rounded-tr-lg rounded-br-lg'
               src={images[3]}
             />
           </div>
