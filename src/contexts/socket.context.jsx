@@ -24,7 +24,11 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     const token = getAccessTokenFromLS()
     if (isAuthenticated && token) {
-      const socket = io('https://cookhealthydatn.io.vn', {
+<<<<<<< HEAD
+      const socket = io('https://datn-be-kwjk.onrender.com', {
+=======
+      const socket = io('https://datn-be-kwjk.onrender.com', {
+>>>>>>> dev
         transports: ['websocket'],
         auth: {
           token: token

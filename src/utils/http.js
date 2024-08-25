@@ -22,7 +22,11 @@ class Http {
     this.refreshToken = getRefreshTokenFromLS()
     this.refreshTokenRequest = null
     this.instance = axios.create({
-      baseURL: `${URL.VPS_URL}`,
+<<<<<<< HEAD
+      baseURL: `${URL.DEPLOY_URL}`,
+=======
+      baseURL: `${URL.DEPLOY_URL}`,
+>>>>>>> dev
       timeout: 10000,
       headers: {
         'Content-Type': 'application/json'
