@@ -24,11 +24,7 @@ export const SocketProvider = ({ children }) => {
   useEffect(() => {
     const token = getAccessTokenFromLS()
     if (isAuthenticated && token) {
-<<<<<<< HEAD
       const socket = io('https://datn-be-kwjk.onrender.com', {
-=======
-      const socket = io('https://datn-be-kwjk.onrender.com', {
->>>>>>> dev
         transports: ['websocket'],
         auth: {
           token: token
